@@ -100,7 +100,7 @@ export class BodyClickerComponent implements OnInit {
   }
 
 
-  getBodyPartStyle(bodypart: Clickable): object {
+  getAreaStyle(bodypart: Clickable): object { //change to polynomial style when ready
     return {
       top: `${bodypart.y}px`,
       left: `${bodypart.x}px`,
