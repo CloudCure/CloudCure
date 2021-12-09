@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { BodyClickerComponent } from './body-clicker/body-clicker.component';
@@ -15,7 +18,13 @@ import { DarkmodeDirective } from './directives/darkmode.directive';
     LoginComponent,
     DiagnosisComponent,
     PrintComponent,
-    DarkmodeDirective
+    DarkmodeDirective,
+    RouterModule.forRoot([
+      { path: '', component: LoginComponent },
+      { path: 'diagnosis', component: DiagnosisComponent },
+      { path: 'print', component: PrintComponent }
+      { path: 'body-clicker', component: BodyClickerComponent }
+    ])
   ],
   imports: [
     BrowserModule
