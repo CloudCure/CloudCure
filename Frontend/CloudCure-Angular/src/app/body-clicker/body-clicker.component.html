@@ -1,7 +1,10 @@
 
-<img src="assets/images/bodysystems.jpg" alt="Body Systems" class="img-fluid">
-<map>
-    <area shape="rect" coords="0,0,100,100" alt="Body Systems" href="https://google.com">
-    <area shape="rect" coords="100,0,200,100" alt="Body Systems" href="https://google.com" style="border: 4px;">
-    <area shape="rect" coords="200,0,300,100" alt="Body Systems" href="https://google.com" style="border: 4px;">
-</map>
+<div id="image-container" (contextmenu)="onAreaCreate(10,10)">
+
+    <img src="assets/images/bodysystems.jpg">
+    <div class="coordinates-container">
+        <div class="area" [ngStyle]="getBodyPartStyle(bodypart)" [title]="bodypart.name" *ngFor="let bodypart of bodyparts" (click)="onAreaClick(bodypart)" (contextmenu)="onAreaEdit(bodypart)">
+        </div>
+    </div>
+
+</div>
