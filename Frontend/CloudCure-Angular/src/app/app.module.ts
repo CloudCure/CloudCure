@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BodyClickerComponent } from './body-clicker/body-clicker.component';
@@ -7,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
+import { VerificationComponent } from './verification/verification.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
@@ -17,10 +19,15 @@ import { NavbarComponent } from './navbar/navbar.component';
     DiagnosisComponent,
     PrintComponent,
     DarkmodeDirective,
+    VerificationComponent,
     NavbarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+      {path: "verification", component:VerificationComponent},
+      
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
