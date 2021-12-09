@@ -20,5 +20,8 @@ export class DiagnosisComponent implements OnInit {
   getClick(bodypart: Clickable) {
     console.log(`Clicked on ${bodypart.name}`)
   }
+  onShowBodyClickerClicked(){
+    this.showBodyClicker = !this.showBodyClicker;
+  }
 
 }

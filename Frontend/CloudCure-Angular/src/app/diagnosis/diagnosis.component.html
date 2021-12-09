@@ -1,6 +1,6 @@
 <p>diagnosis works!</p>
 
-
+<button (click)="onShowBodyClickerClicked()">Show Body Clicker</button>
 <ng-container *ngIf="showBodyClicker"> 
     <body-clicker (onClick)="getClick($event)" [canEdit]="true"></body-clicker>
 </ng-container>

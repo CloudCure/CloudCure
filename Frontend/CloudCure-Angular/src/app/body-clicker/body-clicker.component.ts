@@ -31,13 +31,13 @@ export class BodyClickerComponent implements OnInit {
       height: 62
     },{
       name: 'Throat',
-      x: 107,
-      y: 66,
+      x: 105,
+      y: 62,
       width: 20,
       height: 20
     },{
       name: 'Esophagus',
-      x: 112,
+      x: 110,
       y: 82,
       width: 9,
       height: 36
@@ -50,14 +50,14 @@ export class BodyClickerComponent implements OnInit {
     },{
       name: 'Liver',
       x: 85,
-      y: 190,
+      y: 186,
       width: 40,
-      height: 20
+      height: 27
     },{
       name: 'Stomach',
-      x: 129,
+      x: 120,
       y: 190,
-      width: 24,
+      width: 28,
       height: 32
     },{
       name: 'Large Intestine',
@@ -71,6 +71,24 @@ export class BodyClickerComponent implements OnInit {
       y: 250,
       width: 45,
       height: 33
+    },{
+      name: 'Skull',
+      x: 353,
+      y: 17,
+      width: 43,
+      height: 68
+    },{
+      name: 'Left Pectoral',
+      x: 645,
+      y: 113,
+      width: 37,
+      height: 53
+    },{
+      name: 'Right Pectoral',
+      x: 593,
+      y: 113,
+      width: 37,
+      height: 53
     }
   ]
 
