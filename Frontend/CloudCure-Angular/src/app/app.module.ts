@@ -9,6 +9,7 @@ import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
 import { VerificationComponent } from './verification/verification.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { VerificationComponent } from './verification/verification.component';
     DiagnosisComponent,
     PrintComponent,
     DarkmodeDirective,
-    VerificationComponent
+    VerificationComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
