@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
   declarations: [
@@ -33,10 +34,12 @@ import { FooterComponent } from './footer/footer.component';
     BrowserModule,
     RouterModule.forRoot([
       {path: "verification", component:VerificationComponent},
-
+      {path: "profile", component:ProfileComponent}
     ])
   ],
-  providers: [],
+  providers: [
+    ProfileService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
