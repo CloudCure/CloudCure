@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
       Specialization: new FormControl("", Validators.required),
       alternate_Email: new FormControl("", Validators.required),
       emergency_Contact: new FormControl("", Validators.required),
-      user_Role: new FormControl("", Validators.required)
+      user_Role: new FormControl("", Validators.required),
       
   });
 
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
   RegisterUser(registerGroup: FormGroup)
   {
       //valid property of a FormGroup will let you know if the Form group the user sent is valid or not
-      if (registerGroup.valid) {
+      //if (registerGroup.valid) {
         let UserInfo:User_Profile ={
           work_Email : registerGroup.get("work_email")?.value,
           employee_FirstName : registerGroup.get("FirstName")?.value,
@@ -42,9 +42,9 @@ export class RegisterComponent implements OnInit {
           emergency_Contact : registerGroup.get("emergency_Contact")?.value,
           user_Role : registerGroup.get("user_Role")?.value,
         }
-        
-      }
-      console.log(registerGroup);
+        console.log(UserInfo);
+      //}
+      
 
   }
 
