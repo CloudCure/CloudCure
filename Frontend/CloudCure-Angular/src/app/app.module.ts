@@ -18,8 +18,7 @@ import { DarkmodeDirective } from './directives/darkmode.directive';
     LoginComponent,
     DiagnosisComponent,
     PrintComponent,
-    DarkmodeDirective,
-    RouterModule
+    DarkmodeDirective
   ],
   imports: [
     BrowserModule,
