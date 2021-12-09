@@ -11,15 +11,18 @@ namespace Models.Diagnosis
         public int PatientId { get; set; }
 
         [Required]
-        [Display(Name = "Patient Name")]
+         [Display(Name = "Name")]
+        [RegularExpression(@"^[a-zA-Z -]+$", ErrorMessage = "Invalid name")]
         public string PatientName { get; set; }
 
         [Required]
         [Display(Name = "Patient Phone")]
+        [RegularExpression(@"^[0-9-]+$", ErrorMessage = "Invalid phone number")]
         public string PatientPhone { get; set; }
 
         [Required]
         [Display(Name = "Patient Address")]
+        [RegularExpression(@"^[a-zA-Z0-9. ,-]+$", ErrorMessage = "Invalid address")]
         public string Address { get; set; }
 
         [Required]
