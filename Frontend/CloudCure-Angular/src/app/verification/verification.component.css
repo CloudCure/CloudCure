@@ -1,0 +1,63 @@
+p.ridge {border-style: ridge;}
+
+.center{
+    text-align:center;
+}
+
+.solid{
+    border-style: solid;
+}
+
+.margin{
+    margin: auto;
+}
+
+.row{clear:both}
+
+.column {
+    text-align: center;
+    margin:9px;
+    width: 25%;
+    padding: 10px;
+  }
+
+ 
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  } 
+
+.right{
+    text-align:right;
+}
+
+.tester{
+    display: inline-block;
+  }
+
+.thepad{
+    padding: 10px;
+}
+
+.smush{
+    text-align:right;
+    float:center;
+    list-style: inside;
+}
+
+.block {
+    display: block;
+    width: 25%;
+    border: none;
+    padding: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  ul {
+    text-align: center;
+    list-style: inside;
+  }
+  
