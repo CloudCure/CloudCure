@@ -33,9 +33,11 @@ namespace Models.Diagnosis
 
         public List<Surgery> Surgeries { get; set; }
 
-        public List<Vitals> VitalHistory { get; set; }
-
         public List<Medication> CurrentMedications { get; set; }
+
+        public List<Vitals> VitalHistory { get; set; }
         public List<Assessment> Assessments { get; set; }
+
+        public List<CovidVerify> CovidAssesments { get; set; }
     }
 }
