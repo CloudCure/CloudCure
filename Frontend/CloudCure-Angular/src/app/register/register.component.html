@@ -43,8 +43,14 @@
                   <input type="text" formControlName = "emergency_Contact" class="form-control" id="Inputemergency_Contact">
                 </div>
                 <div class="mb-3">
-                  <label for="Inputuser_Role" class="form-label">user_Role</label>
-                  <input type="text" formControlName = "user_Role" class="form-control" id="Inputuser_Role">
+                  <label>
+                    <input type="radio" value="Nurse" formControlName="user_Role">
+                      <span>Nurse</span>
+                  </label>
+                  <label>
+                    <input type="radio" value="Doctor" formControlName="user_Role">
+                      <span>Doctor</span>
+                  </label>
                 </div>
                 <button type="submit" class="btn btn-dark" (click)="RegisterUser(registerGroup)">Submit</button>
               </form>
