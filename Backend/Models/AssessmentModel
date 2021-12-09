@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Models
+{
+
+    public class AssessmentModel 
+    {
+        [Key]
+        public int AssessmentId { get; set; }
+
+        [Required]
+        public string ChiefComplaint { get; set; }
+
+        public string KnownAllergies { get; set; }
+
+        public int PainScale { get; set; }
+
+        [Required]
+        public int PatientId { get; set; }
+
+        [Required]
+        public string HistOfPresentIllness { get; set; }
+
+        public string MedicalConditions { get; set; }
+
+        public string PastSurgeries { get; set; }  
+
+        public string CurrentMedications { get; set; }
+
+        public string PainAssessment { get; set; }
+    }
+}

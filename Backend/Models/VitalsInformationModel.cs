@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models
 {
-    public class VitalsInformation
+    public class VitalsInformationModel
 
     {
         [Key]
