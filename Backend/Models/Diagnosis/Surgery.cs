@@ -7,6 +7,9 @@ namespace Models.Diagnosis
         [Key]
         public int id { get; set; }
         public int PatientId { get; set; }
+
+        //Previous surgeries undergone by the patient.
+        [Display(Name = "Previous Surgeries")]
         public string SurgeryName { get; set; }
     }
 }
