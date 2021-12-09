@@ -32,7 +32,8 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     }),
     RouterModule.forRoot([
       {path: "verification", component:VerificationComponent},
-    ]),
+    ])
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
