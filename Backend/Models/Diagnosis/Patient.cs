@@ -38,6 +38,7 @@ namespace Models.Diagnosis
         public List<Vitals> VitalHistory { get; set; }
         public List<Assessment> Assessments { get; set; }
 
-        public List<CovidVerify> CovidAssesments { get; set; }
+        // covid assessment
+        //public List<CovidVerify> CovidAssesments { get; set; }
     }
 }
