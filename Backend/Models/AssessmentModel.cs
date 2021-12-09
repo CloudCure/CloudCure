@@ -13,7 +13,9 @@ namespace Models
         [Required]
         public string ChiefComplaint { get; set; }
 
+        [Required]
         public string KnownAllergies { get; set; }
+
 
         public int PainScale { get; set; }
 
@@ -23,12 +25,16 @@ namespace Models
         [Required]
         public string HistOfPresentIllness { get; set; }
 
+        [Required]
         public string MedicalConditions { get; set; }
 
+        [Required]
         public string PastSurgeries { get; set; }  
 
+        [Required]
         public string CurrentMedications { get; set; }
 
+        
         public string PainAssessment { get; set; }
     }
 }
