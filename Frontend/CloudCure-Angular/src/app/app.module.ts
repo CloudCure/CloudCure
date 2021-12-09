@@ -19,15 +19,16 @@ import { DarkmodeDirective } from './directives/darkmode.directive';
     DiagnosisComponent,
     PrintComponent,
     DarkmodeDirective,
+    RouterModule
+  ],
+  imports: [
+    BrowserModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path: 'diagnosis', component: DiagnosisComponent },
-      { path: 'print', component: PrintComponent }
-      { path: 'body-clicker', component: BodyClickerComponent }
+      { path: 'print', component: PrintComponent },
+      { path: 'body-clicker', component: BodyClickerComponent },
     ])
-  ],
-  imports: [
-    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
