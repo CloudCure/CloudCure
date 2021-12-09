@@ -10,9 +10,9 @@ namespace Models
     {
         [Key]
         public int verificationID { get; set; }
+        [Required]
         public int patientID {get; set;}
-        public int patientName {get; set;}
-        public string emailAddress { get; set; }
+        [Required]
         public bool covidChoice { get; set; }
         
     }
