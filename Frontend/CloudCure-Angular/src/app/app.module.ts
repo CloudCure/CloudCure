@@ -9,6 +9,7 @@ import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
 import { NavbarComponent } from './navbar/navbar.component';
+import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     DiagnosisComponent,
     PrintComponent,
     DarkmodeDirective,
-    NavbarComponent
+    NavbarComponent,
+    BottomNavbarComponent
   ],
   imports: [
     BrowserModule,
