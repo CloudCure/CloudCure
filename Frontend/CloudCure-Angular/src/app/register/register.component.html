@@ -1,1 +1,57 @@
 <p>register works!</p>
+
+<body>
+  <div class="container" > <!--*ngIf="showModifyUser"-->
+    <div class="row gutters">
+      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="row gutters">
+
+                <!-- work_Email
+                FirstName
+                LastName
+                PhoneNumber
+                Specialization
+                alternate_Email
+                emergency_Contact
+                user_Role -->
+
+              <form [formGroup] = "registerGroup">
+                <div class="mb-3">
+                  <label for="InputFirstName" class="form-label">First Name</label>
+                  <input type="text" formControlName = "FirstName" class="form-control" id="InputFirstName" aria-describedby="FirstNameHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="InputLastName" class="form-label">Last Name</label>
+                  <input type="text" formControlName = "LastName" class="form-control" id="InputLastName">
+                </div>
+                <div class="mb-3">
+                  <label for="InputPhoneNumber" class="form-label">PhoneNumber</label>
+                  <input type="text" formControlName = "PhoneNumber" class="form-control" id="InputPhoneNumber">
+                </div>
+                <div class="mb-3">
+                  <label for="InputSpecialization" class="form-label">Specialization</label>
+                  <input type="text" formControlName = "Specialization" class="form-control" id="InputSpecialization">
+                </div>
+                <div class="mb-3">
+                  <label for="Inputalternate_Email" class="form-label">alternate_Email</label>
+                  <input type="text" formControlName = "alternate_Email" class="form-control" id="Inputalternate_Email">
+                </div>
+                <div class="mb-3">
+                  <label for="Inputemergency_Contact" class="form-label">emergency_Contact</label>
+                  <input type="text" formControlName = "emergency_Contact" class="form-control" id="Inputemergency_Contact">
+                </div>
+                <div class="mb-3">
+                  <label for="Inputuser_Role" class="form-label">user_Role</label>
+                  <input type="text" formControlName = "user_Role" class="form-control" id="Inputuser_Role">
+                </div>
+                <button type="submit" class="btn btn-dark" (click)="RegisterUser(registerGroup)">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
