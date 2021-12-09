@@ -10,6 +10,9 @@ import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
 import { VerificationComponent } from './verification/verification.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,17 @@ import { NavbarComponent } from './navbar/navbar.component';
     PrintComponent,
     DarkmodeDirective,
     VerificationComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProfileComponent,
+    HeaderComponent,
+    FooterComponent
   ],
+
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       {path: "verification", component:VerificationComponent},
-      
+
     ])
   ],
   providers: [],
