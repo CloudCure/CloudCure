@@ -12,11 +12,9 @@ import { LoginComponent } from './login/login.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
-
 import { VerificationComponent } from './verification/verification.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-import { AngularModelsComponent } from './angular-models/angular-models.component';
 import { RegisterComponent } from './register/register.component';
 
 
@@ -29,18 +27,20 @@ import { RegisterComponent } from './register/register.component';
     PrintComponent,
     DarkmodeDirective,
     VerificationComponent,
-    NavbarComponent
+    NavbarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
+    
     RouterModule.forRoot([
-      {path: "verification", component:VerificationComponent},
-      
+      {path: "verification", component:VerificationComponent}, 
     ]),
-    AngularModelsComponent,
-    RegisterComponent,
+  
+    
     BrowserModule,
     FormsModule,
+    FormGroup,
     ReactiveFormsModule,
   ],
   providers: [],
