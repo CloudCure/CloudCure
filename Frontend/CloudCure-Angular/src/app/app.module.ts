@@ -40,7 +40,6 @@ import { RegisterComponent } from './register/register.component';
     
     BrowserModule,
     FormsModule,
-    FormGroup,
     ReactiveFormsModule,
   ],
   providers: [],
