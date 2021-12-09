@@ -14,6 +14,12 @@ namespace Models
 
         public string employee_LastName {get; set;}
 
-        public Boolean user_Type {get; set;}
+        public string employee_Specialization {get; set;}
+
+        public string alternate_Email {get; set;}
+
+        public string emergency_Contact {get; set;}
+
+        public Boolean user_Role {get; set;}
     }
 }
