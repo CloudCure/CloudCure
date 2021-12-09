@@ -32,6 +32,6 @@ namespace Models
 
         public double OxygenSat {get; set;}
 
-        public DateTime EncounterDate {get; set;}
+        public DateTime? EncounterDate {get; set;}
     }
 }
