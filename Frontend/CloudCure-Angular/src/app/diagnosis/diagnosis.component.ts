@@ -9,7 +9,7 @@ import { Clickable } from '../body-clicker/body-clicker.component';
 export class DiagnosisComponent implements OnInit {
 
   constructor(){
-    this.showBodyClicker = false;
+    this.showBodyClicker = true;
   }
 
   ngOnInit(): void{
