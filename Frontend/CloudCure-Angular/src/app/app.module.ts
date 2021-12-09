@@ -8,6 +8,7 @@ import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
 import { AngularModelsComponent } from './angular-models/angular-models.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AngularModelsComponent } from './angular-models/angular-models.componen
     DiagnosisComponent,
     PrintComponent,
     DarkmodeDirective,
-    AngularModelsComponent
+    AngularModelsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule
