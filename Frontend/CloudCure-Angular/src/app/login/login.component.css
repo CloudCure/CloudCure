@@ -1,0 +1,19 @@
+.btn-login{
+    border-color: rgb(72, 76, 86);
+    background-color: rgb(242,105,38);
+  }
+
+.btn-login:hover {
+    background-color: rgb(242,105,38);
+    filter: brightness(90%);
+  }
+
+.btn-logout{
+    border-color: rgb(115,165,194);
+    background-color: rgb(115,165,194);
+  }
+
+.btn-logout:hover {
+    background-color: rgb(115,165,194);
+    filter: brightness(90%);
+  }
