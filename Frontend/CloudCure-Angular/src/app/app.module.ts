@@ -12,6 +12,7 @@ import { VerificationComponent } from './verification/verification.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { HomeComponent } from './home/home.component';
     HomeComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
