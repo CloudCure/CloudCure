@@ -1,0 +1,127 @@
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.profile-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.content-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 100vw;
+  margin: auto;
+  text-align: left;
+  font-family: arial;
+  display: grid;
+}
+
+/* Content Card Text */
+.mb-0 {
+  margin-bottom: 1rem!important;
+  margin-left: 1rem!important;
+
+}
+
+h2 button {
+
+ margin-right: 10px;
+ float: right;
+}
+
+h2 button:hover {
+
+  background-color: plum;
+ }
+
+/* Content Navbar */
+
+#navbar-animmenu {
+	background: skyblue;
+	float: left;
+	overflow: hidden;
+	position: relative;
+	padding: 10px 0px;
+  width: 100%;
+  justify-content: center;
+}
+
+#navbar-animmenu ul{
+	padding: 0px;
+	margin: 0px;
+}
+
+#navbar-animmenu ul li a i{
+	margin-right: 10px;
+
+}
+
+#navbar-animmenu li {
+	list-style-type: none;
+	float: left;
+}
+
+#navbar-animmenu ul li a{
+	  color: whitesmoke;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 45px;
+    display: block;
+    padding: 0px 20px;
+    transition-duration:0.6s;
+	  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+}
+
+#navbar-animmenu>ul>li.active>a{
+	color: whitesmoke;
+	background-color: transparent;
+	transition: all 0.7s;
+}
+
+#navbar-animmenu a:not(:only-child):after {
+	content: "\f105";
+	position: absolute;
+	right: 20px;
+	top: 10%;
+	font-size: 14px;
+	font-family: "Font Awesome 5 Free";
+	display: inline-block;
+	padding-right: 3px;
+	vertical-align: middle;
+	font-weight: 900;
+	transition: 0.5s;
+}
+
+#navbar-animmenu .active>a:not(:only-child):after {
+	transform: rotate(90deg);
+}
+
+
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}

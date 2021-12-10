@@ -1,0 +1,14 @@
+.navbar-color {
+    background-color: #474C55;
+}
+
+.navbar-text {
+    color: #F26925;
+    font-size: 25px;
+}
+
+.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
