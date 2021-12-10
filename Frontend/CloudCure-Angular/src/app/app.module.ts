@@ -18,7 +18,6 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileService } from './services/profile.service';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
