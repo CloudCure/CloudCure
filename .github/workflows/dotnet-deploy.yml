@@ -52,10 +52,6 @@ jobs:
       
     - name: Test
       run: dotnet test ./Backend/Tests --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-    
-        
-    - name: Restore dependencies
-      run: dotnet restore .Backend/WebAPI
       
     - name: Build and analyze
       env:
