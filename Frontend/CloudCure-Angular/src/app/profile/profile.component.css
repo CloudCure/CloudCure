@@ -4,12 +4,7 @@
   padding: 10px;
 }
 
-/* Left and right column */
-.column.side {
-  width: 25%;
-}
 
-/* Middle column */
 .column.middle {
   width: 50%;
 }
@@ -42,7 +37,6 @@
 .mb-0 {
   margin-bottom: 1rem!important;
   margin-left: 1rem!important;
-
 }
 
 h2 button {

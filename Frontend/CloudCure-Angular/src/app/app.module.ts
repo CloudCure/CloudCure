@@ -28,7 +28,7 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     NavbarComponent,
     ProfileComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
     BottomNavbarComponent
   ],
 
