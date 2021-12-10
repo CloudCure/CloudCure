@@ -8,10 +8,6 @@ import { Vitals } from "./Vitals";
 export interface Patient 
 {
     PatientId?:          number;
-    PatientName:         string;
-    PatientPhone:        string;
-    PatientAddress:      string;
-    DateOfBirth?:        Date;
     Conditions?:         Condition[];
     Allergies?:          Allgergy[];
     Surgeries?:          Surgery[];
