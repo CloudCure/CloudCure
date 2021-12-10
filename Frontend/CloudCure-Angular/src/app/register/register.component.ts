@@ -11,6 +11,7 @@ import { User_Profile } from '../Models/User_Profile';
 })
 export class RegisterComponent implements OnInit {
 
+  //Creates a form group for the User model 
   registerGroup:FormGroup = new FormGroup({
       work_Email: new FormControl(""),
       FirstName: new FormControl("", Validators.required),
@@ -28,6 +29,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //when the submit button is clicked from the htlm of this component this function is called
+  //will check if all verifications passed in the form group(so no feilds are null)
+  //if verification passes it will create a new User object with the entered information
   RegisterUser(registerGroup: FormGroup)
   {
       //valid property of a FormGroup will let you know if the Form group the user sent is valid or not

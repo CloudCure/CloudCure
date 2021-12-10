@@ -29,9 +29,7 @@ import { RegisterComponent } from './register/register.component';
     DarkmodeDirective,
     VerificationComponent,
     NavbarComponent,
-
     RegisterComponent,
-
     ProfileComponent,
     HeaderComponent,
     FooterComponent,
