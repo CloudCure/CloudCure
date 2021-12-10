@@ -11,23 +11,36 @@ namespace Models
     public class User
     {
 
-        public string first_Name {get; set;}
+        [Key]
+        public int UserId {get; set;}
+        
+        [Required]
+        public string FirstName {get; set;}
 
-        public string last_Name {get; set;}
+        [Required]
+        public string LastName {get; set;}
 
+        [Required]
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
-        public string phone_Number {get; set;}
+        [Required]
+        public string PhoneNumber {get; set;}
 
-        public string address {get; set;}
+        [Required]
+        public string Address {get; set;}
 
-        public int role_ID {get; set;}
+        [Required]
+        public string EmergencyName {get; set;}
 
-        public int user_ID {get; set;}
+        [Required]
+        public string EmergencyContactPhone {get; set;}
 
-        public Role role {get; set;}
+        [Required]
+        public int RoleId {get; set;}
+
+        public Role Role {get; set;}
 
     }
 
