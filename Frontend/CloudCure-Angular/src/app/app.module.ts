@@ -47,7 +47,6 @@ import { HomeComponent } from './home/home.component';
     RouterModule.forRoot([
       { path: "verification", component: VerificationComponent },
       { path: "profile", component: ProfileComponent },
-      { path: '', component: LoginComponent },
       { path: 'diagnosis', component: DiagnosisComponent },
       { path: 'print', component: PrintComponent },
       { path: 'body-clicker', component: BodyClickerComponent },
