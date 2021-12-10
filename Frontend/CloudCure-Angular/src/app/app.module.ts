@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
+import { DiagnosisVitalsComponent } from './diagnosis-vitals/diagnosis-vitals.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DarkmodeDirective } from './directives/darkmode.directive';
     LoginComponent,
     DiagnosisComponent,
     PrintComponent,
-    DarkmodeDirective
+    DarkmodeDirective,
+    DiagnosisVitalsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { DarkmodeDirective } from './directives/darkmode.directive';
       { path: 'diagnosis', component: DiagnosisComponent },
       { path: 'print', component: PrintComponent },
       { path: 'body-clicker', component: BodyClickerComponent },
+      { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
     ])
   ],
   providers: [],
