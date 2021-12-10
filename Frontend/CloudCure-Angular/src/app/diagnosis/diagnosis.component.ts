@@ -8,6 +8,10 @@ import { Clickable } from '../body-clicker/body-clicker.component';
 })
 export class DiagnosisComponent implements OnInit {
 
+  //variables
+  showBodyClicker: boolean;
+  bodypartshurt: string = "";
+
   constructor(){
     this.showBodyClicker = true;
   }
@@ -16,7 +20,6 @@ export class DiagnosisComponent implements OnInit {
 
   }
 
-  showBodyClicker: boolean;
   getClick(bodypart: Clickable) {
     console.log(`Clicked on ${bodypart.name}`)
   }
