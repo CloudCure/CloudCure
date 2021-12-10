@@ -32,6 +32,7 @@ import { AssessmentComponent } from './assessment/assessment.component';
       { path: 'print', component: PrintComponent },
       { path: 'body-clicker', component: BodyClickerComponent },
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
+      { path: 'assessment', component: AssessmentComponent },
     ])
   ],
   providers: [],

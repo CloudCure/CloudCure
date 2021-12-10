@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Clickable } from '../body-clicker/body-clicker.component';
 
 @Component({
   selector: 'app-assessment',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssessmentComponent implements OnInit {
 
-  constructor() { }
+  //variables
+  showBodyClicker: boolean = false;
+  constructor(){ }
 
   ngOnInit(): void {
+  }
+
+  getClick(bodypart: Clickable) {
+    console.log(`Clicked on ${bodypart.name}`)
   }
 
 }
