@@ -8,9 +8,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Models {
     public class Role{
-        public int role_ID {get; set;}
+        [Key]
+        public int RoleId {get; set;}
 
-        public string role_Name {get; set;}
+        [Required]
+        public string RoleName {get; set;}
 
         
 

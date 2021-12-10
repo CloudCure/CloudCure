@@ -16,6 +16,5 @@ namespace Models
         public int role_ID {get; set;}
         public int user_ID {get; set;}
         public Role role {get; set;}
-
     }
 }
