@@ -5,7 +5,7 @@ on:
     branches: [ main ] 
     
 env:
-  AZURE_WEBAPP_NAME: pawpers-angular    # set this to your application's name
+  AZURE_WEBAPP_NAME: cloudcure-client    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: './Frontend/CloudCure-Angular/dist/CloudCure-Angular'
   NODE_VERSION: '14.x'                # set this to the node version to use
 
