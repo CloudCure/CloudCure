@@ -11,6 +11,7 @@ import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
 import { DiagnosisVitalsComponent } from './diagnosis-vitals/diagnosis-vitals.component';
+import { AssessmentComponent } from './assessment/assessment.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DiagnosisVitalsComponent } from './diagnosis-vitals/diagnosis-vitals.co
     DiagnosisComponent,
     PrintComponent,
     DarkmodeDirective,
-    DiagnosisVitalsComponent
+    DiagnosisVitalsComponent,
+    AssessmentComponent
   ],
   imports: [
     BrowserModule,
