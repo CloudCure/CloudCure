@@ -2,7 +2,7 @@ name: .NET build/test
 
 on:
   pull_request:
-    branches: [ main, patientdiagnosis, chase-branch ]
+    branches: "*"
 
 jobs:
   build:
@@ -50,7 +50,7 @@ jobs:
       run: dotnet restore ./Backend/WebAPI
       
     - name: Test
-      run: dotnet test ./Backend/Tests --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+      run: dotnet test ./Backend --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
     
     - name: Build and analyze
       env:
@@ -59,6 +59,6 @@ jobs:
       shell: powershell
       run: |
         .\.sonar\scanner\dotnet-sonarscanner begin /k:"CloudCure_CloudCure" /o:"CloudCure" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.exclusions="**Web/wwwroot/lib/**" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.vs.vstest.reportsPaths="**/TestResult/*trx"
-        dotnet build Backend/WebAPI --configuration Release --no-restore
+        dotnet build ./Backend --configuration Release --no-restore
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
   
