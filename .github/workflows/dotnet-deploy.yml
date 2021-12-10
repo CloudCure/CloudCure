@@ -51,7 +51,7 @@ jobs:
       run: dotnet restore ./Backend/WebAPI
       
     - name: Test
-      run: dotnet test ./Backend/Tests --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+      run: dotnet test ./Backend --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
       
     - name: Build and analyze
       env:
@@ -59,7 +59,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       shell: powershell
       run: |
-        dotnet build ./Backend/WebAPI --configuration Release --no-restore
+        dotnet build ./Backend --configuration Release --no-restore
     
   deploy:
     needs: build
