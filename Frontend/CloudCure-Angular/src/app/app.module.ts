@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
+import { DiagnosisConditionComponent } from './diagnosis-condition/diagnosis-condition.component';
 import { DiagnosisVitalsComponent } from './diagnosis-vitals/diagnosis-vitals.component';
 
 import { VerificationComponent } from './verification/verification.component';
@@ -31,6 +32,7 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     DiagnosisComponent,
     PrintComponent,
     DarkmodeDirective,
+    DiagnosisConditionComponent,
     patientdiagnosis,
     DiagnosisVitalsComponent,
     VerificationComponent,
@@ -54,6 +56,7 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
       { path: 'diagnosis', component: DiagnosisComponent },
       { path: 'print', component: PrintComponent },
       { path: 'body-clicker', component: BodyClickerComponent },
+      { path: 'diagnosis-condition', component:DiagnosisConditionComponent},
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
     ])
   ],
