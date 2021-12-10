@@ -11,24 +11,24 @@ namespace Models
     public class User
     {
 
-        public string work_Email {get; set;}
+        public string first_Name {get; set;}
 
-        public string employee_FirstName {get; set;}
-
-        public string employee_LastName {get; set;}
-
-        public string employee_Specialization {get; set;}
+        public string last_Name {get; set;}
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
-        public string alternate_Email {get; set;}
 
-        public string emergency_Contact {get; set;}
+        public string phone_Number {get; set;}
 
-        public string Address { get; set; }
+        public string address {get; set;}
 
-        public Boolean user_Role {get; set;}
+        public int role_ID {get; set;}
+
+        public int user_ID {get; set;}
+
+        public Role role {get; set;}
+
     }
 
 
