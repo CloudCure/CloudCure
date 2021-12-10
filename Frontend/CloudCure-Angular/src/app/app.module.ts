@@ -15,6 +15,8 @@ import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
 import { DiagnosisConditionComponent } from './diagnosis-condition/diagnosis-condition.component';
 import { DiagnosisVitalsComponent } from './diagnosis-vitals/diagnosis-vitals.component';
+import { DiagnosisAllergyComponent } from './diagnosis-allergy/diagnosis-allergy.component';
+import { TextBoxComponent } from './text-box/text-box.component';
 
 import { VerificationComponent } from './verification/verification.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -32,6 +34,8 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     DiagnosisComponent,
     PrintComponent,
     DarkmodeDirective,
+    DiagnosisAllergyComponent,
+    TextBoxComponent,
     DiagnosisConditionComponent,
     patientdiagnosis,
     DiagnosisVitalsComponent,
@@ -58,6 +62,8 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
       { path: 'body-clicker', component: BodyClickerComponent },
       { path: 'diagnosis-condition', component:DiagnosisConditionComponent},
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
+      { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent },
+      { path: 'text-box', component: TextBoxComponent },
     ])
   ],
   providers: [
