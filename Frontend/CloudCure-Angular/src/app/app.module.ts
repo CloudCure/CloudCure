@@ -31,13 +31,12 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     DiagnosisComponent,
     PrintComponent,
     DarkmodeDirective,
-    patientdiagnosis,
     DiagnosisVitalsComponent,
     VerificationComponent,
     NavbarComponent,
     ProfileComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
     BottomNavbarComponent
   ],
 
