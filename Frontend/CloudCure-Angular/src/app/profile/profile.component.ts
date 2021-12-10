@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import { EmployeeInformation } from '../Models/EmployeeInformation';
 import { UserProfile } from '../Models/UserProfile';
 import { ProfileService } from '../services/profile.service';
 
@@ -22,18 +23,18 @@ export class ProfileComponent implements OnInit {
     UserId: 0
 
   };
-  employeeInfo:Employee_Information | null = {
-    education_Degree: "",
-    room_Number: "",
-    specialization: "",
-    start_Date: "",
-    user_ID: -1,
-    work_Email: ""
+  employeeInfo:EmployeeInformation | null = {
+    EducationDegree: "",
+    RoomNumber: "",
+    Specialization: "",
+    StartDate: "",
+    UserId: 0,
+    WorkEmail: ""
   }
 
   constructor(public auth0:AuthService, service:ProfileService) {
     this.user = service.getProfile();
-    this.employeeInfo = service.getEmplyoeeInfo();
+    this.employeeInfo = service.getEmployeeInfo();
   }
 
   ngOnInit(): void {
