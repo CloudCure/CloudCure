@@ -11,14 +11,14 @@ import { ProfileService } from '../services/profile.service';
 export class ProfileComponent implements OnInit {
 
   user:User_Profile | null= {
-    employee_FirstName: "",
-    employee_LastName: "",
+    first_Name: "",
+    last_Name: "",
     employee_PhoneNumber: "",
-    employee_Specialization: "",
-    emergency_Contact: "",
-    user_Role: "",
-    work_Email: "",
-    alternate_Email: ""
+    DateOfBirth: "",
+    address: "",
+    phone_Number: "",
+    role_ID: -1,
+    user_ID: -1
   };
 
   constructor(public auth0:AuthService, service:ProfileService) {
