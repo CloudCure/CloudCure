@@ -30,7 +30,7 @@ import { HomeComponent } from './home/home.component';
     DiagnosisVitalsComponent,
     VerificationComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
     ProfileComponent,
     HeaderComponent,
     FooterComponent,
