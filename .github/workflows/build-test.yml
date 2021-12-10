@@ -1,7 +1,7 @@
 name: .NET build/test
 
 on:
-  push:
+  pull_request:
     branches: [ main, patientdiagnosis, chase-branch ]
 
 jobs:
