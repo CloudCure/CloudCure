@@ -1,5 +1,3 @@
-<p>register works!</p>
-
 <body>
   <div class="container" > <!--*ngIf="showModifyUser"-->
     <div class="row gutters">
@@ -7,15 +5,6 @@
         <div class="card h-100">
           <div class="card-body">
             <div class="row gutters">
-
-                <!-- work_Email
-                FirstName
-                LastName
-                PhoneNumber
-                Specialization
-                alternate_Email
-                emergency_Contact
-                user_Role -->
 
               <form [formGroup] = "registerGroup">
                 <div class="mb-3">
@@ -27,28 +16,48 @@
                   <input type="text" formControlName = "LastName" class="form-control" id="InputLastName">
                 </div>
                 <div class="mb-3">
+                  <label for="InputDateOfBirth" class="form-label">DateOfBirth</label>
+                  <input type="text" formControlName = "DateOfBirth" class="form-control" id="InputDateOfBirth">
+                </div>
+                <div class="mb-3">
                   <label for="InputPhoneNumber" class="form-label">PhoneNumber</label>
                   <input type="text" formControlName = "PhoneNumber" class="form-control" id="InputPhoneNumber">
+                </div>
+                <div class="mb-3">
+                  <label for="InputAddress" class="form-label">Address</label>
+                  <input type="text" formControlName = "Address" class="form-control" id="InputAddress">
+                </div>
+                <div class="mb-3">
+                  <label for="InputEmergencyName" class="form-label">EmergencyName</label>
+                  <input type="text" formControlName = "EmergencyName" class="form-control" id="InputEmergencyName">
+                </div>
+                <div class="mb-3">
+                  <label for="InputEmergencyContactPhone" class="form-label">EmergencyContactPhone</label>
+                  <input type="text" formControlName = "EmergencyContactPhone" class="form-control" id="InputContactPhone">
                 </div>
                 <div class="mb-3">
                   <label for="InputSpecialization" class="form-label">Specialization</label>
                   <input type="text" formControlName = "Specialization" class="form-control" id="InputSpecialization">
                 </div>
                 <div class="mb-3">
-                  <label for="Inputalternate_Email" class="form-label">alternate_Email</label>
-                  <input type="text" formControlName = "alternate_Email" class="form-control" id="Inputalternate_Email">
+                  <label for="InputStartDate" class="form-label">StartDate</label>
+                  <input type="text" formControlName = "StartDate" class="form-control" id="InputStartDate">
                 </div>
                 <div class="mb-3">
-                  <label for="Inputemergency_Contact" class="form-label">emergency_Contact</label>
-                  <input type="text" formControlName = "emergency_Contact" class="form-control" id="Inputemergency_Contact">
+                  <label for="InputRoomNumber" class="form-label">RoomNumber</label>
+                  <input type="text" formControlName = "RoomNumber" class="form-control" id="InputRoomNumber">
+                </div>
+                <div class="mb-3">
+                  <label for="InputEducationDegree" class="form-label">EducationDegree</label>
+                  <input type="text" formControlName = "EducationDegree" class="form-control" id="InputEducationDegree">
                 </div>
                 <div class="mb-3">
                   <label>
-                    <input type="radio" value="Nurse" formControlName="user_Role">
+                    <input type="radio" value="Nurse" formControlName="UserRole">
                       <span>Nurse</span>
                   </label>
                   <label>
-                    <input type="radio" value="Doctor" formControlName="user_Role">
+                    <input type="radio" value="Doctor" formControlName="UserRole">
                       <span>Doctor</span>
                   </label>
                 </div>

@@ -1,5 +1,5 @@
 export interface EmployeeInformation {
-    UserId: number
+    UserId?: number
     WorkEmail: string
     Specialization: string
     StartDate: string
