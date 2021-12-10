@@ -1,2 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~font-awesome/css/font-awesome.css";
+
+@font-face {
+    font-family: "Futura-Std-Book";
+    src: local("Futura-Std-Book"), url(./assets/fonts/Futura-Std-Book.otf) format("truetype");
+}
+@font-face {
+    font-family: "Futura-Std-Medium";
+    src: local("Futura-Std-Medium"), url(./assets/fonts/Futura-Std-Medium.otf) format("truetype");
+}
+@font-face {
+    font-family: "Futura-Std-Heavy";
+    src: local("Futura-Std-Heavy"), url(./assets/fonts/Futura-Std-Heavy.otf) format("truetype");
+}
+@font-face{
+    font-family: "Futura-Std-Bold";
+    src: local("Futura-Std-Bold"), url(./assets/fonts/Futura-Std-Bold.otf) format("truetype");
+}
+
+/* "*" means apply to all elements*/
+* {
+    font-family: "Futura-Std-Book";
+}
+
+/*these are the Revature fonts we've been allowed by COE*/
+.revature-font-bold {
+    font-family: "Futura-Std-Bold";
+}
+
+.revature-font-heavy {
+    font-family: "Futura-Std-Heavy";
+}
+
+.revature-font-medium {
+    font-family: "Futura-Std-Medium";
+}

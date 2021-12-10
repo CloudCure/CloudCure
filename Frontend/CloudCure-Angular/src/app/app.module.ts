@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AuthModule } from '@auth0/auth0-angular';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { BodyClickerComponent } from './body-clicker/body-clicker.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileService } from './services/profile.service';
+import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,19 @@ import { ProfileService } from './services/profile.service';
     ProfileComponent,
     HeaderComponent,
     FooterComponent
+    BottomNavbarComponent
   ],
 
   imports: [
     BrowserModule,
+    AuthModule.forRoot({
+      domain: 'dev-3g3556dl.us.auth0.com',
+      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
+    }),
     RouterModule.forRoot([
       {path: "verification", component:VerificationComponent},
       {path: "profile", component:ProfileComponent}
+
     ])
   ],
   providers: [
