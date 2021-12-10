@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~font-awesome/css/font-awesome.css";
+
 @font-face {
     font-family: "Futura-Std-Book";
     src: local("Futura-Std-Book"), url(./assets/fonts/Futura-Std-Book.otf) format("truetype");
@@ -33,5 +35,3 @@
 .revature-font-medium {
     font-family: "Futura-Std-Medium";
 }
-
-

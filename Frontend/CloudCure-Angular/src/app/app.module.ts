@@ -10,6 +10,10 @@ import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
 import { VerificationComponent } from './verification/verification.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { ProfileService } from './services/profile.service';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 
 @NgModule({
@@ -22,8 +26,12 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     DarkmodeDirective,
     VerificationComponent,
     NavbarComponent,
+    ProfileComponent,
+    HeaderComponent,
+    FooterComponent
     BottomNavbarComponent
   ],
+
   imports: [
     BrowserModule,
     AuthModule.forRoot({
@@ -32,9 +40,13 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     }),
     RouterModule.forRoot([
       {path: "verification", component:VerificationComponent},
+      {path: "profile", component:ProfileComponent}
+
     ])
   ],
-  providers: [],
+  providers: [
+    ProfileService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
