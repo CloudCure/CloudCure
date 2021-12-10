@@ -1,15 +1,21 @@
+import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '@auth0/auth0-angular';
 import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 import { BodyClickerComponent } from './body-clicker/body-clicker.component';
 import { LoginComponent } from './login/login.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
+import { DiagnosisVitalsComponent } from './diagnosis-vitals/diagnosis-vitals.component';
 import { VerificationComponent } from './verification/verification.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { ProfileService } from './services/profile.service';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -22,11 +28,16 @@ import { HttpClientModule } from '@angular/common/http';
     DiagnosisComponent,
     PrintComponent,
     DarkmodeDirective,
+    DiagnosisVitalsComponent,
     VerificationComponent,
     NavbarComponent,
-    BottomNavbarComponent,
     HomeComponent
+    ProfileComponent,
+    HeaderComponent,
+    FooterComponent,
+    BottomNavbarComponent
   ],
+
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -35,11 +46,19 @@ import { HttpClientModule } from '@angular/common/http';
       clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
     }),
     RouterModule.forRoot([
-      {path: "verification", component:VerificationComponent},
-      {path: "**", component:HomeComponent},
+      { path: "verification", component: VerificationComponent },
+      { path: "profile", component: ProfileComponent },
+      { path: '', component: LoginComponent },
+      { path: 'diagnosis', component: DiagnosisComponent },
+      { path: 'print', component: PrintComponent },
+      { path: 'body-clicker', component: BodyClickerComponent },
+      { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
+      { path: "**", component: HomeComponent }
     ])
   ],
-  providers: [],
+  providers: [
+    ProfileService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

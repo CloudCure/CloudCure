@@ -1,63 +1,86 @@
-p.ridge {border-style: ridge;}
-
-.center{
-    text-align:center;
+* {
+  box-sizing: border-box;
 }
 
-.solid{
-    border-style: solid;
+
+/* Header */
+
+.header {
+  background-color: none;
+  padding: 30px;
+  text-align: center;
+  padding: 40px;
+  text-align: center;
+  margin:30px;
+  font-size:20px;
 }
 
-.margin{
-    margin: auto;
+.header h1 {
+  font-weight: bold;
 }
 
-.row{clear:both}
+/* Body */
+
+body {
+  margin: 0;
+}
+
+
+h4 {
+  text-align: center;
+}
+
+/* Section */
+h6 {
+  text-align: center;
+}
+
+/* Columns */
 
 .column {
-    text-align: center;
-    margin:9px;
-    width: 25%;
-    padding: 10px;
-  }
+  float: left;
+  width: 25%;
+  padding: 10px;
+  height: 300px;
 
- 
+}
+
+.column p li {
+  align-items: left;
+  font-size: 20px;
+  margin-left: 28%;
+}
+
 .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  } 
-
-.right{
-    text-align:right;
+  content: "";
+  display: table;
+  clear: both;
 }
 
-.tester{
-    display: inline-block;
-  }
 
-.thepad{
-    padding: 10px;
+/* Forms */
+
+.form {
+  text-align: center;
 }
 
-.smush{
-    text-align:right;
-    float:center;
-    list-style: inside;
+.form input {
+  margin-left: 2%;
 }
 
-.block {
-    display: block;
-    width: 25%;
-    border: none;
-    padding: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-  }
+.center
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+}
 
-  ul {
-    text-align: center;
-    list-style: inside;
+/* Mixins */
+
+@media screen and (max-width: 600px) {
+  .column.side,
+  .column.middle {
+    width: 100%;
   }
-  
+}

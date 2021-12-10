@@ -1,0 +1,40 @@
+name: Angular deploy
+
+on:
+  push:
+    branches: [ main ] 
+    
+env:
+  AZURE_WEBAPP_NAME: cloudcure-client    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: './Frontend/CloudCure-Angular/dist/CloudCure-Angular'
+  NODE_VERSION: '14.x'                # set this to the node version to use
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    environment: Angular
+    
+    steps:
+    
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        
+    - name: npm install, build, and test
+      run: |
+        # Build and test the project, then
+        # deploy to Azure Web App.
+        npm install
+        npm run build --prod
+      working-directory: ./Frontend/CloudCure-Angular
+        
+        
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_CLOUDCURE_CLIENT_PUBLISH_PROFILE_ANGULAR }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
