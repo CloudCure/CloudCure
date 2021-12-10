@@ -11,6 +11,8 @@ import { DiagnosisComponent } from './diagnosis/diagnosis.component';
 import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
 import { DiagnosisVitalsComponent } from './diagnosis-vitals/diagnosis-vitals.component';
+import { DiagnosisAllergyComponent } from './diagnosis-allergy/diagnosis-allergy.component';
+import { TextBoxComponent } from './text-box/text-box.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { DiagnosisVitalsComponent } from './diagnosis-vitals/diagnosis-vitals.co
     DiagnosisComponent,
     PrintComponent,
     DarkmodeDirective,
-    DiagnosisVitalsComponent
+    DiagnosisVitalsComponent,
+    DiagnosisAllergyComponent,
+    TextBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,8 @@ import { DiagnosisVitalsComponent } from './diagnosis-vitals/diagnosis-vitals.co
       { path: 'print', component: PrintComponent },
       { path: 'body-clicker', component: BodyClickerComponent },
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
+      { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent },
+      { path: 'text-box', component: TextBoxComponent },
     ])
   ],
   providers: [],
