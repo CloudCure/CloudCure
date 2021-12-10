@@ -1,0 +1,42 @@
+name: Angular deploy
+
+on:
+  push:
+    branches: [ main ] 
+    
+env:
+  AZURE_WEBAPP_NAME: pawpers-angular    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: './pawpers-angular/dist/pawpers-angular'
+  NODE_VERSION: '14.x'                # set this to the node version to use
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: windows-latest
+    environment: Angular
+    
+    steps:
+    
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        
+    - name: npm install, build, and test
+      run: |
+        # Build and test the project, then
+        # deploy to Azure Web App.
+        npm install
+        npm run build --prod
+      working-directory: ./pawpers-angular
+      env:
+        SENDGRIDAPIKEY: ${{ env.PAWPERS_SENDGRID }}
+        
+        
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_ANGULAR }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}

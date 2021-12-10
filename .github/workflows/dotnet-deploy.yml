@@ -1,0 +1,54 @@
+name: .NET Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build and analyze
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      shell: powershell
+      run: |
+        dotnet build --configuration Release --no-restore
+    
+  deploy:
+    needs: build
+    runs-on: windows-latest
+    environment:
+      name: 'Production'
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x 
+
+    - name: Publish
+      run: dotnet publish --configuration Release -o Releases
+    
+    - name: Deploy
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: pawpers
+        publish-profile: ${{secrets.AZURE_PAPWERS_PUBLISH_PROFILE}}
+        package: Releases
