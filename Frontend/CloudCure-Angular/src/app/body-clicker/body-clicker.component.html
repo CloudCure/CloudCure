@@ -3,8 +3,7 @@
 
     <img src="assets/images/bodysystems.jpg">
     <div class="coordinates-container">
-        <div class="area" [ngStyle]="getBodyPartStyle(bodypart)" [title]="bodypart.name" *ngFor="let bodypart of bodyparts" (click)="onAreaClick(bodypart)" (contextmenu)="onAreaEdit(bodypart)">
-        </div>
+        <div class="area" [ngStyle]="getAreaStyle(bodypart)" [title]="bodypart.name" *ngFor="let bodypart of bodyparts" (click)="onAreaClick(bodypart)" (contextmenu)="onAreaEdit(bodypart)"></div>
     </div>
 
 </div>

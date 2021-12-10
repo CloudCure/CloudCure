@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Clickable } from '../body-clicker/body-clicker.component';
 
 @Component({
   selector: 'app-diagnosis',
@@ -8,20 +7,15 @@ import { Clickable } from '../body-clicker/body-clicker.component';
 })
 export class DiagnosisComponent implements OnInit {
 
+  //variables
+
   constructor(){
-    this.showBodyClicker = true;
   }
 
   ngOnInit(): void{
 
   }
 
-  showBodyClicker: boolean;
-  getClick(bodypart: Clickable) {
-    console.log(`Clicked on ${bodypart.name}`)
-  }
-  onShowBodyClickerClicked(){
-    this.showBodyClicker = !this.showBodyClicker;
-  }
+
 
 }
