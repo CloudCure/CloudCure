@@ -16,7 +16,7 @@ export class BodyClickerComponent implements OnInit {
 
   
 
-  bodyparts: Clickable[] = [
+    bodyparts: Clickable[] = [
     {
       name: 'Right Lung',
       x: 82,
