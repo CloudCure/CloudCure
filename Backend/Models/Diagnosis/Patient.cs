@@ -10,6 +10,8 @@ namespace Models.Diagnosis
         [Key]
         public int PatientId { get; set; }
 
+        public User UserProfile { get; set; }
+
         public List<Condition> Conditions { get; set; }
 
         public List<Allergy> Allergies { get; set; }

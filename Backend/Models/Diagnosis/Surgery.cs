@@ -5,7 +5,7 @@ namespace Models.Diagnosis
     public class Surgery
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         public int PatientId { get; set; }
 
         //Previous surgeries undergone by the patient.
