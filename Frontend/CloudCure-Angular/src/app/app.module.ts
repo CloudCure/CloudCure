@@ -1,13 +1,9 @@
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { HttpClientModule } from '@angular/common/http';
-
-
-import { AuthModule } from '@auth0/auth0-angular';
 import { RouterModule } from '@angular/router';
-
+import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { AuthModule } from '@auth0/auth0-angular';
 import { BodyClickerComponent } from './body-clicker/body-clicker.component';
 import { LoginComponent } from './login/login.component';
 import { DiagnosisComponent } from './diagnosis/diagnosis.component';
@@ -22,6 +18,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileService } from './services/profile.service';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
+import { RegisterComponent } from './register/register.component';
+
 
 @NgModule({
   declarations: [
@@ -34,14 +32,19 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     DiagnosisVitalsComponent,
     VerificationComponent,
     NavbarComponent,
+    RegisterComponent,
     ProfileComponent,
     HeaderComponent,
     FooterComponent,
     BottomNavbarComponent
+
   ],
 
   imports: [
     BrowserModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
       clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
@@ -55,6 +58,7 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
       { path: 'body-clicker', component: BodyClickerComponent },
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
     ])
+
   ],
   providers: [
     ProfileService,
