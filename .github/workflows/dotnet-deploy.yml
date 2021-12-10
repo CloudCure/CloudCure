@@ -83,3 +83,4 @@ jobs:
         app-name: CloudCure
         publish-profile: ${{secrets.AZURE_CLOUDCURE_API_PUBLISH_PROFILE}}
         package: Releases
+        
