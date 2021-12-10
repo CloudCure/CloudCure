@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Clickable } from '../body-clicker/body-clicker.component';
+import { Clickable } from '../AngularModels/BodyParts';
 
 @Component({
   selector: 'app-assessment',
