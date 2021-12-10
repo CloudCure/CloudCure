@@ -57,7 +57,7 @@ export class BodyClickerComponent implements OnInit {
   bodyparts: Clickable[] = [
   {
     name: 'Right Lung',     //Internal Organs
-    x: 82,
+    x: 78,
     y: 111,
     width: 28,
     height: 62
@@ -81,7 +81,7 @@ export class BodyClickerComponent implements OnInit {
     height: 36
   },{
     name: 'Diaphragm',
-    x: 88,
+    x: 85,
     y: 169,
     width: 58,
     height: 17
@@ -99,26 +99,26 @@ export class BodyClickerComponent implements OnInit {
     height: 32
   },{
     name: 'Large Intestine',
-    x: 82,
+    x: 80,
     y: 237,
     width: 71,
     height: 52
   },{
     name: 'Small Intestine',
-    x: 96,
+    x: 93,
     y: 250,
     width: 45,
     height: 33
   },{
     name: 'Brain',
-    x: 95,
-    y: 21,
+    x: 92,
+    y: 16,
     width: 44,
     height: 41
   },{
     name: 'Heart',
-    x: 102,
-    y: 121,
+    x: 101,
+    y: 120,
     width: 29,
     height: 32
   },{ 
@@ -161,13 +161,13 @@ export class BodyClickerComponent implements OnInit {
     name: 'Left Biceps',
     x: 688,
     y: 150,
-    width: 31,
+    width: 28,
     height: 48
   },{
     name: 'Right Biceps',
     x: 562,
     y: 150,
-    width: 31,
+    width: 28,
     height: 48
   },{
     name: 'Left Obliques',
@@ -193,6 +193,150 @@ export class BodyClickerComponent implements OnInit {
     y: 272,
     width: 45,
     height: 102
+  },{
+    name: 'Right Brachioradialis',
+    x: 544,
+    y: 200,
+    width: 16,
+    height: 38
+  },{
+    name: 'Right Inner Elbow',
+    x: 558,
+    y: 200,
+    width: 16,
+    height: 15
+  },{
+    name: 'Right Flexor',
+    x: 558,
+    y: 212,
+    width: 15,
+    height: 35
+  },{
+    name: 'Right Inner Wrist',
+    x: 532,
+    y: 259,
+    width: 20,
+    height: 18
+  },{
+    name: 'Right Inner Palm',
+    x: 527,
+    y: 278,
+    width: 22,
+    height: 17
+  },{
+    name: 'Right Inner Thumb',
+    x: 512,
+    y: 275,
+    width: 20,
+    height: 15
+  },{
+    name: 'Right Inner Index',
+    x: 517,
+    y: 293,
+    width: 6,
+    height: 22
+  },{
+    name: 'Right Inner Middle',
+    x: 524,
+    y: 298,
+    width: 6,
+    height: 24
+  },{
+    name: 'Right Inner Ring',
+    x: 533,
+    y: 300,
+    width: 6,
+    height: 22
+  },{
+    name: 'Right Inner Pinky',
+    x: 540,
+    y: 300,
+    width: 6,
+    height: 20
+  },{
+    name: 'Left Brachioradialis',
+    x: 722,
+    y: 200,
+    width: 16,
+    height: 38
+  },{
+    name: 'Left Inner Elbow',
+    x: 710,
+    y: 200,
+    width: 16,
+    height: 15
+  },{
+    name: 'Left Flexor',
+    x: 708,
+    y: 212,
+    width: 15,
+    height: 35
+  },{
+    name: 'Left Inner Wrist',
+    x: 732,
+    y: 259,
+    width: 20,
+    height: 18
+  },{
+    name: 'Left Inner Palm',
+    x: 729,
+    y: 274,
+    width: 22,
+    height: 17
+  },{
+    name: 'Left Inner Thumb',
+    x: 749,
+    y: 273,
+    width: 20,
+    height: 15
+  },{
+    name: 'Left Inner Index',
+    x: 757,
+    y: 291,
+    width: 6,
+    height: 22
+  },{
+    name: 'Left Inner Middle',
+    x: 751,
+    y: 293,
+    width: 6,
+    height: 24
+  },{
+    name: 'Left Inner Ring',
+    x: 743,
+    y: 293,
+    width: 6,
+    height: 22
+  },{
+    name: 'Left Inner Pinky',
+    x: 735,
+    y: 296,
+    width: 6,
+    height: 20
+  },{
+    name: 'Upper Abs',
+    x: 613,
+    y: 157,
+    width: 53,
+    height: 39
+  },{
+    name: 'Lower Abs',
+    x: 613,
+    y: 199,
+    width: 55,
+    height: 77
+  },{
+    name: 'Right Kneecap',
+    x: 600,
+    y: 379,
+    width: 35,
+    height: 37
+  },{
+    name: 'Left Kneecap',
+    x: 646,
+    y: 379,
+    width: 35,
+    height: 37
   }]
   
 }

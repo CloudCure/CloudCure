@@ -9,7 +9,7 @@ import { Clickable } from '../AngularModels/Clickable';
 export class AssessmentComponent implements OnInit {
 
   //variables
-  showBodyClicker: boolean = false;
+  showBodyClicker: boolean = true;
   constructor(){ }
 
   ngOnInit(): void {
