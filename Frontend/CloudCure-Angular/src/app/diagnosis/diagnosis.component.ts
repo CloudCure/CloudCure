@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiagnosisComponent implements OnInit {
 
-  constructor() { }
+  //variables
 
-  ngOnInit(): void {
+  constructor(){
   }
+
+  ngOnInit(): void{
+
+  }
+
+
 
 }
