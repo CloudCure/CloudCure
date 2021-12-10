@@ -11,6 +11,7 @@ import { DarkmodeDirective } from './directives/darkmode.directive';
 import { VerificationComponent } from './verification/verification.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     DarkmodeDirective,
     VerificationComponent,
     NavbarComponent,
-    BottomNavbarComponent
+    BottomNavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +34,7 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     }),
     RouterModule.forRoot([
       {path: "verification", component:VerificationComponent},
+      {path: "**", component:HomeComponent},
     ])
   ],
   providers: [],
