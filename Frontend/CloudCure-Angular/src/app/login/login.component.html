@@ -1,1 +1,9 @@
-<p>login works!</p>
+<ng-container *ngIf="auth0.isAuthenticated$ | async; else loggedOut">
+    <button class="btn btn-primary btn-logout" (click)="auth0.logout({ returnTo: document.location.origin })">
+        Log out
+    </button>
+  </ng-container>
+  
+  <ng-template #loggedOut>
+    <button class="btn btn-primary btn-login" (click)="login()">Log in</button>
+  </ng-template>
