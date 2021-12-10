@@ -80,7 +80,7 @@ jobs:
     - name: Deploy
       uses: azure/webapps-deploy@v2
       with:
-        app-name: CloudCure
+        app-name: cloudcure-api
         publish-profile: ${{secrets.AZURE_CLOUDCURE_API_PUBLISH_PROFILE}}
         package: Releases
         
