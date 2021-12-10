@@ -8,6 +8,8 @@ import { UserProfile } from '../Models/UserProfile';
 })
 export class ProfileService {
 
+  private endpoint:string = "https://cloudcure-api.azurewebsites.net/";
+  
   constructor(http: HttpClient) { }
 
   getProfile() : UserProfile | null {
