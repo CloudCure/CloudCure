@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Models.Diagnosis;
 
 namespace Models
 {
@@ -25,6 +26,7 @@ namespace Models
 
         public Role Role {get; set;}
 
-
+        public EmployeeInformation EmployeeProfile {get; set;}
+        public Patient PatientProfile {get; set;}
     }
 }
