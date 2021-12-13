@@ -37,7 +37,5 @@
     font-family: "Futura-Std-Medium";
 }
 
-body {
-    background-color: #b9b9ba;
-}
-
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
