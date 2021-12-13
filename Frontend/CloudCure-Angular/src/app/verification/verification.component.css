@@ -1,9 +1,6 @@
-* {
+/* * {
   box-sizing: border-box;
 }
-
-
-/* Header */
 
 .header {
   background-color: none;
@@ -19,23 +16,19 @@
   font-weight: bold;
 }
 
-/* Body */
 
 body {
   margin: 0;
 }
 
-
 h4 {
   text-align: center;
 }
 
-/* Section */
+
 h6 {
   text-align: center;
 }
-
-/* Columns */
 
 .column {
   float: left;
@@ -57,9 +50,6 @@ h6 {
   clear: both;
 }
 
-
-/* Forms */
-
 .form {
   text-align: center;
 }
@@ -76,11 +66,110 @@ h6 {
   height: 20px;
 }
 
-/* Mixins */
-
 @media screen and (max-width: 600px) {
-  .column.side,
-  .column.middle {
+  .column {
     width: 100%;
   }
+} */
+
+@media only screen and (min-width: 500px) and (max-width: 3000px) {
+  .column.side, .column.middle {
+    height: 100%;
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    margin-bottom: 20px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  padding: 60px;
+  text-align: center;
+  background: rgb(115, 165, 194);
+  color: white;
+  font-size: 100px;
+}
+
+.header h1 {
+
+  color: white;
+  font-size: 50px;
+}
+
+body{
+  margin: 0;
+
+}
+
+.column {
+  float: right;
+}
+
+.column.side {
+  width: 50%;
+  padding: 50px;
+}
+
+.header-side {
+  padding: 20px;
+  border-radius: 50px 20px;
+  background: rgb(253, 181, 21);
+  color: white;
+  text-align: center;
+  font-size: 30px;
+}
+
+.header-side h5{
+  font-size: 30px;
+}
+
+.column.side dt{
+display: block;
+text-align: center;
+margin-top: 10px;
+font-size: 20px;
+}
+
+.card {
+  border: none;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.column.middle {
+  width: 50%;
+  padding: 50px;
+}
+
+.column.middle h5 {
+  font-weight: bolder;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+label {
+  margin-left: -10px;
+}
+
+input[type="radio"] {
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+input[type="submit"] {
+
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-left: 10px;
+  float: right;
 }

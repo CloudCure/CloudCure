@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormControlName,ReactiveFormsModule, FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EmployeeInformation } from '../Models/EmployeeInformation';
 import { UserProfile } from '../Models/UserProfile';

@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
     EmergencyName: "",
     EmergencyContactPhone: "",
     RoleId: 0,
-    UserId: 0
+    Id: 0
 
   };
 
@@ -28,5 +28,10 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  // changes tabs in main card
+  id:any= "dashboard";
+  tabChange(ids:any){
+    this.id = ids;
   }
 }

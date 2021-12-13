@@ -8,6 +8,5 @@ export interface UserProfile {
     EmergencyName: string
     EmergencyContactPhone: string 
     RoleId : number
-    UserId? : number
+    Id? : number
 }
-
