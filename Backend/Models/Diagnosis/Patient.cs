@@ -24,6 +24,6 @@ namespace Models.Diagnosis
         public List<Assessment> Assessments { get; set; }
 
         // covid assessment
-        //public List<CovidVerify> CovidAssesments { get; set; }
+        public List<CovidVerify> CovidAssesments { get; set; }
     }
 }

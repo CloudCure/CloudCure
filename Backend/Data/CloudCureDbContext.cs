@@ -14,7 +14,7 @@ namespace Data
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<Surgery> Surgeries { get; set; }
         public virtual DbSet<Vitals> Vitals { get; set; }
-        public virtual DbSet<CovidVerify> CovidVerifies { get; set; }
+        public virtual DbSet<CovidVerify> CovidAssessments { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }
