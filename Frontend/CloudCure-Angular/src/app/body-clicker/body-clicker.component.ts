@@ -15,13 +15,9 @@ export class BodyClickerComponent implements OnInit {
   @Output('onClick')
   onClick: EventEmitter<Clickable> = new EventEmitter();
 
-  constructor(){
-    this.canEdit = false;
-  }
+  constructor(){this.canEdit = false;}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 
   getAreaStyle(bodypart: Clickable): object { //change to polynomial style when ready
     return {
@@ -134,17 +130,17 @@ export class BodyClickerComponent implements OnInit {
     width: 43,
     height: 68
   },{ 
-    name: 'Left Pectoral',  //Muscles front
+    name: 'Left Pectoral',  //Muscles
     x: 645,
     y: 113,
     width: 37,
-    height: 53
+    height: 44
   },{
     name: 'Right Pectoral',  
     x: 593,
     y: 113,
     width: 37,
-    height: 53
+    height: 44
   },{
     name: 'Left Deltoid',
     x: 683,
@@ -321,7 +317,7 @@ export class BodyClickerComponent implements OnInit {
     height: 39
   },{
     name: 'Lower Abs',
-    x: 613,
+    x: 611,
     y: 199,
     width: 55,
     height: 77
@@ -337,6 +333,234 @@ export class BodyClickerComponent implements OnInit {
     y: 379,
     width: 35,
     height: 37
+  },{
+    name: 'Left Outer Hand',
+    x: 789,
+    y: 270,
+    width: 22,
+    height: 22
+  },{
+    name: 'Left Outer Thumb',
+    x: 777,
+    y: 271,
+    width: 12,
+    height: 18
+  },{
+    name: 'Left Elbow',
+    x: 810,
+    y: 200,
+    width: 26,
+    height: 26
+  },{
+    name: 'Right Elbow',
+    x: 961,
+    y: 202,
+    width: 26,
+    height: 26
+  },{
+    name: 'Left Outer Pinky',
+    x: 801,
+    y: 295,
+    width: 6,
+    height: 16
+  },{
+    name: 'Right Outer Index',
+    x: 777,
+    y: 290,
+    width: 8,
+    height: 22
+  },{
+    name: 'Right Outer Middle',
+    x: 785,
+    y: 292,
+    width: 6,
+    height: 24
+  },{
+    name: 'Right Outer Ring',
+    x: 793,
+    y: 295,
+    width: 6,
+    height: 23
+  },{
+    name: 'Right Eye',
+    x: 644,
+    y: 34,
+    width: 10,
+    height: 7
+  },{
+    name: 'Left Eye',
+    x: 625,
+    y: 34,
+    width: 10,
+    height: 7
+  },{
+    name: 'Right Ear',
+    x: 611,
+    y: 42,
+    width: 8,
+    height: 14
+  },{
+    name: 'Left Ear',
+    x: 661,
+    y: 42,
+    width: 8,
+    height: 14
+  },{
+    name: 'Nose',
+    x: 636,
+    y: 41,
+    width: 7,
+    height: 13
+  },{
+    name: 'Lips',
+    x: 633,
+    y: 56,
+    width: 13,
+    height: 6
+  },{
+    name: 'Chin',
+    x: 630,
+    y: 64,
+    width: 18,
+    height: 10
+  },{
+    name: 'Neck',
+    x: 621,
+    y: 71,
+    width: 37,
+    height: 30
+  },{
+    name: 'Right Traps',
+    x: 904,
+    y: 75,
+    width: 33,
+    height: 106
+  },{
+    name: 'Left Traps',
+    x: 865,
+    y: 75,
+    width: 33,
+    height: 106
+  },{
+    name: 'Right Lats',
+    x: 910,
+    y: 159,
+    width: 33,
+    height: 82
+  },{
+    name: 'Left Lats',
+    x: 852,
+    y: 159,
+    width: 33,
+    height: 82
+  },{
+    name: 'Right Buttocks',
+    x: 903,
+    y: 245,
+    width: 45,
+    height: 60
+  },{
+    name: 'Left Buttocks',
+    x: 853,
+    y: 245,
+    width: 45,
+    height: 60
+  },{
+    name: 'Left Triceps',
+    x: 818,
+    y: 153,
+    width: 28,
+    height: 53
+  },{
+    name: 'Right Triceps',
+    x: 953,
+    y: 153,
+    width: 28,
+    height: 53
+  },{
+    name: 'Left Calf',
+    x: 863,
+    y: 410,
+    width: 34,
+    height: 80
+  },{
+    name: 'Right Calf',
+    x: 905,
+    y: 410,
+    width: 34,
+    height: 80
+  },{
+    name: 'Left Shin',
+    x: 604,
+    y: 423,
+    width: 27,
+    height: 76
+  },{
+    name: 'Right Shin',
+    x: 645,
+    y: 423,
+    width: 27,
+    height: 76
+  },{
+    name: 'Left Foot',
+    x: 600,
+    y: 525,
+    width: 34,
+    height: 43
+  },{
+    name: 'Right Foot',
+    x: 644,
+    y: 525,
+    width: 34,
+    height: 43
+  },{
+    name: 'Left Ankle',
+    x: 645,
+    y: 511,
+    width: 23,
+    height: 20
+  },{
+    name: 'Right Ankle',
+    x: 611,
+    y: 511,
+    width: 23,
+    height: 20
+  },{
+    name: 'Left Heel',
+    x: 874,
+    y: 533,
+    width: 25,
+    height: 20
+  },{
+    name: 'Right Heel',
+    x: 905,
+    y: 533,
+    width: 25,
+    height: 20
+  },{
+    name: 'Right Hamstring',
+    x: 904,
+    y: 307,
+    width: 38,
+    height: 92
+  },{
+    name: 'Left Hamstring',
+    x: 860,
+    y: 307,
+    width: 38,
+    height: 92
+  },{
+    name: 'Right Extensor',
+    x: 975,
+    y: 214,
+    width: 22,
+    height: 52
+  },{
+    name: 'Left Extensor',
+    x: 800,
+    y: 214,
+    width: 22,
+    height: 52
   }]
   
 }
