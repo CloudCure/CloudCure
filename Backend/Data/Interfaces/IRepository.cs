@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace DataAccess
+namespace Data
 {
     public interface IRepository<TEntity> where TEntity : class
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess
+namespace Data
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
