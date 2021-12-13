@@ -21,6 +21,7 @@
 /* "*" means apply to all elements*/
 * {
     font-family: "Futura-Std-Book";
+
 }
 
 /*these are the Revature fonts we've been allowed by COE*/
@@ -35,3 +36,8 @@
 .revature-font-medium {
     font-family: "Futura-Std-Medium";
 }
+
+body {
+    background-color: #b9b9ba;
+}
+

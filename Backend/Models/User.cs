@@ -1,36 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
-//using System.ComponentModel.DataAnnotations;
-//using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Models.Diagnosis;
 
 namespace Models
 {
-    public class User
-    {
-
-        [Key]
-        public int UserId {get; set;}
-        
-        [Required]
-        public string FirstName {get; set;}
-
-        [Required]
-        public string LastName {get; set;}
+    public class User {
+        public int Id {get;}
+        public string FirstName {get;set;}
+        public string LastName {get;set;}
+        public string PhoneNumber {get;set;}
+        public string Address {get; set;}
 
         [Required]
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
-
-        [Required]
-        public string PhoneNumber {get; set;}
-
-        [Required]
-        public string Address {get; set;}
-
         [Required]
         public string EmergencyName {get; set;}
 
@@ -42,6 +28,8 @@ namespace Models
 
         public Role Role {get; set;}
 
+        public EmployeeInformation EmployeeProfile {get; set;}
+        public Patient PatientProfile {get; set;}
     }
 
 

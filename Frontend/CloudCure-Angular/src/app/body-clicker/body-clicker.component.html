@@ -1,1 +1,9 @@
-<p>body-clicker works!</p>
+
+<div id="image-container" (contextmenu)="onAreaCreate(0,0)">
+
+    <img src="assets/images/bodysystems.jpg">
+    <div class="coordinates-container">
+        <div class="area" [ngStyle]="getAreaStyle(bodypart)" [title]="bodypart.name" *ngFor="let bodypart of bodyparts" (click)="onAreaClick(bodypart)" (contextmenu)="onAreaEdit(bodypart)"></div>
+    </div>
+
+</div>
