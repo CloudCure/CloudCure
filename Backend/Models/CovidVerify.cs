@@ -9,9 +9,9 @@ namespace Models
     public class CovidVerify
     {
         [Key]
-        public int verificationID { get; set; }
+        public int Id { get; set; }
         [Required]
-        public int patientID {get; set;}
+        public int UsersId {get; set;}
         [Required]
         public bool covidChoice { get; set; }
         

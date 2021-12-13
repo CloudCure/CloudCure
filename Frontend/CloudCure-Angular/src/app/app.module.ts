@@ -36,7 +36,8 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     ProfileComponent,
     HeaderComponent,
     FooterComponent,
-    BottomNavbarComponent,RegisterComponent
+    BottomNavbarComponent,
+    RegisterComponent
   ],
 
   imports: [

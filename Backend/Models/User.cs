@@ -1,35 +1,33 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Models.Diagnosis;
 
 namespace Models
 {
-    public class User {
-        public int Id {get;}
-        public string FirstName {get;set;}
-        public string LastName {get;set;}
-        public string PhoneNumber {get;set;}
-        public string Address {get; set;}
+    public class User
+    {
+        [Key]
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
 
         [Required]
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
         [Required]
-        public string EmergencyName {get; set;}
+        public string EmergencyName { get; set; }
 
         [Required]
-        public string EmergencyContactPhone {get; set;}
+        public string EmergencyContactPhone { get; set; }
 
         [Required]
-        public int RoleId {get; set;}
+        public int RoleId { get; set; }
 
-        public Role Role {get; set;}
-
-        public EmployeeInformation EmployeeProfile {get; set;}
-        public Patient PatientProfile {get; set;}
+        public Role Role { get; set; }
     }
 
 

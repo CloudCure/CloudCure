@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data-Access", "Data-Access\Data-Access.csproj", "{0D908068-C995-4AF2-A70F-C60426836389}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{AA25E492-4926-40DF-BBEA-4E2D466F0118}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{7C31E6A0-ECE0-4D7A-849C-21F0A369A57F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{4916FC16-472B-42C2-8DCD-F0AAE9551619}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{480F6AF9-05D4-417B-AB45-61A99BB69B73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,5 +72,17 @@ Global
 		{4916FC16-472B-42C2-8DCD-F0AAE9551619}.Release|x64.Build.0 = Release|Any CPU
 		{4916FC16-472B-42C2-8DCD-F0AAE9551619}.Release|x86.ActiveCfg = Release|Any CPU
 		{4916FC16-472B-42C2-8DCD-F0AAE9551619}.Release|x86.Build.0 = Release|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Debug|x64.Build.0 = Debug|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Debug|x86.Build.0 = Debug|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Release|x64.ActiveCfg = Release|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Release|x64.Build.0 = Release|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Release|x86.ActiveCfg = Release|Any CPU
+		{480F6AF9-05D4-417B-AB45-61A99BB69B73}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

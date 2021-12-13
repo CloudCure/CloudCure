@@ -42,6 +42,7 @@ h6 {
   align-items: left;
   font-size: 20px;
   margin-left: 28%;
+<<<<<<< HEAD
 }
 
 .row:after {
@@ -172,4 +173,39 @@ input[type="submit"] {
   margin-right: 20px;
   margin-left: 10px;
   float: right;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+/* Forms */
+
+.form {
+  text-align: center;
+}
+
+.form input {
+  margin-left: 2%;
+}
+
+.center
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+}
+
+/* Mixins */
+
+@media screen and (max-width: 600px) {
+  .column.side,
+  .column.middle {
+    width: 100%;
+  }
 }

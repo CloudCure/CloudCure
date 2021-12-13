@@ -8,7 +8,7 @@ namespace Models.Diagnosis
     public class Assessment
     {
         [Key]
-        public int AssessmentId { get; set; }
+        public int Id { get; set; }
 
         public int PatientId { get; set; }
 
