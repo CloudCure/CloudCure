@@ -17,7 +17,7 @@ namespace Tests
         public AllergyTest()
         {
             _options = new DbContextOptionsBuilder<CloudCureDbContext>()
-                        .UseSqlite("Filename = Repository.db").Options;
+                        .UseSqlite("Filename = AllergyTest.db").Options;
             Seed();
         }
 
@@ -27,7 +27,7 @@ namespace Tests
             using (var context = new CloudCureDbContext(_options))
             {
                 IAllergyRepository repository = new AllergyRepository(context);
-              //  var Allergy = repository.SearchByPatientId(1);
+                //  var Allergy = repository.SearchByPatientId(1);
 
                 //Assert.NotEmpty(Allergy);
             }
@@ -40,7 +40,7 @@ namespace Tests
             {
                 IAllergyRepository repository = new AllergyRepository(context);
 
-             //   Assert.Throws<KeyNotFoundException>(() => repository.SearchByPatientId(3));
+                //   Assert.Throws<KeyNotFoundException>(() => repository.SearchByPatientId(3));
             }
         }
 
@@ -54,22 +54,27 @@ namespace Tests
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
-                context.Allergies.AddRange(
-                    new Allergy
+                context.Patients.AddRange(
+                    new Patient
                     {
-                        PatientId = 1,
-                        AllergyName = "Dogs"
+                        Allergies = new List<Allergy>{
+                            new Allergy
+                            {
+                                PatientId = 1,
+                                AllergyName = "Dogs"
 
-                    },
-                    new Allergy
-                    {
-                        PatientId = 2,
-                        AllergyName = "Haldol"
+                            },
+                            new Allergy
+                            {
+                                PatientId = 1,
+                                AllergyName = "Haldol"
+                            }
+                        }
                     }
                 );
 
-
                 context.SaveChanges();
+
             }
 
 
