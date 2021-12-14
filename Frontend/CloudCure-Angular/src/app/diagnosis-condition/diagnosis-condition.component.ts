@@ -8,14 +8,9 @@ import { Router } from '@angular/router';
 })
 export class DiagnosisConditionComponent implements OnInit {
 
-  constructor( private router:Router) { }
-
-  AddElement()
-  {
-    let element = document.createElement("input");
-    
-    document.body.appendChild(element);
-  }
+  conditions: string[] = [''];
+  
+  constructor() { }
 
   ngOnInit(): void {
   }

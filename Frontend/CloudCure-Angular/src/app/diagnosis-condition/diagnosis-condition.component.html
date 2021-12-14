@@ -5,11 +5,9 @@
 
 <p class = "center" > Please fill out any known conditions?</p>
 
-<form id="ConditionForm">
-    <label for="Condition">Medicial Conditions:</label><br>
-    <input type="text" id="Condition" name="Condition">
-    <button (click)="AddElement()" >+</button>
-</form>
+<ng-container *ngIf="display">
+    <app-text-box [conditions]="boxes"></app-text-box>
+</ng-container>
 
     
 

@@ -11,6 +11,7 @@ export class DiagnosisAllergyComponent implements OnInit {
 
   //variables
   display: boolean = false;
+  allergies: string[] = [''];
   
   constructor() { }
 

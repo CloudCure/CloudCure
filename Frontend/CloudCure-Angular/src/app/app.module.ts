@@ -25,6 +25,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileService } from './services/profile.service';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
+import { DiagnosisSurgeriesComponent } from './diagnosis-surgeries/diagnosis-surgeries.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     ProfileComponent,
     HeaderComponent,
     FooterComponent,
-    BottomNavbarComponent
+    BottomNavbarComponent,
+    DiagnosisSurgeriesComponent
   ],
 
   imports: [
