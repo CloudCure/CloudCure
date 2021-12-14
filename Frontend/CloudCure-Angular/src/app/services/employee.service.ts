@@ -14,25 +14,25 @@ export class EmployeeService {
   GetAllEmployees() 
   { 
     //this route will need to match route on API controller
-    return this.http.get<EmployeeInformation[]>(`${this.endpoint}/Covid/GetAll`);
+    return this.http.get<EmployeeInformation[]>(`${this.endpoint}/Employee/GetAll`);
   }
 
   GetEmployeeById(Id:Number | undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.get<EmployeeInformation>(`${this.endpoint}/Covid/Get`+Id);
+    return this.http.get<EmployeeInformation>(`${this.endpoint}/Employee/Get`+Id);
   }
 
   AddEmployee(Info:EmployeeInformation | undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.post<EmployeeInformation>(`${this.endpoint}/Covid/Add`,Info);
+    return this.http.post<EmployeeInformation>(`${this.endpoint}/Employee/Add`,Info);
   }  
 
   DeleteEmployee(Id:number | undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.delete<EmployeeInformation>(`${this.endpoint}/Covid/Delete`+Id);
+    return this.http.delete<EmployeeInformation>(`${this.endpoint}/Employee/Delete`+Id);
   } 
 
 
