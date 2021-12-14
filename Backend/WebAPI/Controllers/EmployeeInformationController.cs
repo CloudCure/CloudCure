@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Data;
+using System;
+using Serilog;
 
 namespace WebAPI {
-    [Route("api/[Controller]")]
+    [Route("employee")]
     [ApiController]
     public class EmployeeInformationController : Controller
     {
@@ -14,28 +16,36 @@ namespace WebAPI {
             _repo = p_repo;
         }
 
-        // GET: api/<EmployeeInformationController>/all
+        // GET: employee/all
         [HttpGet("All")]
         public IActionResult GetAllEmployeeInformation()
         {
             return Ok(_repo.GetAll());
         }
 
-        // GET: api/<EmployeeInformationController>/5
+        // GET: employee/5
         [HttpGet("{p_id}")]
         public IActionResult GetEmployeeInformationById(int p_id)
         {
             return Ok(_repo.GetByPrimaryKey(p_id));
         }
         
-        // GET: api/<EmployeeInformationController>/verify/{email}
-        [HttpGet("Verify/{email}")]
-        public IActionResult VerifyUser(string email)
+        // GET: employee/verify/{p_email}
+        [HttpGet("Verify/{p_email}")]
+        public IActionResult VerifyUser(string p_email)
         {
-            return null;
+            try
+            {
+                return Ok(_repo.VerifyEmail(p_email));
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Not a current user");
+            }
         }
 
-        // POST api/EmployeeInformation/add
+        // POST employee/add
         [HttpPost("add")]
         public IActionResult AddEmployeeInformation([FromBody] EmployeeInformation p_info)
         {
@@ -44,7 +54,7 @@ namespace WebAPI {
             return Created("api/EmployeeInformation/add", p_info);
         }
 
-        // PUT api/EmployeeInformation/edit/{id}
+        // PUT employee/edit/{id}
         [HttpPut("edit/{id}")]
         public IActionResult UpdateEmployeeInformation([FromBody] EmployeeInformation p_info)
         {
@@ -53,7 +63,7 @@ namespace WebAPI {
             return Ok();
         }
 
-        // DELETE api/EmployeeInformation/delete/{id}
+        // DELETE employee/delete/{id}
         [HttpDelete("delete/{id}")]
         public IActionResult DeleteEmployeeInformation([FromBody] EmployeeInformation p_info)
         {
