@@ -9,7 +9,7 @@ using Data;
 namespace WebAPI.Controllers
 {
 
-    [Route("api/[Controller]")]
+    [Route("Role")]
     [ApiController]
     public class RoleController : ControllerBase
     {
@@ -21,31 +21,31 @@ namespace WebAPI.Controllers
             _repo = p_repo;
         }
 
-        // GET: api/<RoleController>\
+        // GET: Role/All
         [HttpGet("All")] //("All") Will give and endpoint that ends with All
         public IActionResult GetAllRole()
         {
             return Ok(_repo.GetAll());
         }
 
-        // GET api/<RoleController>/5
+        // GET Role/Id
         [HttpGet("{p_id}")]
         public IActionResult GetRoleById(int p_id)
         {
             return Ok(_repo.GetByPrimaryKey(p_id));
         }
 
-        // POST api/Role/add
+        // POST Role/Add
         [HttpPost("add")]
         public IActionResult AddRole([FromBody] Role p_role)
         {
             _repo.Create(p_role);
             _repo.Save();
-            return Created("api/Role/add", p_role);
+            return Created("Role/add", p_role);
         }
 
 
-        // PUT api/Role/edit/{id}
+        // PUT Role/Edit
         [HttpPut("edit/{id}")]
         public IActionResult UpdateRole([FromBody] Role p_role)
         {
@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-            // DELETE api/Role/delete/{id}
+        // DELETE Role/Id
         [HttpDelete("delete/{id}")]
         public IActionResult DeleteRole([FromBody] Role p_role)
         {
