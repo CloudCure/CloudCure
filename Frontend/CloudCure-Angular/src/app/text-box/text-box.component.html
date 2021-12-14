@@ -1,7 +1,12 @@
 <!-- The text box that will hopefully connect to all the other components -->
-<button (click)="addOne()">+</button> 
-<button (click)="subOne()">-</button>
+
+
+<button (click)="addOne()" class="btn btn-outline-light">+</button> 
+<button (click)="subOne()" class="btn btn-outline-light">-</button>
 <input *ngFor="let box of boxes" type="text" [(ngModel)]="box.text" />
+
+
+
 <!-- I used this to navigate through the two components I was working on -->
 <!-- <br>
 <button [routerLink]="['/diagnosis-allergy']" >text box</button> -->
