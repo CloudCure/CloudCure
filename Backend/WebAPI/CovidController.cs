@@ -7,7 +7,8 @@ using Models;
 using Data;
 using Serilog;
 
-namespace WebAPI.Controllers {
+namespace WebAPI.Controllers
+{
     [Route("api/[Controller]")]
     [ApiController]
     public class CovidController : ControllerBase
@@ -64,6 +65,24 @@ namespace WebAPI.Controllers {
 
                 Log.Error(e.Message);
                 return BadRequest("Not a valid Id");
+            }
+        }
+
+        // PUT api/covid/edit/{id}
+        [HttpPut("edit/{id}")]
+        public IActionResult CovidVerify([FromBody] CovidVerify p_covid)
+        {
+            try
+            {
+                _repo.Update(p_covid);
+                _repo.Save();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+
+                Log.Error(e.Message);
+                return BadRequest("Invalid Input");
             }
         }
     }
