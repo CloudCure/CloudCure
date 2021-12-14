@@ -24,11 +24,18 @@ namespace WebAPI.Controllers
         // GET: api/covid/all
         [HttpGet("GetAll")]
         public IActionResult GetAll()
-        {
+        {   try
+            {
             return Ok(_repo.GetAll());
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Invalid get all request.");
+            }
         }
 
-        // GET api/userapi/{p_id}
+        // GET api/covid/{p_id}
         [HttpGet("Get/{id}")]
         public IActionResult GetByPrimaryKey(int p_id)
         {
