@@ -17,7 +17,7 @@ export class RegisterService {
   RegisterUser(p_email:string|undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.get<any>(`${this.endpoint}/user/Register/${p_email}`);
+    return this.http.post<any>(`${this.endpoint}/user/Register`,p_email);
   }
 
   ////////////// Employee //////////////
@@ -25,6 +25,8 @@ export class RegisterService {
   RegisterEmplyee(Id:Number|undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.get<any>(`${this.endpoint}/EmployeeInformation/Register/${Id}`);
+    return this.http.post<any>(`${this.endpoint}/EmployeeInformation/Register`,Id);
   }
+
+
 }
