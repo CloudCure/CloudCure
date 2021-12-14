@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Models{
     public class EmployeeInformation{
         [Key]
-        public int UserID {get; set;}
+        public int Id {get; set;}
 
         [Required]
         public string WorkEmail {get; set;}
@@ -27,6 +27,7 @@ namespace Models{
         [Required]
         public string EducationDegree {get; set;}
 
+        public User UserProfile { get; set; }
     } 
 
 

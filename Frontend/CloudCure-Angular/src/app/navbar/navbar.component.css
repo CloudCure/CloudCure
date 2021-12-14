@@ -7,6 +7,11 @@
     font-size: 25px;
 }
 
+.navbar-text:hover {
+    color: #F26925;
+    filter: brightness(90%);
+}
+
 .navbar-center {
     position: absolute;
     left: 50%;

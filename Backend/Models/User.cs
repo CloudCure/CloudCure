@@ -1,20 +1,31 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Models.Diagnosis;
 
 namespace Models
 {
     public class User
     {
-        public string first_Name {get; set;}
-        public string last_Name {get; set;}
+        [Key]
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
+
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
-        public string phone_Number {get; set;}
-        public string address {get; set;}
-        public int role_ID {get; set;}
-        public int user_ID {get; set;}
-        public Role role {get; set;}
+        [Required]
+        public string EmergencyName { get; set; }
+
+        [Required]
+        public string EmergencyContactPhone { get; set; }
+
+        [Required]
+        public int RoleId { get; set; }
+
+        public Role Role { get; set; }
     }
 }

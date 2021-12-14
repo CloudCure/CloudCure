@@ -9,7 +9,7 @@ namespace Models.Diagnosis
 
     {
         [Key]
-        public int VitalsId { get; set; }
+        public int Id { get; set; }
 
         public int PatientId { get; set; }
 
