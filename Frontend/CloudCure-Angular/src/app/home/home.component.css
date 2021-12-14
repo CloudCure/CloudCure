@@ -1,0 +1,25 @@
+
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #474C55;
+    border-radius: .3rem;
+  }
+
+.big-text {
+      font-size: 90px;
+      text-align: center;
+      color: #F26925;
+      text-align: center;
+  } 
+
+.white-text {
+    color:#FFFFFF;
+    text-align: center;
+}
+
+.medium-text {
+    font-size: 35px;
+}
+  
