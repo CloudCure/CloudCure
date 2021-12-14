@@ -28,7 +28,7 @@ namespace Tests.Diagnosis
                 IAssessmentRepository repository = new AssessmentRepository(context);
                 var patient = repository.SearchByPatientId(1);
 
-                Assert.NotEmpty(patient);
+                Assert.NotNull(patient);
             }
         }
         [Fact]
