@@ -1,2 +1,8 @@
-<p>diagnosis-surgeries works!</p>
 
+<h2 class="center">Any history of previous surgeries?</h2>
+
+<button (click)="display = !display">Add Surgeries</button>
+<br>
+<ng-container *ngIf="display">
+    <app-text-box [conditions]="boxes"></app-text-box>
+</ng-container>

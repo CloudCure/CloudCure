@@ -8,8 +8,9 @@ import { Router } from '@angular/router';
 })
 export class DiagnosisConditionComponent implements OnInit {
 
+  display: boolean = false;
   conditions: string[] = [''];
-  
+
   constructor() { }
 
   ngOnInit(): void {

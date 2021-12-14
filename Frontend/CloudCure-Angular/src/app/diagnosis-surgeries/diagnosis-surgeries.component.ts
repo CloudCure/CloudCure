@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiagnosisSurgeriesComponent implements OnInit {
 
+  display: boolean = false;
+  surgeries: string[] = [''];
+
   constructor() { }
 
   ngOnInit(): void {
