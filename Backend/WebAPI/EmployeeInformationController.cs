@@ -2,72 +2,66 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Data;
 
-namespace WebAPI
-{
-    [Route("[controller]")]
+namespace WebAPI {
+    [Route("api/[Controller]")]
     [ApiController]
-    public class EmployeeInformationController : ControllerBase
+    public class EmployeeInformationController : Controller
     {
-        private readonly IEmployeeInformationRepository employeeRepository;
+        private readonly IEmployeeInformationRepository _repo;
 
-        public EmployeeInformationController(IEmployeeInformationRepository context)
+        public EmployeeInformationController(IEmployeeInformationRepository p_repo)
         {
-            employeeRepository = context;
+            _repo = p_repo;
         }
 
+        // GET: api/<EmployeeInformationController>/all
         [HttpGet("All")]
-        public IActionResult GetAllUsers()
+        public IActionResult GetAllEmployeeInformation()
         {
-
-            return null;
+            return Ok(_repo.GetAll());
         }
 
-
-        [HttpGet("GetUserById/{id}")]
-        public IActionResult GetUserById(int id)
+        // GET: api/<EmployeeInformationController>/5
+        [HttpGet("{p_id}")]
+        public IActionResult GetEmployeeInformationById(int p_id)
         {
-
-            return Ok(employeeRepository.GetByPrimaryKey(id));
-
+            return Ok(_repo.GetByPrimaryKey(p_id));
         }
-
-
+        
+        // GET: api/<EmployeeInformationController>/verify/{email}
         [HttpGet("Verify/{email}")]
         public IActionResult VerifyUser(string email)
         {
             return null;
         }
 
-
-
-        [HttpPost("Add")]
-        public IActionResult AddEmployeeInformation([FromBody] EmployeeInformation p_user)
+        // POST api/EmployeeInformation/add
+        [HttpPost("add")]
+        public IActionResult AddEmployeeInformation([FromBody] EmployeeInformation p_info)
         {
-            employeeRepository.Create(p_user);
-            employeeRepository.Save();
-            return Created("EmployeeInformation/Add", p_user);
-
+            _repo.Create(p_info);
+            _repo.Save();
+            return Created("api/EmployeeInformation/add", p_info);
         }
 
-
-        [HttpPut("Update")]
-        public IActionResult UpdateUser(int id, [FromBody] EmployeeInformation p_user)
+        // PUT api/EmployeeInformation/edit/{id}
+        [HttpPut("edit/{id}")]
+        public IActionResult UpdateEmployeeInformation([FromBody] EmployeeInformation p_info)
         {
-            var item = employeeRepository.GetByPrimaryKey(id);
-            employeeRepository.Update(p_user);
-            employeeRepository.Save();
-            return null;
-        }
-
-        [HttpDelete("DeleteUser/{id}")]
-        public IActionResult DeleteUser(int id)
-        {
-            var item = employeeRepository.GetByPrimaryKey(id);
-            employeeRepository.Delete(item);
-            employeeRepository.Save();
+            _repo.Update(p_info);
+            _repo.Save();
             return Ok();
+        }
 
+        // DELETE api/EmployeeInformation/delete/{id}
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteEmployeeInformation([FromBody] EmployeeInformation p_info)
+        {
+            _repo.Delete(p_info);
+            _repo.Save();
+            return Ok();
         }
     }
 }
+
 
