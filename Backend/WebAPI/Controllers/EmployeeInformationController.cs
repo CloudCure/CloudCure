@@ -46,9 +46,15 @@ namespace WebAPI {
 
         // PUT api/EmployeeInformation/edit/{id}
         [HttpPut("edit/{id}")]
-        public IActionResult UpdateEmployeeInformation([FromBody] EmployeeInformation p_info)
+        public IActionResult UpdateEmployeeInformation(int id,[FromBody] EmployeeInformation p_info)
         {
-            _repo.Update(p_info);
+            var item = _repo.GetByPrimaryKey(id);
+            item.WorkEmail = p_info.WorkEmail;
+            item.Specialization = p_info.Specialization;
+            item.StartDate = p_info.StartDate;
+            item.RoomNumber = p_info.RoomNumber;
+            item.EducationDegree = p_info.EducationDegree;
+            _repo.Update(item);
             _repo.Save();
             return Ok();
         }
