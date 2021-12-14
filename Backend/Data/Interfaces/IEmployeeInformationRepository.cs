@@ -9,7 +9,7 @@ namespace Data
         /// user ID.
         /// </summary>
         /// <param name="p_id">User ID</param>
-        /// <returns>EmployeeInformation object | throws KeyNotFoundException if user ID is not fount</returns>
+        /// <returns>EmployeeInformation object | throws KeyNotFoundException if user ID is not found</returns>
         EmployeeInformation GetEmployeeInformationById(int p_id);
     }
 }
