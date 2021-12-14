@@ -1,8 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Models;
 using Data;
 
@@ -30,6 +26,13 @@ namespace WebAPI {
         public IActionResult GetEmployeeInformationById(int p_id)
         {
             return Ok(_repo.GetByPrimaryKey(p_id));
+        }
+        
+        // GET: api/<EmployeeInformationController>/verify/{email}
+        [HttpGet("Verify/{email}")]
+        public IActionResult VerifyUser(string email)
+        {
+            return null;
         }
 
         // POST api/EmployeeInformation/add
@@ -60,3 +63,5 @@ namespace WebAPI {
         }
     }
 }
+
+
