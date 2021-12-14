@@ -20,7 +20,7 @@ export class CovidService {
   GetCovidInfoById(Id:Number | undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.get<CovidVerify>(`${this.endpoint}/Covid/Get`+Id);
+    return this.http.get<CovidVerify>(`${this.endpoint}/Covid/Get/${Id}`);
   }
 
   AddCovidInfo(Info:CovidVerify | undefined) 
@@ -32,6 +32,6 @@ export class CovidService {
   DeleteCovidInfo(Id:number| undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.delete<CovidVerify>(`${this.endpoint}/Covid/Delete`+Id);
+    return this.http.delete<CovidVerify>(`${this.endpoint}/Covid/Delete/${Id}`);
   }  
 }

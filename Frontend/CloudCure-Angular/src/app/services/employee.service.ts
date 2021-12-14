@@ -20,7 +20,7 @@ export class EmployeeService {
   GetEmployeeById(Id:Number | undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.get<EmployeeInformation>(`${this.endpoint}/Employee/Get`+Id);
+    return this.http.get<EmployeeInformation>(`${this.endpoint}/Employee/Get/${Id}`);
   }
 
   AddEmployee(Info:EmployeeInformation | undefined) 
@@ -32,7 +32,7 @@ export class EmployeeService {
   DeleteEmployee(Id:number | undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.delete<EmployeeInformation>(`${this.endpoint}/Employee/Delete`+Id);
+    return this.http.delete<EmployeeInformation>(`${this.endpoint}/Employee/Delete/${Id}`);
   } 
 
 
