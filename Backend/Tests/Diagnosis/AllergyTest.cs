@@ -17,7 +17,7 @@ namespace Tests
         public AllergyTest()
         {
             _options = new DbContextOptionsBuilder<CloudCureDbContext>()
-                        .UseSqlite("Filename = Repository.db").Options;
+                        .UseSqlite("Filename = Allergy.db; Foreign Keys=False").Options;
             Seed();
         }
 
@@ -29,7 +29,7 @@ namespace Tests
                 IAllergyRepository repository = new AllergyRepository(context);
                 var Allergy = repository.SearchByPatientId(1);
 
-                Assert.Equal(1, Allergy.PatientId);
+                Assert.NotEmpty(Allergy);
             }
         }
 
@@ -50,7 +50,7 @@ namespace Tests
             using (var context = new CloudCureDbContext(_options))
             {
                 IAllergyRepository repository = new AllergyRepository(context);
-                var allergy = repository.SearchByAllergy("Dog");
+                var allergy = repository.SearchByAllergy("Dogs");
 
                 Assert.NotEmpty(allergy);
             }
@@ -79,6 +79,8 @@ namespace Tests
                         AllergyName = "Haldol"
                     }
                 );
+
+                
 
 
                 context.SaveChanges();
