@@ -16,7 +16,7 @@ namespace Tests
         public RepoTest()
         {
             _options = new DbContextOptionsBuilder<CloudCureDbContext>()
-                        .UseSqlite("Filename = Repository.db").Options;
+                        .UseSqlite("Filename = test.db").Options;
                     Seed();
         }
         [Fact]
@@ -106,20 +106,52 @@ namespace Tests
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
+                context.Roles.AddRange(
+                    new Role
+                    {
+                        RoleName = "Doc"
+                    }
+                );
+                context.SaveChanges();
+
+
+                context.Users.AddRange(
+                    new User
+                    {
+                        FirstName = "johnny",
+                        LastName = "appleseed",
+                        PhoneNumber = "123-456-7890",
+                        Address = "123 Place Ln.",
+                        DateOfBirth = new DateTime(),
+                        EmergencyName = "help!",
+                        EmergencyContactPhone = "911-911-9110",
+                        RoleId = 1
+                    }
+                );
+                context.SaveChanges();
+
                 context.CovidAssessments.AddRange(
                     new CovidVerify
                     {
                         UsersId = 1,
-                        question1 = true
+                        question1 = true,
+                        question2 = true,
+                        question3 = false,
+                        question4 = false,
+                        question5 = true
 
                     },
                     new CovidVerify
                     {
                         UsersId = 2,
-                        question1 = true
+                        question1 = true,
+                        question2 = true,
+                        question3 = false,
+                        question4 = false,
+                        question5 = true
                     }
                 );
-               
+                
 
                 context.SaveChanges();
             }
