@@ -14,6 +14,8 @@ export class TextBoxComponent implements OnInit {
 
   @Output()
   canClick:boolean
+
+  boxes:string[] = [''];
   
   constructor() { 
     this.canEdit = false;
@@ -21,6 +23,14 @@ export class TextBoxComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  addOne() {
+    this.boxes.push("");
+  }
+  
+  deleteOne(i:number) {
+    this.boxes.splice(i,1); 
   }
 
 }
