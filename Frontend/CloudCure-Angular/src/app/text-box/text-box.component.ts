@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-text-box',
+  selector: 'text-box',
   templateUrl: './text-box.component.html',
   styleUrls: ['./text-box.component.css']
 })
