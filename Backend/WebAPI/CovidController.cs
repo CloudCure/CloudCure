@@ -12,17 +12,17 @@ namespace WebAPI.Controllers {
     [ApiController]
     public class CovidController : ControllerBase
     {
-        private readonly ICovidRepository CovidRepository;
+        private readonly ICovidRepository _repo;
 
-        public CovidController(ICovidRepository context)
+        public CovidController(ICovidRepository p_repo)
         {
-            CovidRepository = context;
+            _repo = p_repo;
         }
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-            return Ok(CovidRepository.GetAll());
+            return Ok(_repo.GetAll());
         }
 
         [HttpGet("Get/{id}")]
@@ -30,7 +30,7 @@ namespace WebAPI.Controllers {
         {
             try
             {
-                return Ok(CovidRepository.GetByPrimaryKey(id));
+                return Ok(_repo.GetByPrimaryKey(id));
             }
             catch (Exception e)
             {
@@ -39,6 +39,14 @@ namespace WebAPI.Controllers {
             }
         }
 
+        //POST api/covid/add 
+        [HttpPost("Add")]
+        public IActionResult AddCovid([FromBody] CovidVerify p_covid)
+        {
+            _repo.Create(p_covid);
+            _repo.Save();
+            return Created("api/UserAPI/Add", p_covid);
+        }
 
         // DELETE <TopicController>/5
         [HttpDelete("Delete/{id}")]
@@ -46,9 +54,9 @@ namespace WebAPI.Controllers {
         {
             try
             {
-                var topic = CovidRepository.GetByPrimaryKey(id);
-                CovidRepository.Delete(topic);
-                CovidRepository.Save();
+                var topic = _repo.GetByPrimaryKey(id);
+                _repo.Delete(topic);
+                _repo.Save();
                 return Ok();
             }
             catch (Exception e)
