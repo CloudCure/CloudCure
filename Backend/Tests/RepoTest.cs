@@ -16,7 +16,7 @@ namespace Tests
         public RepoTest()
         {
             _options = new DbContextOptionsBuilder<CloudCureDbContext>()
-                        .UseSqlite("Filename = test.db").Options;
+                        .UseSqlite("Filename = Repository.db; Foreign Keys=False").Options;
                     Seed();
         }
         [Fact]

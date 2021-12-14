@@ -32,7 +32,19 @@ namespace Data.Migrations
                     b.Property<int>("UsersId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("covidChoice")
+                    b.Property<bool>("question1")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("question2")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("question3")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("question4")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("question5")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -228,7 +240,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Models.User", b =>
