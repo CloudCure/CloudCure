@@ -13,6 +13,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CovidController : ControllerBase
     {
+        //Dependency injection for CovidRepository
         private readonly ICovidRepository _repo;
 
         public CovidController(ICovidRepository p_repo)
@@ -20,18 +21,20 @@ namespace WebAPI.Controllers
             _repo = p_repo;
         }
 
+        // GET: api/covid/all
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
             return Ok(_repo.GetAll());
         }
 
+        // GET api/userapi/{p_id}
         [HttpGet("Get/{id}")]
-        public IActionResult GetByPrimaryKey(int id)
+        public IActionResult GetByPrimaryKey(int p_id)
         {
             try
             {
-                return Ok(_repo.GetByPrimaryKey(id));
+                return Ok(_repo.GetByPrimaryKey(p_id));
             }
             catch (Exception e)
             {
@@ -44,18 +47,26 @@ namespace WebAPI.Controllers
         [HttpPost("Add")]
         public IActionResult AddCovid([FromBody] CovidVerify p_covid)
         {
+            try
+            {
             _repo.Create(p_covid);
             _repo.Save();
-            return Created("api/UserAPI/Add", p_covid);
+            return Created("api/covid/add", p_covid);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Invalid input.");
+            }
         }
 
-        // DELETE <TopicController>/5
-        [HttpDelete("Delete/{id}")]
-        public IActionResult Delete(int id)
+        // DELETE api/delete/{p_id}
+        [HttpDelete("Delete/{p_id}")]
+        public IActionResult Delete(int p_id)
         {
             try
             {
-                var topic = _repo.GetByPrimaryKey(id);
+                var topic = _repo.GetByPrimaryKey(p_id);
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();
