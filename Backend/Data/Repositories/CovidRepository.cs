@@ -15,14 +15,5 @@ namespace Data
         {
             repository = context;
         }
-        /// <summary>
-        /// Acquiring Covid Verificaiton By User ID
-        /// </summary>
-        /// <param name="userId">int to locate user for which we're trying to find verificaiton</param>
-        /// <returns>The Covid Verification</returns>
-        public CovidVerify GetCovidVerificationByUserId(int userId)
-        {
-            return repository.CovidAssessments.Single(c => c.UsersId.Equals(userId));
-        } 
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace Data
@@ -31,6 +32,16 @@ namespace Data
                 throw new KeyNotFoundException("No Employee found with the email ");
             }
             
+        }
+
+        public EmployeeInformation GetEmployeeWithUserAndRole(int userId)
+        {
+            var employee = this.repository.Employee
+                .Include(e => e.UserProfile)
+                .ThenInclude(u => u.Role)
+                .Single(e => e.Id.Equals(userId));
+
+            return employee;
         }
     }
 }

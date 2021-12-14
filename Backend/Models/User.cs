@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Models.Diagnosis;
@@ -28,6 +29,8 @@ namespace Models
         public int RoleId { get; set; }
 
         public Role Role { get; set; }
+
+        public List<CovidVerify> CovidAssesments { get; set; }
     }
 
 
