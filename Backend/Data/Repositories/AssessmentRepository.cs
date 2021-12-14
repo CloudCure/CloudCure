@@ -8,8 +8,10 @@ namespace Data
 {
     public class AssessmentRepository : Repository<Assessment>, IAssessmentRepository
     {
+        readonly CloudCureDbContext repository;
         public AssessmentRepository(CloudCureDbContext context) : base(context)
         {
+            repository = context;
         }
 
         public Assessment SearchByPatientId(int query)

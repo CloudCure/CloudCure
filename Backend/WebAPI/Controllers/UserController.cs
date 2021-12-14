@@ -5,8 +5,6 @@ using Data;
 namespace WebAPI
 {
 
-
-
     [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -17,6 +15,7 @@ namespace WebAPI
         {
             userRepository = context;
         }
+        // GET: api/<User>/all
         [HttpGet("GetAll")]
         public IActionResult GetAllUsers()
         {
@@ -24,7 +23,7 @@ namespace WebAPI
             return Ok(userRepository.GetAll());
         }
 
-        
+        // GET: api/<User>/GetUserById/ {id number}
         [HttpGet("GetUserById/{id}")]
         public IActionResult GetUserById(int id)
         {
@@ -33,7 +32,7 @@ namespace WebAPI
         }
 
 
-        // POST api/<UserController>
+        // Post: api/<User>/Add
         [HttpPost("Add")]
         public IActionResult AddUser([FromBody] User p_user)
         {
@@ -43,24 +42,32 @@ namespace WebAPI
 
         }
 
-
+        // PUT api/user/update/{id}
         [HttpPut("Update/{id}")]
-        public IActionResult UpdateUser(int id,[FromBody] User p_user)
+        public IActionResult UpdateUser(int id, [FromBody] User p_user)
         {
             var item = userRepository.GetByPrimaryKey(id);
-            userRepository.Update(p_user);
+            item.FirstName = p_user.FirstName;
+            item.LastName = p_user.LastName;
+            item.DateOfBirth = p_user.DateOfBirth;
+            item.PhoneNumber = p_user.PhoneNumber;
+            item.Address = p_user.Address;
+            item.EmergencyName = p_user.EmergencyName;
+            item.EmergencyContactPhone = p_user.EmergencyContactPhone;
+            item.RoleId = p_user.RoleId;
+            userRepository.Update(item);
             userRepository.Save();
             return null;
         }
 
-        // DELETE api/<UserController>/5
+        // DELETE api/User/delete/{id}
         [HttpDelete("DeleteUser/{id}")]
         public IActionResult DeleteUser(int id)
         {
             var item = userRepository.GetByPrimaryKey(id);
-                userRepository.Delete(item);
-                userRepository.Save();
-                return Ok();
+            userRepository.Delete(item);
+            userRepository.Save();
+            return Ok();
 
         }
     }

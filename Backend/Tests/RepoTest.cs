@@ -22,18 +22,16 @@ namespace Tests
         [Fact]
         public void GetByCovidIdShouldPopulateCovidId()
         {
-           using (var context = new CloudCureDbContext(_options))
+            using (var context = new CloudCureDbContext(_options))
             {
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
                 var result = repository.GetByPrimaryKey(1);
 
-
-                Assert.Equal(1, result.UsersId);
                 Assert.Equal(true, result.question1);
             }
         }
 
-         [Fact]
+        [Fact]
         public void CreateCovidShouldCreateCovid()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -41,7 +39,6 @@ namespace Tests
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
                 CovidVerify newCovid = new ()
                 {
-                    UsersId = 3,
                     question1 = false,
                     
                 };
@@ -133,7 +130,6 @@ namespace Tests
                 context.CovidAssessments.AddRange(
                     new CovidVerify
                     {
-                        UsersId = 1,
                         question1 = true,
                         question2 = true,
                         question3 = false,
@@ -143,7 +139,6 @@ namespace Tests
                     },
                     new CovidVerify
                     {
-                        UsersId = 2,
                         question1 = true,
                         question2 = true,
                         question3 = false,
