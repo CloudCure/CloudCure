@@ -26,6 +26,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileService } from './services/profile.service';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { DiagnosisSurgeriesComponent } from './diagnosis-surgeries/diagnosis-surgeries.component';
+import { DiagnosisMedicationComponent } from './diagnosis-medication/diagnosis-medication.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DiagnosisSurgeriesComponent } from './diagnosis-surgeries/diagnosis-sur
     HeaderComponent,
     FooterComponent,
     BottomNavbarComponent,
-    DiagnosisSurgeriesComponent
+    DiagnosisSurgeriesComponent,
+    DiagnosisMedicationComponent
   ],
 
   imports: [
