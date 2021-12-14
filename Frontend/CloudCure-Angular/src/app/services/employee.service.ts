@@ -11,25 +11,30 @@ export class EmployeeService {
   constructor(private http:HttpClient) { }
 
   ////////////// Employee //////////////
-  GetAllEmployees() 
+  verifyEmployee(p_email: string | undefined)
+  {
+    return this.http.get<EmployeeInformation>(`${this.endpoint}/employee/verify/${p_email}`)
+  }
+
+  getAllEmployees() 
   { 
     //this route will need to match route on API controller
     return this.http.get<EmployeeInformation[]>(`${this.endpoint}/Employee/GetAll`);
   }
 
-  GetEmployeeById(Id:Number | undefined) 
+  getEmployeeById(Id:Number | undefined) 
   { 
     //this route will need to match route on API controller
     return this.http.get<EmployeeInformation>(`${this.endpoint}/Employee/Get/${Id}`);
   }
 
-  AddEmployee(Info:EmployeeInformation | undefined) 
+  addEmployee(Info:EmployeeInformation | undefined) 
   { 
     //this route will need to match route on API controller
     return this.http.post<EmployeeInformation>(`${this.endpoint}/Employee/Add`,Info);
   }  
 
-  DeleteEmployee(Id:number | undefined) 
+  deleteEmployee(Id:number | undefined) 
   { 
     //this route will need to match route on API controller
     return this.http.delete<EmployeeInformation>(`${this.endpoint}/Employee/Delete/${Id}`);

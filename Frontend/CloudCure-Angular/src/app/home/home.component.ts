@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
-import { WebApiService } from '../services/web-api.service';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +11,7 @@ import { WebApiService } from '../services/web-api.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public auth0: AuthService, @Inject(DOCUMENT) public document: Document, public router: Router, public webApi: WebApiService ) 
+  constructor(public auth0: AuthService, @Inject(DOCUMENT) public document: Document, public router: Router, public employeeAPI: EmployeeService ) 
   { 
     // checks if user is currently logged into auth0.
     this.auth0.user$.subscribe(
@@ -20,13 +20,14 @@ export class HomeComponent implements OnInit {
         if (user)
         {
           // search database for user.email
-          this.webApi.loginUser(user.email).subscribe(
+          this.employeeAPI.verifyEmployee(user.email).subscribe(
             (response) => 
             {
               console.log(response);
               if (!response)
               {
-                /*If user is not in database, route to register*/
+                // send them to register page if they arent currently a user in our db.
+                this.router.navigateByUrl("/register");
               }
             }
           )          
