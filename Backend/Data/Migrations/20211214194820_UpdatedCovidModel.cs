@@ -47,6 +47,30 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Employee",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WorkEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Specialization = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "date", nullable: false),
+                    RoomNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EducationDegree = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserProfileId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employee", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Employee_Users_UserProfileId",
+                        column: x => x.UserProfileId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Patients",
                 columns: table => new
                 {
@@ -242,6 +266,11 @@ namespace Data.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Employee_UserProfileId",
+                table: "Employee",
+                column: "UserProfileId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Medications_PatientId",
                 table: "Medications",
                 column: "PatientId");
@@ -280,6 +309,9 @@ namespace Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "CovidAssessments");
+
+            migrationBuilder.DropTable(
+                name: "Employee");
 
             migrationBuilder.DropTable(
                 name: "Medications");

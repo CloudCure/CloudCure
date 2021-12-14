@@ -8,10 +8,7 @@ import { CovidVerify } from '../Models/CovidVerify';
 export class CovidService {
 
   private endpoint: string = "https://cloudcure-api.azurewebsites.net";
-  constructor(private http:HttpClient)
-  {
-    
-  } 
+  constructor(private http:HttpClient) {} 
 
   ////////////// Covid //////////////
   GetAllCovidInfo() 
@@ -23,7 +20,7 @@ export class CovidService {
   GetCovidInfoById(Id:Number | undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.get<CovidVerify>(`${this.endpoint}/Covid/Get/${Id}`);
+    return this.http.get<CovidVerify>(`${this.endpoint}/Covid/Get`+Id);
   }
 
   AddCovidInfo(Info:CovidVerify | undefined) 
@@ -32,9 +29,9 @@ export class CovidService {
     return this.http.post<CovidVerify>(`${this.endpoint}/Covid/Add`,Info);
   }  
 
-  DeleteCovidInfo(Info:CovidVerify | undefined) 
+  DeleteCovidInfo(Id:number| undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.post<CovidVerify>(`${this.endpoint}/Covid/Add`,Info);
+    return this.http.delete<CovidVerify>(`${this.endpoint}/Covid/Delete`+Id);
   }  
 }
