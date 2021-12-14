@@ -4,5 +4,5 @@
 <button (click)="display = !display">Add Surgeries</button>
 <br>
 <ng-container *ngIf="display">
-    <app-text-box [conditions]="boxes"></app-text-box>
+    <app-text-box [boxes]="surgeries"></app-text-box>
 </ng-container>
