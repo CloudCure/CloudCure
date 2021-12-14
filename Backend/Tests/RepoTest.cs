@@ -29,7 +29,7 @@ namespace Tests
 
 
                 Assert.Equal(1, result.UsersId);
-                Assert.Equal(true, result.covidChoice);
+                Assert.Equal(true, result.question1);
             }
         }
 
@@ -42,13 +42,13 @@ namespace Tests
                 CovidVerify newCovid = new ()
                 {
                     UsersId = 3,
-                    covidChoice = false,
+                    question1 = false,
                     
                 };
                 repository.Create(newCovid);
                 repository.Save();
 
-                Assert.Equal(newCovid.covidChoice, repository.GetByPrimaryKey(3).covidChoice);
+                Assert.Equal(newCovid.question1, repository.GetByPrimaryKey(3).question1);
                 
             }
         }
@@ -73,11 +73,11 @@ namespace Tests
             {
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
                 var testCovid = repository.GetByPrimaryKey(1);
-                testCovid.covidChoice = false;
+                testCovid.question1 = false;
                 repository.Update(testCovid);
                 repository.Save();
 
-                Assert.Equal(false, testCovid.covidChoice);
+                Assert.Equal(false, testCovid.question1);
             }
         }
 
@@ -110,13 +110,13 @@ namespace Tests
                     new CovidVerify
                     {
                         UsersId = 1,
-                        covidChoice = true
+                        question1 = true
 
                     },
                     new CovidVerify
                     {
                         UsersId = 2,
-                        covidChoice = true
+                        question1 = true
                     }
                 );
                
