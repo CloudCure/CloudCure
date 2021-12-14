@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace Data
@@ -16,7 +18,10 @@ namespace Data
         {
             try
             {
-                 return GetByPrimaryKey(p_id);
+                 return repository.Employee
+                 .Include(e => e.UserProfile)
+                 .ThenInclude(u => u.Role)
+                 .Single(e => e.Id.Equals(p_id));
             }
             catch (System.Exception)
             {

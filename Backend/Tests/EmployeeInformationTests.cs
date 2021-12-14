@@ -1,3 +1,4 @@
+using System.Reflection;
 using System;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -32,6 +33,7 @@ namespace Tests
                  Assert.Equal("MD", EmployeeInfo.EducationDegree);
                  Assert.Equal("ER", EmployeeInfo.Specialization);
                  Assert.Equal(new DateTime(2021, 12, 14), EmployeeInfo.StartDate);
+                 Assert.Equal("John", EmployeeInfo.UserProfile.FirstName);
             }
         }
 
