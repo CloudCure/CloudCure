@@ -1,0 +1,72 @@
+<body>
+  <div class="container" > <!--*ngIf="showModifyUser"-->
+    <div class="row gutters">
+      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="row gutters">
+
+              <form [formGroup] = "registerGroup" >
+                <div class="mb-3">
+                  <label for="InputFirstName" class="form-label">First Name</label>
+                  <input type="text" formControlName = "FirstName" class="form-control" id="InputFirstName" aria-describedby="FirstNameHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="InputLastName" class="form-label">Last Name</label>
+                  <input type="text" formControlName = "LastName" class="form-control" id="InputLastName">
+                </div>
+                <div class="mb-3">
+                  <label for="InputDateOfBirth" class="form-label">DateOfBirth</label>
+                  <input type="text" formControlName = "DateOfBirth" class="form-control" id="InputDateOfBirth">
+                </div>
+                <div class="mb-3">
+                  <label for="InputPhoneNumber" class="form-label">PhoneNumber</label>
+                  <input type="text" formControlName = "PhoneNumber" class="form-control" id="InputPhoneNumber">
+                </div>
+                <div class="mb-3">
+                  <label for="InputAddress" class="form-label">Address</label>
+                  <input type="text" formControlName = "Address" class="form-control" id="InputAddress">
+                </div>
+                <div class="mb-3">
+                  <label for="InputEmergencyName" class="form-label">EmergencyName</label>
+                  <input type="text" formControlName = "EmergencyName" class="form-control" id="InputEmergencyName">
+                </div>
+                <div class="mb-3">
+                  <label for="InputEmergencyContactPhone" class="form-label">EmergencyContactPhone</label>
+                  <input type="text" formControlName = "EmergencyContactPhone" class="form-control" id="InputContactPhone">
+                </div>
+                <div class="mb-3">
+                  <label for="InputSpecialization" class="form-label">Specialization</label>
+                  <input type="text" formControlName = "Specialization" class="form-control" id="InputSpecialization">
+                </div>
+                <div class="mb-3">
+                  <label for="InputStartDate" class="form-label">StartDate</label>
+                  <input type="text" formControlName = "StartDate" class="form-control" id="InputStartDate">
+                </div>
+                <div class="mb-3">
+                  <label for="InputRoomNumber" class="form-label">RoomNumber</label>
+                  <input type="text" formControlName = "RoomNumber" class="form-control" id="InputRoomNumber">
+                </div>
+                <div class="mb-3">
+                  <label for="InputEducationDegree" class="form-label">EducationDegree</label>
+                  <input type="text" formControlName = "EducationDegree" class="form-control" id="InputEducationDegree">
+                </div>
+                <div class="mb-3">
+                  <label>
+                    <input type="radio" value="Nurse" formControlName="UserRole">
+                      <span>Nurse</span>
+                  </label>
+                  <label>
+                    <input type="radio" value="Doctor" formControlName="UserRole">
+                      <span>Doctor</span>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-dark" (click)="RegisterUser(registerGroup)">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

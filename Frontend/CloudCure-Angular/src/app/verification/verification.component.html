@@ -1,44 +1,156 @@
-<div class="solid">
-<h1 class="center"> Covid-19 Verification </h1>
-</div>
-<br/>
-<div class="solid">
-<div class="row">
-    <div class="column">
+<body>
+  <div class="row">
+
+    <div class="header">
+      <h1>COVID-19 SCREENING</h1>
     </div>
-    <div class="column">
-          <li>Fever or chills</li>
-          <li>Cough</li>
-          <li>Shortness of breath or difficulty breathing</li>
-          <li>Fatigue</li>
-          <li>Sore throat</li>
+
+    <div class="column middle">
+      <h5>PLEASE SELECT THE ANSWER THAT APPLIES TO PATIENT!</h5>
+      <br/>
+
+      <form [formGroup] = " verifiGroup">
+        <div class="form-check form-group">
+          <p>Question 1:</p>
+          <dl>Regardless of your vaccination status, have
+            you experienced any of the symptoms in
+            the list below in the past 48 hours?
+            <dd>
+              <input type="radio" formControlName="question1" id="yes" name="question1" value="yes" checked="">
+              <label for="yes">Yes</label>
+              <input type="radio" formControlName="question1" id="no" name="question1" value="no" checked="">
+              <label for="no">No</label>
+            </dd>
+          </dl>
+          <br/>
+
+          <p>Question 2:</p>
+          <dl> Are you isolating or quarantining because you
+            tested positive for COVID-19 or are worried
+            that you may be sick with COVID-19?
+            <dd>
+              <input type="radio" formControlName="question2" id="yes" name="question2" value="yes" checked="">
+              <label for="yes">Yes</label>
+              <input type="radio" formControlName="question2" id="no" name="question2" value="no" checked="">
+              <label for="no">No</label>
+            </dd>
+          </dl>
+          <br/>
+
+          <p>Question 3:</p>
+          <dl> Has anyone in your household experienced
+            any symptoms in the past 14 days?
+            <dd>
+              <input type="radio" formControlName="question3" id="yes" name="question3" value="yes" checked="">
+              <label for="yes">Yes</label>
+              <input type="radio" formControlName="question3" id="no" name="question3" value="no" checked="">
+              <label for="no">No</label>
+            </dd>
+          </dl>
+          <br/>
+
+          <p>Question 4:</p>
+          <dl>Have you traveled in the past 10 days?
+            <dd>
+              <input type="radio" formControlName="question4" id="yes" name="question4" value="yes" checked="">
+              <label for="yes">Yes</label>
+              <input type="radio" formControlName="question4" id="no" name="question4" value="no" checked="">
+              <label for="no">No</label>
+            </dd>
+          </dl>
+          <br/>
+
+          <p>Question 5:</p>
+            <dl>
+              In the past 14 days, have you been identified
+              as a close contact of someone with
+              suspected or confirmed COVID-19?
+              <dd>
+                <input type="radio" formControlName="question5" id="yes" name="question5" value="yes" checked="">
+                <label for="yes">Yes</label>
+                <input type="radio" formControlName="question5" id="no" name="question5" value="no" checked="">
+                <label for="no">No</label>
+              </dd>
+            </dl>
+            <input type="submit" value="Submit" (click)="submitForm()">
         </div>
-        <div class="column">
-          <li>Muscle or body aches</li>
-          <li>New loss of taste or smell</li>
-          <li>Nausea or vomiting</li>
-          <li>Diarrhea</li>
-          <li>Congestion or runny nose</li>
-        </div>
-        <div class="column">
-        </div>
+      </form>
+    </div>
+
+    <div class="column side">
+      <div class="header-side">
+        <h5>Symptoms</h5>
       </div>
+      <br/>
+      <dt>Fever</dt>
+      <dt>Chills</dt>
+      <dt>Dry cough</dt>
+      <dt>Loss of smell or taste</dt>
+      <dt>Shortness of breath</dt>
+      <dt>Difficulty breathing</dt>
+      <dt>Muscles or body aches</dt>
+      <dt>Nausea or vomiting</dt>
+      <dt>Diarrhea</dt>
+      <dt>Congestion or runny nose</dt>
     </div>
-<form>
-    
-    <br/>
-    <div class="solid">
-    <div class="form-group center">
-      <label for="exampleFormControlSelect1">Have you previously been diagnosed with Covid-19?</label>
-      <select id="verificationFormControlSelect1 ">
-        <option>Yes</option>
-        <option>No</option>
-      </select>
+
+  </div>
+</body>
+
+
+<!-- <body>
+  <div class="container">
+    <div class="header">
+      <h1>Covid-19 Verification</h1>
     </div>
+        <h6 class="mb-0">Patient Name/Id:</h6>
+  </div>
+<section>
+  <br/>
+  <h4>Symptoms</h4>
+  <br>
+
+  <div class="row">
+    <div class="column">
+      <p></p>
     </div>
-        
-    <br>
+    <div class="column">
+      <p>
+        <li>Fever or chills</li>
+        <li>Cough</li>
+        <li>Shortness of breath</li>
+        <li>Difficulty breathing</li>
+        <li>Fatigue</li>
+        <li>Sore throat</li>
+      </p>
+    </div>
+    <div class="column">
+      <p>
+        <li>Muscle or body aches</li>
+        <li>New loss of taste or smell</li>
+        <li>Nausea or vomiting</li>
+        <li>Diarrhea</li>
+        <li>Congestion or runny nose</li>
+      </p>
+    </div>
+    <div class="column">
+    </div>
+  </div>
+</section>
+  <div class="form form-check">
+    <label class="form-check-label" for="flexCheckChecked">
+      Have you previously been diagnosed with Covid-19?
+    </label>
+    <input class="" type="checkbox" value="" id="flexCheckChecked" checked="">
+  </div>
+  <br/>
     <div class="center">
-    <button type="submit" class="btn btn-primary ">Submit</button>
+      <button type="submit" class="btn btn-primary btn-sm ">Submit</button>
     </div>
-  </form>
+</body>
+
+<<<<<<< HEAD
+ -->
+=======
+
+>>>>>>> f1214b9dc2ac13e1227e5d6713c1d4c6e3b0f214
