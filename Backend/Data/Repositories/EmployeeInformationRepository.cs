@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Models;
 
 namespace Data
@@ -9,6 +10,19 @@ namespace Data
         public EmployeeInformationRepository(CloudCureDbContext context) : base(context)
         {
             repository = context;
+        }
+
+        public EmployeeInformation GetEmployeeInformationById(int p_id)
+        {
+            try
+            {
+                 return GetByPrimaryKey(p_id);
+            }
+            catch (System.Exception)
+            {
+                
+                throw new KeyNotFoundException("Employee Id Not Found!");
+            }
         }
     }
 }
