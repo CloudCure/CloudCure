@@ -19,6 +19,7 @@ namespace Data
         public virtual DbSet<Vitals> Vitals { get; set; }
         public virtual DbSet<CovidVerify> CovidAssessments { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<EmployeeInformation> Employee {get; set;}
 
         public virtual DbSet<Role> Roles { get; set; }
     }
