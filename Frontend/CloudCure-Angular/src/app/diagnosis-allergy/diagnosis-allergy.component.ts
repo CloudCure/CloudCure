@@ -12,27 +12,32 @@ export class DiagnosisAllergyComponent implements OnInit {
   //variables
   display: boolean = false;
   displayNumber: number = 0;
+  i: number = 0;
   
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  // will hopefully add one more text box
-  addBoxes()
+  addFields()
   {
-    this.displayNumber = this.displayNumber + 1;
-  }
+    let number = (<HTMLInputElement>document.getElementById("member"))?.value;
+    console.log(number)
+    let container = document.getElementById("container");
+    let Numb: number = +number;
+    console.log(Numb)
 
-  // will hopefully subtract one less text box
-  subBoxes()
-  {
-    if (this.displayNumber = 0) {
-      this.displayNumber = this.displayNumber;
-    }
-    else
+    // while (container?.hasChildNodes()) {
+    //   container.removeChild(container.lastChild);
+    // }
+    for (this.i<Numb;this.i++;)
     {
-      this.displayNumber = this.displayNumber - 1;
+      container?.appendChild(document.createTextNode("Member "+ (this.i+1)));
+      let input = document.createElement("input");
+      input.type = "text";
+      input.name = "member" + this.i;
+      container?.appendChild(input);
+      container?.appendChild(document.createElement("br"));
     }
   }
 

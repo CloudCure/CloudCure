@@ -37,13 +37,13 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
     DiagnosisAllergyComponent,
     TextBoxComponent,
     DiagnosisConditionComponent,
-    patientdiagnosis,
+    // patientdiagnosis,
     DiagnosisVitalsComponent,
     VerificationComponent,
     NavbarComponent,
     ProfileComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
     BottomNavbarComponent
   ],
 

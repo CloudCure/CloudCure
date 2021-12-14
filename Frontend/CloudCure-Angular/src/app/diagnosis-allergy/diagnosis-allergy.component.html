@@ -2,18 +2,26 @@
 
 <form>
     <label class="form-label">Allergies:</label>
+
     <!-- The component only briefly shows and then goes away -->
-    <button (click)="display = !display">Show</button>
-    <br>
+    <!-- <button (click)="display = !display">Show</button>
+    <br> -->
     <!-- It reverts back to it orginal instantiation -->
     <!-- *ngIf will only display for a bit -->
-    <ng-container *ngIf="display">
+    <!-- <ng-container *ngIf="display">
         <app-text-box></app-text-box>
-    </ng-container>
+    </ng-container> -->
+
     <br>
     <br>
-    <input type="submit">
+    <!-- <input type="submit"> -->
 </form>
+
+<input type="text" id="member" name="member" value="">Number of members: (max 10)<br />
+<button id="filldetails" (click)="addFields()">Fill Details</button>
+<div id="container">
+
+</div>
 
 
 
