@@ -27,9 +27,9 @@ namespace Tests
             using (var context = new CloudCureDbContext(_options))
             {
                 IAllergyRepository repository = new AllergyRepository(context);
-              //  var Allergy = repository.SearchByPatientId(1);
+                var Allergy = repository.SearchByPatientId(1);
 
-                //Assert.NotEmpty(Allergy);
+                Assert.Equal(1, Allergy.PatientId);
             }
         }
 
@@ -40,7 +40,19 @@ namespace Tests
             {
                 IAllergyRepository repository = new AllergyRepository(context);
 
-             //   Assert.Throws<KeyNotFoundException>(() => repository.SearchByPatientId(3));
+               Assert.Throws<KeyNotFoundException>(() => repository.SearchByPatientId(3));
+            }
+        }
+
+        [Fact]
+        public void SearchByAllergyShouldReturnResults()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAllergyRepository repository = new AllergyRepository(context);
+                var allergy = repository.SearchByAllergy("Dog");
+
+                Assert.NotEmpty(allergy);
             }
         }
 

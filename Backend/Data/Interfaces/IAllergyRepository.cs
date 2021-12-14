@@ -5,6 +5,8 @@ namespace Data
 {
     public interface IAllergyRepository : IRepository<Allergy>
     {
-       // Patient SearchByPatientId(int query);
+        Allergy SearchByPatientId(int query);
+
+       IEnumerable<Allergy> SearchByAllergy(string query);
     }
 }

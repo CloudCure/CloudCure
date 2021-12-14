@@ -16,9 +16,30 @@ namespace Data
             repository = context;
         }
 
-        // public Patient SearchByPatientId(int query)
-        // {
-        //     throw new NotImplementedException();
-        // }
+        public IEnumerable<Allergy> SearchByAllergy(string query)
+        {
+             var allergy = GetAll().Where(b => b.AllergyName.Equals(query));
+            if (!allergy.Any())
+            {
+                throw new KeyNotFoundException("Allergy not found.");
+            }
+            else
+            {
+                return allergy;
+            }
+        }
+
+        public Allergy SearchByPatientId(int query)
+        {
+             var patientId = GetAll().First(b => b.PatientId.Equals(query));
+            if (patientId == null)
+            {
+                throw new KeyNotFoundException("Topic not found.");
+            }
+            else
+            {
+                return patientId;
+            }
+        }
     }
 }
