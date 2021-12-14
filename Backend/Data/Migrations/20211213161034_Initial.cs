@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
-    public partial class UpdatedCovidModel : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Roles",
+                name: "Role",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -17,7 +17,7 @@ namespace Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Roles", x => x.Id);
+                    table.PrimaryKey("PK_Role", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,35 +39,11 @@ namespace Data.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Users_Roles_RoleId",
+                        name: "FK_Users_Role_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "Roles",
+                        principalTable: "Role",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Employee",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    WorkEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Specialization = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "date", nullable: false),
-                    RoomNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EducationDegree = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserProfileId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employee", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Employee_Users_UserProfileId",
-                        column: x => x.UserProfileId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -159,11 +135,7 @@ namespace Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UsersId = table.Column<int>(type: "int", nullable: false),
-                    question1 = table.Column<bool>(type: "bit", nullable: false),
-                    question2 = table.Column<bool>(type: "bit", nullable: false),
-                    question3 = table.Column<bool>(type: "bit", nullable: false),
-                    question4 = table.Column<bool>(type: "bit", nullable: false),
-                    question5 = table.Column<bool>(type: "bit", nullable: false),
+                    covidChoice = table.Column<bool>(type: "bit", nullable: false),
                     PatientId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -266,11 +238,6 @@ namespace Data.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_UserProfileId",
-                table: "Employee",
-                column: "UserProfileId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Medications_PatientId",
                 table: "Medications",
                 column: "PatientId");
@@ -311,9 +278,6 @@ namespace Data.Migrations
                 name: "CovidAssessments");
 
             migrationBuilder.DropTable(
-                name: "Employee");
-
-            migrationBuilder.DropTable(
                 name: "Medications");
 
             migrationBuilder.DropTable(
@@ -329,7 +293,7 @@ namespace Data.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                name: "Role");
         }
     }
 }

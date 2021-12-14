@@ -16,13 +16,13 @@ namespace Tests
         public RepoTest()
         {
             _options = new DbContextOptionsBuilder<CloudCureDbContext>()
-                        .UseSqlite("Filename = Repository.db; Foreign Keys=False").Options;
+                        .UseSqlite("Filename = test.db").Options;
                     Seed();
         }
         [Fact]
         public void GetByCovidIdShouldPopulateCovidId()
         {
-            using (var context = new CloudCureDbContext(_options))
+           using (var context = new CloudCureDbContext(_options))
             {
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
                 var result = repository.GetByPrimaryKey(1);
@@ -33,7 +33,7 @@ namespace Tests
             }
         }
 
-        [Fact]
+         [Fact]
         public void CreateCovidShouldCreateCovid()
         {
             using (var context = new CloudCureDbContext(_options))

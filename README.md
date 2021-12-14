@@ -37,7 +37,7 @@ I want an app that allows me to easily create and print patient diagnosis.
 * LINQ
 * CI/CD Pipeline
 * Serilog (logging)
-* SonarCloud Code Analysis
+* SonorCloud Code Analysis
 * Xunit (unit testing)
 * Bootstrap
 

@@ -1,6 +1,0 @@
-<p>assessment works!</p>
-
-<h3 (click)="showBodyClicker = !showBodyClicker">Show Bodyclicker</h3>
-<ng-container *ngIf="showBodyClicker">
-    <body-clicker (onClick)="getClick($event)" [canEdit]="true"></body-clicker>
-</ng-container>
