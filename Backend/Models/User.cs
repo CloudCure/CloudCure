@@ -14,6 +14,7 @@ namespace Models
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
 
+        [Required]
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
@@ -28,4 +29,7 @@ namespace Models
 
         public Role Role { get; set; }
     }
+
+
+
 }

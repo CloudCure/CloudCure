@@ -56,9 +56,6 @@ namespace Tests
             }
         }
 
-
-
-
         void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -66,24 +63,27 @@ namespace Tests
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
-                context.Allergies.AddRange(
-                    new Allergy
+                context.Patients.AddRange(
+                    new Patient
                     {
-                        PatientId = 1,
-                        AllergyName = "Dogs"
+                        Allergies = new List<Allergy>{
+                            new Allergy
+                            {
+                                PatientId = 1,
+                                AllergyName = "Dogs"
 
-                    },
-                    new Allergy
-                    {
-                        PatientId = 2,
-                        AllergyName = "Haldol"
+                            },
+                            new Allergy
+                            {
+                                PatientId = 1,
+                                AllergyName = "Haldol"
+                            }
+                        }
                     }
                 );
 
-                
-
-
                 context.SaveChanges();
+
             }
 
 

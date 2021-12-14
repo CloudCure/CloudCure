@@ -18,6 +18,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileService } from './services/profile.service';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
+import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,12 +36,15 @@ import { HomeComponent } from './home/home.component';
     ProfileComponent,
     HeaderComponent,
     FooterComponent,
-    BottomNavbarComponent
+    BottomNavbarComponent,
+    RegisterComponent
   ],
 
   imports: [
     HttpClientModule,
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
       clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
@@ -51,6 +56,7 @@ import { HomeComponent } from './home/home.component';
       { path: 'print', component: PrintComponent },
       { path: 'body-clicker', component: BodyClickerComponent },
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
+      { path : 'register', component:RegisterComponent},
       { path: "**", component: HomeComponent }
     ])
   ],

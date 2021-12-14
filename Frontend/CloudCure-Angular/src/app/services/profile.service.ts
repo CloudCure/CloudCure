@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User_Profile } from '../Models/User_Profile';
+import { UserProfile } from '../Models/UserProfile';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ export class ProfileService {
 
   constructor(http: HttpClient) { }
 
-  getProfile() : User_Profile | null{
+  getProfile() : UserProfile | null{
     return null;
   }
 }
