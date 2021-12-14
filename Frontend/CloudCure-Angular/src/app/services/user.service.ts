@@ -20,7 +20,7 @@ export class UserService {
   GetUserById(Id:Number | undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.get<UserProfile>(`${this.endpoint}/User/Get`+Id);
+    return this.http.get<UserProfile>(`${this.endpoint}/User/Get/${Id}`);
   }
 
   AddUser(Info:UserProfile | undefined) 
@@ -32,7 +32,7 @@ export class UserService {
   DeleteUser(Id:number | undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.delete<UserProfile>(`${this.endpoint}/User/Delete`+Id);
+    return this.http.delete<UserProfile>(`${this.endpoint}/User/Delete/${Id}`);
   } 
 
 }
