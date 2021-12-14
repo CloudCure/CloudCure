@@ -28,7 +28,7 @@ namespace Data
                 
                 throw new KeyNotFoundException("Employee Id Not Found!");
             }
-
+        }
         /// <summary>
         /// Will check our database if there is an employee with an email matching p_email 
         /// and will return the result if found.
