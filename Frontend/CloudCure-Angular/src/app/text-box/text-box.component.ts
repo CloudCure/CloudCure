@@ -15,7 +15,11 @@ export class TextBoxComponent implements OnInit {
   @Output()
   canClick:boolean
 
+<<<<<<< HEAD
   boxes:string[] = [''];
+=======
+  boxes:string[] = [];
+>>>>>>> 4bcca969062716384dea2adb43539ca16aab034a
   
   constructor() { 
     this.canEdit = false;
@@ -28,9 +32,15 @@ export class TextBoxComponent implements OnInit {
   addOne() {
     this.boxes.push("");
   }
+<<<<<<< HEAD
   
   deleteOne(i:number) {
     this.boxes.splice(i,1); 
+=======
+
+  subOne() {
+    this.boxes.pop();
+>>>>>>> 4bcca969062716384dea2adb43539ca16aab034a
   }
 
 }
