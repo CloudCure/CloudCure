@@ -33,12 +33,9 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-
                 Log.Error(e.Message);
                 return BadRequest("No results");
             }
-
-
         }
 
         // DELETE Medication/delete/Id
@@ -53,11 +50,9 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Failed to delete");
-
             }
-
         }
 
         // PUT Medication/Edit
@@ -72,10 +67,9 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-
         }
 
         // POST Medication/Add
@@ -86,12 +80,11 @@ namespace WebAPI.Controllers
             {
                 medicationRepository.Create(p_medication);
                 medicationRepository.Save();
-                return Created("allergy/add", p_medication);
+                return Created("Medication/Add", p_medication);
             }
             catch (Exception e)
             {
-
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Failed to Add");
             }
         }
