@@ -51,7 +51,7 @@ namespace WebAPI {
         {
             _repo.Create(p_info);
             _repo.Save();
-            return Created("api/EmployeeInformation/add", p_info);
+            return Created("employee/add", p_info);
         }
 
         // PUT employee/edit/{id}
