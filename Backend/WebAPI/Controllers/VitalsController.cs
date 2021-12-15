@@ -21,13 +21,13 @@ namespace WebAPI.Controllers
         }
 
         //GET: Vitals/All
-        [HttpGet("All")] //("All") Will give and endpoint that ends with All
+        [HttpGet("All")] //("All") Will give a case-insensitive endpoint that ends with All
         public IActionResult GetAllVitals()
         {
             return Ok(_repo.GetAll());
         }
 
-        //GET: Vitals/Id
+        //GET: Vitals/{p_id}
         [HttpGet("{p_id}")]
         public IActionResult GetVitalsById(int p_id)
         {
@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
             return Created("Vitals/add", p_vitals);
         }
 
-        //PUT: Vitals/Id
+        //PUT: Vitals/{id}
         [HttpPut("edit/{id}")]
         public IActionResult UpdateVitals([FromBody] Vitals p_vitals)
         {
@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-        //Delete: Vitals/Id
+        //Delete: Vitals/{id}
         [HttpDelete("delete/{id}")]
         public IActionResult DeleteVitals([FromBody] Vitals p_vitals)
         {

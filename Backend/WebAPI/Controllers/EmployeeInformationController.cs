@@ -5,10 +5,11 @@ using System;
 using Serilog;
 
 namespace WebAPI {
-    [Route("employee")]
+    [Route("Employee")]
     [ApiController]
     public class EmployeeInformationController : Controller
     {
+        //Dependency Injection
         private readonly IEmployeeInformationRepository _repo;
 
         public EmployeeInformationController(IEmployeeInformationRepository p_repo)
@@ -17,13 +18,13 @@ namespace WebAPI {
         }
 
         // GET: employee/all
-        [HttpGet("All")]
+        [HttpGet("All")] //("All") Will give a case-insensitive endpoint that ends with All
         public IActionResult GetAllEmployeeInformation()
         {
             return Ok(_repo.GetAll());
         }
 
-        // GET: employee/5
+        // GET: employee/{p_id}
         [HttpGet("{p_id}")]
         public IActionResult GetEmployeeInformationById(int p_id)
         {

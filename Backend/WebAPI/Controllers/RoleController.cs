@@ -22,13 +22,13 @@ namespace WebAPI.Controllers
         }
 
         // GET: Role/All
-        [HttpGet("All")] //("All") Will give and endpoint that ends with All
+        [HttpGet("All")] //("All") Will give a case-insensitive endpoint that ends with All
         public IActionResult GetAllRole()
         {
             return Ok(_repo.GetAll());
         }
 
-        // GET Role/Id
+        // GET Role/{p_id}
         [HttpGet("{p_id}")]
         public IActionResult GetRoleById(int p_id)
         {
@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
         }
 
 
-        // PUT Role/Edit
+        // PUT Role/edit/{id}
         [HttpPut("edit/{id}")]
         public IActionResult UpdateRole([FromBody] Role p_role)
         {
@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-        // DELETE Role/Id
+        // DELETE Role/delete/{id}
         [HttpDelete("delete/{id}")]
         public IActionResult DeleteRole([FromBody] Role p_role)
         {
