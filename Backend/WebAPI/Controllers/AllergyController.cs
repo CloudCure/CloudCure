@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
             
         }
 
-        // PUT Patient/Edit
+        // PUT Allergy/Edit
         [HttpPut("edit/{id}")]
         public IActionResult UpdateAllergy([FromBody] Allergy p_allergy)
         {
@@ -77,7 +77,7 @@ namespace WebAPI.Controllers
 
         }
 
-        // POST Patient/Add
+        // POST Allergy/Add
         [HttpPost("add")]
         public IActionResult AddAllergy([FromBody] Allergy p_allergy)
         {

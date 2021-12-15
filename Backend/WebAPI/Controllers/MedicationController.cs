@@ -20,36 +20,82 @@ namespace WebAPI.Controllers
         {
             medicationRepository = context;
         }
-        // GET: api/<MedicationController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+
+
+        // GET: medication/All
+        [HttpGet("all")] //("All") Will give and endpoint that ends with All
+        public IActionResult GetAllMedication()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return Ok(medicationRepository.GetAll());
+            }
+            catch (Exception e)
+            {
+
+                //Log.Error(e.Message);
+                return BadRequest("Failed to update");
+            }
+
+
         }
 
-        // GET api/<MedicationController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // DELETE Medication/delete/Id
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteMedication([FromBody] Medication p_medication)
         {
-            return "value";
+            try
+            {
+                medicationRepository.Delete(p_medication);
+                medicationRepository.Save();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                //Log.Error(e.Message);
+                return BadRequest("Failed to update");
+
+            }
+
         }
 
-        // POST api/<MedicationController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        // PUT Medication/Edit
+        [HttpPut("edit/{id}")]
+        public IActionResult UpdateMedication([FromBody] Medication p_medication)
         {
+            try
+            {
+                medicationRepository.Update(p_medication);
+                medicationRepository.Save();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                //Log.Error(e.Message);
+                return BadRequest("Failed to update");
+            }
+
         }
 
-        // PUT api/<MedicationController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // POST Medication/Add
+        [HttpPost("add")]
+        public IActionResult AddMedication([FromBody] Medication p_medication)
         {
+            try
+            {
+                medicationRepository.Create(p_medication);
+                medicationRepository.Save();
+                return Created("allergy/add", p_medication);
+            }
+            catch (Exception e)
+            {
+
+                //Log.Error(e.Message);
+                return BadRequest("Failed to update");
+            }
+
         }
 
-        // DELETE api/<MedicationController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+     
     }
 }
