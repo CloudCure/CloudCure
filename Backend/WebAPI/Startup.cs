@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Models.Diagnosis;
 
 namespace WebAPI
 {
@@ -33,6 +34,9 @@ namespace WebAPI
             services.AddScoped<IEmployeeInformationRepository, EmployeeInformationRepository>();
             services.AddScoped<ICovidRepository, CovidRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IAllergyRepository, AllergyRepository>();
+            services.AddScoped(typeof(IRepository<Surgery>), typeof(Repository<Surgery>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddControllers();
             services.AddSwaggerGen(c =>
