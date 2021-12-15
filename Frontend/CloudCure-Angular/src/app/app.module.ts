@@ -21,6 +21,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileService } from './services/profile.service';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
+import { DiagnosisSurgeriesComponent } from './diagnosis-surgeries/diagnosis-surgeries.component';
+import { DiagnosisMedicationComponent } from './diagnosis-medication/diagnosis-medication.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
@@ -48,6 +50,8 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     HeaderComponent,
     FooterComponent,
     BottomNavbarComponent,
+    DiagnosisSurgeriesComponent,
+    DiagnosisMedicationComponent
     RegisterComponent
   ],
 
