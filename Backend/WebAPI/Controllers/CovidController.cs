@@ -9,11 +9,11 @@ using Serilog;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[Controller]")]
+    [Route("Covid")]
     [ApiController]
     public class CovidController : ControllerBase
     {
-        //Dependency injection for CovidRepository
+        ////Dependency Injection
         private readonly ICovidRepository _repo;
 
         public CovidController(ICovidRepository p_repo)
@@ -21,10 +21,11 @@ namespace WebAPI.Controllers
             _repo = p_repo;
         }
 
-        // GET: api/covid/all
-        [HttpGet("GetAll")]
+        // GET: covid/all
+        [HttpGet("All")] //("All") Will give a case-insensitive endpoint that ends with All
         public IActionResult GetAll()
-        {   try
+        {   
+            try
             {
             return Ok(_repo.GetAll());
             }
@@ -35,8 +36,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        // GET api/covid/{p_id}
-        [HttpGet("Get/{id}")]
+        // GET covid/{p_id}
+        [HttpGet("{p_id}")]
         public IActionResult GetByPrimaryKey(int p_id)
         {
             try
@@ -50,24 +51,24 @@ namespace WebAPI.Controllers
             }
         }
 
-        //POST api/covid/add 
+        //POST covid/add 
         [HttpPost("Add")]
         public IActionResult AddCovid([FromBody] CovidVerify p_covid)
         {
             try
             {
-            _repo.Create(p_covid);
-            _repo.Save();
-            return Created("api/covid/add", p_covid);
+                _repo.Create(p_covid);
+                _repo.Save();
+                return Created("covid/add", p_covid);
             }
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid input.");
+                return BadRequest("Invalid create form.");
             }
         }
 
-        // DELETE api/delete/{p_id}
+        // DELETE covid/delete/{p_id}
         [HttpDelete("Delete/{p_id}")]
         public IActionResult Delete(int p_id)
         {
@@ -82,11 +83,11 @@ namespace WebAPI.Controllers
             {
 
                 Log.Error(e.Message);
-                return BadRequest("Not a valid Id");
+                return BadRequest("Not a valid ID");
             }
         }
 
-        // PUT api/covid/edit/{id}
+        // PUT covid/edit/{id}
         [HttpPut("edit/{id}")]
         public IActionResult CovidVerify([FromBody] CovidVerify p_covid)
         {
@@ -100,7 +101,7 @@ namespace WebAPI.Controllers
             {
 
                 Log.Error(e.Message);
-                return BadRequest("Invalid Input");
+                return BadRequest("Invalid put request.");
             }
         }
     }
