@@ -52,7 +52,8 @@ namespace WebAPI.Controllers
             {
                 _repo.Create(p_Assessment);
                 _repo.Save();
-                return Ok();
+                
+                return Created("Assessment/Add", p_Assessment);
             }
             catch (Exception e)
             {
