@@ -8,7 +8,7 @@ using Serilog;
 
 namespace WebAPI.Controllers
 {
-    [Route("allergy")]
+    [Route("[Controller]")]
     [ApiController]
     public class AllergyController : ControllerBase
     {
@@ -66,7 +66,7 @@ namespace WebAPI.Controllers
         }
 
         // POST: Allergy/Add
-        [HttpPost("add")]
+        [HttpPost("Add")]
         public IActionResult Add([FromBody] Allergy p_allergy){
             try{
                 _repo.Create(p_allergy);

@@ -8,7 +8,7 @@ using Serilog;
 
 namespace WebAPI.Controllers
 {
-    [Route("Patient")]
+    [Route("[Controller]")]
     [ApiController]
     public class PatientController : ControllerBase
     {

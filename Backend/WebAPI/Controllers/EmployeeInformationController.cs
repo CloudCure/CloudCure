@@ -7,7 +7,7 @@ using Serilog;
 
 namespace WebAPI
 {
-    [Route("Employee")]
+    [Route("[Controller]")]
     [ApiController]
     public class EmployeeInformationController : Controller
     {

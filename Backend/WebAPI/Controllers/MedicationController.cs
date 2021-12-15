@@ -1,14 +1,17 @@
 ﻿using Data;
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
-using System;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebAPI.Controllers
 {
-    [Route("medication")]
+    [Route("[Controller]")]
     [ApiController]
     public class MedicationController : ControllerBase
     {
@@ -19,8 +22,9 @@ namespace WebAPI.Controllers
             medicationRepository = context;
         }
 
+
         // GET: medication/All
-        [HttpGet("all")] //("All") Will give and endpoint that ends with All
+        [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
         public IActionResult GetAllMedication()
         {
             try
@@ -29,13 +33,16 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
+
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("No results");
             }
+
+
         }
 
         // DELETE Medication/delete/Id
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("Delete/{id}")]
         public IActionResult DeleteMedication([FromBody] Medication p_medication)
         {
             try
@@ -46,13 +53,15 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                //Log.Error(e.Message);
+                return BadRequest("Failed to delete");
+
             }
+
         }
 
         // PUT Medication/Edit
-        [HttpPut("edit/{id}")]
+        [HttpPut("Edit/{id}")]
         public IActionResult UpdateMedication([FromBody] Medication p_medication)
         {
             try
@@ -63,13 +72,14 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                Log.Error(e.Message);
+                //Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
+
         }
 
         // POST Medication/Add
-        [HttpPost("add")]
+        [HttpPost("Add")]
         public IActionResult AddMedication([FromBody] Medication p_medication)
         {
             try
@@ -80,8 +90,9 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                Log.Error(e.Message);
-                return BadRequest("Failed to update");
+
+                //Log.Error(e.Message);
+                return BadRequest("Failed to Add");
             }
         }
     }
