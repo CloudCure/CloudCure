@@ -19,7 +19,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { ProfileService } from './services/profile.service';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { DiagnosisSurgeriesComponent } from './diagnosis-surgeries/diagnosis-surgeries.component';
 import { DiagnosisMedicationComponent } from './diagnosis-medication/diagnosis-medication.component';
@@ -41,7 +40,6 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     TextBoxComponent,
     DiagnosisConditionComponent,
     // patientdiagnosis,
-
     DiagnosisVitalsComponent,
     VerificationComponent,
     NavbarComponent,
@@ -51,8 +49,8 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     FooterComponent,
     BottomNavbarComponent,
     DiagnosisSurgeriesComponent,
-    DiagnosisMedicationComponent
-    RegisterComponent
+    DiagnosisMedicationComponent,
+    RegisterComponent,
   ],
 
   imports: [
@@ -80,7 +78,6 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     ])
   ],
   providers: [
-    ProfileService,
   ],
   bootstrap: [AppComponent]
 })
