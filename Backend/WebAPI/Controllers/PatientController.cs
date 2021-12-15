@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using System;
+using Serilog;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,7 +31,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Nothing returned");
             }
         }
@@ -45,7 +46,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Not a valid search id");
             }
         }
@@ -63,7 +64,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Not a valid search id");
             }
         }
@@ -97,7 +98,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
         }
