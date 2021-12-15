@@ -26,6 +26,11 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
 
+import { CheckboxModule } from 'primeng/checkbox';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { AssessmentComponent } from './assessment/assessment.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +53,7 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     HeaderComponent,
     FooterComponent,
     BottomNavbarComponent,
+    AssessmentComponent,
     DiagnosisSurgeriesComponent,
     DiagnosisMedicationComponent,
     RegisterComponent,
@@ -56,21 +62,24 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
   imports: [
     HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    CheckboxModule,
     ReactiveFormsModule,
     FormsModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
-      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
+      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq',
     }),
     RouterModule.forRoot([
-      { path: "verification", component: VerificationComponent },
-      { path: "profile", component: ProfileComponent },
+      { path: 'verification', component: VerificationComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: 'diagnosis', component: DiagnosisComponent },
       { path: 'print', component: PrintComponent },
       { path: 'body-clicker', component: BodyClickerComponent },
       { path: 'diagnosis-condition', component:DiagnosisConditionComponent},
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
       { path: 'assessment', component: AssessmentComponent },
+      { path: '**', component: HomeComponent },
       { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent },
       { path: 'text-box', component: TextBoxComponent },
       { path : 'register', component:RegisterComponent},
@@ -79,6 +88,7 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
   ],
   providers: [
   ],
-  bootstrap: [AppComponent]
+  providers: [ProfileService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
