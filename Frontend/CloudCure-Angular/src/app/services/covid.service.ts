@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CovidVerify } from '../Models/CovidVerify';
+import { CovidVerify } from '../AngularModels/CovidVerify';
 
 @Injectable({
   providedIn: 'root'

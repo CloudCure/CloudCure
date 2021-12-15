@@ -44,13 +44,14 @@ namespace WebAPI.Controllers
         }
 
         //PUT: Vitals/Id
-        [HttpPut("edit/{id}")]
+        [HttpPut("update/{id}")]
         public IActionResult UpdateVitals([FromBody] Vitals p_vitals)
         {
             _repo.Update(p_vitals);
             _repo.Save();
             return Ok();
         }
+
 
         //Delete: Vitals/Id
         [HttpDelete("delete/{id}")]
