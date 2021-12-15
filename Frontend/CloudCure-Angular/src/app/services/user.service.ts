@@ -7,7 +7,7 @@ import { UserProfile } from '../AngularModels/UserProfile';
 })
 export class UserService {
 
-  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/User";
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/User";
   constructor(public http:HttpClient) { }
 
   ////////////// User //////////////

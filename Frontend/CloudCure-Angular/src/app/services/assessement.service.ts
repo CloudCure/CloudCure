@@ -7,7 +7,7 @@ import { Assessment } from '../AngularModels/Assessment';
 })
 export class AssessmentService {
 
-  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/Assessment";
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/Assessment";
   constructor(private http:HttpClient) {} 
 
   ////////////// Assessment //////////////
