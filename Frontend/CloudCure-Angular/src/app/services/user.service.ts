@@ -7,32 +7,28 @@ import { UserProfile } from '../AngularModels/UserProfile';
 })
 export class UserService {
 
-  private endpoint: string = "https://cloudcure-api.azurewebsites.net";
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/User";
   constructor(public http:HttpClient) { }
 
   ////////////// User //////////////
-  GetAllUsers() 
-  { 
-    //this route will need to match route on API controller
-    return this.http.get<UserProfile[]>(`${this.endpoint}/User/GetAll`);
+  GetAll(){
+    return this.http.get<UserProfile[]>(`${this.endpoint}/Get/All`);
   }
 
-  GetUserById(Id:Number | undefined) 
-  { 
-    //this route will need to match route on API controller
-    return this.http.get<UserProfile>(`${this.endpoint}/User/Get/${Id}`);
+  GetById(Id:Number | undefined){
+    return this.http.get<UserProfile>(`${this.endpoint}/Get/${Id}`);
   }
 
-  AddUser(Info:UserProfile | undefined) 
-  { 
-    //this route will need to match route on API controller
-    return this.http.post<UserProfile>(`${this.endpoint}/User/Add`,Info);
+  Add(Info:UserProfile | undefined){
+    return this.http.post<UserProfile>(`${this.endpoint}/Add`,Info);
   }  
 
-  DeleteUser(Id:number | undefined) 
-  { 
-    //this route will need to match route on API controller
-    return this.http.delete<UserProfile>(`${this.endpoint}/User/Delete/${Id}`);
+  Delete(Id:number | undefined){
+    return this.http.delete<UserProfile>(`${this.endpoint}/Delete/${Id}`);
   } 
+
+  Update(Id:number | undefined, Info:UserProfile | undefined){
+    return this.http.put<UserProfile>(`${this.endpoint}/Update/${Id}`,Info);
+  }
 
 }

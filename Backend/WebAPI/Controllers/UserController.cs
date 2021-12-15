@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
 
         public UserController(IUserRepository p_repo){_repo = p_repo;}
 
-        // GET: api/User/all
+        // GET: User/all
         [HttpGet("Get/All")]
         public IActionResult GetAll(){   
             try{
@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        // GET: api/User/Get/{id}
+        // GET: User/Get/{id}
         [HttpGet("Get/{id}")]
         public IActionResult GetByPrimaryKey(int p_id){
             try{
@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
         }
 
 
-        // Post: api/User/Add
+        // Post: User/Add
         [HttpPost("Add")]
         public IActionResult Add([FromBody] User p_user){
             try{
@@ -55,7 +55,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        // DELETE api/User/delete/{id}
+        // DELETE: User/Delete/{id}
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(int id){
             try{
@@ -69,7 +69,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        // PUT api/user/update/{id}
+        // PUT: User/Update/{id}
         [HttpPut("Update/{id}")]
         public IActionResult Update(int id, [FromBody] User p_user){
             try{
