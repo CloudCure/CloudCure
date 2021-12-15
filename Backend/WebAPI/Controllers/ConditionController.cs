@@ -13,56 +13,62 @@ namespace WebAPI.Controllers
 {
     [Route("[Controller]")]
     [ApiController]
-    public class MedicationController : ControllerBase
+    public class ConditionController : ControllerBase
     {
-        private readonly IRepository<Medication> medicationRepository;
 
-        public MedicationController(IRepository<Medication> context)
+
+        private readonly IRepository<Condition> conditionRepository;
+
+        public ConditionController(IRepository<Condition> context)
         {
-            medicationRepository = context;
+            conditionRepository = context;
         }
-
-
-        // GET: medication/All
+        
+        // GET: condition /All
         [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
-        public IActionResult GetAllMedication()
+        public IActionResult GetAllCondition()
         {
             try
             {
-                return Ok(medicationRepository.GetAll());
+                return Ok(conditionRepository.GetAll());
             }
             catch (Exception e)
             {
+
                 Log.Error(e.Message);
-                return BadRequest("No results");
+                return BadRequest("Failed to update");
             }
+
+
         }
 
-        // DELETE Medication/delete/Id
+        // DELETE Condition/delete/Id
         [HttpDelete("Delete/{id}")]
-        public IActionResult DeleteMedication([FromBody] Medication p_medication)
+        public IActionResult DeleteCondition([FromBody] Condition p_condition)
         {
             try
             {
-                medicationRepository.Delete(p_medication);
-                medicationRepository.Save();
+                conditionRepository.Delete(p_condition);
+                conditionRepository.Save();
                 return Ok();
             }
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Failed to delete");
+                return BadRequest("Failed to update");
+
             }
+
         }
 
-        // PUT Medication/Edit
+        // PUT Condition/Edit
         [HttpPut("Update/{id}")]
-        public IActionResult UpdateMedication([FromBody] Medication p_medication)
+        public IActionResult UpdateCondition([FromBody] Condition p_condition)
         {
             try
             {
-                medicationRepository.Update(p_medication);
-                medicationRepository.Save();
+                conditionRepository.Update(p_condition);
+                conditionRepository.Save();
                 return Ok();
             }
             catch (Exception e)
@@ -70,23 +76,26 @@ namespace WebAPI.Controllers
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
+
         }
 
-        // POST Medication/Add
+        // POST Condition/Add
         [HttpPost("Add")]
-        public IActionResult AddMedication([FromBody] Medication p_medication)
+        public IActionResult AddCondition([FromBody] Condition p_condition)
         {
             try
             {
-                medicationRepository.Create(p_medication);
-                medicationRepository.Save();
-                return Created("Medication/Add", p_medication);
+                conditionRepository.Create(p_condition);
+                conditionRepository.Save();
+                return Created("Condition/Add", p_condition);
             }
             catch (Exception e)
             {
+
                 Log.Error(e.Message);
-                return BadRequest("Failed to Add");
+                return BadRequest("Failed to update");
             }
+
         }
     }
 }

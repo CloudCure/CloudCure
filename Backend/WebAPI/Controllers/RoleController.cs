@@ -44,7 +44,7 @@ namespace WebAPI.Controllers
             try{
                 _repo.Create(p_role);
                 _repo.Save();
-                return Ok();
+                return Created("Role/Add", p_role);
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Invalid input.");

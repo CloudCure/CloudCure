@@ -72,7 +72,7 @@ namespace WebAPI.Controllers
             try{
                 _repo.Create(p_allergy);
                 _repo.Save();
-                return Ok();
+                return Created("Allergy/Add", p_allergy);
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Failed to add allergy");

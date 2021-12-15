@@ -37,6 +37,7 @@ namespace WebAPI
             services.AddScoped<IPatientRepository, PatientRepository>();
             services.AddScoped<IAllergyRepository, AllergyRepository>();
             services.AddScoped(typeof(IRepository<Surgery>), typeof(Repository<Surgery>));
+            services.AddScoped(typeof(IRepository<Condition>), typeof(Repository<Condition>));
             services.AddScoped(typeof(IRepository<Medication>), typeof(Repository<Medication>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddControllers();
