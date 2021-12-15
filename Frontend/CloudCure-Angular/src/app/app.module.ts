@@ -28,8 +28,6 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
 
 import { CheckboxModule } from 'primeng/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { AssessmentComponent } from './assessment/assessment.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +86,6 @@ import { AssessmentComponent } from './assessment/assessment.component';
   ],
   providers: [
   ],
-  providers: [ProfileService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
