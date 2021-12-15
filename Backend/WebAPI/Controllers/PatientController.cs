@@ -2,11 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebAPI.Controllers
 {
@@ -14,8 +9,6 @@ namespace WebAPI.Controllers
     [ApiController]
     public class PatientController : ControllerBase
     {
-
-
         //Dependency injection
         private readonly IPatientRepository _repo;
         private readonly IAllergyRepository _allergy;
@@ -33,14 +26,10 @@ namespace WebAPI.Controllers
             {
                 return Ok(_repo.GetAll());
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
-                //Log.Error(e.Message);
                 return BadRequest("Nothing returned");
             }
-            
-            
         }
 
         // GET Patient/Id
@@ -51,9 +40,8 @@ namespace WebAPI.Controllers
             {
                 return Ok(_repo.GetByPrimaryKey(p_id));
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                //Log.Error(e.Message);
                 return BadRequest("Not a valid search id");
             }
         }
@@ -62,7 +50,6 @@ namespace WebAPI.Controllers
         [HttpPost("add")]
         public IActionResult AddPatient([FromBody] Patient p_patient)
         {
-
             try
             {
                 _repo.Create(p_patient);
@@ -70,13 +57,10 @@ namespace WebAPI.Controllers
                 return Created("patient/add", p_patient);
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
-                //Log.Error(e.Message);
                 return BadRequest("Not a valid search id");
             }
-            
         }
 
         // PUT Patient/Edit
@@ -85,16 +69,14 @@ namespace WebAPI.Controllers
         {
             try
             {
-            _repo.Update(p_patient);
-            _repo.Save();
-            return Ok();
+                _repo.Update(p_patient);
+                _repo.Save();
+                return Ok();
             }
-            catch
+            catch (Exception)
             {
-                //Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-            
         }
 
         // DELETE Patient/Id
@@ -108,19 +90,10 @@ namespace WebAPI.Controllers
                 return Ok();
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
-                //Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-            
         }
-
-      
-
-      
-
-        
     }
 }
