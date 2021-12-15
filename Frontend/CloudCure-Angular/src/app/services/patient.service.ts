@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Allgergy } from '../AngularModels/Allergy';
+import { Allergy } from '../AngularModels/Allergy';
 import { Condition } from '../AngularModels/Condition';
 import { Medication } from '../AngularModels/Medication';
 import { Patient } from '../AngularModels/Patient';
@@ -20,7 +20,7 @@ export class PatientService {
   }
 
   GetAllAllergies(){ 
-    return this.http.get<Allgergy[]>(`${this.endpoint}/Get/All/Allergies`);
+    return this.http.get<Allergy[]>(`${this.endpoint}/Get/All/Allergies`);
   }
 
   GetAllConditions(){ 
