@@ -83,4 +83,20 @@ export class PatientService {
     return this.http.put<Patient>(`${this.endpoint}/Update/${Id}`,Info);
   }
 
+  UpdateAllergy(Id:number| undefined, Info:Allergy | undefined){
+    return this.http.put<Allergy>(`${this.endpoint}/Update/Allergy/${Id}`,Info);
+  }
+
+  UpdateCondition(Id:number| undefined, Info:Condition | undefined){
+    return this.http.put<Condition>(`${this.endpoint}/Update/Condition/${Id}`,Info);
+  }
+
+  UpdateMedication(Id:number| undefined, Info:Medication | undefined){
+    return this.http.put<Medication>(`${this.endpoint}/Update/Medication/${Id}`,Info);
+  }
+
+  UpdateSurgery(Id:number| undefined, Info:Surgery | undefined){
+    return this.http.put<Surgery>(`${this.endpoint}/Update/Surgery/${Id}`,Info);
+  }
+
 }
