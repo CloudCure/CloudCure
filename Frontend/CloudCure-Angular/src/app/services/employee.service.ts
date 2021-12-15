@@ -7,38 +7,33 @@ import { EmployeeInformation } from '../AngularModels/EmployeeInformation';
 })
 export class EmployeeService {
 
-  private endpoint: string = "https://cloudcure-api.azurewebsites.net";
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/Employee";
   constructor(private http:HttpClient) { }
 
   ////////////// Employee //////////////
-  verifyEmployee(p_email: string | undefined)
-  {
-    return this.http.get<EmployeeInformation>(`${this.endpoint}/employee/verify/${p_email}`)
+  verifyEmployee(p_email: string | undefined){
+    return this.http.get<EmployeeInformation>(`${this.endpoint}/Verify/${p_email}`)
   }
 
-  getAllEmployees() 
-  { 
-    //this route will need to match route on API controller
-    return this.http.get<EmployeeInformation[]>(`${this.endpoint}/Employee/GetAll`);
+  GetAll(){
+    return this.http.get<EmployeeInformation[]>(`${this.endpoint}/Get/All`);
   }
 
-  getEmployeeById(Id:Number | undefined) 
-  { 
-    //this route will need to match route on API controller
-    return this.http.get<EmployeeInformation>(`${this.endpoint}/Employee/Get/${Id}`);
+  GetById(Id:Number | undefined){
+    return this.http.get<EmployeeInformation>(`${this.endpoint}/Get/${Id}`);
   }
 
-  addEmployee(Info:EmployeeInformation | undefined) 
-  { 
-    //this route will need to match route on API controller
-    return this.http.post<EmployeeInformation>(`${this.endpoint}/Employee/Add`,Info);
+  Add(Info:EmployeeInformation | undefined){
+    return this.http.post<EmployeeInformation>(`${this.endpoint}/Add`,Info);
   }  
 
-  deleteEmployee(Id:number | undefined) 
-  { 
-    //this route will need to match route on API controller
-    return this.http.delete<EmployeeInformation>(`${this.endpoint}/Employee/Delete/${Id}`);
+  Delete(Id:number | undefined){
+    return this.http.delete<EmployeeInformation>(`${this.endpoint}/Delete/${Id}`);
   } 
+
+  Update(Info:EmployeeInformation | undefined, Id:Number | undefined){
+    return this.http.put<EmployeeInformation>(`${this.endpoint}/Update/${Id}`,Info);
+  }
 
 
 }
