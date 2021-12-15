@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
             try{
                 _repo.Create(p_covid);
                 _repo.Save();
-                return Ok();    //Created("api/covid/add", p_covid);
+                return Ok();    
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Invalid input.");

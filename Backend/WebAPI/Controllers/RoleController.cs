@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Models;
 using Data;
+using Serilog;
 
 namespace WebAPI.Controllers
 {
@@ -16,51 +17,68 @@ namespace WebAPI.Controllers
         //Dependency injection
         private readonly IRoleRepository _repo;
 
-        public RoleController(IRoleRepository p_repo)
-        {
-            _repo = p_repo;
+        public RoleController(IRoleRepository p_repo){_repo = p_repo;}
+
+        // GET: Role/Get/All
+        [HttpGet("Get/All")]
+        public IActionResult GetAll(){
+            try{
+                return Ok(_repo.GetAll());
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Invalid get all request.");
+            }
         }
 
-        // GET: Role/All
-        [HttpGet("All")] //("All") Will give and endpoint that ends with All
-        public IActionResult GetAllRole()
-        {
-            return Ok(_repo.GetAll());
+        // GET: Role/Get/Id
+        [HttpGet("Get/{p_id}")]
+        public IActionResult GetById(int p_id){
+            try{
+                return Ok(_repo.GetByPrimaryKey(p_id));
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Not a valid ID");
+            }
         }
 
-        // GET Role/Id
-        [HttpGet("{p_id}")]
-        public IActionResult GetRoleById(int p_id)
-        {
-            return Ok(_repo.GetByPrimaryKey(p_id));
-        }
-
-        // POST Role/Add
-        [HttpPost("add")]
-        public IActionResult AddRole([FromBody] Role p_role)
-        {
-            _repo.Create(p_role);
-            _repo.Save();
-            return Created("Role/add", p_role);
+        // POST: Role/Add
+        [HttpPost("Add")]
+        public IActionResult Add([FromBody] Role p_role){
+            try{
+                _repo.Create(p_role);
+                _repo.Save();
+                return Ok();
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Invalid input.");
+            }
         }
 
 
-        // PUT Role/Edit
-        [HttpPut("edit/{id}")]
-        public IActionResult UpdateRole([FromBody] Role p_role)
-        {
-            _repo.Update(p_role);
-            _repo.Save();
-            return Ok();
+        // PUT: Role/Update/Id
+        [HttpPut("Update/{id}")]
+        public IActionResult Update([FromBody] Role p_role){
+            try{
+                _repo.Update(p_role);
+                _repo.Save();
+                return Ok();
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Invalid input.");
+            }
         }
 
-        // DELETE Role/Id
-        [HttpDelete("delete/{id}")]
-        public IActionResult DeleteRole([FromBody] Role p_role)
-        {
-            _repo.Delete(p_role);
-            _repo.Save();
-            return Ok();
+        // DELETE: Role/Delete/Id
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete([FromBody] Role p_role){
+            try{
+                _repo.Delete(p_role);
+                _repo.Save();
+                return Ok();
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Invalid input.");
+            }
         }
     }
 }
