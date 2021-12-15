@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,7 +16,6 @@ namespace WebAPI.Controllers
 
         public AllergyController(IAllergyRepository p_allergy)
         {
-            
             _allergy = p_allergy;
         }
         // GET: Allergy/All
@@ -32,12 +28,9 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-
                 //Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-            
-
         }
 
         // DELETE allergy/delete/Id
@@ -54,9 +47,7 @@ namespace WebAPI.Controllers
             {
                 //Log.Error(e.Message);
                 return BadRequest("Failed to update");
-
             }
-            
         }
 
         // PUT Allergy/Edit
@@ -74,7 +65,6 @@ namespace WebAPI.Controllers
                 //Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-
         }
 
         // POST Allergy/Add
@@ -89,13 +79,9 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-
                 //Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-            
         }
-
-        
     }
 }

@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Models;
 using Data;
 using Serilog;
@@ -18,7 +15,6 @@ namespace WebAPI.Controllers
         private readonly IRoleRepository _repo;
 
         public RoleController(IRoleRepository p_repo){_repo = p_repo;}
-
 
         // GET: Role/Get/All
         [HttpGet("Get/All")]

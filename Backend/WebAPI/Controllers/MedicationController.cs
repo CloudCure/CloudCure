@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,7 +18,6 @@ namespace WebAPI.Controllers
             medicationRepository = context;
         }
 
-
         // GET: medication/All
         [HttpGet("all")] //("All") Will give and endpoint that ends with All
         public IActionResult GetAllMedication()
@@ -32,12 +28,9 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-
                 //Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-
-
         }
 
         // DELETE Medication/delete/Id
@@ -54,9 +47,7 @@ namespace WebAPI.Controllers
             {
                 //Log.Error(e.Message);
                 return BadRequest("Failed to update");
-
             }
-
         }
 
         // PUT Medication/Edit
@@ -74,7 +65,6 @@ namespace WebAPI.Controllers
                 //Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-
         }
 
         // POST Medication/Add
@@ -89,13 +79,9 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-
                 //Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-
         }
-
-     
     }
 }

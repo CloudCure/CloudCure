@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,8 +11,6 @@ namespace WebAPI.Controllers
     [ApiController]
     public class PatientController : ControllerBase
     {
-
-
         //Dependency injection
         private readonly IPatientRepository _repo;
         private readonly IAllergyRepository _allergy;
@@ -35,12 +30,9 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-
                 //Log.Error(e.Message);
                 return BadRequest("Nothing returned");
             }
-            
-            
         }
 
         // GET Patient/Id
@@ -62,7 +54,6 @@ namespace WebAPI.Controllers
         [HttpPost("add")]
         public IActionResult AddPatient([FromBody] Patient p_patient)
         {
-
             try
             {
                 _repo.Create(p_patient);
@@ -72,11 +63,9 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-
                 //Log.Error(e.Message);
                 return BadRequest("Not a valid search id");
             }
-            
         }
 
         // PUT Patient/Edit
@@ -85,16 +74,15 @@ namespace WebAPI.Controllers
         {
             try
             {
-            _repo.Update(p_patient);
-            _repo.Save();
-            return Ok();
+                _repo.Update(p_patient);
+                _repo.Save();
+                return Ok();
             }
             catch
             {
                 //Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-            
         }
 
         // DELETE Patient/Id
@@ -106,21 +94,12 @@ namespace WebAPI.Controllers
                 _repo.Delete(p_patient);
                 _repo.Save();
                 return Ok();
-
             }
             catch (Exception e)
             {
-
                 //Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-            
         }
-
-      
-
-      
-
-        
     }
 }
