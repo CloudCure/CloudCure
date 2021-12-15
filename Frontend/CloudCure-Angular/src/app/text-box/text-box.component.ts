@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-text-box',
@@ -7,19 +7,13 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 })
 export class TextBoxComponent implements OnInit {
 
-  // I'm not sure how Input and Output works but I think it needs to be implemented to properly
-  // connect the components to the text box components
-  @Input()
-  canEdit:boolean
+  @Input('boxes') boxes: string[];
 
-  @Output()
-  canClick:boolean
+  @Output('boxes') boxesChange = new EventEmitter<string[]>();
 
-  boxes:string[] = [''];
   
   constructor() { 
-    this.canEdit = false;
-    this.canClick = false;
+    this.boxes = [''];
   }
 
   ngOnInit(): void {
@@ -31,6 +25,10 @@ export class TextBoxComponent implements OnInit {
   
   deleteOne(i:number) {
     this.boxes.splice(i,1); 
+  }
+
+  boxesChanged() {
+    this.boxesChange.emit(this.boxes);
   }
 
 }

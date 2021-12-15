@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserProfileService } from './profile.service';
+import { AllergyService } from './allergy.service';
 
-describe('ProfileService', () => {
-  let service: UserProfileService;
+describe('AllergyService', () => {
+  let service: AllergyService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UserProfileService);
+    service = TestBed.inject(AllergyService);
   });
 
   it('should be created', () => {

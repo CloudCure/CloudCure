@@ -25,7 +25,6 @@ namespace Data
             }
             catch (System.Exception)
             {
-                
                 throw new KeyNotFoundException("Employee Id Not Found!");
             }
         }
