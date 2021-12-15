@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
 
         // GET: surgery/All
         [HttpGet("Get/All")]
-        public IActionResult GetAllSurgery()
+        public IActionResult GetAll()
         {
             try
             {
@@ -37,13 +37,26 @@ namespace WebAPI.Controllers
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
+        }
 
-
+        // GET: surgery/Get/{id}
+        [HttpGet("Get/{id}")]
+        public IActionResult GetById(int id)
+        {
+            try
+            {
+                return Ok(surgeryRepository.GetById(id));
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Failed to update");
+            }
         }
 
         // DELETE surgery/delete/Id
         [HttpDelete("Delete/{id}")]
-        public IActionResult DeleteSurgery([FromBody] Surgery p_surgery)
+        public IActionResult Delete([FromBody] Surgery p_surgery)
         {
             try
             {
@@ -60,9 +73,9 @@ namespace WebAPI.Controllers
 
         }
 
-        // PUT surgery/Edit
+        // PUT surgery/Update
         [HttpPut("Update/{id}")]
-        public IActionResult UpdateSurgery([FromBody] Surgery p_surgery)
+        public IActionResult Update([FromBody] Surgery p_surgery)
         {
             try
             {
@@ -80,7 +93,7 @@ namespace WebAPI.Controllers
 
         // POST surgery/Add
         [HttpPost("Add")]
-        public IActionResult AddSurgery([FromBody] Surgery p_surgery)
+        public IActionResult Add([FromBody] Surgery p_surgery)
         {
             try
             {

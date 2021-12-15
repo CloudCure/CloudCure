@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
 
         // GET: User/Get/{id}
         [HttpGet("Get/{id}")]
-        public IActionResult GetByPrimaryKey(int p_id)
+        public IActionResult GetById(int p_id)
         {
             try
             {

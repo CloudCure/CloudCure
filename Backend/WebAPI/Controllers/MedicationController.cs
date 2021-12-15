@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
 
         // GET: medication/All
         [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
-        public IActionResult GetAllMedication()
+        public IActionResult GetAll()
         {
             try
             {
@@ -38,9 +38,20 @@ namespace WebAPI.Controllers
             }
         }
 
+        // GET: medication/Get/{id}
+        [HttpGet("Get/{id}")]
+        public IActionResult GetById(int id){
+            try{
+                return Ok(medicationRepository.GetById(id));
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("No results");
+            }
+        }
+
         // DELETE Medication/delete/Id
         [HttpDelete("Delete/{id}")]
-        public IActionResult DeleteMedication([FromBody] Medication p_medication)
+        public IActionResult Delete([FromBody] Medication p_medication)
         {
             try
             {
@@ -57,7 +68,7 @@ namespace WebAPI.Controllers
 
         // PUT Medication/Edit
         [HttpPut("Update/{id}")]
-        public IActionResult UpdateMedication([FromBody] Medication p_medication)
+        public IActionResult Update([FromBody] Medication p_medication)
         {
             try
             {
@@ -74,7 +85,7 @@ namespace WebAPI.Controllers
 
         // POST Medication/Add
         [HttpPost("Add")]
-        public IActionResult AddMedication([FromBody] Medication p_medication)
+        public IActionResult Add([FromBody] Medication p_medication)
         {
             try
             {

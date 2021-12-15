@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
 
         // GET api/covid/Get/{p_id}
         [HttpGet("Get/{id}")]
-        public IActionResult GetByPrimaryKey(int p_id)
+        public IActionResult GetById(int p_id)
         {
             try
             {
