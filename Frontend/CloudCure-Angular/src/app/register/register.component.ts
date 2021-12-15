@@ -65,29 +65,22 @@ export class RegisterComponent implements OnInit {
         this.userApi.AddUser(UserInfo).subscribe(
           (response) => {
             console.log(response);
+            console.log(response.id);
+            let EmployeeInfo: EmployeeInformation = {
+              UserProfileId: response.id,
+              WorkEmail: this.email,
+              Specialization: registerGroup.get("Specialization")?.value,
+              StartDate: new Date(registerGroup.get("StartDate")?.value).toISOString(),
+              RoomNumber: registerGroup.get("RoomNumber")?.value,
+              EducationDegree: registerGroup.get("EducationDegree")?.value
+            }
+            this.employeeApi.addEmployee(EmployeeInfo).subscribe(
+              (response) => {
+                console.log(response);
+              }
+            )
           }
         )
-
-        let EmployeeInfo: EmployeeInformation ={
-            //user_ID willbe the same value as the id from the created user that was added above
-            WorkEmail: this.email,
-            Specialization: registerGroup.get("Specialization")?.value,
-            StartDate: new Date(registerGroup.get("StartDate")?.value).toISOString(),
-            RoomNumber: registerGroup.get("RoomNumber")?.value,
-            EducationDegree: registerGroup.get("EducationDegree")?.value,
-            user: UserInfo
-          }
-
-        this.employeeApi.addEmployee(EmployeeInfo).subscribe(
-          (response) => {
-            console.log(response);
-          }
-        )
-        console.log(UserInfo);
-        console.log(EmployeeInfo);
       }
-      
-
   }
-
 }

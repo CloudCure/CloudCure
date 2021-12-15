@@ -14,31 +14,31 @@ export class EmployeeService {
   ////////////// Employee //////////////
   verifyEmployee(p_email: string | undefined)
   {
-    return this.http.get<EmployeeInformation>(`${this.endpoint}/employee/verify/${p_email}`)
+    return this.http.get<EmployeeInformation>(`${this.endpoint}/EmployeeInformation/verify/${p_email}`)
   }
 
   getAllEmployees() 
   { 
     //this route will need to match route on API controller
-    return this.http.get<EmployeeInformation[]>(`${this.endpoint}/Employee/GetAll`);
+    return this.http.get<EmployeeInformation[]>(`${this.endpoint}/EmployeeInformation/GetAll`);
   }
 
   getEmployeeById(Id:Number | undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.get<EmployeeInformation>(`${this.endpoint}/Employee/Get`+Id);
+    return this.http.get<EmployeeInformation>(`${this.endpoint}/EmployeeInformation/Get`+Id);
   }
 
   addEmployee(Info:EmployeeInformation | undefined) : Observable<EmployeeInformation>
   { 
     //this route will need to match route on API controller
-    return this.http.post<EmployeeInformation>(`${this.endpoint}/Employee/Add`,Info);
+    return this.http.post<EmployeeInformation>(`${this.endpoint}/EmployeeInformation/Add`,Info);
   }  
 
   deleteEmployee(Id:number | undefined) 
   { 
     //this route will need to match route on API controller
-    return this.http.delete<EmployeeInformation>(`${this.endpoint}/Employee/Delete`+Id);
+    return this.http.delete<EmployeeInformation>(`${this.endpoint}/EmployeeInformation/Delete`+Id);
   } 
 
 

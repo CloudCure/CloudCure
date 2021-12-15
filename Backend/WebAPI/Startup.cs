@@ -39,6 +39,21 @@ namespace WebAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
             });
+
+            services.AddCors(
+                (options) =>
+                {
+                    options.AddPolicy(name: "_myAllowSpecificOrigins",
+                        builder =>
+                        {
+                            builder.WithOrigins("http://localhost:4200/",
+                                                "https://cloudcure-client.azurewebsites.net/")
+                            .AllowAnyHeader()
+                            .WithMethods("GET", "POST", "PUT", "DELETE")
+                            .WithExposedHeaders("*");
+                        });
+                }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
