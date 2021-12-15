@@ -68,7 +68,7 @@ namespace WebAPI
             {
                 _repo.Create(p_employee);
                 _repo.Save();
-                return Ok();
+                return Created("Employee/Add", p_employee);
             }
             catch (Exception e)
             {
