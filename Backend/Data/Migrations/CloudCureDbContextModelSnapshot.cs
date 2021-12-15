@@ -26,18 +26,30 @@ namespace Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("PatientId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int>("UsersId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("covidChoice")
+                    b.Property<bool>("question1")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("question2")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("question3")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("question4")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("question5")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PatientId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("CovidAssessments");
                 });
@@ -215,6 +227,41 @@ namespace Data.Migrations
                     b.ToTable("Vitals");
                 });
 
+            modelBuilder.Entity("Models.EmployeeInformation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EducationDegree")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoomNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Specialization")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("date");
+
+                    b.Property<int?>("UserProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WorkEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserProfileId");
+
+                    b.ToTable("Employee");
+                });
+
             modelBuilder.Entity("Models.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -228,7 +275,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Models.User", b =>
@@ -273,9 +320,9 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Models.CovidVerify", b =>
                 {
-                    b.HasOne("Models.Diagnosis.Patient", null)
+                    b.HasOne("Models.User", null)
                         .WithMany("CovidAssesments")
-                        .HasForeignKey("PatientId");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Models.Diagnosis.Allergy", b =>
@@ -341,6 +388,15 @@ namespace Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Models.EmployeeInformation", b =>
+                {
+                    b.HasOne("Models.User", "UserProfile")
+                        .WithMany()
+                        .HasForeignKey("UserProfileId");
+
+                    b.Navigation("UserProfile");
+                });
+
             modelBuilder.Entity("Models.User", b =>
                 {
                     b.HasOne("Models.Role", "Role")
@@ -360,13 +416,16 @@ namespace Data.Migrations
 
                     b.Navigation("Conditions");
 
-                    b.Navigation("CovidAssesments");
-
                     b.Navigation("CurrentMedications");
 
                     b.Navigation("Surgeries");
 
                     b.Navigation("VitalHistory");
+                });
+
+            modelBuilder.Entity("Models.User", b =>
+                {
+                    b.Navigation("CovidAssesments");
                 });
 #pragma warning restore 612, 618
         }

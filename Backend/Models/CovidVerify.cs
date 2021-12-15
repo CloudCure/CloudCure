@@ -11,8 +11,6 @@ namespace Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public int UsersId {get; set;}
-        [Required]
         public bool question1 { get; set; }
         [Required]
         public bool question2 { get; set; }
