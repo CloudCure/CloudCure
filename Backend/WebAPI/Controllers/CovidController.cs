@@ -42,11 +42,11 @@ namespace WebAPI.Controllers
 
         //POST api/covid/add 
         [HttpPost("Add")]
-        public IActionResult AddCovid([FromBody] CovidVerify p_covid){
+        public IActionResult Add([FromBody] CovidVerify p_covid){
             try{
                 _repo.Create(p_covid);
                 _repo.Save();
-                return Created("api/covid/add", p_covid);
+                return Ok();    //Created("api/covid/add", p_covid);
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Invalid input.");
@@ -67,10 +67,11 @@ namespace WebAPI.Controllers
             }
         }
 
-        // PUT api/covid/edit/{id}
-        [HttpPut("Edit/{id}")]
-        public IActionResult CovidVerify([FromBody] CovidVerify p_covid){
+        // PUT api/covid/update/{id}
+        [HttpPut("Update/{id}")]
+        public IActionResult Update(int id, [FromBody] CovidVerify p_covid){
             try{
+                p_covid.Id = id;
                 _repo.Update(p_covid);
                 _repo.Save();
                 return Ok();

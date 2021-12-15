@@ -18,9 +18,9 @@ namespace WebAPI.Controllers
         private readonly IUserRepository _repo;
 
         public UserController(IUserRepository p_repo){_repo = p_repo;}
-        
+
         // GET: api/User/all
-        [HttpGet("All")]
+        [HttpGet("Get/All")]
         public IActionResult GetAll(){   
             try{
                 return Ok(_repo.GetAll());
@@ -55,23 +55,6 @@ namespace WebAPI.Controllers
             }
         }
 
-        // PUT api/user/update/{id}
-        [HttpPut("Update/{id}")]
-        public IActionResult UpdateUser(int id, [FromBody] User p_user){
-            var item = _repo.GetByPrimaryKey(id);
-            item.FirstName = p_user.FirstName;
-            item.LastName = p_user.LastName;
-            item.DateOfBirth = p_user.DateOfBirth;
-            item.PhoneNumber = p_user.PhoneNumber;
-            item.Address = p_user.Address;
-            item.EmergencyName = p_user.EmergencyName;
-            item.EmergencyContactPhone = p_user.EmergencyContactPhone;
-            item.RoleId = p_user.RoleId;
-            _repo.Update(item);
-            _repo.Save();
-            return null;
-        }
-
         // DELETE api/User/delete/{id}
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete(int id){
@@ -85,5 +68,21 @@ namespace WebAPI.Controllers
                 return BadRequest("Not a valid Id");
             }
         }
+
+        // PUT api/user/update/{id}
+        [HttpPut("Update/{id}")]
+        public IActionResult Update(int id, [FromBody] User p_user){
+            try{
+                p_user.Id = id;
+                _repo.Update(p_user);
+                _repo.Save();
+                return Ok();
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Not a valid Id");
+            }
+        }
+
+        
     }
 }
