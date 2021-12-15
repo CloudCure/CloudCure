@@ -20,6 +20,8 @@ namespace Data
             {
                 return repository.Employee
                 .Include(e => e.UserProfile)
+                .ThenInclude(c => c.CovidAssesments)
+                .Include(e => e.UserProfile)
                 .ThenInclude(u => u.Role)
                 .Single(e => e.Id.Equals(p_id));
             }

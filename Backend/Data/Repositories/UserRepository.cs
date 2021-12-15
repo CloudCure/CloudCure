@@ -19,6 +19,7 @@ namespace Data
             {
                 return repository.Users
                 .Include(r => r.Role)
+                .Include(c => c.CovidAssesments)
                 .Single(e => e.Id.Equals(p_id));
             }
             catch (System.Exception)
