@@ -3,22 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Models;
+using Models.Diagnosis;
 using Data;
 using Serilog;
 
 namespace WebAPI.Controllers
 {
-
     [Route("api/[Controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class AssessmentController : ControllerBase
     {
-        private readonly IUserRepository _repo;
+        private readonly IAssessmentRepository _repo;
 
-        public UserController(IUserRepository p_repo){_repo = p_repo;}
+        public AssessmentController(IAssessmentRepository p_repo){_repo = p_repo;}
 
-        // GET: User/all
+        // GET: api/Assessment/Get/All
         [HttpGet("Get/All")]
         public IActionResult GetAll(){   
             try{
@@ -29,7 +28,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        // GET: User/Get/{id}
+        // GET api/Assessment/Get/{p_id}
         [HttpGet("Get/{id}")]
         public IActionResult GetByPrimaryKey(int p_id){
             try{
@@ -40,26 +39,25 @@ namespace WebAPI.Controllers
             }
         }
 
-
-        // Post: User/Add
+        //POST api/Assessment/add 
         [HttpPost("Add")]
-        public IActionResult Add([FromBody] User p_user){
+        public IActionResult Add([FromBody] Assessment p_Assessment){ // Fixme: This is not working
             try{
-                _repo.Create(p_user);
+                _repo.Create(p_Assessment);
                 _repo.Save();
-                return Ok();
+                return Ok();    
             }catch (Exception e){
                 Log.Error(e.Message);
-                return BadRequest("Invalid add request.");
+                return BadRequest("Invalid input.");
             }
         }
 
-        // DELETE: User/Delete/{id}
-        [HttpDelete("Delete/{id}")]
-        public IActionResult Delete(int id){
+        // DELETE api/delete/{p_id}
+        [HttpDelete("Delete/{p_id}")]
+        public IActionResult Delete(int p_id){
             try{
-                var item = _repo.GetByPrimaryKey(id);
-                _repo.Delete(item);
+                var topic = _repo.GetByPrimaryKey(p_id);
+                _repo.Delete(topic);
                 _repo.Save();
                 return Ok();
             }catch (Exception e){
@@ -68,20 +66,18 @@ namespace WebAPI.Controllers
             }
         }
 
-        // PUT: User/Update/{id}
+        // PUT api/Assessment/update/{id}
         [HttpPut("Update/{id}")]
-        public IActionResult Update(int id, [FromBody] User p_user){
+        public IActionResult Update(int id, [FromBody] Assessment p_Assessment){ // Fixme: This is not working
             try{
-                p_user.Id = id;
-                _repo.Update(p_user);
+                p_Assessment.Id = id;
+                _repo.Update(p_Assessment);
                 _repo.Save();
                 return Ok();
             }catch (Exception e){
                 Log.Error(e.Message);
-                return BadRequest("Not a valid Id");
+                return BadRequest("Invalid Input");
             }
         }
-
-        
     }
 }
