@@ -2,85 +2,80 @@
   box-sizing: border-box;
 }
 
-
-/* Header */
+body{
+  margin: 0;
+  padding: 0;
+}
 
 .header {
-  background-color: none;
-  padding: 30px;
+  padding: 60px;
   text-align: center;
-  padding: 40px;
-  text-align: center;
-  margin:30px;
-  font-size:20px;
+  background: rgb(115, 165, 194);
+  color: white;
+  font-size: 100px;
 }
+
+.column.side {
+  width: 50%;
+  padding: 70px;
+}
+
 
 .header h1 {
-  font-weight: bold;
+
+  color: white;
+  font-size: 50px;
 }
 
-/* Body */
-
-body {
-  margin: 0;
-}
-
-
-h4 {
+.header-side {
+  padding: 20px;
+  border-radius: 50px 20px;
+  background: rgb(253, 181, 21);
+  color: white;
   text-align: center;
+  font-size: 30px;
 }
 
-/* Section */
-h6 {
-  text-align: center;
+.header-side h5{
+  font-size: 30px;
 }
 
-/* Columns */
-
-.column {
-  float: left;
-  width: 25%;
-  padding: 10px;
-  height: 300px;
-
+.column.side dt{
+display: block;
+text-align: center;
+margin-top: 10px;
+font-size: 20px;
 }
 
-.column p li {
-  align-items: left;
-  font-size: 20px;
-  margin-left: 28%;
+.card {
+  border: none;
+  padding: 20px;
+  margin-top: 20px;
 }
 
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+.column.middle {
+  width: 50%;
+  padding: 70px;
 }
 
-
-/* Forms */
-
-.form {
-  text-align: center;
+.column.middle h5 {
+  font-weight: bolder;
+  padding-bottom: 20px;
 }
 
-.form input {
-  margin-left: 2%;
+label {
+  margin-left: -10px;
 }
 
-.center
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20px;
+input[type="radio"] {
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-left: 10px;
 }
 
-/* Mixins */
-
-@media screen and (max-width: 600px) {
-  .column.side,
-  .column.middle {
-    width: 100%;
-  }
+button{
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-left: 10px;
+  float: right;
 }

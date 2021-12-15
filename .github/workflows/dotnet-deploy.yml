@@ -11,8 +11,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -59,8 +57,10 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       shell: powershell
       run: |
+        .\.sonar\scanner\dotnet-sonarscanner begin /k:"CloudCure_CloudCure" /o:"cloudcure" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.exclusions="**Web/wwwroot/lib/**" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.vs.vstest.reportsPaths="**/TestResult/*trx"
         dotnet build ./Backend --configuration Release --no-restore
-    
+        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+
   deploy:
     needs: build
     runs-on: windows-latest

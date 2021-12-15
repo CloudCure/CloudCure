@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Models.Diagnosis;
 
 namespace WebAPI
 {
@@ -29,11 +30,35 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<CloudCureDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("database")));
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEmployeeInformationRepository, EmployeeInformationRepository>();
+            services.AddScoped<ICovidRepository, CovidRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IAllergyRepository, AllergyRepository>();
+            services.AddScoped(typeof(IRepository<Surgery>), typeof(Repository<Surgery>));
+            services.AddScoped(typeof(IRepository<Medication>), typeof(Repository<Medication>));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
             });
+
+            services.AddCors(
+                (options) =>
+                {
+                    options.AddPolicy(name: "_myAllowSpecificOrigins",
+                        builder =>
+                        {
+                            builder.WithOrigins("http://localhost:4200/",
+                                                "https://cloudcure-client.azurewebsites.net/")
+                            .AllowAnyHeader()
+                            .WithMethods("GET", "POST", "PUT", "DELETE")
+                            .WithExposedHeaders("*");
+                        });
+                }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
