@@ -13,7 +13,7 @@ export class MedicationService {
   ////////////// Medication //////////////
 
   GetAll(){ 
-    return this.http.get<Medication[]>(`${this.endpoint}/Get/All/Medications`);
+    return this.http.get<Medication[]>(`${this.endpoint}/Get/All`);
   }
 
   GetById(Id:number| undefined){
@@ -21,7 +21,7 @@ export class MedicationService {
   }
   
   Add(Info:Medication | undefined){ 
-    return this.http.post<Medication>(`${this.endpoint}/Add/Medication`,Info);
+    return this.http.post<Medication>(`${this.endpoint}/Add`,Info);
   }    
   
   Delete(Id:number| undefined){ 
@@ -29,7 +29,7 @@ export class MedicationService {
   } 
   
   Update(Id:number| undefined, Info:Medication | undefined){
-    return this.http.put<Medication>(`${this.endpoint}/Update/Medication/${Id}`,Info);
+    return this.http.put<Medication>(`${this.endpoint}/Update/${Id}`,Info);
   }
 
 }

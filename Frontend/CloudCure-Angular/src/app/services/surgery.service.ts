@@ -13,7 +13,7 @@ export class SurgeryService {
   ////////////// Surgery //////////////
 
   GetAll(){ 
-    return this.http.get<Surgery[]>(`${this.endpoint}/Get/All/Surgerys`);
+    return this.http.get<Surgery[]>(`${this.endpoint}/Get/All`);
   }
 
   GetById(Id:number| undefined){
@@ -21,7 +21,7 @@ export class SurgeryService {
   }
   
   Add(Info:Surgery | undefined){ 
-    return this.http.post<Surgery>(`${this.endpoint}/Add/Surgery`,Info);
+    return this.http.post<Surgery>(`${this.endpoint}/Add`,Info);
   }    
   
   Delete(Id:number| undefined){ 
@@ -29,6 +29,6 @@ export class SurgeryService {
   } 
   
   Update(Id:number| undefined, Info:Surgery | undefined){
-    return this.http.put<Surgery>(`${this.endpoint}/Update/Surgery/${Id}`,Info);
+    return this.http.put<Surgery>(`${this.endpoint}/Update/${Id}`,Info);
   }
 }
