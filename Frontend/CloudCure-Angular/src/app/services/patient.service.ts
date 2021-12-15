@@ -27,14 +27,6 @@ export class PatientService {
     return this.http.get<Condition[]>(`${this.endpoint}/Get/All/Conditions`);
   }
 
-  GetAllMedications(){ 
-    return this.http.get<Medication[]>(`${this.endpoint}/Get/All/Medications`);
-  }
-
-  GetAllSurgeries(){ 
-    return this.http.get<Surgery[]>(`${this.endpoint}/Get/All/Surgeries`);
-  }
-
   GetById(Id:Number | undefined){ 
     return this.http.get<Patient>(`${this.endpoint}/Get/${Id}`);
   }
@@ -51,9 +43,7 @@ export class PatientService {
     return this.http.post<Condition>(`${this.endpoint}/Add/Condition`,Info);
   }  
 
-  AddMedication(Info:Medication | undefined){ 
-    return this.http.post<Medication>(`${this.endpoint}/Add/Medication`,Info);
-  }  
+
 
   AddSurgery(Info:Surgery | undefined){ 
     return this.http.post<Surgery>(`${this.endpoint}/Add/Surgery`,Info);
@@ -71,9 +61,6 @@ export class PatientService {
     return this.http.delete<Condition>(`${this.endpoint}/Delete/Condition/${Id}`);
   } 
 
-  DeleteMedication(Id:number| undefined){ 
-    return this.http.delete<Medication>(`${this.endpoint}/Delete/${Id}`);
-  } 
 
   DeleteSurgery(Id:number| undefined){ 
     return this.http.delete<Surgery>(`${this.endpoint}/Delete/Surgery/${Id}`);
@@ -91,9 +78,7 @@ export class PatientService {
     return this.http.put<Condition>(`${this.endpoint}/Update/Condition/${Id}`,Info);
   }
 
-  UpdateMedication(Id:number| undefined, Info:Medication | undefined){
-    return this.http.put<Medication>(`${this.endpoint}/Update/Medication/${Id}`,Info);
-  }
+
 
   UpdateSurgery(Id:number| undefined, Info:Surgery | undefined){
     return this.http.put<Surgery>(`${this.endpoint}/Update/Surgery/${Id}`,Info);

@@ -1,9 +1,35 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Medication } from '../AngularModels/Medication';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MedicationService {
 
-  constructor() { }
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/Medication";
+  constructor(private http:HttpClient) { }
+
+  ////////////// Medication //////////////
+
+  GetAll(){ 
+    return this.http.get<Medication[]>(`${this.endpoint}/Get/All/Medications`);
+  }
+
+  GetById(Id:number| undefined){
+    return this.http.get<Medication>(`${this.endpoint}/Get/${Id}`);
+  }
+  
+  Add(Info:Medication | undefined){ 
+    return this.http.post<Medication>(`${this.endpoint}/Add/Medication`,Info);
+  }    
+  
+  Delete(Id:number| undefined){ 
+    return this.http.delete<Medication>(`${this.endpoint}/Delete/${Id}`);
+  } 
+  
+  Update(Id:number| undefined, Info:Medication | undefined){
+    return this.http.put<Medication>(`${this.endpoint}/Update/Medication/${Id}`,Info);
+  }
+
 }
