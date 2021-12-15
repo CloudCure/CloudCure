@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         }
 
         // PUT Medication/Edit
-        [HttpPut("Edit/{id}")]
+        [HttpPut("Update/{id}")]
         public IActionResult UpdateMedication([FromBody] Medication p_medication)
         {
             try
