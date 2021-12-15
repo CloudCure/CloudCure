@@ -7,31 +7,28 @@ import { CovidVerify } from '../Models/CovidVerify';
 })
 export class CovidService {
 
-  private endpoint: string = "https://cloudcure-api.azurewebsites.net";
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/Covid";
   constructor(private http:HttpClient) {} 
 
   ////////////// Covid //////////////
-  GetAllCovidInfo() 
-  { 
-    //this route will need to match route on API controller
-    return this.http.get<CovidVerify[]>(`${this.endpoint}/Covid/GetAll`);
+  GetAllCovidInfo(){ 
+    return this.http.get<CovidVerify[]>(`${this.endpoint}/Get/All`);
   }
 
-  GetCovidInfoById(Id:Number | undefined) 
-  { 
-    //this route will need to match route on API controller
-    return this.http.get<CovidVerify>(`${this.endpoint}/Covid/Get/${Id}`);
+  GetCovidInfoById(Id:Number | undefined){ 
+    return this.http.get<CovidVerify>(`${this.endpoint}/Get/${Id}`);
   }
 
-  AddCovidInfo(Info:CovidVerify | undefined) 
-  { 
-    //this route will need to match route on API controller
-    return this.http.post<CovidVerify>(`${this.endpoint}/Covid/Add`,Info);
+  AddCovidInfo(Info:CovidVerify | undefined){ 
+    return this.http.post<CovidVerify>(`${this.endpoint}/Add`,Info);
   }  
 
-  DeleteCovidInfo(Id:number| undefined) 
-  { 
-    //this route will need to match route on API controller
-    return this.http.delete<CovidVerify>(`${this.endpoint}/Covid/Delete/${Id}`);
+  DeleteCovidInfo(Id:number| undefined){ 
+    return this.http.delete<CovidVerify>(`${this.endpoint}/Delete/${Id}`);
   }  
+
+  UpdateCovidInfo(Id:number| undefined, Info:CovidVerify | undefined){
+    return this.http.put<CovidVerify>(`${this.endpoint}/Update/${Id}`,Info);
+  }
+
 }
