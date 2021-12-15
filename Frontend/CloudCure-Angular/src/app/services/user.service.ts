@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { UserProfile } from '../Models/UserProfile';
 
 @Injectable({
@@ -23,7 +24,7 @@ export class UserService {
     return this.http.get<UserProfile>(`${this.endpoint}/User/Get`+Id);
   }
 
-  AddUser(Info:UserProfile | undefined) 
+  AddUser(Info:UserProfile | undefined) : Observable<UserProfile>
   { 
     //this route will need to match route on API controller
     return this.http.post<UserProfile>(`${this.endpoint}/User/Add`,Info);

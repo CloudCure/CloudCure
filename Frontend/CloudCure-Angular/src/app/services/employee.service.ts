@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { EmployeeInformation } from '../Models/EmployeeInformation';
 
 @Injectable({
@@ -28,7 +29,7 @@ export class EmployeeService {
     return this.http.get<EmployeeInformation>(`${this.endpoint}/Employee/Get`+Id);
   }
 
-  addEmployee(Info:EmployeeInformation | undefined) 
+  addEmployee(Info:EmployeeInformation | undefined) : Observable<EmployeeInformation>
   { 
     //this route will need to match route on API controller
     return this.http.post<EmployeeInformation>(`${this.endpoint}/Employee/Add`,Info);

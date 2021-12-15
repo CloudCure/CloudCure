@@ -2,7 +2,7 @@ export interface UserProfile {
 
     FirstName : string
     LastName : string
-    DateOfBirth: string
+    DateOfBirth: string | Date
     PhoneNumber : string 
     Address : string
     EmergencyName: string
