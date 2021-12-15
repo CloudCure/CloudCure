@@ -11,16 +11,45 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
         
+                
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.11
+        
+    - name: Cache SonarCloud packages
+      uses: actions/cache@v1
+      with:
+        path: ~\sonar\cache
+        key: ${{ runner.os }}-sonar
+        restore-keys: ${{ runner.os }}-sonar
+        
+    - name: Cache SonarCloud scanner
+      id: cache-sonar-scanner
+      uses: actions/cache@v1
+      with:
+        path: .\.sonar\scanner
+        key: ${{ runner.os }}-sonar-scanner
+        restore-keys: ${{ runner.os }}-sonar-scanner
+        
+    - name: Install SonarCloud scanner
+      if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+      shell: powershell
+      run: |
+        New-Item -Path .\.sonar\scanner -ItemType Directory
+        dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+        
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./Backend/WebAPI
+      
+    - name: Test
+      run: dotnet test ./Backend --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
       
     - name: Build and analyze
       env:
@@ -28,8 +57,10 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       shell: powershell
       run: |
-        dotnet build --configuration Release --no-restore
-    
+        .\.sonar\scanner\dotnet-sonarscanner begin /k:"cloudcure" /o:"211004-reston-net" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.exclusions="**Web/wwwroot/lib/**" /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.vs.vstest.reportsPaths="**/TestResult/*trx"
+        dotnet build ./Backend --configuration Release --no-restore
+        .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
+
   deploy:
     needs: build
     runs-on: windows-latest
@@ -44,11 +75,12 @@ jobs:
         dotnet-version: 5.0.x 
 
     - name: Publish
-      run: dotnet publish --configuration Release -o Releases
+      run: dotnet publish Backend/WebAPI --configuration Release -o Releases
     
     - name: Deploy
       uses: azure/webapps-deploy@v2
       with:
-        app-name: pawpers
-        publish-profile: ${{secrets.AZURE_PAPWERS_PUBLISH_PROFILE}}
+        app-name: cloudcure-api
+        publish-profile: ${{secrets.AZURE_CLOUDCURE_API_PUBLISH_PROFILE}}
         package: Releases
+        

@@ -1,63 +1,81 @@
-p.ridge {border-style: ridge;}
-
-.center{
-    text-align:center;
+* {
+  box-sizing: border-box;
 }
 
-.solid{
-    border-style: solid;
+body{
+  margin: 0;
+  padding: 0;
 }
 
-.margin{
-    margin: auto;
+.header {
+  padding: 60px;
+  text-align: center;
+  background: rgb(115, 165, 194);
+  color: white;
+  font-size: 100px;
 }
 
-.row{clear:both}
-
-.column {
-    text-align: center;
-    margin:9px;
-    width: 25%;
-    padding: 10px;
-  }
-
- 
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-  } 
-
-.right{
-    text-align:right;
+.column.side {
+  width: 50%;
+  padding: 70px;
 }
 
-.tester{
-    display: inline-block;
-  }
 
-.thepad{
-    padding: 10px;
+.header h1 {
+
+  color: white;
+  font-size: 50px;
 }
 
-.smush{
-    text-align:right;
-    float:center;
-    list-style: inside;
+.header-side {
+  padding: 20px;
+  border-radius: 50px 20px;
+  background: rgb(253, 181, 21);
+  color: white;
+  text-align: center;
+  font-size: 30px;
 }
 
-.block {
-    display: block;
-    width: 25%;
-    border: none;
-    padding: 25px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-  }
+.header-side h5{
+  font-size: 30px;
+}
 
-  ul {
-    text-align: center;
-    list-style: inside;
-  }
-  
+.column.side dt{
+display: block;
+text-align: center;
+margin-top: 10px;
+font-size: 20px;
+}
+
+.card {
+  border: none;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.column.middle {
+  width: 50%;
+  padding: 70px;
+}
+
+.column.middle h5 {
+  font-weight: bolder;
+  padding-bottom: 20px;
+}
+
+label {
+  margin-left: -10px;
+}
+
+input[type="radio"] {
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+button{
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-left: 10px;
+  float: right;
+}

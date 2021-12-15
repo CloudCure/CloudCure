@@ -5,14 +5,14 @@ on:
     branches: [ main ] 
     
 env:
-  AZURE_WEBAPP_NAME: pawpers-angular    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: './pawpers-angular/dist/pawpers-angular'
+  AZURE_WEBAPP_NAME: cloudcure-client    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: './Frontend/CloudCure-Angular/dist/CloudCure-Angular'
   NODE_VERSION: '14.x'                # set this to the node version to use
 
 jobs:
   build-and-deploy:
     name: Build and Deploy
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     environment: Angular
     
     steps:
@@ -29,14 +29,12 @@ jobs:
         # deploy to Azure Web App.
         npm install
         npm run build --prod
-      working-directory: ./pawpers-angular
-      env:
-        SENDGRIDAPIKEY: ${{ env.PAWPERS_SENDGRID }}
+      working-directory: ./Frontend/CloudCure-Angular
         
         
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_ANGULAR }}
+        publish-profile: ${{ secrets.AZURE_CLOUDCURE_CLIENT_PUBLISH_PROFILE_ANGULAR }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}

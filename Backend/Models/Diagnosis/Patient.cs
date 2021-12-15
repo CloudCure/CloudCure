@@ -8,7 +8,9 @@ namespace Models.Diagnosis
     public class Patient
     {
         [Key]
-        public int PatientId { get; set; }
+        public int Id { get; set; }
+
+        public User UserProfile { get; set; }
 
         public List<Condition> Conditions { get; set; }
 
@@ -20,8 +22,5 @@ namespace Models.Diagnosis
 
         public List<Vitals> VitalHistory { get; set; }
         public List<Assessment> Assessments { get; set; }
-
-        // covid assessment
-        //public List<CovidVerify> CovidAssesments { get; set; }
     }
 }

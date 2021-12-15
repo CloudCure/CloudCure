@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
-import { User_Profile } from '../Models/User_Profile';
+import { UserProfile } from '../AngularModels/UserProfile';
 import { ProfileService } from '../services/profile.service';
 
 @Component({
@@ -10,15 +10,17 @@ import { ProfileService } from '../services/profile.service';
 })
 export class ProfileComponent implements OnInit {
 
-  user:User_Profile | null= {
-    employee_FirstName: "",
-    employee_LastName: "",
-    employee_PhoneNumber: "",
-    employee_Specialization: "",
-    emergency_Contact: "",
-    user_Role: "",
-    work_Email: "",
-    alternate_Email: ""
+  user:UserProfile | null= {
+    FirstName: "",
+    LastName: "",
+    DateOfBirth: "",
+    PhoneNumber: "",
+    Address: "",
+    EmergencyName: "",
+    EmergencyContactPhone: "",
+    RoleId: 0,
+    Id: 0
+
   };
 
   constructor(public auth0:AuthService, service:ProfileService) {
@@ -26,5 +28,10 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  // changes tabs in main card
+  id:any= "dashboard";
+  tabChange(ids:any){
+    this.id = ids;
   }
 }

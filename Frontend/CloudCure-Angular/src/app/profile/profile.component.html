@@ -1,4 +1,144 @@
+
+
 <body>
+
+  <div class="header">
+    <h1></h1>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="column side">
+        <div class="card">
+          <img src="../../assets/Images/user.png" alt="John" style="width: 100%">
+          <br/>
+          <h1>John Doe</h1>
+          <p>Doctor/Nurse</p>
+        </div>
+      </div>
+
+      <div class="column middle">
+        <div class="tabs">
+          <div class="tab-header">
+            <div class="active">
+              <i id="dashboard" class="fa fa-slack" (click)="tabChange('dashboard')"></i> Dashboard
+            </div>
+            <div>
+              <i id="education" class="fa fa-graduation-cap" (click)="tabChange('education')"></i> Education
+            </div>
+            <div>
+              <i id="certification" class="fa fa-certificate" (click)="tabChange('certification')"></i> Certification
+            </div>
+              <div>
+                <i id="contact"  class="fa fa-address-book" (click)="tabChange('contact')"></i> Contact
+              </div>
+          </div>
+        </div>
+
+        <div id="table-content">
+          <div class="content-value" *ngIf="id === 'dashboard'">
+            <table class="table table-user-information">
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-asterisk text-primary"></span>
+                      <i class="fa fa-address-card" aria-hidden="true"></i> Identificacion
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    123456789
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-user  text-primary"></span>
+                      <i class="fa fa-user" aria-hidden="true"></i> First Name
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    John
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-cloud text-primary"></span>
+                      <i class="fa fa-user" aria-hidden="true"></i> Lastname
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    Doe
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-eye-open text-primary"></span>
+                      <i class="fa fa-eye" aria-hidden="true"></i> Role
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    Admin
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-envelope text-primary"></span>
+                      <i class="fa far fa-envelope" aria-hidden="true"></i> Email
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    noreply@email.com
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-calendar text-primary"></span>
+                      <i class="fa far fas fa-phone" aria-hidden="true"></i> Phone
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    123-456-7890
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="content-value" *ngIf="id === 'education'">
+            <h2>Education</h2>
+            <p>Please Work</p>
+          </div>
+
+          <div class="content-value" *ngIf="id === 'certification'">
+            <h2>Certification</h2>
+            <p>Please Work</p>
+          </div>
+
+          <div class="content-value" *ngIf="id === 'contact'">
+            <h2>Contact</h2>
+            <p>Please Work</p>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+    </div>
+</body>
+
+
+
+
+
+
+<!-- <body>
   <div class="row">
     <div class="column side">
       <div class="profile-card">
@@ -10,6 +150,7 @@
           <a href="#"><i class="fa fa-facebook"></i></a>
           <a href="#"><i class="fa fa-twitter"></i></a>
           <a href="#"><i class="fa fa-instagram"></i></a>
+          <p><button>Contact</button></p>
         </div>
       </div>
     </div>
@@ -82,4 +223,4 @@
       </div>
     </div>
   </div>
-</body>
+</body> -->
