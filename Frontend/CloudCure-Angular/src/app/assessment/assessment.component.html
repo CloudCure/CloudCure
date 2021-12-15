@@ -1,6 +1,52 @@
-<p>assessment works!</p>
+<div class="container">
+  <h3>Assessment Form</h3>
+  <form>
+    <div class="form-group">
+      <label for="HistOfPresentIllness">Chief/Major complaint</label>
+      <textarea
+        id="HistOfPresentIllness"
+        name="HistOfPresentIllness"
+        class="form-control"
+        cols="30"
+        rows="10"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="ChiefComplaint">History of present illness</label>
+      <textarea
+        id="ChiefComplaint"
+        name="ChiefComplaint"
+        class="form-control"
+        cols="30"
+        rows="10"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="PainAssessment">Pain Assessment</label>
+      <textarea
+        id="PainAssessment"
+        name="PainAssessment"
+        class="form-control"
+        cols="30"
+        rows="10"
+      ></textarea>
+    </div>
+
+    <p>Pain Scale: 1-10</p>
+    <div class="form-group" action="" method="">
+      <input name="PainScale" id="PainScale" type="number" min="0" max="10" />
+    </div>
+
+    <br />
+    <button class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
 
 <h3 (click)="showBodyClicker = !showBodyClicker">Show Bodyclicker</h3>
 <ng-container *ngIf="showBodyClicker">
     <body-clicker (onClick)="getClick($event)" [canEdit]="true"></body-clicker>
 </ng-container>
+

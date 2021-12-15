@@ -19,11 +19,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { ProfileService } from './services/profile.service';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
+import { DiagnosisSurgeriesComponent } from './diagnosis-surgeries/diagnosis-surgeries.component';
+import { DiagnosisMedicationComponent } from './diagnosis-medication/diagnosis-medication.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
+
+import { CheckboxModule } from 'primeng/checkbox';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,6 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     TextBoxComponent,
     DiagnosisConditionComponent,
     // patientdiagnosis,
-
     DiagnosisVitalsComponent,
     VerificationComponent,
     NavbarComponent,
@@ -48,27 +51,33 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     HeaderComponent,
     FooterComponent,
     BottomNavbarComponent,
-    RegisterComponent
+    AssessmentComponent,
+    DiagnosisSurgeriesComponent,
+    DiagnosisMedicationComponent,
+    RegisterComponent,
   ],
 
   imports: [
     HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    CheckboxModule,
     ReactiveFormsModule,
     FormsModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
-      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
+      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq',
     }),
     RouterModule.forRoot([
-      { path: "verification", component: VerificationComponent },
-      { path: "profile", component: ProfileComponent },
+      { path: 'verification', component: VerificationComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: 'diagnosis', component: DiagnosisComponent },
       { path: 'print', component: PrintComponent },
       { path: 'body-clicker', component: BodyClickerComponent },
       { path: 'diagnosis-condition', component:DiagnosisConditionComponent},
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
       { path: 'assessment', component: AssessmentComponent },
+      { path: '**', component: HomeComponent },
       { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent },
       { path: 'text-box', component: TextBoxComponent },
       { path : 'register', component:RegisterComponent},
@@ -76,8 +85,7 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     ])
   ],
   providers: [
-    ProfileService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

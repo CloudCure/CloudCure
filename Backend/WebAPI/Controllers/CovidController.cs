@@ -1,32 +1,26 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Models;
 using Data;
 using Serilog;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[Controller]")]
+    [Route("[Controller]")]
     [ApiController]
     public class CovidController : ControllerBase
     {
-        //Dependency injection for CovidRepository
         private readonly ICovidRepository _repo;
 
-        public CovidController(ICovidRepository p_repo)
-        {
-            _repo = p_repo;
-        }
+        public CovidController(ICovidRepository p_repo) { _repo = p_repo; }
 
-        // GET: api/covid/all
-        [HttpGet("GetAll")]
+        // GET: api/covid/Get/All
+        [HttpGet("Get/All")]
         public IActionResult GetAll()
-        {   try
+        {
+            try
             {
-            return Ok(_repo.GetAll());
+                return Ok(_repo.GetAll());
             }
             catch (Exception e)
             {
@@ -35,7 +29,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        // GET api/covid/{p_id}
+        // GET api/covid/Get/{p_id}
         [HttpGet("Get/{id}")]
         public IActionResult GetByPrimaryKey(int p_id)
         {
@@ -50,24 +44,24 @@ namespace WebAPI.Controllers
             }
         }
 
-        //POST api/covid/add 
+        //POST covid/add 
         [HttpPost("Add")]
-        public IActionResult AddCovid([FromBody] CovidVerify p_covid)
+        public IActionResult Add([FromBody] CovidVerify p_covid)
         {
             try
             {
-            _repo.Create(p_covid);
-            _repo.Save();
-            return Created("api/covid/add", p_covid);
+                _repo.Create(p_covid);
+                _repo.Save();
+                return Created("Covid/Add", p_covid);
             }
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid input.");
+                return BadRequest("Invalid create form.");
             }
         }
 
-        // DELETE api/delete/{p_id}
+        // DELETE covid/delete/{p_id}
         [HttpDelete("Delete/{p_id}")]
         public IActionResult Delete(int p_id)
         {
@@ -80,27 +74,26 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-
                 Log.Error(e.Message);
-                return BadRequest("Not a valid Id");
+                return BadRequest("Not a valid ID");
             }
         }
 
-        // PUT api/covid/edit/{id}
-        [HttpPut("edit/{id}")]
-        public IActionResult CovidVerify([FromBody] CovidVerify p_covid)
+        // PUT api/covid/update/{id}
+        [HttpPut("Update/{id}")]
+        public IActionResult Update(int id, [FromBody] CovidVerify p_covid)
         {
             try
             {
+                p_covid.Id = id;
                 _repo.Update(p_covid);
                 _repo.Save();
                 return Ok();
             }
             catch (Exception e)
             {
-
                 Log.Error(e.Message);
-                return BadRequest("Invalid Input");
+                return BadRequest("Invalid put request.");
             }
         }
     }

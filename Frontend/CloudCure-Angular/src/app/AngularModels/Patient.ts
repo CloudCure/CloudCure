@@ -1,4 +1,4 @@
-import { Allgergy } from "./Allergy";
+import { Allergy } from "./Allergy";
 import { Assessment } from "./Assessment";
 import { Condition } from "./Condition";
 import { Medication } from "./Medication";
@@ -13,7 +13,7 @@ export interface Patient
     PatientAddress:      string;
     DateOfBirth?:        Date;
     Conditions?:         Condition[];
-    Allergies?:          Allgergy[];
+    Allergies?:          Allergy[];
     Surgeries?:          Surgery[];
     CurrentMedications?: Medication[];
     VitalHistory?:       Vitals[];

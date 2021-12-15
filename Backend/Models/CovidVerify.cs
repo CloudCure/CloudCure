@@ -20,6 +20,8 @@ namespace Models
         public bool question4 { get; set; }
         [Required]
         public bool question5 { get; set; }
+        [Required]
+        public int UserId { get; set; }
         
     }
 }

@@ -2,10 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
-import { EmployeeInformation } from '../Models/EmployeeInformation';
-import { UserProfile } from '../Models/UserProfile';
 import { EmployeeService } from '../services/employee.service';
 import { UserService } from '../services/user.service';
+import { EmployeeInformation } from '../AngularModels/EmployeeInformation';
+import { UserProfile } from '../AngularModels/UserProfile';
+
 
 
 @Component({
