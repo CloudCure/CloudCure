@@ -3,22 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Models;
+using Models.Diagnosis;
 using Data;
 using Serilog;
 
 namespace WebAPI.Controllers
 {
-    [Route("Covid")]
+    [Route("api/[Controller]")]
     [ApiController]
-    public class CovidController : ControllerBase
+    public class AssessmentController : ControllerBase
     {
-        private readonly ICovidRepository _repo;
+        private readonly IAssessmentRepository _repo;
 
-        public CovidController(ICovidRepository p_repo){_repo = p_repo;}
+        public AssessmentController(IAssessmentRepository p_repo){_repo = p_repo;}
 
-
-        // GET: api/covid/Get/All
+        // GET: api/Assessment/Get/All
         [HttpGet("Get/All")]
         public IActionResult GetAll(){   
             try{
@@ -29,8 +28,7 @@ namespace WebAPI.Controllers
             }
         }
 
-
-        // GET api/covid/Get/{p_id}
+        // GET api/Assessment/Get/{p_id}
         [HttpGet("Get/{id}")]
         public IActionResult GetByPrimaryKey(int p_id){
             try{
@@ -41,20 +39,20 @@ namespace WebAPI.Controllers
             }
         }
 
-        //POST covid/add 
+        //POST api/Assessment/add 
         [HttpPost("Add")]
-        public IActionResult Add([FromBody] CovidVerify p_covid){
+        public IActionResult Add([FromBody] Assessment p_Assessment){ // Fixme: This is not working
             try{
-                _repo.Create(p_covid);
+                _repo.Create(p_Assessment);
                 _repo.Save();
                 return Ok();    
             }catch (Exception e){
                 Log.Error(e.Message);
-                return BadRequest("Invalid create form.");
+                return BadRequest("Invalid input.");
             }
         }
 
-        // DELETE covid/delete/{p_id}
+        // DELETE api/delete/{p_id}
         [HttpDelete("Delete/{p_id}")]
         public IActionResult Delete(int p_id){
             try{
@@ -64,22 +62,21 @@ namespace WebAPI.Controllers
                 return Ok();
             }catch (Exception e){
                 Log.Error(e.Message);
-                return BadRequest("Not a valid ID");
+                return BadRequest("Not a valid Id");
             }
         }
 
-
-        // PUT api/covid/update/{id}
+        // PUT api/Assessment/update/{id}
         [HttpPut("Update/{id}")]
-        public IActionResult Update(int id, [FromBody] CovidVerify p_covid){
+        public IActionResult Update(int id, [FromBody] Assessment p_Assessment){ // Fixme: This is not working
             try{
-                p_covid.Id = id;
-                _repo.Update(p_covid);
+                p_Assessment.Id = id;
+                _repo.Update(p_Assessment);
                 _repo.Save();
                 return Ok();
             }catch (Exception e){
                 Log.Error(e.Message);
-                return BadRequest("Invalid put request.");
+                return BadRequest("Invalid Input");
             }
         }
     }

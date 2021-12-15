@@ -4,12 +4,5 @@
 <br>
 
 <ng-container *ngIf="display">
-    <app-text-box></app-text-box>
+    <app-text-box [boxes]="allergies"></app-text-box>
 </ng-container>
-
-
-<!-- This is just to help me go from allergy to text box so I don't have to use the URL -->
-<br>
-<br>
-<br>
-<button [routerLink]="['/text-box']" >text box component</button>

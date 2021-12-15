@@ -21,6 +21,7 @@ namespace Data
         public void Create(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -49,6 +50,7 @@ namespace Data
         public void Update(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -58,6 +60,7 @@ namespace Data
         public void Delete(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);
+            _context.SaveChanges();
         }
 
         /// <summary>
