@@ -13,75 +13,68 @@ namespace WebAPI.Controllers
     public class AllergyController : ControllerBase
     {
 
-        private readonly IAllergyRepository _allergy;
+        private readonly IAllergyRepository _repo;
 
-        public AllergyController(IAllergyRepository p_allergy)
+        public AllergyController(IAllergyRepository p_repo)
         {
-            _allergy = p_allergy;
+            _repo = p_repo;
         }
-        // GET: Allergy/All
-        [HttpGet("all")] //("All") Will give and endpoint that ends with All
-        public IActionResult GetAllAllergy()
-        {
-            try
-            {
-                return Ok(_allergy.GetAll());
-            }
-            catch (Exception e)
-            {
+        // GET: Allergy/Get/All
+        [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
+        public IActionResult GetAll(){
+            try{
+                return Ok(_repo.GetAll());
+            }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
         }
+        [HttpGet("Get/{p_id}")]
+        public IActionResult GetById(int p_id){
+            try{
+                return Ok(_repo.GetByPrimaryKey(p_id));
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Failed to get allergy by id");
+            }
+        }
 
-        // DELETE allergy/delete/Id
-        [HttpDelete("delete/{id}")]
-        public IActionResult DeleteAllergy([FromBody] Allergy p_allergy)
-        {
-            try
-            {
-                _allergy.Delete(p_allergy);
-                _allergy.Save();
+        // DELETE: Allergy/Delete/Id
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete([FromBody] Allergy p_allergy){
+            try{
+                _repo.Delete(p_allergy);
+                _repo.Save();
                 return Ok();
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("Failed to delete allergy");
             }
         }
 
         // PUT Allergy/Edit
-        [HttpPut("edit/{id}")]
-        public IActionResult UpdateAllergy([FromBody] Allergy p_allergy)
-        {
-            try
-            {
-                _allergy.Update(p_allergy);
-                _allergy.Save();
+        [HttpPut("Update/{id}")]
+        public IActionResult Update([FromBody] Allergy p_allergy){
+            try{
+                _repo.Update(p_allergy);
+                _repo.Save();
                 return Ok();
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("Failed to update allergy");
             }
         }
 
-        // POST Allergy/Add
+        // POST: Allergy/Add
         [HttpPost("add")]
-        public IActionResult AddAllergy([FromBody] Allergy p_allergy)
-        {
-            try
-            {
-                _allergy.Create(p_allergy);
-                _allergy.Save();
-                return Created("allergy/add", p_allergy);
-            }
-            catch (Exception e)
-            {
+        public IActionResult Add([FromBody] Allergy p_allergy){
+            try{
+                _repo.Create(p_allergy);
+                _repo.Save();
+                return Ok();
+            }catch (Exception e){
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("Failed to add allergy");
             }
         }
     }
