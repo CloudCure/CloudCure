@@ -7,10 +7,10 @@
 
     <div class="column middle">
       <h5>PLEASE SELECT THE ANSWER THAT APPLIES TO PATIENT!</h5>
-      <br/>
 
       <form [formGroup] = " verifiGroup">
         <div class="form-check form-group">
+
           <p>Question 1:</p>
           <dl>Regardless of your vaccination status, have
             you experienced any of the symptoms in
@@ -22,6 +22,7 @@
               <label for="no">No</label>
             </dd>
           </dl>
+
           <br/>
 
           <p>Question 2:</p>
@@ -35,6 +36,7 @@
               <label for="no">No</label>
             </dd>
           </dl>
+
           <br/>
 
           <p>Question 3:</p>
@@ -47,6 +49,7 @@
               <label for="no">No</label>
             </dd>
           </dl>
+
           <br/>
 
           <p>Question 4:</p>
@@ -58,6 +61,7 @@
               <label for="no">No</label>
             </dd>
           </dl>
+
           <br/>
 
           <p>Question 5:</p>
@@ -72,7 +76,9 @@
                 <label for="no">No</label>
               </dd>
             </dl>
-            <input type="submit" value="Submit" (click)="submitForm()">
+
+            <button type="submit" class="btn btn-dark btn-sm" (click)="submitForm()">Submit</button>
+
         </div>
       </form>
     </div>
@@ -98,59 +104,7 @@
 </body>
 
 
-<!-- <body>
-  <div class="container">
-    <div class="header">
-      <h1>Covid-19 Verification</h1>
-    </div>
-        <h6 class="mb-0">Patient Name/Id:</h6>
-  </div>
-<section>
-  <br/>
-  <h4>Symptoms</h4>
-  <br>
 
-  <div class="row">
-    <div class="column">
-      <p></p>
-    </div>
-    <div class="column">
-      <p>
-        <li>Fever or chills</li>
-        <li>Cough</li>
-        <li>Shortness of breath</li>
-        <li>Difficulty breathing</li>
-        <li>Fatigue</li>
-        <li>Sore throat</li>
-      </p>
-    </div>
-    <div class="column">
-      <p>
-        <li>Muscle or body aches</li>
-        <li>New loss of taste or smell</li>
-        <li>Nausea or vomiting</li>
-        <li>Diarrhea</li>
-        <li>Congestion or runny nose</li>
-      </p>
-    </div>
-    <div class="column">
-    </div>
-  </div>
-</section>
-  <div class="form form-check">
-    <label class="form-check-label" for="flexCheckChecked">
-      Have you previously been diagnosed with Covid-19?
-    </label>
-    <input class="" type="checkbox" value="" id="flexCheckChecked" checked="">
-  </div>
-  <br/>
-    <div class="center">
-      <button type="submit" class="btn btn-primary btn-sm ">Submit</button>
-    </div>
-</body>
 
-<<<<<<< HEAD
- -->
-=======
 
->>>>>>> f1214b9dc2ac13e1227e5d6713c1d4c6e3b0f214
+
