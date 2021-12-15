@@ -11,25 +11,25 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
-    [Route("medication")]
+    [Route("surgery")]
     [ApiController]
-    public class MedicationController : ControllerBase
+    public class SurgeryController : ControllerBase
     {
-        private readonly IRepository<Medication> medicationRepository;
+        private readonly IRepository<Surgery> surgeryRepository;
 
-        public MedicationController(IRepository<Medication> context)
+        public SurgeryController(IRepository<Surgery> context)
         {
-            medicationRepository = context;
+            surgeryRepository = context;
         }
 
 
-        // GET: medication/All
-        [HttpGet("all")] //("All") Will give and endpoint that ends with All
-        public IActionResult GetAllMedication()
+        // GET: surgery/All
+        [HttpGet("all")]
+        public IActionResult GetAllSurgery()
         {
             try
             {
-                return Ok(medicationRepository.GetAll());
+                return Ok(surgeryRepository.GetAll());
             }
             catch (Exception e)
             {
@@ -41,14 +41,14 @@ namespace WebAPI.Controllers
 
         }
 
-        // DELETE Medication/delete/Id
+        // DELETE surgery/delete/Id
         [HttpDelete("delete/{id}")]
-        public IActionResult DeleteMedication([FromBody] Medication p_medication)
+        public IActionResult DeleteSurgery([FromBody] Surgery p_surgery)
         {
             try
             {
-                medicationRepository.Delete(p_medication);
-                medicationRepository.Save();
+                surgeryRepository.Delete(p_surgery);
+                surgeryRepository.Save();
                 return Ok();
             }
             catch (Exception e)
@@ -60,14 +60,14 @@ namespace WebAPI.Controllers
 
         }
 
-        // PUT Medication/Edit
+        // PUT surgery/Edit
         [HttpPut("edit/{id}")]
-        public IActionResult UpdateMedication([FromBody] Medication p_medication)
+        public IActionResult UpdateSurgery([FromBody] Surgery p_surgery)
         {
             try
             {
-                medicationRepository.Update(p_medication);
-                medicationRepository.Save();
+                surgeryRepository.Update(p_surgery);
+                surgeryRepository.Save();
                 return Ok();
             }
             catch (Exception e)
@@ -78,15 +78,15 @@ namespace WebAPI.Controllers
 
         }
 
-        // POST Medication/Add
+        // POST surgery/Add
         [HttpPost("add")]
-        public IActionResult AddMedication([FromBody] Medication p_medication)
+        public IActionResult AddSurgery([FromBody] Surgery p_surgery)
         {
             try
             {
-                medicationRepository.Create(p_medication);
-                medicationRepository.Save();
-                return Created("allergy/add", p_medication);
+                surgeryRepository.Create(p_surgery);
+                surgeryRepository.Save();
+                return Created("allergy/add", p_surgery);
             }
             catch (Exception e)
             {
@@ -96,7 +96,5 @@ namespace WebAPI.Controllers
             }
 
         }
-
-     
     }
 }

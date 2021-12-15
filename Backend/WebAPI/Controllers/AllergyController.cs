@@ -1,6 +1,7 @@
 ﻿using Data;
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
 
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
             
@@ -52,7 +53,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Failed to update");
 
             }
@@ -71,7 +72,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
 
@@ -90,7 +91,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
 
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
             
