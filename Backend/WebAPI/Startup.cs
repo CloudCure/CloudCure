@@ -33,6 +33,7 @@ namespace WebAPI
             services.AddScoped<IEmployeeInformationRepository, EmployeeInformationRepository>();
             services.AddScoped<ICovidRepository, CovidRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IAssessmentRepository, AssessmentRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddControllers();
             services.AddSwaggerGen(c =>
