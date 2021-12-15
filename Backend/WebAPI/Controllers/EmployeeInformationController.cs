@@ -7,8 +7,10 @@ using Models;
 using Data;
 using Serilog;
 
-namespace WebAPI {
-    [Route("Employee")]
+namespace WebAPI 
+{
+
+    [Route("api/[Controller]")]
     [ApiController]
     public class EmployeeInformationController : Controller
     {

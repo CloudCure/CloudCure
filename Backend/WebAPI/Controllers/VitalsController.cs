@@ -8,9 +8,9 @@ using Data;
 using Serilog;
 
 namespace WebAPI.Controllers
-{
+{ 
+    [Route("api/[Controller]")]
     [ApiController]
-    [Route("Vitals")]
     public class VitalsController : ControllerBase
     {
         //Dependency Injection
