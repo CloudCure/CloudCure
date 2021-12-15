@@ -31,9 +31,7 @@ export class PatientService {
     return this.http.get<Medication[]>(`${this.endpoint}/Get/All/Medications`);
   }
 
-  GetAllSurgeries(){ 
-    return this.http.get<Surgery[]>(`${this.endpoint}/Get/All/Surgeries`);
-  }
+  
 
   GetById(Id:Number | undefined){ 
     return this.http.get<Patient>(`${this.endpoint}/Get/${Id}`);
@@ -55,9 +53,7 @@ export class PatientService {
     return this.http.post<Medication>(`${this.endpoint}/Add/Medication`,Info);
   }  
 
-  AddSurgery(Info:Surgery | undefined){ 
-    return this.http.post<Surgery>(`${this.endpoint}/Add/Surgery`,Info);
-  }  
+  
 
   Delete(Id:number| undefined){ 
     return this.http.delete<Patient>(`${this.endpoint}/Delete/${Id}`);
@@ -75,9 +71,7 @@ export class PatientService {
     return this.http.delete<Medication>(`${this.endpoint}/Delete/${Id}`);
   } 
 
-  DeleteSurgery(Id:number| undefined){ 
-    return this.http.delete<Surgery>(`${this.endpoint}/Delete/Surgery/${Id}`);
-  } 
+  
 
   Update(Id:number| undefined, Info:Patient | undefined){
     return this.http.put<Patient>(`${this.endpoint}/Update/${Id}`,Info);
@@ -95,8 +89,6 @@ export class PatientService {
     return this.http.put<Medication>(`${this.endpoint}/Update/Medication/${Id}`,Info);
   }
 
-  UpdateSurgery(Id:number| undefined, Info:Surgery | undefined){
-    return this.http.put<Surgery>(`${this.endpoint}/Update/Surgery/${Id}`,Info);
-  }
+ 
 
 }
