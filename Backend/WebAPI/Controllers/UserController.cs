@@ -14,7 +14,6 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        //Dependency injection for CovidRepository
         private readonly IUserRepository _repo;
 
         public UserController(IUserRepository p_repo){_repo = p_repo;}

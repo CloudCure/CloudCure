@@ -13,12 +13,11 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CovidController : ControllerBase
     {
-        //Dependency injection for CovidRepository
         private readonly ICovidRepository _repo;
 
         public CovidController(ICovidRepository p_repo){_repo = p_repo;}
 
-        // GET: api/covid/all
+        // GET: api/covid/Get/All
         [HttpGet("Get/All")]
         public IActionResult GetAll(){   
             try{
@@ -29,7 +28,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        // GET api/covid/{p_id}
+        // GET api/covid/Get/{p_id}
         [HttpGet("Get/{id}")]
         public IActionResult GetByPrimaryKey(int p_id){
             try{
