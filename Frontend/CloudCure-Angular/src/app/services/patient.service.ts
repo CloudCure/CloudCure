@@ -43,8 +43,8 @@ export class PatientService {
     return this.http.post<Patient>(`${this.endpoint}/Add`,Info);
   }  
 
-  AddAllgergy(Info:Allgergy | undefined){ 
-    return this.http.post<Allgergy>(`${this.endpoint}/Add/Allgergy`,Info);
+  AddAllergy(Info:Allergy | undefined){ 
+    return this.http.post<Allergy>(`${this.endpoint}/Add/Allergy`,Info);
   }  
 
   AddCondition(Info:Condition | undefined){ 
@@ -63,8 +63,8 @@ export class PatientService {
     return this.http.delete<Patient>(`${this.endpoint}/Delete/${Id}`);
   }  
 
-  DeleteAllgergy(Id:number| undefined){ 
-    return this.http.delete<Allgergy>(`${this.endpoint}/Delete/Allgergy/${Id}`);
+  DeleteAllergy(Id:number| undefined){ 
+    return this.http.delete<Allergy>(`${this.endpoint}/Delete/Allergy/${Id}`);
   } 
 
   DeleteCondition(Id:number| undefined){ 
