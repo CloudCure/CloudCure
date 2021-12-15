@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
             {
                 _repo.Create(p_vitals);
                 _repo.Save();
-                return Ok();
+                return Created("Vitals/Add", p_vitals);
             }
             catch (Exception e)
             {

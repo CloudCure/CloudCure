@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
             {
                 _repo.Create(p_patient);
                 _repo.Save();
-                return Created("patient/add", p_patient);
+                return Created("Patient/Add", p_patient);
 
             }
             catch (Exception e)
