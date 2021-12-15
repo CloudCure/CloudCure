@@ -18,17 +18,17 @@ namespace Data
         {
             try
             {
-                 return repository.Employee
-                 .Include(e => e.UserProfile)
-                 .ThenInclude(u => u.Role)
-                 .Single(e => e.Id.Equals(p_id));
+                return repository.Employee
+                .Include(e => e.UserProfile)
+                .ThenInclude(u => u.Role)
+                .Single(e => e.Id.Equals(p_id));
             }
             catch (System.Exception)
             {
                 throw new KeyNotFoundException("Employee Id Not Found!");
             }
         }
-        
+
         public EmployeeInformation VerifyEmail(string p_email)
         {
             try
