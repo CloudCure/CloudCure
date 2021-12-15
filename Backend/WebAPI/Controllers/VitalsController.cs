@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Data;
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
+using Data;
+using Serilog;
 
 namespace WebAPI.Controllers
 {
@@ -15,51 +16,67 @@ namespace WebAPI.Controllers
         //Dependency Injection
         private readonly IVitalsRepository _repo;
 
-        public VitalsController(IVitalsRepository p_repo)
-        {
-            _repo = p_repo;
-        }
+        public VitalsController(IVitalsRepository p_repo){_repo = p_repo;}
 
         //GET: Vitals/All
-        [HttpGet("All")] //("All") Will give and endpoint that ends with All
-        public IActionResult GetAllVitals()
-        {
-            return Ok(_repo.GetAll());
+        [HttpGet("Get/All")]
+        public IActionResult GetAll(){   
+            try{
+                return Ok(_repo.GetAll());
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Invalid get all request.");
+            }
         }
 
         //GET: Vitals/Id
-        [HttpGet("{p_id}")]
-        public IActionResult GetVitalsById(int p_id)
-        {
-            return Ok(_repo.GetByPrimaryKey(p_id));
+        [HttpGet("Get/{id}")]
+        public IActionResult GetByPrimaryKey(int p_id){
+            try{
+                return Ok(_repo.GetByPrimaryKey(p_id));
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Not a valid ID");
+            }
         }
 
         //POST: Vitals/Add
-        [HttpPost("add")]
-        public IActionResult AddVitals([FromBody] Vitals p_vitals)
-        {
-            _repo.Create(p_vitals);
-            _repo.Save();
-            return Created("Vitals/add", p_vitals);
+        [HttpPost("Add")]
+        public IActionResult Add([FromBody] Vitals p_vitals){
+            try{
+                _repo.Create(p_vitals);
+                _repo.Save();
+                return Ok();
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Invalid input.");
+            }
         }
 
         //PUT: Vitals/Id
-        [HttpPut("update/{id}")]
-        public IActionResult UpdateVitals([FromBody] Vitals p_vitals)
-        {
-            _repo.Update(p_vitals);
-            _repo.Save();
-            return Ok();
+        [HttpPut("Update/{id}")]
+        public IActionResult UpdateVitals([FromBody] Vitals p_vitals){
+            try{
+                _repo.Update(p_vitals);
+                _repo.Save();
+                return Ok();
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Invalid input.");
+            }
         }
 
-
         //Delete: Vitals/Id
-        [HttpDelete("delete/{id}")]
-        public IActionResult DeleteVitals([FromBody] Vitals p_vitals)
-        {
-            _repo.Delete(p_vitals);
-            _repo.Save();
-            return Ok();
+        [HttpDelete("Delete/{id}")]
+        public IActionResult DeleteVitals([FromBody] Vitals p_vitals){
+            try{
+                _repo.Delete(p_vitals);
+                _repo.Save();
+                return Ok();
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Invalid input.");
+            }
         }
     }
 }
