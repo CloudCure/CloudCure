@@ -5,4 +5,5 @@ obj
 
 appsettings.json
 
-Data/Migrations/*
+Backend/Data/Migrations/
+Backend/WebAPI/Logs/
