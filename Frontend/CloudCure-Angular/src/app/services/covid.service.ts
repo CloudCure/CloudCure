@@ -11,23 +11,23 @@ export class CovidService {
   constructor(private http:HttpClient) {} 
 
   ////////////// Covid //////////////
-  GetAllCovidInfo(){ 
+  GetAll(){ 
     return this.http.get<CovidVerify[]>(`${this.endpoint}/Get/All`);
   }
 
-  GetCovidInfoById(Id:Number | undefined){ 
+  GetById(Id:Number | undefined){ 
     return this.http.get<CovidVerify>(`${this.endpoint}/Get/${Id}`);
   }
 
-  AddCovidInfo(Info:CovidVerify | undefined){ 
+  Add(Info:CovidVerify | undefined){ 
     return this.http.post<CovidVerify>(`${this.endpoint}/Add`,Info);
   }  
 
-  DeleteCovidInfo(Id:number| undefined){ 
+  Delete(Id:number| undefined){ 
     return this.http.delete<CovidVerify>(`${this.endpoint}/Delete/${Id}`);
   }  
 
-  UpdateCovidInfo(Id:number| undefined, Info:CovidVerify | undefined){
+  Update(Id:number| undefined, Info:CovidVerify | undefined){
     return this.http.put<CovidVerify>(`${this.endpoint}/Update/${Id}`,Info);
   }
 
