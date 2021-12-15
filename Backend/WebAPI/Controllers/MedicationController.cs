@@ -15,9 +15,18 @@ namespace WebAPI.Controllers
 
         // GET: Medication/All
         [HttpGet("All")]
-        public IActionResult GetAllMedication(){
+        public IActionResult GetAll(){
             try{
                 return Ok(_repo.GetAll());
+            }catch (Exception e){
+                Log.Error(e.Message);
+                return BadRequest("Failed to update");
+            }
+        }
+        [HttpGet("Get/{id}")]
+        public IActionResult GetById(int p_id){
+            try{
+                return Ok(_repo.GetByPrimaryKey(p_id));
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
@@ -26,7 +35,7 @@ namespace WebAPI.Controllers
 
         // DELETE: Medication/Delete/Id
         [HttpDelete("Delete/{id}")]
-        public IActionResult DeleteMedication([FromBody] Medication p_medication){
+        public IActionResult Delete([FromBody] Medication p_medication){
             try{
                 _repo.Delete(p_medication);
                 _repo.Save();
@@ -39,7 +48,7 @@ namespace WebAPI.Controllers
 
         // PUT: Medication/Update/Id
         [HttpPut("Update/{id}")]
-        public IActionResult UpdateMedication(int id, [FromBody] Medication p_medication){
+        public IActionResult Update(int id, [FromBody] Medication p_medication){
             try{
                 p_medication.Id = id;
                 _repo.Update(p_medication);
@@ -53,7 +62,7 @@ namespace WebAPI.Controllers
 
         // POST: Medication/Add
         [HttpPost("Add")]
-        public IActionResult AddMedication([FromBody] Medication p_medication){
+        public IActionResult Add([FromBody] Medication p_medication){
             try{
                 _repo.Create(p_medication);
                 _repo.Save();

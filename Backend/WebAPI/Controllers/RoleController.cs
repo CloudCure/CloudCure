@@ -6,14 +6,11 @@ using Serilog;
 
 namespace WebAPI.Controllers
 {
-
-    [Route("api/[Controller]")]
+    [Route("Role")]
     [ApiController]
     public class RoleController : ControllerBase
     {
-        //Dependency injection
         private readonly IRoleRepository _repo;
-
         public RoleController(IRoleRepository p_repo){_repo = p_repo;}
 
         // GET: Role/Get/All
