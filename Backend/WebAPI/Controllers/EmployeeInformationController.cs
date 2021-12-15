@@ -36,7 +36,7 @@ namespace WebAPI
         {
             try
             {
-                return Ok(_repo.GetByPrimaryKey(p_id));
+                return Ok(_repo.GetById(p_id));
             }
             catch (Exception e)
             {
@@ -83,7 +83,7 @@ namespace WebAPI
         {
             try
             {
-                var topic = _repo.GetByPrimaryKey(p_id);
+                var topic = _repo.GetById(p_id);
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();

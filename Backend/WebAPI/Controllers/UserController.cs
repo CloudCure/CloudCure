@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Ok(_repo.GetByPrimaryKey(p_id));
+                return Ok(_repo.GetById(p_id));
             }
             catch (Exception e)
             {
@@ -68,7 +68,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                var item = _repo.GetByPrimaryKey(id);
+                var item = _repo.GetById(id);
                 _repo.Delete(item);
                 _repo.Save();
                 return Ok();

@@ -11,7 +11,6 @@ namespace WebAPI.Controllers
     public class AssessmentController : ControllerBase
     {
         private readonly IAssessmentRepository _repo;
-
         public AssessmentController(IAssessmentRepository p_repo) { _repo = p_repo; }
 
         // GET: api/Assessment/Get/All
@@ -29,7 +28,7 @@ namespace WebAPI.Controllers
         [HttpGet("Get/{id}")]
         public IActionResult GetByPrimaryKey(int p_id){
             try{
-                return Ok(_repo.GetByPrimaryKey(p_id));
+                return Ok(_repo.GetById(p_id));
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Invalid Assessment Get request.");
@@ -53,7 +52,7 @@ namespace WebAPI.Controllers
         [HttpDelete("Delete/{p_id}")]
         public IActionResult Delete(int p_id){
             try{
-                var topic = _repo.GetByPrimaryKey(p_id);
+                var topic = _repo.GetById(p_id);
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();

@@ -103,7 +103,7 @@ namespace Tests
             using (var context = new CloudCureDbContext(_options))
             {
                 IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
-                EmployeeInformation employee = repo.GetByPrimaryKey(1);
+                EmployeeInformation employee = repo.GetById(1);
                 repo.Delete(employee);
                 List<EmployeeInformation> test = repo.GetAll().ToList();
 
@@ -122,7 +122,7 @@ namespace Tests
                 employee.Specialization = "Proctology";
                 employee.UserProfile.CovidAssesments[0].question1 = false;
                 repo.Update(employee);
-                EmployeeInformation test = repo.GetByPrimaryKey(1);
+                EmployeeInformation test = repo.GetById(1);
 
                 Assert.Equal("Jim", test.UserProfile.FirstName);
                 Assert.Equal("Proctology", test.Specialization);

@@ -38,7 +38,7 @@ namespace Data
         /// </summary>
         /// <param name="query">Table primary key (int)</param>
         /// <returns>TEntity[id]</returns>
-        public TEntity GetByPrimaryKey(int query)
+        public TEntity GetById(int query)
         {
             return _context.Set<TEntity>().Find(query);
         }

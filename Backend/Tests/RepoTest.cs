@@ -25,7 +25,7 @@ namespace Tests
             using (var context = new CloudCureDbContext(_options))
             {
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
-                var result = repository.GetByPrimaryKey(1);
+                var result = repository.GetById(1);
 
                 Assert.Equal(true, result.question1);
             }
@@ -45,7 +45,7 @@ namespace Tests
                 repository.Create(newCovid);
                 repository.Save();
 
-                Assert.Equal(newCovid.question1, repository.GetByPrimaryKey(3).question1);
+                Assert.Equal(newCovid.question1, repository.GetById(3).question1);
                 
             }
         }
@@ -69,7 +69,7 @@ namespace Tests
             using (var context = new CloudCureDbContext(_options))
             {
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
-                var testCovid = repository.GetByPrimaryKey(1);
+                var testCovid = repository.GetById(1);
                 testCovid.question1 = false;
                 repository.Update(testCovid);
                 repository.Save();
@@ -84,7 +84,7 @@ namespace Tests
             using (var context = new CloudCureDbContext(_options))
             {
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
-                var testCovid = repository.GetByPrimaryKey(1);
+                var testCovid = repository.GetById(1);
                 repository.Delete(testCovid);
                 repository.Save();
 
