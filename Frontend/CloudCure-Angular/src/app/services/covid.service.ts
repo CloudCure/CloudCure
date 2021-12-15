@@ -7,7 +7,7 @@ import { CovidVerify } from '../AngularModels/CovidVerify';
 })
 export class CovidService {
 
-  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/Covid";
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/Covid";
   constructor(private http:HttpClient) {} 
 
   ////////////// Covid //////////////
