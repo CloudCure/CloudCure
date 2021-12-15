@@ -8,7 +8,7 @@ using Serilog;
 
 namespace WebAPI.Controllers
 {
-    [Route("Patient")]
+    [Route("[Controller]")]
     [ApiController]
     public class PatientController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
             _allergy = p_allergy;
         }
         // GET: Patient/All
-        [HttpGet("All")] //("All") Will give and endpoint that ends with All
+        [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
         public IActionResult GetAllPatient()
         {
             try
@@ -37,7 +37,7 @@ namespace WebAPI.Controllers
         }
 
         // GET Patient/Id
-        [HttpGet("{p_id}")]
+        [HttpGet("Get/{p_id}")]
         public IActionResult GetPatientById(int p_id)
         {
             try
@@ -52,14 +52,14 @@ namespace WebAPI.Controllers
         }
 
         // POST Patient/Add
-        [HttpPost("add")]
+        [HttpPost("Add")]
         public IActionResult AddPatient([FromBody] Patient p_patient)
         {
             try
             {
                 _repo.Create(p_patient);
                 _repo.Save();
-                return Created("patient/add", p_patient);
+                return Created("Patient/Add", p_patient);
 
             }
             catch (Exception e)
@@ -70,7 +70,7 @@ namespace WebAPI.Controllers
         }
 
         // PUT Patient/Edit
-        [HttpPut("edit/{id}")]
+        [HttpPut("Update/{id}")]
         public IActionResult UpdatePatient([FromBody] Patient p_patient)
         {
             try
@@ -87,7 +87,7 @@ namespace WebAPI.Controllers
         }
 
         // DELETE Patient/Id
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("Delete/{id}")]
         public IActionResult DeletePatient([FromBody] Patient p_patient)
         {
             try

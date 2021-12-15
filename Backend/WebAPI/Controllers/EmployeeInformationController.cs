@@ -7,13 +7,12 @@ using Serilog;
 
 namespace WebAPI
 {
-    [Route("Employee")]
+    [Route("[Controller]")]
     [ApiController]
     public class EmployeeInformationController : Controller
     {
         //Dependency Injection
         private readonly IEmployeeInformationRepository _repo;
-
         public EmployeeInformationController(IEmployeeInformationRepository p_repo) { _repo = p_repo; }
 
         // GET: Employee/Get/All
@@ -69,7 +68,7 @@ namespace WebAPI
             {
                 _repo.Create(p_employee);
                 _repo.Save();
-                return Ok();
+                return Created("Employee/Add", p_employee);
             }
             catch (Exception e)
             {

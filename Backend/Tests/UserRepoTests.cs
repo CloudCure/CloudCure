@@ -30,11 +30,11 @@ namespace Tests
                 Assert.NotNull(result);
                 Assert.Equal("John", result.FirstName);
                 Assert.Equal("Doctor", result.Role.RoleName);
-                Assert.Equal(true, result.CovidAssesments[0].question1);
+                Assert.True(result.CovidAssesments[0].question1);
             }
         }
 
-        public void Seed()
+        void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {

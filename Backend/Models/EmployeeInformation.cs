@@ -23,6 +23,7 @@ namespace Models{
         [Required]
         public string EducationDegree {get; set;}
 
+        public int UserProfileId { get; set; }
         public User UserProfile { get; set; }
     }
 }

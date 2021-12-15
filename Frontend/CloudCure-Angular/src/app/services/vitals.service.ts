@@ -7,7 +7,7 @@ import { Vitals } from '../AngularModels/Vitals';
 })
 export class VitalsService {
 
-  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/Vitals";
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/Vitals";
   constructor(public http:HttpClient) { }
 
   ////////////// Vitals //////////////

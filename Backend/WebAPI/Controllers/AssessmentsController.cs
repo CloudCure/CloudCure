@@ -6,7 +6,7 @@ using Serilog;
 
 namespace WebAPI.Controllers
 {
-    [Route("assessment")]
+    [Route("[Controller]")]
     [ApiController]
     public class AssessmentController : ControllerBase
     {
@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
             try{
                 _repo.Create(p_Assessment);
                 _repo.Save();
-                return Ok();
+                return Created("Assessment/Add", p_Assessment);
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Invalid Assessment Add Request.");

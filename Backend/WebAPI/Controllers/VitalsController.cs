@@ -6,7 +6,7 @@ using Serilog;
 
 namespace WebAPI.Controllers
 {
-    [Route("api/[Controller]")]
+    [Route("[Controller]")]
     [ApiController]
     public class VitalsController : ControllerBase
     {
@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
             {
                 _repo.Create(p_vitals);
                 _repo.Save();
-                return Ok();
+                return Created("Vitals/Add", p_vitals);
             }
             catch (Exception e)
             {

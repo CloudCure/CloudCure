@@ -8,17 +8,17 @@ using Serilog;
 
 namespace WebAPI.Controllers
 {
-    [Route("allergy")]
+    [Route("[Controller]")]
     [ApiController]
     public class AllergyController : ControllerBase
     {
-
         private readonly IAllergyRepository _repo;
 
         public AllergyController(IAllergyRepository p_repo)
         {
             _repo = p_repo;
         }
+        
         // GET: Allergy/Get/All
         [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
         public IActionResult GetAll(){
@@ -29,6 +29,7 @@ namespace WebAPI.Controllers
                 return BadRequest("Failed to update");
             }
         }
+
         [HttpGet("Get/{p_id}")]
         public IActionResult GetById(int p_id){
             try{
@@ -66,12 +67,12 @@ namespace WebAPI.Controllers
         }
 
         // POST: Allergy/Add
-        [HttpPost("add")]
+        [HttpPost("Add")]
         public IActionResult Add([FromBody] Allergy p_allergy){
             try{
                 _repo.Create(p_allergy);
                 _repo.Save();
-                return Ok();
+                return Created("Allergy/Add", p_allergy);
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Failed to add allergy");

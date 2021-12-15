@@ -7,7 +7,7 @@ using Serilog;
 namespace WebAPI.Controllers
 {
 
-    [Route("User")]
+    [Route("[Controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
             {
                 _repo.Create(p_user);
                 _repo.Save();
-                return Ok();
+                return Created("User/Add", p_user);
             }
             catch (Exception e)
             {
