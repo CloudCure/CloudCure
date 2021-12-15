@@ -1,20 +1,10 @@
 # Cloud Cure
 
 ## Published at Microsoft Azure App Services
-[Insert azure link here]
+[https://cloudcure-client.azurewebsites.net/]
 
 ## Description
-Cloud Cure is a Web App which will allow a user to register as a nurse or a doctor, and provide patients with a medical diagnosis.
-The Database is MS SQL provided by Microsoft Azure.   
-You will be able to: 
-
-- Register an account as a doctor or nurse.
-- Login to an account.
-- View a main page.
-- Fill out a patient diagnosis form.
-- Print out a patient diagnosis form.
-- Submit a form stating if you have or have had Covid-19.
-- View a profile page.
+Cloud Cure is a Web App which will allow a user to register as a nurse or a doctor, and provide patients with a medical diagnosis. At Cloud Cure nurses will be able to login and fill out patient diagnosis forms. Doctors will be able to login and finalize patient diagnosis forms. Afterwards a nurse/doctor will be able to print out the patient diagnosis form in order to provide continuous support for the patient.
 
 ## User Story
 I work in a hospital and give patient diagnosis,   

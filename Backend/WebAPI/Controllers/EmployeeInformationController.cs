@@ -7,16 +7,17 @@ using Models;
 using Data;
 using Serilog;
 
-namespace WebAPI 
-{
 
-    [Route("api/[Controller]")]
+namespace WebAPI {
+    [Route("Employee")]
     [ApiController]
     public class EmployeeInformationController : Controller
     {
+        //Dependency Injection
         private readonly IEmployeeInformationRepository _repo;
 
         public EmployeeInformationController(IEmployeeInformationRepository p_repo){_repo = p_repo;}
+
 
         // GET: Employee/Get/All
         [HttpGet("Get/All")]
@@ -50,6 +51,7 @@ namespace WebAPI
                 return BadRequest("Not a current user");
             }
         }
+
 
         // POST Employee/Add
         [HttpPost("Add")]

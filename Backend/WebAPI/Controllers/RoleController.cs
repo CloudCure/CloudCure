@@ -19,6 +19,7 @@ namespace WebAPI.Controllers
 
         public RoleController(IRoleRepository p_repo){_repo = p_repo;}
 
+
         // GET: Role/Get/All
         [HttpGet("Get/All")]
         public IActionResult GetAll(){
@@ -53,7 +54,6 @@ namespace WebAPI.Controllers
                 return BadRequest("Invalid input.");
             }
         }
-
 
         // PUT: Role/Update/Id
         [HttpPut("Update/{id}")]

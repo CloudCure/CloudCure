@@ -5,12 +5,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Models;
 using Data;
+using System;
+
 using Serilog;
 
 namespace WebAPI.Controllers
 {
 
-    [Route("api/[Controller]")]
+
+    [Route("User")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -81,7 +84,5 @@ namespace WebAPI.Controllers
                 return BadRequest("Not a valid Id");
             }
         }
-
-        
     }
 }
