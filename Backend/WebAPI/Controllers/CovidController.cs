@@ -11,87 +11,66 @@ namespace WebAPI.Controllers
     public class CovidController : ControllerBase
     {
         private readonly ICovidRepository _repo;
-
         public CovidController(ICovidRepository p_repo) { _repo = p_repo; }
 
-        // GET: api/covid/Get/All
+        // GET: Covid/Get/All
         [HttpGet("Get/All")]
-        public IActionResult GetAll()
-        {
-            try
-            {
+        public IActionResult GetAll(){
+            try{
                 return Ok(_repo.GetAll());
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Invalid get all request.");
             }
         }
 
-        // GET api/covid/Get/{p_id}
+        // GET: Covid/Get/{p_id}
         [HttpGet("Get/{id}")]
-        public IActionResult GetByPrimaryKey(int p_id)
-        {
-            try
-            {
+        public IActionResult GetById(int p_id){
+            try{
                 return Ok(_repo.GetByPrimaryKey(p_id));
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Not a valid ID");
             }
         }
 
-        //POST covid/add 
+        //POST: Covid/Add 
         [HttpPost("Add")]
-        public IActionResult Add([FromBody] CovidVerify p_covid)
-        {
-            try
-            {
+        public IActionResult Add([FromBody] CovidVerify p_covid){
+            try{
                 _repo.Create(p_covid);
                 _repo.Save();
                 return Ok();
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Invalid create form.");
             }
         }
 
-        // DELETE covid/delete/{p_id}
+        // DELETE: Covid/Delete/{p_id}
         [HttpDelete("Delete/{p_id}")]
-        public IActionResult Delete(int p_id)
-        {
-            try
-            {
+        public IActionResult Delete(int p_id){
+            try{
                 var topic = _repo.GetByPrimaryKey(p_id);
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Not a valid ID");
             }
         }
 
-        // PUT api/covid/update/{id}
+        // PUT: Covid/Update/{id}
         [HttpPut("Update/{id}")]
-        public IActionResult Update(int id, [FromBody] CovidVerify p_covid)
-        {
-            try
-            {
+        public IActionResult Update(int id, [FromBody] CovidVerify p_covid){
+            try{
                 p_covid.Id = id;
                 _repo.Update(p_covid);
                 _repo.Save();
                 return Ok();
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Invalid put request.");
             }

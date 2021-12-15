@@ -6,7 +6,7 @@ using Serilog;
 
 namespace WebAPI.Controllers
 {
-    [Route("assessment")]
+    [Route("Assessment")]
     [ApiController]
     public class AssessmentController : ControllerBase
     {
@@ -14,7 +14,7 @@ namespace WebAPI.Controllers
 
         public AssessmentController(IAssessmentRepository p_repo) { _repo = p_repo; }
 
-        // GET: api/Assessment/Get/All
+        // GET: Assessment/Get/All
         [HttpGet("Get/All")]
         public IActionResult GetAll(){
             try{
@@ -24,8 +24,7 @@ namespace WebAPI.Controllers
                 return BadRequest("Invalid get all Assessment request.");
             }
         }
-
-        // GET api/Assessment/Get/{p_id}
+        // GET: Assessment/Get/{p_id}
         [HttpGet("Get/{id}")]
         public IActionResult GetByPrimaryKey(int p_id){
             try{
@@ -35,8 +34,7 @@ namespace WebAPI.Controllers
                 return BadRequest("Invalid Assessment Get request.");
             }
         }
-
-        //POST api/Assessment/add 
+        //POST: Assessment/Add 
         [HttpPost("Add")]
         public IActionResult Add([FromBody] Assessment p_Assessment){ 
             try{
@@ -48,8 +46,7 @@ namespace WebAPI.Controllers
                 return BadRequest("Invalid Assessment Add Request.");
             }
         }
-
-        // DELETE api/delete/{p_id}
+        // DELETE: Assessment/Delete/{p_id}
         [HttpDelete("Delete/{p_id}")]
         public IActionResult Delete(int p_id){
             try{
@@ -62,8 +59,7 @@ namespace WebAPI.Controllers
                 return BadRequest("Invalid Assessment Delete request.");
             }
         }
-
-        // PUT api/Assessment/update/{id}
+        // PUT: Assessment/update/{id}
         [HttpPut("Update/{id}")]
         public IActionResult Update(int id, [FromBody] Assessment p_Assessment){ 
             try{

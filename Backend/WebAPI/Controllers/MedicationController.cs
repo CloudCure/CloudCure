@@ -4,84 +4,63 @@ using Models.Diagnosis;
 using System;
 using Serilog;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace WebAPI.Controllers
 {
-    [Route("medication")]
+    [Route("Medication")]
     [ApiController]
     public class MedicationController : ControllerBase
     {
-        private readonly IRepository<Medication> medicationRepository;
+        private readonly IRepository<Medication> _repo;
+        public MedicationController(IRepository<Medication> p_repo){_repo = p_repo;}
 
-        public MedicationController(IRepository<Medication> context)
-        {
-            medicationRepository = context;
-        }
-
-        // GET: medication/All
-        [HttpGet("all")] //("All") Will give and endpoint that ends with All
-        public IActionResult GetAllMedication()
-        {
-            try
-            {
-                return Ok(medicationRepository.GetAll());
-            }
-            catch (Exception e)
-            {
+        // GET: Medication/All
+        [HttpGet("All")]
+        public IActionResult GetAllMedication(){
+            try{
+                return Ok(_repo.GetAll());
+            }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
         }
 
-        // DELETE Medication/delete/Id
-        [HttpDelete("delete/{id}")]
-        public IActionResult DeleteMedication([FromBody] Medication p_medication)
-        {
-            try
-            {
-                medicationRepository.Delete(p_medication);
-                medicationRepository.Save();
+        // DELETE: Medication/Delete/Id
+        [HttpDelete("Delete/{id}")]
+        public IActionResult DeleteMedication([FromBody] Medication p_medication){
+            try{
+                _repo.Delete(p_medication);
+                _repo.Save();
                 return Ok();
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("Failed to delete Medication");
             }
         }
 
-        // PUT Medication/Edit
-        [HttpPut("edit/{id}")]
-        public IActionResult UpdateMedication([FromBody] Medication p_medication)
-        {
-            try
-            {
-                medicationRepository.Update(p_medication);
-                medicationRepository.Save();
+        // PUT: Medication/Update/Id
+        [HttpPut("Update/{id}")]
+        public IActionResult UpdateMedication(int id, [FromBody] Medication p_medication){
+            try{
+                p_medication.Id = id;
+                _repo.Update(p_medication);
+                _repo.Save();
                 return Ok();
-            }
-            catch (Exception e)
-            {
+            }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
         }
 
-        // POST Medication/Add
-        [HttpPost("add")]
-        public IActionResult AddMedication([FromBody] Medication p_medication)
-        {
-            try
-            {
-                medicationRepository.Create(p_medication);
-                medicationRepository.Save();
-                return Created("allergy/add", p_medication);
-            }
-            catch (Exception e)
-            {
+        // POST: Medication/Add
+        [HttpPost("Add")]
+        public IActionResult AddMedication([FromBody] Medication p_medication){
+            try{
+                _repo.Create(p_medication);
+                _repo.Save();
+                return Ok();
+            }catch (Exception e){
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("Failed to Add Medication");
             }
         }
     }

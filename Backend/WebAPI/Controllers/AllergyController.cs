@@ -8,19 +8,15 @@ using Serilog;
 
 namespace WebAPI.Controllers
 {
-    [Route("allergy")]
+    [Route("Allergy")]
     [ApiController]
     public class AllergyController : ControllerBase
     {
-
         private readonly IAllergyRepository _repo;
+        public AllergyController(IAllergyRepository p_repo){ _repo = p_repo;}
 
-        public AllergyController(IAllergyRepository p_repo)
-        {
-            _repo = p_repo;
-        }
         // GET: Allergy/Get/All
-        [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
+        [HttpGet("Get/All")]
         public IActionResult GetAll(){
             try{
                 return Ok(_repo.GetAll());
@@ -29,6 +25,7 @@ namespace WebAPI.Controllers
                 return BadRequest("Failed to update");
             }
         }
+        // GET: Allergy/Get/Id
         [HttpGet("Get/{p_id}")]
         public IActionResult GetById(int p_id){
             try{
@@ -38,7 +35,6 @@ namespace WebAPI.Controllers
                 return BadRequest("Failed to get allergy by id");
             }
         }
-
         // DELETE: Allergy/Delete/Id
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete([FromBody] Allergy p_allergy){
@@ -51,8 +47,7 @@ namespace WebAPI.Controllers
                 return BadRequest("Failed to delete allergy");
             }
         }
-
-        // PUT Allergy/Edit
+        // PUT: Allergy/Update
         [HttpPut("Update/{id}")]
         public IActionResult Update([FromBody] Allergy p_allergy){
             try{
@@ -66,7 +61,7 @@ namespace WebAPI.Controllers
         }
 
         // POST: Allergy/Add
-        [HttpPost("add")]
+        [HttpPost("Add")]
         public IActionResult Add([FromBody] Allergy p_allergy){
             try{
                 _repo.Create(p_allergy);
