@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
         }
 
         // DELETE Condition/delete/Id
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("Delete/{id}")]
         public IActionResult DeleteCondition([FromBody] Condition p_condition)
         {
             try
@@ -62,7 +62,7 @@ namespace WebAPI.Controllers
         }
 
         // PUT Condition/Edit
-        [HttpPut("edit/{id}")]
+        [HttpPut("Update/{id}")]
         public IActionResult UpdateCondition([FromBody] Condition p_condition)
         {
             try
@@ -80,14 +80,14 @@ namespace WebAPI.Controllers
         }
 
         // POST Condition/Add
-        [HttpPost("add")]
+        [HttpPost("Add")]
         public IActionResult AddCondition([FromBody] Condition p_condition)
         {
             try
             {
                 conditionRepository.Create(p_condition);
                 conditionRepository.Save();
-                return Created("Condition/add", p_condition);
+                return Created("Condition/Add", p_condition);
             }
             catch (Exception e)
             {

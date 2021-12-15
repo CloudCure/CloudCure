@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
         }
 
         // DELETE surgery/delete/Id
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("Delete/{id}")]
         public IActionResult DeleteSurgery([FromBody] Surgery p_surgery)
         {
             try
@@ -61,7 +61,7 @@ namespace WebAPI.Controllers
         }
 
         // PUT surgery/Edit
-        [HttpPut("edit/{id}")]
+        [HttpPut("Update/{id}")]
         public IActionResult UpdateSurgery([FromBody] Surgery p_surgery)
         {
             try
@@ -79,14 +79,14 @@ namespace WebAPI.Controllers
         }
 
         // POST surgery/Add
-        [HttpPost("add")]
+        [HttpPost("Add")]
         public IActionResult AddSurgery([FromBody] Surgery p_surgery)
         {
             try
             {
                 surgeryRepository.Create(p_surgery);
                 surgeryRepository.Save();
-                return Created("Surgery/add", p_surgery);
+                return Created("Surgery/Add", p_surgery);
             }
             catch (Exception e)
             {
