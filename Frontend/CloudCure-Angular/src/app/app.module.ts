@@ -34,7 +34,7 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     PrintComponent,
     DarkmodeDirective,
     DiagnosisVitalsComponent,
-    AssessmentComponent
+    AssessmentComponent,
     DiagnosisAllergyComponent,
     TextBoxComponent,
     DiagnosisConditionComponent,

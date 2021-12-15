@@ -24,7 +24,7 @@ namespace Data
                     .Include(p => p.CurrentMedications)
                     .Include(p => p.Surgeries)
                     .Include(p => p.Allergies)
-                    .Include(p => p.CovidAssesments)
+                    .Include(p => p.UserProfile.CovidAssesments)
                     .Single(p => p.Id.Equals(query));
 
             return patient;

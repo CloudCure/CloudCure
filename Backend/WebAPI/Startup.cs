@@ -29,6 +29,11 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<CloudCureDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("database")));
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEmployeeInformationRepository, EmployeeInformationRepository>();
+            services.AddScoped<ICovidRepository, CovidRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

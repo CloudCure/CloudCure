@@ -117,19 +117,6 @@ namespace Tests.Diagnosis
                                 HistoryOfPresentIllness = "dssdfs"
                             }
                         },
-                        CovidAssesments = new List<CovidVerify>()
-                        {
-                            new CovidVerify{
-                                UsersId = 1,
-                                question1 = true,
-                                question2 = true,
-                                question3 = false,
-                                question4 = true,
-                                question5 = true
-                            }
-                        }
-
-                        
                     }
 
                 );
