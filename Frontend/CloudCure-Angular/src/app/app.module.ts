@@ -19,6 +19,11 @@ import { ProfileService } from './services/profile.service';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { HomeComponent } from './home/home.component';
 
+import { CheckboxModule } from 'primeng/checkbox';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { AssessmentComponent } from './assessment/assessment.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,29 +39,32 @@ import { HomeComponent } from './home/home.component';
     ProfileComponent,
     HeaderComponent,
     FooterComponent,
-    BottomNavbarComponent
+    BottomNavbarComponent,
+    AssessmentComponent,
   ],
 
   imports: [
     HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    CheckboxModule,
+    FormsModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
-      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
+      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq',
     }),
     RouterModule.forRoot([
-      { path: "verification", component: VerificationComponent },
-      { path: "profile", component: ProfileComponent },
+      { path: 'verification', component: VerificationComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: 'diagnosis', component: DiagnosisComponent },
       { path: 'print', component: PrintComponent },
       { path: 'body-clicker', component: BodyClickerComponent },
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
-      { path: "**", component: HomeComponent }
-    ])
+      { path: 'assessment', component: AssessmentComponent },
+      { path: '**', component: HomeComponent },
+    ]),
   ],
-  providers: [
-    ProfileService,
-  ],
-  bootstrap: [AppComponent]
+  providers: [ProfileService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
