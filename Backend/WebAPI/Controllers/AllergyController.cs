@@ -14,10 +14,7 @@ namespace WebAPI.Controllers
     {
         private readonly IAllergyRepository _repo;
 
-        public AllergyController(IAllergyRepository p_repo)
-        {
-            _repo = p_repo;
-        }
+        public AllergyController(IAllergyRepository p_repo){_repo = p_repo;}
         
         // GET: Allergy/Get/All
         [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
@@ -33,7 +30,7 @@ namespace WebAPI.Controllers
         [HttpGet("Get/{p_id}")]
         public IActionResult GetById(int p_id){
             try{
-                return Ok(_repo.GetByPrimaryKey(p_id));
+                return Ok(_repo.GetById(p_id));
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Failed to get allergy by id");

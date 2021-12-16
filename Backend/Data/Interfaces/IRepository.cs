@@ -7,7 +7,7 @@ namespace Data
         void Create(TEntity entity);
         void Delete(TEntity entity);
         IEnumerable<TEntity> GetAll();
-        TEntity GetByPrimaryKey(int query);
+        TEntity GetById(int query);
         void Save();
         void Update(TEntity entity);
     }

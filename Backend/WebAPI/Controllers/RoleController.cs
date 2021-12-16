@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         [HttpGet("Get/{p_id}")]
         public IActionResult GetById(int p_id){
             try{
-                return Ok(_repo.GetByPrimaryKey(p_id));
+                return Ok(_repo.GetById(p_id));
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Not a valid ID");
