@@ -24,13 +24,14 @@ export class ProfileComponent implements OnInit {
     id: 0
 
   };
-  employee:EmployeeInformation | undefined={
+  employee:EmployeeInformation={
   WorkEmail: "string",
   Specialization: "string",
   StartDate: "string",
   RoomNumber: "string",
   EducationDegree: "string",
-  user: undefined
+  user: undefined,
+  UserProfile: undefined
   }
 
   email:string | undefined = '';
