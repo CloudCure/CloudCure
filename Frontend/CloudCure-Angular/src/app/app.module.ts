@@ -79,7 +79,7 @@ import { PatientIntakePageComponent } from './patient-intake-page/patient-intake
       { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent },
       { path: 'text-box', component: TextBoxComponent },
       { path: 'register', component:RegisterComponent},
-      { path: 'patient', component: PatientComponent },
+      { path: 'patient', component: PatientIntakePageComponent },
       { path: "**", component: HomeComponent }
     ])
   ],

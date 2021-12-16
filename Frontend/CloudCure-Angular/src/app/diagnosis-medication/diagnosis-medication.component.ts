@@ -1,4 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Medication } from '../AngularModels/Medication';
+
 
 @Component({
   selector: 'diagnosis-medication',
@@ -8,10 +10,10 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 export class DiagnosisMedicationComponent implements OnInit {
 
   display: boolean = false;
-  
-  @Input('medications') medications: string[] = [''];
 
-  @Output('medications') medicationsChange = new EventEmitter<string[]>();
+  @Input('medications') medications: Medication[] = [];
+
+  @Output('medications') medicationsChange = new EventEmitter<Medication[]>();
 
   constructor() { }
 

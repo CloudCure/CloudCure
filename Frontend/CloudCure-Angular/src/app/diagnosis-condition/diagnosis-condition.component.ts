@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Condition } from '../AngularModels/Condition';
 
 @Component({
   selector: 'diagnosis-condition',
@@ -9,10 +10,10 @@ import { Router } from '@angular/router';
 export class DiagnosisConditionComponent implements OnInit {
 
   display: boolean = false;
-  
-  @Input('conditions') conditions: string[] = [''];
 
-  @Output('conditions') conditionsChange = new EventEmitter<string[]>();
+  @Input('conditions') conditions: Condition[] = [];
+
+  @Output('conditions') conditionsChange = new EventEmitter<Condition[]>();
 
   constructor() { }
 

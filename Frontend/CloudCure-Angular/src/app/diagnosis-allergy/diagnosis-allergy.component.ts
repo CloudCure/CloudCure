@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Allergy } from '../AngularModels/Allergy';
 
 @Component({
   selector: 'diagnosis-allergy',
@@ -8,10 +9,10 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 export class DiagnosisAllergyComponent implements OnInit {
   
   display: boolean = false;
-  
-  @Input('allergies') allergies: string[] = [''];
 
-  @Output('allergies') allergiesChange = new EventEmitter<string[]>();
+  @Input('allergies') allergies: Allergy[] = [];
+
+  @Output('allergies') allergiesChange = new EventEmitter<Allergy[]>();
   
   constructor() { }
 
