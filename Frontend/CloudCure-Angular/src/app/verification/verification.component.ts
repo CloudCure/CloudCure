@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, FormControlName, ReactiveFormsModule } from '@angular/forms';
+import { CovidService } from 'src/app/services/covid.service';
+import { Router } from '@angular/router';
+import { CovidVerify } from '../AngularModels/CovidVerify';
 
 
 
@@ -10,7 +13,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 })
 export class VerificationComponent implements OnInit {
 
-  verifiGroup: FormGroup = new FormGroup({
+  verifyGroup: FormGroup = new FormGroup({
     'question1': new FormControl(),
     'question2': new FormControl(),
     'question3': new FormControl(),
@@ -20,15 +23,37 @@ export class VerificationComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router, private covidService: CovidService) {
 
-   }
+  }
 
   ngOnInit(): void {
 
-    }
-
-    submitForm(){
-      console.log(this.verifiGroup.value);
-    }
   }
+
+  submitForm(verifyGroup: FormGroup) {
+
+
+    if (verifyGroup.valid) {
+
+      let covidInfo: CovidVerify = {
+        Id: verifyGroup.get("ID")?.value,
+        UsersId: verifyGroup.get("usersID")?.value,
+        question1: verifyGroup.get("question1")?.value,
+        question2: verifyGroup.get("question2")?.value,
+        question3: verifyGroup.get("question3")?.value,
+        question4: verifyGroup.get("question4")?.value,
+        question5: verifyGroup.get("question5")?.value,
+      }
+      this.covidService.Add(covidInfo).subscribe(
+        (response) => {
+          console.log(response);
+        }
+      )
+      // console.log(this.verifiGroup.value);
+    }
+    this.router.navigateByUrl("/**");
+
+
+  }
+}
