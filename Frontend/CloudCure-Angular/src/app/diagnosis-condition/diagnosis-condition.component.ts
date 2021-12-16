@@ -10,12 +10,16 @@ import { Condition } from '../AngularModels/Condition';
 export class DiagnosisConditionComponent implements OnInit {
 
   display: boolean = false;
+  
+  condition_names: string[] = ['Asthma', 'Cancer', 'Diabetes', 'Heart Disease', 'High Blood Pressure', 'High Cholesterol', 'Kidney Disease', 'Liver Disease', 'Stroke', 'Thyroid Disease'];
 
-  @Input('conditions') conditions: Condition[] = [];
+  @Input('conditions') conditions: Condition[]|undefined = [];
 
   @Output('conditions') conditionsChange = new EventEmitter<Condition[]>();
 
-  constructor() { }
+  constructor() { 
+    this.conditions = [];
+  }
 
   ngOnInit(): void {
   }

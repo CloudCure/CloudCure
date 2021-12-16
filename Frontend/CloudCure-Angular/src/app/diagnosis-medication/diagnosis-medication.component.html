@@ -2,6 +2,6 @@
     <button (click)="display = !display">Add Medications</button>
     <br>
     <ng-container *ngIf="display">
-        <app-text-box [boxes]="medications"></app-text-box>
+        <app-text-box [boxes]="medication_names"></app-text-box>
     </ng-container>
 </div>

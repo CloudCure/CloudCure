@@ -11,11 +11,15 @@ export class DiagnosisSurgeriesComponent implements OnInit {
 
   display: boolean = false;
 
-  @Input('surgeries') surgeries: Surgery[] = [];
+  surgery_names:string[] = ['appendectomy', ''];
+
+  @Input('surgeries') surgeries: Surgery[]|undefined = [];
 
   @Output('surgeries') surgeriesChange = new EventEmitter<Surgery[]>();
 
-  constructor() { }
+  constructor() { 
+    this.surgeries = [];
+  }
 
   ngOnInit(): void {
   }

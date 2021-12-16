@@ -10,11 +10,15 @@ export class DiagnosisAllergyComponent implements OnInit {
   
   display: boolean = false;
 
-  @Input('allergies') allergies: Allergy[] = [];
+  allergy_names:string[] = ['Treenuts', 'Iodine', ''];
+
+  @Input('allergies') allergies: Allergy[]|undefined = [];
 
   @Output('allergies') allergiesChange = new EventEmitter<Allergy[]>();
   
-  constructor() { }
+  constructor() { 
+    this.allergies = [];
+  }
 
   ngOnInit(): void {
   }

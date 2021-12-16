@@ -1,8 +1,9 @@
 <body>
     <div class="header">
-        <h1>REGISTRATION FORM</h1>
+        <h1 class="text-center">REGISTRATION FORM</h1>
     </div>
     <div class="container">
+        <div class="text-center">
         <app-patient          [patient]="basicpatient"></app-patient>
         <diagnosis-condition  [conditions]="basicpatient.Conditions"></diagnosis-condition>
         <diagnosis-allergy    [allergies]="basicpatient.Allergies"></diagnosis-allergy>
@@ -10,5 +11,6 @@
         <diagnosis-medication [medications]="basicpatient.CurrentMedications"></diagnosis-medication>
         <br>
         <button type="submit" class="btn btn-dark" (click)="RegisterPatient()">Register</button>
+        </div>
     </div>
 </body>
