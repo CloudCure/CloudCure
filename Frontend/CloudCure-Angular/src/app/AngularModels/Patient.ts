@@ -4,13 +4,15 @@ import { Condition } from "./Condition";
 import { Medication } from "./Medication";
 import { Surgery } from "./Surgery";
 import { Vitals } from "./Vitals";
+import { UserProfile } from "./UserProfile";
 
 export interface Patient 
 {
     PatientId?:          number;
-    PatientName:         string;
-    PatientPhone:        string;
-    PatientAddress:      string;
+    UserProfile:         UserProfile;
+    PatientName?:         string;
+    PatientPhone?:        string;
+    PatientAddress?:      string;
     DateOfBirth?:        Date;
     Conditions?:         Condition[];
     Allergies?:          Allergy[];

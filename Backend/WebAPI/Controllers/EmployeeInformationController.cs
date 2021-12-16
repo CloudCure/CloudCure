@@ -36,7 +36,7 @@ namespace WebAPI
         {
             try
             {
-                return Ok(_repo.GetById(p_id));
+                return Ok(_repo.GetEmployeeInformationById(p_id));
             }
             catch (Exception e)
             {

@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
         this.userApi.Add(UserInfo).subscribe(
           (response) => {
             console.log(response);
-            console.log(response.id);
+            //console.log(response.id);
             let EmployeeInfo: EmployeeInformation = {
               UserProfileId: response.id,
               WorkEmail: this.email,

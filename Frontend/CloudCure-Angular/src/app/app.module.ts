@@ -24,6 +24,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
+import { PatientComponent } from './patient/patient.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,6 @@ import { AuthGuardService } from './services/auth-guard.service';
     TextBoxComponent,
     DiagnosisConditionComponent,
     // patientdiagnosis,
-
     DiagnosisVitalsComponent,
     VerificationComponent,
     NavbarComponent,
@@ -48,7 +48,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     BottomNavbarComponent,
     DiagnosisSurgeriesComponent,
     DiagnosisMedicationComponent,
-    RegisterComponent
+    RegisterComponent,
+    PatientComponent
   ],
 
   imports: [
@@ -72,6 +73,7 @@ import { AuthGuardService } from './services/auth-guard.service';
       { path: 'assessment', component: AssessmentComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'text-box', component: TextBoxComponent, canActivate:[AuthGuardService] },
+      { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'register', component:RegisterComponent },
       { path: "home", component: HomeComponent },
       { path: "**", component: HomeComponent }
