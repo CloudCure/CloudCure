@@ -54,6 +54,8 @@ namespace WebAPI.Controllers
         [HttpPut("Update/{id}")]
         public IActionResult Update(int id, [FromBody] Allergy p_allergy){
             try{
+                var allergy = _repo.GetById(id);
+                
                 _repo.Update(p_allergy);
                 _repo.Save();
                 return Ok();
