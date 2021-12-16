@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Models;
 using Data;
 using Serilog;
@@ -10,7 +7,7 @@ using Serilog;
 namespace WebAPI.Controllers
 {
 
-    [Route("api/[Controller]")]
+    [Route("[Controller]")]
     [ApiController]
     public class RoleController : ControllerBase
     {
@@ -18,7 +15,6 @@ namespace WebAPI.Controllers
         private readonly IRoleRepository _repo;
 
         public RoleController(IRoleRepository p_repo){_repo = p_repo;}
-
 
         // GET: Role/Get/All
         [HttpGet("Get/All")]
@@ -32,10 +28,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: Role/Get/Id
-        [HttpGet("Get/{p_id}")]
-        public IActionResult GetById(int p_id){
+        [HttpGet("Get/{id}")]
+        public IActionResult GetById(int id){
             try{
-                return Ok(_repo.GetByPrimaryKey(p_id));
+                return Ok(_repo.GetById(id));
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Not a valid ID");
@@ -48,7 +44,7 @@ namespace WebAPI.Controllers
             try{
                 _repo.Create(p_role);
                 _repo.Save();
-                return Ok();
+                return Created("Role/Add", p_role);
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Invalid input.");
@@ -57,7 +53,7 @@ namespace WebAPI.Controllers
 
         // PUT: Role/Update/Id
         [HttpPut("Update/{id}")]
-        public IActionResult Update([FromBody] Role p_role){
+        public IActionResult Update(int id, [FromBody] Role p_role){
             try{
                 _repo.Update(p_role);
                 _repo.Save();

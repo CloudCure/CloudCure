@@ -2,20 +2,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Serilog;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace WebAPI.Controllers
 {
-    [Route("Patient")]
+    [Route("[Controller]")]
     [ApiController]
     public class PatientController : ControllerBase
     {
-
-
         //Dependency injection
         private readonly IPatientRepository _repo;
         private readonly IAllergyRepository _allergy;
@@ -26,8 +22,8 @@ namespace WebAPI.Controllers
             _allergy = p_allergy;
         }
         // GET: Patient/All
-        [HttpGet("All")] //("All") Will give and endpoint that ends with All
-        public IActionResult GetAllPatient()
+        [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
+        public IActionResult GetAll()
         {
             try
             {
@@ -35,92 +31,76 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-
-                //Log.Error(e.Message);
-                return BadRequest("Nothing returned");
+                Log.Error(e.Message);
+                return BadRequest("Invalid get all patients request.");
             }
-            
-            
         }
 
         // GET Patient/Id
-        [HttpGet("{p_id}")]
-        public IActionResult GetPatientById(int p_id)
+        [HttpGet("Get/{id}")]
+        public IActionResult GetById(int id)
         {
             try
             {
-                return Ok(_repo.GetByPrimaryKey(p_id));
+                return Ok(_repo.GetById(id));
             }
             catch (Exception e)
             {
-                //Log.Error(e.Message);
-                return BadRequest("Not a valid search id");
+                Log.Error(e.Message);
+                return BadRequest("Invalid get patient by id request.");
             }
         }
 
         // POST Patient/Add
-        [HttpPost("add")]
-        public IActionResult AddPatient([FromBody] Patient p_patient)
+        [HttpPost("Add")]
+        public IActionResult Add([FromBody] Patient p_patient)
         {
-
             try
             {
                 _repo.Create(p_patient);
                 _repo.Save();
-                return Created("patient/add", p_patient);
+                return Created("Patient/Add", p_patient);
 
             }
             catch (Exception e)
             {
-
-                //Log.Error(e.Message);
-                return BadRequest("Not a valid search id");
+                Log.Error(e.Message);
+                return BadRequest("Invalid patient add request");
             }
-            
         }
 
         // PUT Patient/Edit
-        [HttpPut("edit/{id}")]
-        public IActionResult UpdatePatient([FromBody] Patient p_patient)
+        [HttpPut("Update/{id}")]
+        public IActionResult Update(int id, [FromBody] Patient p_patient)
         {
             try
             {
-            _repo.Update(p_patient);
-            _repo.Save();
-            return Ok();
+                _repo.Update(p_patient);
+                _repo.Save();
+                return Ok();
             }
             catch
             {
                 //Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("Invalid patient update request");
             }
-            
         }
 
         // DELETE Patient/Id
-        [HttpDelete("delete/{id}")]
-        public IActionResult DeletePatient([FromBody] Patient p_patient)
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete([FromBody] Patient p_patient)
         {
             try
             {
                 _repo.Delete(p_patient);
                 _repo.Save();
                 return Ok();
-
             }
             catch (Exception e)
             {
-
-                //Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                Log.Error(e.Message);
+                return BadRequest("Invalid patient delete request");
             }
-            
         }
-
-      
-
-      
-
-        
     }
 }

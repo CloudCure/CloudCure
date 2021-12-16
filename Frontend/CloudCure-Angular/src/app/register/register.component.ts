@@ -1,8 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
+import { EmployeeService } from '../services/employee.service';
+import { UserService } from '../services/user.service';
 import { EmployeeInformation } from '../AngularModels/EmployeeInformation';
 import { UserProfile } from '../AngularModels/UserProfile';
+
 
 
 @Component({
@@ -29,8 +33,15 @@ export class RegisterComponent implements OnInit {
       UserRole: new FormControl("", Validators.required),// RoleId from UserProfile model
       
   });
-
-  constructor() { }
+  email:string | undefined = '';
+  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService) 
+  { 
+    this.auth0.user$.subscribe(
+      (user) => {
+        this.email = user?.email;
+      }
+    )
+  }
 
   ngOnInit(): void {
   }
@@ -42,34 +53,35 @@ export class RegisterComponent implements OnInit {
   {
       //valid property of a FormGroup will let you know if the Form group the user sent is valid or not
       if (registerGroup.valid) {
-        let UserInfo:UserProfile ={
-          FirstName : registerGroup.get("FirstName")?.value,
-          LastName : registerGroup.get("LastName")?.value,
-          DateOfBirth: registerGroup.get("DateOfBirth")?.value,
-          PhoneNumber : registerGroup.get("PhoneNumber")?.value,
-          Address : registerGroup.get("Address")?.value,
-          EmergencyName : registerGroup.get("EmergencyName")?.value,
+        let UserInfo: UserProfile = {
+          FirstName: registerGroup.get("FirstName")?.value,
+          LastName: registerGroup.get("LastName")?.value,
+          DateOfBirth: new Date(registerGroup.get("DateOfBirth")?.value).toISOString(),
+          PhoneNumber: registerGroup.get("PhoneNumber")?.value,
+          Address: registerGroup.get("Address")?.value,
+          EmergencyName: registerGroup.get("EmergencyName")?.value,
           EmergencyContactPhone: registerGroup.get("EmergencyContactPhone")?.value,
-          RoleId : registerGroup.get("UserRole")?.value,
+          RoleId: registerGroup.get("UserRole")?.value,
         }
-        let EmployeeInfo: EmployeeInformation
-        //do add user with info from UserInfo here
-        if(true/*if 200 code is receved from user add do this*/)
-        {
-          EmployeeInfo ={
-            //user_ID willbe the same value as the id from the created user that was added above
-            WorkEmail: registerGroup.get("WorkEmail")?.value,
-            Specialization: registerGroup.get("Specialization")?.value,
-            StartDate: registerGroup.get("StartDate")?.value,
-            RoomNumber: registerGroup.get("RoomNumber")?.value,
-            EducationDegree: registerGroup.get("EducationDegree")?.value,
+        this.userApi.Add(UserInfo).subscribe(
+          (response) => {
+            console.log(response);
+            //console.log(response.id);
+            let EmployeeInfo: EmployeeInformation = {
+              UserProfileId: response.id,
+              WorkEmail: this.email,
+              Specialization: registerGroup.get("Specialization")?.value,
+              StartDate: new Date(registerGroup.get("StartDate")?.value).toISOString(),
+              RoomNumber: registerGroup.get("RoomNumber")?.value,
+              EducationDegree: registerGroup.get("EducationDegree")?.value
+            }
+            this.employeeApi.Add(EmployeeInfo).subscribe(
+              (response) => {
+                console.log(response);
+              }
+            )
           }
-        }
-        console.log(UserInfo);
-        console.log(EmployeeInfo);
+        )
       }
-      
-
   }
-
 }

@@ -7,7 +7,7 @@ import { Surgery } from '../AngularModels/Surgery';
 })
 export class SurgeryService {
 
-  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/Surgery";
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/Surgery";
   constructor(private http:HttpClient) { }
 
   ////////////// Surgery //////////////

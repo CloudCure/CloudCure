@@ -7,7 +7,7 @@ import { EmployeeInformation } from '../AngularModels/EmployeeInformation';
 })
 export class EmployeeService {
 
-  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/Employee";
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/EmployeeInformation";
   constructor(private http:HttpClient) { }
 
   ////////////// Employee //////////////

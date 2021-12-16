@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { UserProfile } from '../AngularModels/UserProfile';
-import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,12 +18,12 @@ export class ProfileComponent implements OnInit {
     EmergencyName: "",
     EmergencyContactPhone: "",
     RoleId: 0,
-    Id: 0
+    id: 0
 
   };
 
-  constructor(public auth0:AuthService, service:ProfileService) {
-    this.user = service.getProfile();
+  constructor(public auth0:AuthService) {
+    
   }
 
   ngOnInit(): void {

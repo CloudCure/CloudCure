@@ -7,7 +7,7 @@ import { Roles } from '../AngularModels/Roles';
 })
 export class RolesService {
 
-  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/Roles";
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/Roles";
   constructor(private http:HttpClient) { }
 
   ////////////// Roles //////////////

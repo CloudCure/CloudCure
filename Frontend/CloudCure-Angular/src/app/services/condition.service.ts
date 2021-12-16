@@ -7,7 +7,7 @@ import { Condition } from '../AngularModels/Condition';
 })
 export class ConditionService {
 
-  private endpoint: string = "https://cloudcure-api.azurewebsites.net/api/Condition";
+  private endpoint: string = "https://cloudcure-api.azurewebsites.net/Condition";
   constructor(private http:HttpClient) {} 
 
   GetAll(){ 

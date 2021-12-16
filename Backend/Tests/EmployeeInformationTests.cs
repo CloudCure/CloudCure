@@ -44,9 +44,19 @@ namespace Tests
         [Fact]
         public void CreateShouldWork()
         {
+            List<CovidVerify> covidList = new List<CovidVerify>();
+            covidList.Add(
+                new CovidVerify
+                {
+                    question1 = true,
+                    question2 = true,
+                    question3 = true,
+                    question4 = true,
+                    question5 = true
+                }
+            );
             EmployeeInformation newGuy = new EmployeeInformation
             {
-                Id = 2,
                 WorkEmail = "nurseBetty@email.com",
                 EducationDegree = "RN",
                 Specialization = "Pediatrics",
@@ -54,17 +64,16 @@ namespace Tests
                 StartDate = new DateTime(2021, 12, 15),
                 UserProfile = new User
                 {
-                    Id = 2,
                     FirstName = "Betty",
                     LastName = "White",
                     Address = "14 Nurse St.",
                     DateOfBirth = new DateTime(1922, 01, 17),
                     EmergencyName = "Bea Arthur",
                     EmergencyContactPhone = "5556237462",
+                    CovidAssesments = covidList,
                     RoleId = 2,
                     Role = new Role
                     {
-                        Id = 2,
                         RoleName = "Nurse"
                     }
                 }
@@ -81,6 +90,7 @@ namespace Tests
                 Assert.Equal("RN", allEmps[1].EducationDegree);
                 Assert.Equal("Betty", allEmps[1].UserProfile.FirstName);
                 Assert.Equal("Nurse", allEmps[1].UserProfile.Role.RoleName);
+                Assert.Equal(true, allEmps[1].UserProfile.CovidAssesments[0].question1);
             }
         }
 
@@ -93,7 +103,7 @@ namespace Tests
             using (var context = new CloudCureDbContext(_options))
             {
                 IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
-                EmployeeInformation employee = repo.GetByPrimaryKey(1);
+                EmployeeInformation employee = repo.GetById(1);
                 repo.Delete(employee);
                 List<EmployeeInformation> test = repo.GetAll().ToList();
 
@@ -110,11 +120,13 @@ namespace Tests
                 EmployeeInformation employee = repo.GetEmployeeInformationById(1);
                 employee.UserProfile.FirstName = "Jim";
                 employee.Specialization = "Proctology";
+                employee.UserProfile.CovidAssesments[0].question1 = false;
                 repo.Update(employee);
-                EmployeeInformation test = repo.GetByPrimaryKey(1);
+                EmployeeInformation test = repo.GetById(1);
 
                 Assert.Equal("Jim", test.UserProfile.FirstName);
                 Assert.Equal("Proctology", test.Specialization);
+                Assert.Equal(false, employee.UserProfile.CovidAssesments[0].question1);
             }
         }
         public void Seed()
@@ -124,10 +136,21 @@ namespace Tests
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
+                List<CovidVerify> covidList = new List<CovidVerify>();
+                covidList.Add(
+                    new CovidVerify
+                    {
+                        question1 = true,
+                        question2 = true,
+                        question3 = true,
+                        question4 = true,
+                        question5 = true
+                    }
+                );
+
                 context.Employee.Add(
                     new EmployeeInformation
                     {
-                        Id = 1,
                         WorkEmail = "drJohn@email.com",
                         EducationDegree = "MD",
                         Specialization = "ER",
@@ -135,7 +158,6 @@ namespace Tests
                         StartDate = new DateTime(2021, 12, 14),
                         UserProfile = new User
                         {
-                            Id = 1,
                             FirstName = "John",
                             LastName = "Doe",
                             Address = "123 Generic St",
@@ -143,10 +165,10 @@ namespace Tests
                             EmergencyContactPhone = "1235551234",
                             EmergencyName = "Jane Doe",
                             PhoneNumber = "5557654321",
+                            CovidAssesments = covidList,
                             RoleId = 1,
                             Role = new Role
                             {
-                                Id = 1,
                                 RoleName = "Doctor"
                             }
                         }
