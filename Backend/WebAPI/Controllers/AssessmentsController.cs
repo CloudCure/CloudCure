@@ -24,11 +24,11 @@ namespace WebAPI.Controllers
             }
         }
 
-        // GET api/Assessment/Get/{p_id}
+        // GET api/Assessment/Get/{id}
         [HttpGet("Get/{id}")]
-        public IActionResult GetById(int p_id){
+        public IActionResult GetById(int id){
             try{
-                return Ok(_repo.GetById(p_id));
+                return Ok(_repo.GetById(id));
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Invalid Assessment Get request.");
@@ -48,11 +48,11 @@ namespace WebAPI.Controllers
             }
         }
 
-        // DELETE api/delete/{p_id}
-        [HttpDelete("Delete/{p_id}")]
-        public IActionResult Delete(int p_id){
+        // DELETE api/delete/{id}
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete(int id){
             try{
-                var topic = _repo.GetById(p_id);
+                var topic = _repo.GetById(id);
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();

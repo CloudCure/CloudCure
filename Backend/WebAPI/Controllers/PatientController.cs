@@ -37,12 +37,12 @@ namespace WebAPI.Controllers
         }
 
         // GET Patient/Id
-        [HttpGet("Get/{p_id}")]
-        public IActionResult GetById(int p_id)
+        [HttpGet("Get/{id}")]
+        public IActionResult GetById(int id)
         {
             try
             {
-                return Ok(_repo.GetById(p_id));
+                return Ok(_repo.GetById(id));
             }
             catch (Exception e)
             {
@@ -71,7 +71,7 @@ namespace WebAPI.Controllers
 
         // PUT Patient/Edit
         [HttpPut("Update/{id}")]
-        public IActionResult Update([FromBody] Patient p_patient)
+        public IActionResult Update(int id, [FromBody] Patient p_patient)
         {
             try
             {

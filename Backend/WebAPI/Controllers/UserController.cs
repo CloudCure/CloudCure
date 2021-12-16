@@ -32,11 +32,11 @@ namespace WebAPI.Controllers
 
         // GET: User/Get/{id}
         [HttpGet("Get/{id}")]
-        public IActionResult GetById(int p_id)
+        public IActionResult GetById(int id)
         {
             try
             {
-                return Ok(_repo.GetUserById(p_id));
+                return Ok(_repo.GetUserById(id));
             }
             catch (Exception e)
             {
