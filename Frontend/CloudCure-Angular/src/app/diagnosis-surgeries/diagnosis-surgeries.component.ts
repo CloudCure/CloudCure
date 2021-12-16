@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+
 
 @Component({
   selector: 'diagnosis-surgeries',
@@ -8,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class DiagnosisSurgeriesComponent implements OnInit {
 
   display: boolean = false;
-  surgeries: string[] = [''];
+
+  @Input('surgeries') surgeries: string[] = [''];
+
+  @Output('surgeries') surgeriesChange = new EventEmitter<string[]>();
 
   constructor() { }
 

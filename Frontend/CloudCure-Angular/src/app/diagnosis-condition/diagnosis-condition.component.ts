@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
 export class DiagnosisConditionComponent implements OnInit {
 
   display: boolean = false;
-  conditions: string[] = [''];
+  
+  @Input('conditions') conditions: string[] = [''];
+
+  @Output('conditions') conditionsChange = new EventEmitter<string[]>();
 
   constructor() { }
 

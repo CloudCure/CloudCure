@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TextBoxComponent } from '../text-box/text-box.component';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'diagnosis-allergy',
@@ -8,10 +6,12 @@ import { TextBoxComponent } from '../text-box/text-box.component';
   styleUrls: ['./diagnosis-allergy.component.css']
 })
 export class DiagnosisAllergyComponent implements OnInit {
-
-  //variables
+  
   display: boolean = false;
-  allergies: string[] = [''];
+  
+  @Input('allergies') allergies: string[] = [''];
+
+  @Output('allergies') allergiesChange = new EventEmitter<string[]>();
   
   constructor() { }
 
