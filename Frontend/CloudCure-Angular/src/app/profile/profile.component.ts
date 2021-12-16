@@ -1,6 +1,9 @@
+import { EmployeeInformation } from './../AngularModels/EmployeeInformation';
+import { UserService } from './../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { UserProfile } from '../AngularModels/UserProfile';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-profile',
@@ -21,13 +24,47 @@ export class ProfileComponent implements OnInit {
     id: 0
 
   };
-
-  constructor(public auth0:AuthService) {
-    
+  employee:EmployeeInformation | undefined={
+  WorkEmail: "string",
+  Specialization: "string",
+  StartDate: "string",
+  RoomNumber: "string",
+  EducationDegree: "string",
+  user: undefined
   }
+
+  email:string | undefined = '';
+  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService)
+  {
+    this.auth0.user$.subscribe(
+      (user) => {
+        this.email = user?.email;
+
+        this.employeeApi.verifyEmployee(this.email).subscribe(
+          (response) => {
+            console.log(response);
+            this.employee=response
+
+
+            console.log(response);
+
+            this.employeeApi.GetById(29).subscribe(
+              (response2) => {
+                console.log(response2);
+              }
+            )
+          }
+        )
+
+      }
+    )
+  }
+
 
   ngOnInit(): void {
   }
+
+
   // changes tabs in main card
   id:any= "dashboard";
   tabChange(ids:any){
