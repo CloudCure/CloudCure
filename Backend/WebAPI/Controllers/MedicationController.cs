@@ -1,4 +1,4 @@
-﻿using Data;
+using Data;
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using Serilog;
@@ -22,7 +22,6 @@ namespace WebAPI.Controllers
             medicationRepository = context;
         }
 
-
         // GET: medication/All
         [HttpGet("all")] //("All") Will give and endpoint that ends with All
         public IActionResult GetAllMedication()
@@ -37,8 +36,6 @@ namespace WebAPI.Controllers
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-
-
         }
 
         // DELETE Medication/delete/Id
@@ -57,12 +54,11 @@ namespace WebAPI.Controllers
                 return BadRequest("Failed to update");
 
             }
-
         }
 
         // PUT Medication/Edit
-        [HttpPut("edit/{id}")]
-        public IActionResult UpdateMedication([FromBody] Medication p_medication)
+        [HttpPut("Update/{id}")]
+        public IActionResult Update(int id, [FromBody] Medication p_medication)
         {
             try
             {
@@ -75,7 +71,6 @@ namespace WebAPI.Controllers
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-
         }
 
         // POST Medication/Add
@@ -94,9 +89,6 @@ namespace WebAPI.Controllers
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-
         }
-
-     
     }
 }

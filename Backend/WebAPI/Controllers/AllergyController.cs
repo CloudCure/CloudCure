@@ -27,10 +27,10 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet("Get/{p_id}")]
-        public IActionResult GetById(int p_id){
+        [HttpGet("Get/{id}")]
+        public IActionResult GetById(int id){
             try{
-                return Ok(_repo.GetById(p_id));
+                return Ok(_repo.GetById(id));
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Failed to get allergy by id");
