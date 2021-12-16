@@ -32,11 +32,11 @@ namespace WebAPI
 
         // GET: Employee/Get/5
         [HttpGet("Get/{id}")]
-        public IActionResult GetById(int p_id)
+        public IActionResult GetById(int id)
         {
             try
             {
-                return Ok(_repo.GetEmployeeInformationById(p_id));
+                return Ok(_repo.GetEmployeeInformationById(id));
             }
             catch (Exception e)
             {

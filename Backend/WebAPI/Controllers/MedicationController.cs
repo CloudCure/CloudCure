@@ -68,7 +68,7 @@ namespace WebAPI.Controllers
 
         // PUT Medication/Edit
         [HttpPut("Update/{id}")]
-        public IActionResult Update([FromBody] Medication p_medication)
+        public IActionResult Update(int id, [FromBody] Medication p_medication)
         {
             try
             {
