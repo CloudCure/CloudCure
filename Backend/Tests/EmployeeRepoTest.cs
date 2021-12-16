@@ -18,6 +18,7 @@ namespace Tests
             Seed();
         }
 
+/*
         [Fact]
         public void VerifyEmailShouldReturnAnEmployeeWithMatchingEmail()
         {
@@ -31,7 +32,7 @@ namespace Tests
                 Assert.Equal("112", result.RoomNumber);
             }
         }
-
+*/
 
         void Seed()
         {
