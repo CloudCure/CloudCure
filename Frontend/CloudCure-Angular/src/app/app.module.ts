@@ -47,7 +47,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     VerificationComponent,
     NavbarComponent,
     HomeComponent,
-    ProfileComponent,
     HeaderComponent,
     FooterComponent,
     BottomNavbarComponent,

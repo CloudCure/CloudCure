@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { UserProfile } from '../AngularModels/UserProfile';
-import { UserProfileService } from '../services/profile.service';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
 
   };
 
-  constructor(public auth0:AuthService, service:UserProfileService) {
+  constructor(public auth0:AuthService, service:UserService) {
     //this.user = service.GetById();
   }
 
