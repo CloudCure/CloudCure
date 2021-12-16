@@ -26,6 +26,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { PatientComponent } from './patient/patient.component';
+import { PatientIntakePageComponent } from './patient-intake-page/patient-intake-page.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PatientComponent } from './patient/patient.component';
     DiagnosisSurgeriesComponent,
     DiagnosisMedicationComponent,
     RegisterComponent,
-    PatientComponent
+    PatientComponent,
+    PatientIntakePageComponent
   ],
 
   imports: [

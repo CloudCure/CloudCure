@@ -52,20 +52,20 @@ export class PatientComponent implements OnInit {
         RoleId: 3,
       }
 
-        let PatientInfo: Patient = {
-          UserProfile: UserInfo,
-        }
-        console.log("Patient Info created");
-        console.log(PatientInfo);
+      let PatientInfo: Patient = {
+        UserProfile: UserInfo,
+      }
+      console.log("Patient Info created");
+      console.log(PatientInfo);
 
-        this.PatientApi.Add(PatientInfo).subscribe(
-          (response) => {
-            console.log("Patient added");
-            console.log(response);
-          })
+      this.PatientApi.Add(PatientInfo).subscribe(
+        (response) => {
+          console.log("Patient added");
+          console.log(response);
+      })
 
-        }
     }
   }
+}
 
 
