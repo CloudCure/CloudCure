@@ -25,6 +25,7 @@ import { DiagnosisMedicationComponent } from './diagnosis-medication/diagnosis-m
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { PatientComponent } from './patient/patient.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     BottomNavbarComponent,
     DiagnosisSurgeriesComponent,
     DiagnosisMedicationComponent,
-    RegisterComponent
+    RegisterComponent,
+    PatientComponent
   ],
 
   imports: [
@@ -74,7 +76,8 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
       { path: 'assessment', component: AssessmentComponent },
       { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent },
       { path: 'text-box', component: TextBoxComponent },
-      { path : 'register', component:RegisterComponent},
+      { path: 'register', component:RegisterComponent},
+      { path: 'patient', component: PatientComponent },
       { path: "**", component: HomeComponent }
     ])
   ],
