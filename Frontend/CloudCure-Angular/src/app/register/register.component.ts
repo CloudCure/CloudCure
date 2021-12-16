@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
           EmergencyContactPhone: registerGroup.get("EmergencyContactPhone")?.value,
           RoleId: registerGroup.get("UserRole")?.value,
         }
-        this.userApi.AddUser(UserInfo).subscribe(
+        this.userApi.Add(UserInfo).subscribe(
           (response) => {
             console.log(response);
             console.log(response.id);
@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
               RoomNumber: registerGroup.get("RoomNumber")?.value,
               EducationDegree: registerGroup.get("EducationDegree")?.value
             }
-            this.employeeApi.addEmployee(EmployeeInfo).subscribe(
+            this.employeeApi.Add(EmployeeInfo).subscribe(
               (response) => {
                 console.log(response);
               }
