@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Ok(_repo.GetById(p_id));
+                return Ok(_repo.GetUserById(p_id));
             }
             catch (Exception e)
             {
