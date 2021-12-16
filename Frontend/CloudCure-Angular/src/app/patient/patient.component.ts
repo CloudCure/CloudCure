@@ -13,9 +13,9 @@ import { UserService } from '../services/user.service';
 })
 export class PatientComponent implements OnInit {
 
-  @Input('basicpatient') basicpatient: Patient;
+  @Input('patient') patient: Patient;
 
-  @Output('basicpatient') basicpatientChange = new EventEmitter<Patient>();
+  @Output('patient') patientChange = new EventEmitter<Patient>();
 
   //Creates a form group for the User model 
   registerGroup:FormGroup = new FormGroup({
@@ -31,7 +31,7 @@ export class PatientComponent implements OnInit {
   });
 
   constructor(private PatientApi: PatientService, private UserApi: UserService) { 
-    this.basicpatient = {
+    this.patient = {
       UserProfile: {
         FirstName: "",
         LastName: "",

@@ -1,8 +1,8 @@
 
-<h2 class="center">Any history of previous surgeries?</h2>
-
-<button (click)="display = !display">Add Surgeries</button>
-<br>
-<ng-container *ngIf="display">
-    <app-text-box [boxes]="surgeries"></app-text-box>
-</ng-container>
+<div class="container">
+    <button (click)="display = !display">Add Surgeries</button>
+    <br>
+    <ng-container *ngIf="display">
+        <app-text-box [boxes]="surgeries"></app-text-box>
+    </ng-container>
+</div>

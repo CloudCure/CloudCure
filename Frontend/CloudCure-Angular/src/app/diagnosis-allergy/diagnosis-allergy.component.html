@@ -1,8 +1,8 @@
-<h2>Patient Allergies</h2>
+<div class="container">
+    <button (click)="display = !display">Add Allergies</button>
+    <br>
 
-<button (click)="display = !display">Add Allergies</button>
-<br>
-
-<ng-container *ngIf="display">
-    <app-text-box [boxes]="allergies"></app-text-box>
-</ng-container>
+    <ng-container *ngIf="display">
+        <app-text-box [boxes]="allergies"></app-text-box>
+    </ng-container>
+</div>
