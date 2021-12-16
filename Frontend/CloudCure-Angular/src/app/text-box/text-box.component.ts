@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-text-box',
@@ -9,9 +10,9 @@ export class TextBoxComponent implements OnInit {
 
   @Input('boxes') boxes: string[];
 
+  
   @Output('boxes') boxesChange = new EventEmitter<string[]>();
 
-  
   constructor() { 
     this.boxes = [''];
   }

@@ -26,6 +26,8 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
 import { AuthGuardService } from './services/auth-guard.service';
 import { PatientComponent } from './patient/patient.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,

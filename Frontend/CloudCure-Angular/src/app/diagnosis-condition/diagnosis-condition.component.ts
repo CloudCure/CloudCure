@@ -12,32 +12,52 @@ import { ConditionService } from '../services/condition.service';
 export class DiagnosisConditionComponent implements OnInit {
 
   display: boolean = false;
-  conditions: string[] = [''];
+  conditions: string[] = [""]
+  test:string = "Can You See ME"
 
-  ConditionGroup: FormGroup = new FormGroup({
-    PatientId: new FormControl(2,Validators.required),//is hardcoded to patient 2 this will change once it is connected to the diagnosis component
-    ConditionName: new FormControl("",Validators.required),
-  })
+  // ConditionGroup: FormGroup = new FormGroup({
+  //   PatientId: new FormControl(2,Validators.required),//is hardcoded to patient 2 this will change once it is connected to the diagnosis component
+  //   ConditionName: new FormControl("",Validators.required),
+  // })
 
-  constructor(private Condition: Condition, private ConditionApi: ConditionService) { }
+  constructor(private ConditionApi: ConditionService) { }
 
   ngOnInit(): void {
   }
 
-  AddCondition(ConditionGroup: FormGroup){
-    if(ConditionGroup.valid)
-    {
+  
+  AddCondition(PatientId: number){
+    this.conditions.forEach(element => {
       let ConditionInfo: Condition = {
-        PatientId: ConditionGroup.get("PatientId")?.value,
-        ConditionName: ConditionGroup.get("ConditionName")?.value,
+        PatientId: PatientId,
+        ConditionName: element,
       }
+      console.log(element.toString());
 
-      this.ConditionApi.Add(ConditionInfo).subscribe(
-          (response) => {
-            console.log("Condition added");
-            console.log(response);
-          })
-    }
+      // this.ConditionApi.Add(ConditionInfo).subscribe(
+      //   (response) => {
+      //     console.log("Condition added");
+      //     console.log(response);
+      //   })
+       });
+
+      
+        
+  
+
+    // if(ConditionGroup.valid)
+    // {
+    //   let ConditionInfo: Condition = {
+    //     PatientId: ConditionGroup.get("PatientId")?.value,
+    //     ConditionName: ConditionGroup.get("ConditionName")?.value,
+    //   }
+
+    //   this.ConditionApi.Add(ConditionInfo).subscribe(
+    //       (response) => {
+    //         console.log("Condition added");
+    //         console.log(response);
+    //       })
+    // }
   }
 
 }
