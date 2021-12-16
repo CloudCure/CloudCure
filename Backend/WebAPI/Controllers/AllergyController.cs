@@ -4,8 +4,6 @@ using Models.Diagnosis;
 using System;
 using Serilog;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace WebAPI.Controllers
 {
     [Route("[Controller]")]
@@ -13,7 +11,6 @@ namespace WebAPI.Controllers
     public class AllergyController : ControllerBase
     {
         private readonly IAllergyRepository _repo;
-
         public AllergyController(IAllergyRepository p_repo){_repo = p_repo;}
         
         // GET: Allergy/Get/All
@@ -26,7 +23,7 @@ namespace WebAPI.Controllers
                 return BadRequest("Failed to update");
             }
         }
-
+        // GET: Allergy/Get/{p_id}
         [HttpGet("Get/{p_id}")]
         public IActionResult GetById(int p_id){
             try{
@@ -50,7 +47,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        // PUT Allergy/Edit
+        // PUT: Allergy/Update/Id
         [HttpPut("Update/{id}")]
         public IActionResult Update([FromBody] Allergy p_allergy){
             try{
