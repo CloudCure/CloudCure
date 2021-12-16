@@ -31,11 +31,11 @@ namespace WebAPI.Controllers
 
         // GET api/covid/Get/{p_id}
         [HttpGet("Get/{id}")]
-        public IActionResult GetByPrimaryKey(int p_id)
+        public IActionResult GetById(int p_id)
         {
             try
             {
-                return Ok(_repo.GetByPrimaryKey(p_id));
+                return Ok(_repo.GetById(p_id));
             }
             catch (Exception e)
             {
@@ -67,7 +67,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                var topic = _repo.GetByPrimaryKey(p_id);
+                var topic = _repo.GetById(p_id);
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();

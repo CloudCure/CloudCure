@@ -32,11 +32,11 @@ namespace WebAPI.Controllers
 
         //GET: Vitals/Id
         [HttpGet("Get/{id}")]
-        public IActionResult GetByPrimaryKey(int p_id)
+        public IActionResult GetById(int p_id)
         {
             try
             {
-                return Ok(_repo.GetByPrimaryKey(p_id));
+                return Ok(_repo.GetById(p_id));
             }
             catch (Exception e)
             {

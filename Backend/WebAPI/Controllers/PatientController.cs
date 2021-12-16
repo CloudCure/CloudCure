@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
         }
         // GET: Patient/All
         [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
-        public IActionResult GetAllPatient()
+        public IActionResult GetAll()
         {
             try
             {
@@ -38,11 +38,11 @@ namespace WebAPI.Controllers
 
         // GET Patient/Id
         [HttpGet("Get/{p_id}")]
-        public IActionResult GetPatientById(int p_id)
+        public IActionResult GetById(int p_id)
         {
             try
             {
-                return Ok(_repo.GetByPrimaryKey(p_id));
+                return Ok(_repo.GetById(p_id));
             }
             catch (Exception e)
             {
@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
 
         // POST Patient/Add
         [HttpPost("Add")]
-        public IActionResult AddPatient([FromBody] Patient p_patient)
+        public IActionResult Add([FromBody] Patient p_patient)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace WebAPI.Controllers
 
         // PUT Patient/Edit
         [HttpPut("Update/{id}")]
-        public IActionResult UpdatePatient([FromBody] Patient p_patient)
+        public IActionResult Update([FromBody] Patient p_patient)
         {
             try
             {
@@ -88,7 +88,7 @@ namespace WebAPI.Controllers
 
         // DELETE Patient/Id
         [HttpDelete("Delete/{id}")]
-        public IActionResult DeletePatient([FromBody] Patient p_patient)
+        public IActionResult Delete([FromBody] Patient p_patient)
         {
             try
             {
