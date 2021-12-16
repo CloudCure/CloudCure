@@ -1,13 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Patient } from '../AngularModels/Patient';
-import { User } from '@auth0/auth0-angular';
+import { UserProfile } from '../AngularModels/UserProfile';
 import { PatientService } from '../services/patient.service';
 import { UserService } from '../services/user.service';
-
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserProfile } from '../AngularModels/UserProfile';
-
 
 @Component({
   selector: 'app-patient',
@@ -15,6 +12,10 @@ import { UserProfile } from '../AngularModels/UserProfile';
   styleUrls: ['./patient.component.css']
 })
 export class PatientComponent implements OnInit {
+
+  @Input('basicpatient') basicpatient: Patient;
+
+  @Output('basicpatient') basicpatientChange = new EventEmitter<Patient>();
 
   //Creates a form group for the User model 
   registerGroup:FormGroup = new FormGroup({
@@ -29,43 +30,24 @@ export class PatientComponent implements OnInit {
     
   });
 
-  constructor(private PatientApi: PatientService, private UserApi: UserService) { }
+  constructor(private PatientApi: PatientService, private UserApi: UserService) { 
+    this.basicpatient = {
+      UserProfile: {
+        FirstName: "",
+        LastName: "",
+        DateOfBirth: new Date(),
+        PhoneNumber: "",
+        Address: "",
+        EmergencyName: "",
+        EmergencyContactPhone: "",
+        RoleId: 3,
+    }}
+  }
 
   ngOnInit(): void {
   }
 
-
-  RegisterPatient(registerGroup: FormGroup)
-  {
-    console.log("register complete")
-    console.log(registerGroup);
-    //valid property of a FormGroup will let you know if the Form group the user sent is valid or not
-    if (registerGroup.valid) {
-      let UserInfo: UserProfile = {
-        FirstName: registerGroup.get("FirstName")?.value,
-        LastName: registerGroup.get("LastName")?.value,
-        DateOfBirth: new Date(registerGroup.get("DateOfBirth")?.value).toISOString(),
-        PhoneNumber: registerGroup.get("PhoneNumber")?.value,
-        Address: registerGroup.get("Address")?.value,
-        EmergencyName: registerGroup.get("EmergencyName")?.value,
-        EmergencyContactPhone: registerGroup.get("EmergencyContactPhone")?.value,
-        RoleId: 3,
-      }
-
-      let PatientInfo: Patient = {
-        UserProfile: UserInfo,
-      }
-      console.log("Patient Info created");
-      console.log(PatientInfo);
-
-      this.PatientApi.Add(PatientInfo).subscribe(
-        (response) => {
-          console.log("Patient added");
-          console.log(response);
-      })
-
-    }
-  }
+  
 }
 
 

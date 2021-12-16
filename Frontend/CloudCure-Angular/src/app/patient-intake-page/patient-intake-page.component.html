@@ -3,10 +3,12 @@
         <h1>REGISTRATION FORM</h1>
     </div>
     <div class="container">
-        <app-patient></app-patient>
-        <diagnosis-condition></diagnosis-condition>
-        <diagnosis-allergy></diagnosis-allergy>
-        <diagnosis-surgeries></diagnosis-surgeries>
-        <diagnosis-medication></diagnosis-medication>
+        <app-patient          [basicpatient]="basepatient"></app-patient>
+        <diagnosis-condition  [basicpatient.Conditions]="conditions"></diagnosis-condition>
+        <diagnosis-allergy    [basicpatient.Allergies]="allergies"></diagnosis-allergy>
+        <diagnosis-surgeries  [basicpatient.Surgeries]="surgeries"></diagnosis-surgeries>
+        <diagnosis-medication [basicpatient.CurrentMedications]="medications"></diagnosis-medication>
+        <br>
+        <button type="submit" class="btn btn-dark" (click)="RegisterPatient()">Register</button>
     </div>
 </body>

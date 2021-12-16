@@ -1,16 +1,10 @@
-<!-- The text box that will hopefully connect to all the other components -->
+<!-- The subcomponent text box that connects to all the other form components -->
 
-<p>Input neccesary information:</p>
-
-
-<!-- [(ngModel)]="box.text" -->
-<div *ngFor="let box of boxes; let i = index">
-    <input type="text" > <button (click)="deleteOne(i)" class="btn btn-danger"> - </button>
+<div class="container">
+    <div *ngFor="let box of boxes; let i = index">
+        <input type="text" > <button (click)="deleteOne(i)" class="btn btn-danger"> - </button>
+        <br>
+    </div>
     <br>
+    <button (click)="addOne()" class="btn btn-success"> + </button>
 </div>
-<br>
-<button (click)="addOne()" class="btn btn-success"> + </button>
-
-<!-- I used this to navigate through the two components I was working on -->
-<!-- <br>
-<button [routerLink]="['/diagnosis-allergy']" >text box</button> -->
