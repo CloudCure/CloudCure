@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid get all request.");
+                return BadRequest("Invalid get all users request.");
             }
         }
 
@@ -36,12 +36,12 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Ok(_repo.GetById(p_id));
+                return Ok(_repo.GetUserById(p_id));
             }
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Not a valid ID");
+                return BadRequest("Invalid get user by id request.");
             }
         }
 
