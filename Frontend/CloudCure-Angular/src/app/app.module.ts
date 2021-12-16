@@ -17,14 +17,13 @@ import { TextBoxComponent } from './text-box/text-box.component';
 import { VerificationComponent } from './verification/verification.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { DiagnosisSurgeriesComponent } from './diagnosis-surgeries/diagnosis-surgeries.component';
 import { DiagnosisMedicationComponent } from './diagnosis-medication/diagnosis-medication.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -46,8 +45,6 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
     NavbarComponent,
     HomeComponent,
     ProfileComponent,
-    HeaderComponent,
-    FooterComponent,
     BottomNavbarComponent,
     DiagnosisSurgeriesComponent,
     DiagnosisMedicationComponent,
@@ -64,17 +61,19 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
       clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
     }),
     RouterModule.forRoot([
-      { path: "verification", component: VerificationComponent },
-      { path: "profile", component: ProfileComponent },
-      { path: 'diagnosis', component: DiagnosisComponent },
-      { path: 'print', component: PrintComponent },
-      { path: 'body-clicker', component: BodyClickerComponent },
-      { path: 'diagnosis-condition', component:DiagnosisConditionComponent},
-      { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
-      { path: 'assessment', component: AssessmentComponent },
-      { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent },
-      { path: 'text-box', component: TextBoxComponent },
-      { path : 'register', component:RegisterComponent},
+      //canActivate:[AuthGuardService] means that log-in required in order to hit this route
+      { path: "verification", component: VerificationComponent, canActivate:[AuthGuardService] },
+      { path: "profile", component: ProfileComponent, canActivate:[AuthGuardService] },
+      { path: 'diagnosis', component: DiagnosisComponent, canActivate:[AuthGuardService] },
+      { path: 'print', component: PrintComponent, canActivate:[AuthGuardService] },
+      { path: 'body-clicker', component: BodyClickerComponent, canActivate:[AuthGuardService] },
+      { path: 'diagnosis-condition', component:DiagnosisConditionComponent, canActivate:[AuthGuardService] },
+      { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent, canActivate:[AuthGuardService] },
+      { path: 'assessment', component: AssessmentComponent, canActivate:[AuthGuardService] },
+      { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent, canActivate:[AuthGuardService] },
+      { path: 'text-box', component: TextBoxComponent, canActivate:[AuthGuardService] },
+      { path: 'register', component:RegisterComponent },
+      { path: "home", component: HomeComponent },
       { path: "**", component: HomeComponent }
     ])
   ],
