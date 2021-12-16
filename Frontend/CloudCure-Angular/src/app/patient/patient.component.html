@@ -1,0 +1,70 @@
+<body>
+
+    <div class="header">
+      <h1>REGISTRATION FORM</h1>
+    </div>
+  
+    <div class="container">  
+  
+      <div class="row">
+  
+        <div class="col-lg-3"></div>
+  
+        <div class="col-lg-6">
+  
+          <div id="form">
+  
+            <form [formGroup] = "registerGroup">
+            <div class="row">
+  
+                <div class="col-lg-6">
+                  <label>First Name</label>
+                  <input type="text" formControlName = "FirstName" class="form-control" placeholder="Enter your first name...">
+                </div>
+  
+                <div class="col-lg-6">
+                  <label>Last Name</label>
+                  <input type="text"formControlName = "LastName" class="form-control" placeholder="Enter your last name...">
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Phone Number</label>
+                    <input type="text" formControlName = "PhoneNumber" class="form-control" placeholder="Enter your Date of Birth...">
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Address</label>
+                    <input type="text" formControlName = "Address" class="form-control" placeholder="Enter your Date of Birth...">
+                </div>
+
+                <div class="col-lg-6">
+                    <label>Date of Birth</label>
+                    <input type="text" formControlName = "DateOfBirth" class="form-control" placeholder="Enter your Date of Birth...">
+                </div>
+
+                <div>
+                    <label>Emergency Contact Name</label>
+                    <input type="text" formControlName = "EmergencyName" class="form-control" placeholder="Enter your Emergency Contact...">
+                </div>
+
+                <div>
+                    <label>Emergency Contact Number</label>
+                    <input type="text" formControlName = "EmergencyContactPhone" class="form-control" placeholder="Enter your Emergency Contact Phone Number...">
+                </div>
+                 
+                    <br>
+                <!-- <diagnosis-condition></diagnosis-condition>
+                <diagnosis-allergy></diagnosis-allergy>
+                <diagnosis-surgery></diagnosis-surgery>
+                <diagnosis-medication></diagnosis-medication> -->
+
+            </div>
+            <br>
+            <button type="submit" class="btn btn-dark" (click)="RegisterPatient(registerGroup)">Register</button>
+            </form>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </body>
