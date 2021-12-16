@@ -63,12 +63,12 @@ export class RegisterComponent implements OnInit {
           EmergencyContactPhone: registerGroup.get("EmergencyContactPhone")?.value,
           RoleId: registerGroup.get("UserRole")?.value,
         }
-        this.userApi.Add(UserInfo).subscribe(
-          (response) => {
-            console.log(response);
+        // this.userApi.Add(UserInfo).subscribe(
+        //   (response) => {
+            //console.log(response);
             //console.log(response.id);
             let EmployeeInfo: EmployeeInformation = {
-              UserProfileId: response.id,
+              UserProfile: UserInfo,
               WorkEmail: this.email,
               Specialization: registerGroup.get("Specialization")?.value,
               StartDate: new Date(registerGroup.get("StartDate")?.value).toISOString(),
@@ -80,8 +80,8 @@ export class RegisterComponent implements OnInit {
                 console.log(response);
               }
             )
-          }
-        )
+        
+      
       }
   }
 }

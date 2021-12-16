@@ -1,6 +1,7 @@
 import { UserProfile } from "./UserProfile";
 export interface EmployeeInformation {
-    UserProfileId?: number | undefined;
+    
+    UserProfile : UserProfile
     WorkEmail: string | undefined
     Specialization: string
     StartDate: string | Date
