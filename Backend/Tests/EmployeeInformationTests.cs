@@ -90,7 +90,7 @@ namespace Tests
                 Assert.Equal("RN", allEmps[1].EducationDegree);
                 Assert.Equal("Betty", allEmps[1].UserProfile.FirstName);
                 Assert.Equal("Nurse", allEmps[1].UserProfile.Role.RoleName);
-                Assert.Equal(true, allEmps[1].UserProfile.CovidAssesments[0].question1);
+                Assert.True(allEmps[1].UserProfile.CovidAssesments[0].question1);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Tests
                 repo.Delete(employee);
                 List<EmployeeInformation> test = repo.GetAll().ToList();
 
-                Assert.Equal(0, test.Count);
+                Assert.Empty(test);
             }
         }
 
@@ -126,10 +126,24 @@ namespace Tests
 
                 Assert.Equal("Jim", test.UserProfile.FirstName);
                 Assert.Equal("Proctology", test.Specialization);
-                Assert.Equal(false, employee.UserProfile.CovidAssesments[0].question1);
+                Assert.False(employee.UserProfile.CovidAssesments[0].question1);
             }
         }
-        public void Seed()
+
+        [Fact]
+        public void VerifyEmailShouldReturnAnEmployeeWithMatchingEmail()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository _repo = new EmployeeInformationRepository(context);
+                string _testEmail = "drJohn@email.com";
+                var result = _repo.VerifyEmail(_testEmail);
+
+                //Assert.NotNull(result);
+                Assert.Equal("drJohn@email.com", result.WorkEmail);
+            }
+        }
+        void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {
