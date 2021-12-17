@@ -8,17 +8,17 @@ using Models.Diagnosis;
 namespace Data
 {
 
-   public class AllergyRepository : Repository<Allergy>, IAllergyRepository
-   {
-       readonly CloudCureDbContext repository;
-       public AllergyRepository(CloudCureDbContext context) : base(context)
+    public class AllergyRepository : Repository<Allergy>, IAllergyRepository
+    {
+        readonly CloudCureDbContext repository;
+        public AllergyRepository(CloudCureDbContext context) : base(context)
         {
             repository = context;
         }
 
         public IEnumerable<Allergy> SearchByAllergy(string query)
         {
-             var allergy = GetAll().Where(b => b.AllergyName.Equals(query));
+            var allergy = GetAll().Where(b => b.AllergyName.Equals(query));
             if (!allergy.Any())
             {
                 throw new KeyNotFoundException("Allergy not found.");
@@ -29,7 +29,7 @@ namespace Data
             }
         }
 
-      public IEnumerable<Allergy> SearchByPatientId(int query)
+        public IEnumerable<Allergy> SearchByPatientId(int query)
         {
             var result = base.GetAll()
                         .Where(i => i.PatientId.Equals(query));
@@ -42,5 +42,7 @@ namespace Data
 
 
         }
+
     }
 }
+

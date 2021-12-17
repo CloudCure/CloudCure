@@ -32,11 +32,11 @@ namespace WebAPI
 
         // GET: Employee/Get/5
         [HttpGet("Get/{id}")]
-        public IActionResult GetById(int p_id)
+        public IActionResult GetById(int id)
         {
             try
             {
-                return Ok(_repo.GetById(p_id));
+                return Ok(_repo.GetEmployeeInformationById(id));
             }
             catch (Exception e)
             {
@@ -78,12 +78,12 @@ namespace WebAPI
         }
 
         // DELETE employee/delete/{id}
-        [HttpDelete("Delete/{p_id}")]
-        public IActionResult Delete(int p_id)
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete(int id)
         {
             try
             {
-                var topic = _repo.GetById(p_id);
+                var topic = _repo.GetById(id);
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();

@@ -26,22 +26,22 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid get all request.");
+                return BadRequest("Invalid get all users request.");
             }
         }
 
         // GET: User/Get/{id}
         [HttpGet("Get/{id}")]
-        public IActionResult GetById(int p_id)
+        public IActionResult GetById(int id)
         {
             try
             {
-                return Ok(_repo.GetById(p_id));
+                return Ok(_repo.GetUserById(id));
             }
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Not a valid ID");
+                return BadRequest("Invalid get user by id request.");
             }
         }
 

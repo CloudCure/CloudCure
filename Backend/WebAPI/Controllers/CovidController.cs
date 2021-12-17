@@ -29,13 +29,13 @@ namespace WebAPI.Controllers
             }
         }
 
-        // GET api/covid/Get/{p_id}
+        // GET api/covid/Get/{id}
         [HttpGet("Get/{id}")]
-        public IActionResult GetById(int p_id)
+        public IActionResult GetById(int id)
         {
             try
             {
-                return Ok(_repo.GetById(p_id));
+                return Ok(_repo.GetById(id));
             }
             catch (Exception e)
             {
@@ -61,13 +61,13 @@ namespace WebAPI.Controllers
             }
         }
 
-        // DELETE covid/delete/{p_id}
-        [HttpDelete("Delete/{p_id}")]
-        public IActionResult Delete(int p_id)
+        // DELETE covid/delete/{id}
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete(int id)
         {
             try
             {
-                var topic = _repo.GetById(p_id);
+                var topic = _repo.GetById(id);
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();

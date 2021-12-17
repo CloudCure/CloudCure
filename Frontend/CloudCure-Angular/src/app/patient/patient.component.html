@@ -1,0 +1,111 @@
+<body>
+
+  <div class="header">
+    <h1>PATIENT REGISTRATION FORM</h1>
+  </div>
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-lg-3"></div>
+
+      <div class="col-lg-6">
+
+        <div id="form">
+
+          <form [formGroup]="registerGroup">
+            <div class="row">
+
+              <div class="col-lg-6">
+                <label>First Name</label>
+                <input type="text" formControlName="FirstName" class="form-control"
+                  placeholder="Enter Your First Name...">
+                <div *ngIf="FirstName?.invalid && (FirstName?.dirty || FirstName?.touched)">
+                  <div class="text-danger" *ngIf="FirstName?.errors?.['required']">Required</div>
+                </div>
+              </div>
+
+
+              <div class="col-lg-6">
+                <label>Last Name</label>
+                <input type="text" formControlName="LastName" class="form-control"
+                  placeholder="Enter Your Last Name...">
+                <div *ngIf="LastName?.invalid && (LastName?.dirty || LastName?.touched)">
+                  <div class="text-danger" *ngIf="LastName?.errors?.['required']">Required</div>
+                </div>
+              </div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label>Phone Number</label>
+                <input type="text" formControlName="PhoneNumber" class="form-control"
+                  placeholder="Enter Your Phone Number...">
+                <div *ngIf="PhoneNumber?.invalid && (PhoneNumber?.dirty || PhoneNumber?.touched)">
+                  <div class="text-danger" *ngIf="PhoneNumber?.errors?.['required']">Required</div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <label>Date of Birth</label>
+                <input type="date" min="1900-01-01" [max]="today" formControlName="DateOfBirth" class="form-control"
+                  placeholder="Enter Your Date Of Birth...">
+                <div *ngIf="DateOfBirth?.invalid && (DateOfBirth?.dirty || DateOfBirth?.touched)">
+                  <div class="text-danger" *ngIf="DateOfBirth?.errors?.['required']">Required</div>
+                </div>
+              </div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-lg-12">
+                <label>Address</label>
+                <input type="text" formControlName="Address" class="form-control"
+                  placeholder="Enter Your Address...">
+                <div *ngIf="Address?.invalid && (Address?.dirty || Address?.touched)">
+                  <div class="text-danger" *ngIf="Address?.errors?.['required']">Required</div>
+                </div>
+              </div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div>
+                  <label>Emergency Contact Name</label>
+                  <input type="text" formControlName="EmergencyName" class="form-control"
+                    placeholder="Enter Your Emergency Contact...">
+                  <div *ngIf="EmergencyName?.invalid && (EmergencyName?.dirty || EmergencyName?.touched)">
+                    <div class="text-danger" *ngIf="EmergencyName?.errors?.['required']">Required</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div>
+                  <label>Emergency Contact Number</label>
+                  <input type="text" formControlName="EmergencyContactPhone" class="form-control"
+                    placeholder="Enter Your Emergency Contact Phone Number...">
+                  <div
+                    *ngIf="EmergencyContactPhone?.invalid && (EmergencyContactPhone?.dirty || EmergencyContactPhone?.touched)">
+                    <div class="text-danger" *ngIf="EmergencyContactPhone?.errors?.['required']">Required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <!-- <diagnosis-condition></diagnosis-condition>
+                <diagnosis-allergy></diagnosis-allergy>
+                <diagnosis-surgery></diagnosis-surgery>
+                <diagnosis-medication></diagnosis-medication> -->
+
+
+            <br>
+            <button type="submit" class="btn btn-dark" (click)="RegisterPatient(registerGroup)">Register</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>

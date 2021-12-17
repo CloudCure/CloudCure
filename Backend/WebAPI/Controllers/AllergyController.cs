@@ -27,10 +27,10 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet("Get/{p_id}")]
-        public IActionResult GetById(int p_id){
+        [HttpGet("Get/{id}")]
+        public IActionResult GetById(int id){
             try{
-                return Ok(_repo.GetById(p_id));
+                return Ok(_repo.GetById(id));
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Failed to get allergy by id");
@@ -52,8 +52,10 @@ namespace WebAPI.Controllers
 
         // PUT Allergy/Edit
         [HttpPut("Update/{id}")]
-        public IActionResult Update([FromBody] Allergy p_allergy){
+        public IActionResult Update(int id, [FromBody] Allergy p_allergy){
             try{
+                var allergy = _repo.GetById(id);
+                
                 _repo.Update(p_allergy);
                 _repo.Save();
                 return Ok();

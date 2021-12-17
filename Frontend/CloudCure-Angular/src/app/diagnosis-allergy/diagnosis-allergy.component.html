@@ -1,8 +1,13 @@
 <h2>Patient Allergies</h2>
 
+<p>{{allergies}}</p>
 <button (click)="display = !display">Add Allergies</button>
 <br>
-
 <ng-container *ngIf="display">
-    <app-text-box [boxes]="allergies"></app-text-box>
+    <div>
+        <app-text-box [boxes]="allergies" (boxesEmitter)="SetDataFromChild($event)"></app-text-box>
+    </div>
+
+    <!-- The Patient ID is being hardcoded as 1, but it should be dynamic eventually -->
+    <button class="btn btn-dark" type="button" (click)="AddAllergy(1)">Submit</button>
 </ng-container>

@@ -28,10 +28,10 @@ namespace WebAPI.Controllers
         }
 
         // GET: Role/Get/Id
-        [HttpGet("Get/{p_id}")]
-        public IActionResult GetById(int p_id){
+        [HttpGet("Get/{id}")]
+        public IActionResult GetById(int id){
             try{
-                return Ok(_repo.GetById(p_id));
+                return Ok(_repo.GetById(id));
             }catch (Exception e){
                 Log.Error(e.Message);
                 return BadRequest("Not a valid ID");
@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
 
         // PUT: Role/Update/Id
         [HttpPut("Update/{id}")]
-        public IActionResult Update([FromBody] Role p_role){
+        public IActionResult Update(int id, [FromBody] Role p_role){
             try{
                 _repo.Update(p_role);
                 _repo.Save();
