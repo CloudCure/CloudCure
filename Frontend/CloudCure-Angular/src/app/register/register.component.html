@@ -50,7 +50,7 @@
             <br/>
 
             <label>Phone Number</label>
-            <input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" formControlName = "PhoneNumber" class="form-control" placeholder="Enter Your Phone Number...">
+            <input type="text" formControlName = "PhoneNumber" class="form-control" placeholder="Enter Your Phone Number...">
             <div *ngIf="PhoneNumber?.invalid && (PhoneNumber?.dirty || PhoneNumber?.touched)">
               <div class="text-danger" *ngIf="PhoneNumber?.errors?.['required']">Required</div>
             </div>
