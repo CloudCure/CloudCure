@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Condition } from '../AngularModels/Condition';
 import { ConditionService } from '../services/condition.service';
+import { TextBoxComponent } from '../text-box/text-box.component';
 
 @Component({
   selector: 'diagnosis-condition',
@@ -13,26 +14,28 @@ export class DiagnosisConditionComponent implements OnInit {
 
   display: boolean = false;
   conditions: string[] = [""]
+  ////////////////////////////////////
   test:string = "Can You See ME"
-
-  // ConditionGroup: FormGroup = new FormGroup({
-  //   PatientId: new FormControl(2,Validators.required),//is hardcoded to patient 2 this will change once it is connected to the diagnosis component
-  //   ConditionName: new FormControl("",Validators.required),
-  // })
-
-  constructor(private ConditionApi: ConditionService) { }
+  ///////////////////////////////////////////
+ 
+  constructor(private ConditionApi: ConditionService) {
+    
+   }
 
   ngOnInit(): void {
   }
-
-  
+  //////////////////////////////////////////////
+  public SetDataFromChild(data:any){
+    this.test=data 
+  }
+  //////////////////////////////////////////////
   AddCondition(PatientId: number){
     this.conditions.forEach(element => {
       let ConditionInfo: Condition = {
         PatientId: PatientId,
         ConditionName: element,
       }
-      console.log(element.toString());
+      console.log(this.conditions);
 
       // this.ConditionApi.Add(ConditionInfo).subscribe(
       //   (response) => {
@@ -59,5 +62,7 @@ export class DiagnosisConditionComponent implements OnInit {
     //       })
     // }
   }
+
+
 
 }

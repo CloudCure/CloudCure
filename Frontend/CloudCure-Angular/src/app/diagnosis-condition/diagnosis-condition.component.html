@@ -1,6 +1,6 @@
 
 
-
+<p>{{test}}</p>
 <button (click)="display = !display">Add Conditions</button>
 <br>
 <ng-container *ngIf="display">
@@ -14,7 +14,10 @@
             </div>
             <button class="btn btn-dark" type="button" (click)="AddCondition(ConditionGroup)">Submit</button>
         </form>     -->
-    <app-text-box [boxes]="conditions"> </app-text-box>
+        <div>
+            <app-text-box [state]="test" (event)="SetDataFromChild($event)"> </app-text-box>
+        </div>
+    
     <button class="btn btn-dark" type="button" (click)="AddCondition(2)">Submit</button>
 </ng-container>
 

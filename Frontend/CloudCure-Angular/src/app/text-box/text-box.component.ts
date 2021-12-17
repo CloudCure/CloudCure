@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+
 @Component({
   selector: 'app-text-box',
   templateUrl: './text-box.component.html',
@@ -9,12 +10,20 @@ import { FormGroup } from '@angular/forms';
 export class TextBoxComponent implements OnInit {
 
   @Input('boxes') boxes: string[];
-
-  
+  //////////////////////// testing////////////////////////////
+  @Input() public state: string;
+  public fromChild="is this working";
+  @Output() event: EventEmitter<string> = new EventEmitter();
+  sendToParent(){
+    this.event.emit(this.fromChild)
+  }
+  /////////////////////////////////////////////////////////////
   @Output('boxes') boxesChange = new EventEmitter<string[]>();
 
+  
   constructor() { 
     this.boxes = [''];
+    this.state = "";
   }
 
   ngOnInit(): void {
@@ -30,6 +39,7 @@ export class TextBoxComponent implements OnInit {
 
   boxesChanged() {
     this.boxesChange.emit(this.boxes);
+    console.log(this.boxes)
   }
 
 }
