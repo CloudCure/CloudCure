@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { EmployeeService } from '../services/employee.service';
@@ -10,7 +11,10 @@ import { EmployeeService } from '../services/employee.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  patientSearchGroup:FormGroup = new FormGroup({
+    FirstName: new FormControl("", Validators.required),
+    LastName: new FormControl("", Validators.required)
+  })
   constructor(public auth0: AuthService, @Inject(DOCUMENT) public document: Document, public router: Router, public employeeAPI: EmployeeService ) 
   { 
     // checks if user is currently logged into auth0.
@@ -42,5 +46,13 @@ export class HomeComponent implements OnInit {
   newPatient(){
     this.router.navigateByUrl("/patient");
   }
-
+  searchPatient(patientSearchGroup: FormGroup)
+  {
+    let search = 
+    {
+      firstName: patientSearchGroup.get("FirstName")?.value,
+      lastName: patientSearchGroup.get("LastName")?.value
+    }
+    console.log(search)
+  }
 }

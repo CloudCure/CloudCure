@@ -33,4 +33,10 @@
   border-radius: .3rem;
   padding-bottom: 2rem;
 }
+
+.btn-center {
+  display: flex;
+  justify-content: center;
+  text-align: center
+}
   

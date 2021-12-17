@@ -7,33 +7,56 @@
                 <ng-container *ngIf="auth0.isAuthenticated$ | async; else loggedOut"></ng-container>
                 <ng-template #loggedOut>
                     <hr class="my-4 white-text">
-                    <br/>
+                    <br />
                     <p class="lead white-text medium-text">Worry Less, Heal More</p>
-                    <br/>
-                    <p class="white-text">Our Policy Is To Make Sure Health,</p> 
+                    <br />
+                    <p class="white-text">Our Policy Is To Make Sure Health,</p>
                     <p class="white-text">Comes First</p>
-                </ng-template>               
+                </ng-template>
             </div>
         </div>
         <div class="col-md-1"></div>
     </div>
-    <div class="row">
-        <div class="col-md-5"></div>
-        <div class="col-md-2">
-            <ng-container *ngIf="auth0.isAuthenticated$ | async;">
-                    <div (click)="newPatient()" class="patient">
 
-                        <div id="plus-sign"class="white-text">+</div>
-                        <h5 class="card-title white-text">New Patient</h5>
+
+    <ng-container *ngIf="auth0.isAuthenticated$ | async;">
+
+        <form [formGroup]="patientSearchGroup">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label>First Name</label>
+                                <input type="text" formControlName="FirstName" class="form-control"
+                                    placeholder="Patient's First Name...">
+                            </div>
+                            <div class="col-md-5">
+                                <label>Last Name</label>
+                                <input type="text" formControlName="LastName" class="form-control"
+                                    placeholder="Patient's Last Name...">
+                            </div>
+                            <div class="col-md-2">
+                                <br />
+                                <button type="submit" class="btn btn-dark "
+                                    (click)="searchPatient(patientSearchGroup)">Register</button>
+                            </div>
+                        </div>
                     </div>
-            </ng-container>
+
+                    <div class="col-md-2"></div>
+                    <br />
+                </div>
+            </div>
+        </form>
+
+        <br />
+        <div (click)="newPatient()" class="patient">
+
+            <div id="plus-sign" class="white-text">+</div>
+            <h5 class="card-title white-text">New Patient</h5>
         </div>
-        <div class="col-md-5"></div>
-    </div>
+    </ng-container>
+
 </div>
-
-
-
-
-
-
