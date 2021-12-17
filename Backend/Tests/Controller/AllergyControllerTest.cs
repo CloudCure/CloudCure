@@ -14,7 +14,7 @@ namespace Tests
     public class AllergyControllerTest
     {
         [Fact]
-        public void CreateReturnsOk()
+        public void CreateReturnsOkAllergy()
         {
             var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
@@ -31,7 +31,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GetAllShouldGetAll()
+        public void GetAllReturnsOKAllergy()
         {
             var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
@@ -50,7 +50,7 @@ namespace Tests
         }
 
         [Fact]
-        public void DeleteShouldDeleteEntry()
+        public void DeleteShouldReturnOKAllergy()
         {
             var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
@@ -70,7 +70,7 @@ namespace Tests
         }
 
         [Fact]
-        public void UpdateShouldUpdateAllergy()
+        public void UpdateShouldReturnOKAllergy()
         {
             var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
@@ -89,7 +89,7 @@ namespace Tests
          }
 
          [Fact]
-         public void GetbyIdShouldGetAllergyById()
+         public void GetbyIdShouldReturnOKGetAllergyById()
          {
              var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
