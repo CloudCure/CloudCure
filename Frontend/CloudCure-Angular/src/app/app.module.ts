@@ -26,6 +26,8 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
 import { AuthGuardService } from './services/auth-guard.service';
 import { PatientComponent } from './patient/patient.component';
 
+import { CheckboxModule } from 'primeng/checkbox';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -46,22 +48,25 @@ import { PatientComponent } from './patient/patient.component';
     VerificationComponent,
     NavbarComponent,
     HomeComponent,
-    ProfileComponent,
+    HeaderComponent,
+    FooterComponent,
     BottomNavbarComponent,
+    AssessmentComponent,
     DiagnosisSurgeriesComponent,
     DiagnosisMedicationComponent,
     RegisterComponent,
-    PatientComponent
   ],
 
   imports: [
     HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    CheckboxModule,
     ReactiveFormsModule,
     FormsModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
-      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
+      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq',
     }),
     RouterModule.forRoot([
       //canActivate:[AuthGuardService] means that log-in required in order to hit this route
@@ -79,11 +84,12 @@ import { PatientComponent } from './patient/patient.component';
       { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'register', component:RegisterComponent },
       { path: "home", component: HomeComponent },
+      { path: 'diagnosis-surgery', component: DiagnosisSurgeriesComponent },
       { path: "**", component: HomeComponent }
     ])
   ],
   providers: [
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -28,5 +28,4 @@ export class TextBoxComponent implements OnInit {
   }
 
   customTrackBy(index: number, obj: any): any { return index; }
-    
 }

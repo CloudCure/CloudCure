@@ -19,6 +19,7 @@ namespace Tests
                         .UseSqlite("Filename = Repository.db; Foreign Keys=False").Options;
             Seed();
         }
+
         [Fact]
         public void GetByCovidIdShouldPopulateCovidId()
         {
@@ -27,7 +28,7 @@ namespace Tests
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
                 var result = repository.GetById(1);
 
-                Assert.Equal(true, result.question1);
+                Assert.Equal("true", result.question1);
             }
         }
 
@@ -39,8 +40,11 @@ namespace Tests
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
                 CovidVerify newCovid = new()
                 {
-                    question1 = false,
-
+                    question1 = "false",
+                    question2 = "true",
+                    question3 = "false",
+                    question4 = "true",
+                    question5 = "false"
                 };
                 repository.Create(newCovid);
                 repository.Save();
@@ -70,11 +74,11 @@ namespace Tests
             {
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
                 var testCovid = repository.GetById(1);
-                testCovid.question1 = false;
+                testCovid.question1 = "false";
                 repository.Update(testCovid);
                 repository.Save();
 
-                Assert.Equal(false, testCovid.question1);
+                Assert.Equal("false", testCovid.question1);
             }
         }
 
@@ -130,20 +134,20 @@ namespace Tests
                 context.CovidAssessments.AddRange(
                     new CovidVerify
                     {
-                        question1 = true,
-                        question2 = true,
-                        question3 = false,
-                        question4 = false,
-                        question5 = true
+                        question1 = "true",
+                        question2 = "true",
+                        question3 = "false",
+                        question4 = "false",
+                        question5 = "true"
 
                     },
                     new CovidVerify
                     {
-                        question1 = true,
-                        question2 = true,
-                        question3 = false,
-                        question4 = false,
-                        question5 = true
+                        question1 = "true",
+                        question2 = "true",
+                        question3 = "false",
+                        question4 = "false",
+                        question5 = "true"
                     }
                 );
 
