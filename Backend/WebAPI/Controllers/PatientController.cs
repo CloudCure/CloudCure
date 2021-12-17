@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Ok(_repo.GetById(id));
+                return Ok(_repo.GetbyPatientWithNav(id));
             }
             catch (Exception e)
             {
