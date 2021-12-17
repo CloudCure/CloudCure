@@ -4,14 +4,17 @@
 <button (click)="display = !display">Add Surgeries</button>
 <br>
 <ng-container *ngIf="display">
-    <form [formGroup] = "SurgeryGroup">
+    <!-- <form [formGroup] = "SurgeryGroup">
         <div class="row">
             <div class="col-lg-6">
               <label>Condition </label>
               <input type="text" formControlName = "SurgeryName" class="form-control" placeholder="Enter Surgery description...">
             </div>
         </div>
-        <button class="btn btn-dark" type="button" (click)="AddSurgery(SurgeryGroup)">Submit</button>
-    </form>
-    <app-text-box [boxes]="surgeries"></app-text-box>
+        
+    </form> -->
+
+    <app-text-box [boxes]="surgeries" (boxesEmitter)="SetDataFromChild($event)"></app-text-box>
+
+    <button class="btn btn-dark" type="button" (click)="AddSurgery(1)">Submit</button>
 </ng-container>
