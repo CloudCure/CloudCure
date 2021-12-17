@@ -9,5 +9,6 @@ namespace Data
     public interface IPatientRepository : IRepository<Patient>
     {
         Patient GetbyPatientWithNav(int query);
+        IEnumerable<Patient> GetAllWithNav();
     }
 }
