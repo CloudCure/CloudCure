@@ -27,7 +27,6 @@ namespace Models.Diagnosis
         // body clicker comma separated string
         public string PainAssessment { get; set; }
 
-
         //Pain scale is a question asked of the patient to assess their pain on a scale of 0-10. 
         // 0 being no paint 10 being the most pain to ever be felt.
         [Range(0, 10, ErrorMessage = "Number must be 0 to 10")]
