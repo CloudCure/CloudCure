@@ -23,8 +23,8 @@ namespace WebAPI.Controllers
         }
 
         // GET: medication/All
-        [HttpGet("all")] //("All") Will give and endpoint that ends with All
-        public IActionResult GetAllMedication()
+        [HttpGet("All")] //("All") Will give and endpoint that ends with All
+        public IActionResult GetAll()
         {
             try
             {
@@ -39,8 +39,8 @@ namespace WebAPI.Controllers
         }
 
         // DELETE Medication/delete/Id
-        [HttpDelete("delete/{id}")]
-        public IActionResult DeleteMedication([FromBody] Medication p_medication)
+        [HttpDelete("Delete/{id}")]
+        public IActionResult Delete([FromBody] Medication p_medication)
         {
             try
             {
@@ -74,8 +74,8 @@ namespace WebAPI.Controllers
         }
 
         // POST Medication/Add
-        [HttpPost("add")]
-        public IActionResult AddMedication([FromBody] Medication p_medication)
+        [HttpPost("Add")]
+        public IActionResult Add([FromBody] Medication p_medication)
         {
             try
             {

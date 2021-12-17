@@ -1,6 +1,8 @@
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AccordionModule } from 'primeng/accordion';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '@auth0/auth0-angular';
 import { RouterModule } from '@angular/router';
@@ -26,6 +28,12 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
 import { AuthGuardService } from './services/auth-guard.service';
 import { PatientComponent } from './patient/patient.component';
 
+import { CheckboxModule } from 'primeng/checkbox';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageService } from 'primeng/api';
+import { AssessmentService } from './services/assessement.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,22 +52,28 @@ import { PatientComponent } from './patient/patient.component';
     VerificationComponent,
     NavbarComponent,
     HomeComponent,
-    ProfileComponent,
+    HeaderComponent,
+    FooterComponent,
     BottomNavbarComponent,
+    AssessmentComponent,
     DiagnosisSurgeriesComponent,
     DiagnosisMedicationComponent,
     RegisterComponent,
-    PatientComponent
   ],
 
   imports: [
     HttpClientModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    CheckboxModule,
     ReactiveFormsModule,
+    AccordionModule,
+    InputTextareaModule,
     FormsModule,
+    ReactiveFormsModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
-      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
+      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq',
     }),
     RouterModule.forRoot([
       //canActivate:[AuthGuardService] means that log-in required in order to hit this route
@@ -72,15 +86,18 @@ import { PatientComponent } from './patient/patient.component';
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'assessment', component: AssessmentComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'diagnosis-medication', component: DiagnosisMedicationComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'text-box', component: TextBoxComponent, canActivate:[AuthGuardService] },
       { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'register', component:RegisterComponent },
       { path: "home", component: HomeComponent },
+      { path: 'diagnosis-surgery', component: DiagnosisSurgeriesComponent },
       { path: "**", component: HomeComponent }
     ])
   ],
   providers: [
   ],
-  bootstrap: [AppComponent]
+  providers: [MessageService, AssessmentService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

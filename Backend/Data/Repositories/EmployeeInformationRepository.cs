@@ -36,7 +36,9 @@ namespace Data
             try
             {
                 return repository.Employee
-                            .FirstOrDefault(emp => emp.WorkEmail == p_email);
+                    .Include(e => e.UserProfile)
+                    .ThenInclude(u => u.Role)
+                    .FirstOrDefault(emp => emp.WorkEmail == p_email);
             }
             catch (System.Exception)
             {

@@ -28,8 +28,23 @@ export class PatientComponent implements OnInit {
     UserRole: new FormControl(3, Validators.required),                //from UserProfile model
     
   });
+  get FirstName() {return this.registerGroup.get("FirstName");}
+  get LastName() {return this.registerGroup.get("LastName");}
+  get DateOfBirth() {return this.registerGroup.get("DateOfBirth");}
+  get PhoneNumber() {return this.registerGroup.get("PhoneNumber");}
+  get Address() {return this.registerGroup.get("Address");}
+  get EmergencyName() {return this.registerGroup.get("EmergencyName");}
+  get EmergencyContactPhone() {return this.registerGroup.get("EmergencyContactPhone");}
 
-  constructor(private PatientApi: PatientService, private UserApi: UserService) { }
+  date: Date = new Date;
+  offset = this.date.getTimezoneOffset();
+  today:string = "";
+
+  constructor(private PatientApi: PatientService, private UserApi: UserService) { 
+    
+    this.date = new Date(this.date.getTime()-(this.offset*60*1000));
+    this.today = this.date.toISOString().split('T')[0];
+  }
 
   ngOnInit(): void {
   }
@@ -65,6 +80,10 @@ export class PatientComponent implements OnInit {
           })
 
         }
+        else
+      {
+        this.registerGroup.markAllAsTouched();
+      }
     }
   }
 

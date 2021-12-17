@@ -8,11 +8,11 @@ using Data;
 
 namespace Tests
 {
-    public class EmployeeInformationTests
+    public class EmployeeInfoRepoTests
     {
         readonly DbContextOptions<CloudCureDbContext> _options;
 
-        public EmployeeInformationTests()
+        public EmployeeInfoRepoTests()
         {
             _options = new DbContextOptionsBuilder<CloudCureDbContext>()
                 .UseSqlite("Filename = EmployeeInfo.db; Foreign Keys=False").Options;
@@ -39,6 +39,23 @@ namespace Tests
         }
 
         /// <summary>
+        /// Testing the VerifyEmail method to make sure it returns the expected result
+        /// </summary>
+        [Fact]
+        public void VerifyEmailShouldReturnMatchingEmail()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                string testEmail = "drJohn@email.com";
+                var result = repo.VerifyEmail(testEmail);
+
+                Assert.NotNull(result);
+                Assert.Equal("101", result.RoomNumber);
+            }
+        }
+
+        /// <summary>
         /// Testing the Create method
         /// </summary>
         [Fact]
@@ -48,11 +65,11 @@ namespace Tests
             covidList.Add(
                 new CovidVerify
                 {
-                    question1 = true,
-                    question2 = true,
-                    question3 = true,
-                    question4 = true,
-                    question5 = true
+                    question1 = "true",
+                    question2 = "true",
+                    question3 = "true",
+                    question4 = "true",
+                    question5 = "true"
                 }
             );
             EmployeeInformation newGuy = new EmployeeInformation
@@ -90,7 +107,7 @@ namespace Tests
                 Assert.Equal("RN", allEmps[1].EducationDegree);
                 Assert.Equal("Betty", allEmps[1].UserProfile.FirstName);
                 Assert.Equal("Nurse", allEmps[1].UserProfile.Role.RoleName);
-                Assert.Equal(true, allEmps[1].UserProfile.CovidAssesments[0].question1);
+                Assert.Equal("true", allEmps[1].UserProfile.CovidAssesments[0].question1);
             }
         }
 
@@ -120,13 +137,13 @@ namespace Tests
                 EmployeeInformation employee = repo.GetEmployeeInformationById(1);
                 employee.UserProfile.FirstName = "Jim";
                 employee.Specialization = "Proctology";
-                employee.UserProfile.CovidAssesments[0].question1 = false;
+                employee.UserProfile.CovidAssesments[0].question1 = "false";
                 repo.Update(employee);
                 EmployeeInformation test = repo.GetById(1);
 
                 Assert.Equal("Jim", test.UserProfile.FirstName);
                 Assert.Equal("Proctology", test.Specialization);
-                Assert.Equal(false, employee.UserProfile.CovidAssesments[0].question1);
+                Assert.Equal("false", employee.UserProfile.CovidAssesments[0].question1);
             }
         }
         public void Seed()
@@ -140,11 +157,11 @@ namespace Tests
                 covidList.Add(
                     new CovidVerify
                     {
-                        question1 = true,
-                        question2 = true,
-                        question3 = true,
-                        question4 = true,
-                        question5 = true
+                        question1 = "true",
+                        question2 = "true",
+                        question3 = "true",
+                        question4 = "true",
+                        question5 = "true"
                     }
                 );
 

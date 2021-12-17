@@ -30,20 +30,29 @@ export class VerificationComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  
+    submitForm(verifyGroup: FormGroup) {
 
-  submitForm(verifyGroup: FormGroup) {
-
-    console.log("test");
-    if (verifyGroup.valid) {
-      console.log("test2");
-      let Info: CovidVerify = {
-        //Id: verifyGroup.get("ID")?.value,
-        UserId: 53,
-        question1: verifyGroup.get("question1")? true: false,
-        question2: verifyGroup.get("question2")? true: false,
-        question3: verifyGroup.get("question3")? true: false,
-        question4: verifyGroup.get("question4")? true: false,
-        question5: verifyGroup.get("question5")? true: false,
+      console.log("test");
+      if (verifyGroup.valid) {
+        console.log("test2");
+        let Info: CovidVerify = {
+          //Id: verifyGroup.get("ID")?.value,
+          userId: 10,
+          question1: verifyGroup.get("question1")?.value,
+          question2: verifyGroup.get("question2")?.value,
+          question3: verifyGroup.get("question3")?.value,
+          question4: verifyGroup.get("question4")?.value,
+          question5: verifyGroup.get("question5")?.value
+        }
+        console.log(this.verifyGroup.value);
+        this.covidService.Add(Info).subscribe(
+          (response) => {
+            console.log("inner test");
+            console.log(response);
+          }
+        )
+        console.log(this.verifyGroup.value);
       }
       console.log(this.verifyGroup.value);
       this.covidService.Add(Info).subscribe(
@@ -55,7 +64,6 @@ export class VerificationComponent implements OnInit {
       console.log(this.verifyGroup.value);
     }
     this.router.navigateByUrl("/**");
-
-
   }
 }
+
