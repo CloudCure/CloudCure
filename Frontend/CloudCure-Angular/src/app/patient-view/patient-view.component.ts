@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserProfile } from '../AngularModels/UserProfile';
 import { PatientService } from '../services/patient.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class PatientViewComponent implements OnInit {
   patientExists: Boolean = true;
   
   PatientId:          any;
+  UserProfile:        any;
   PatientName:        string | undefined = 'Timmy';
   PatientPhone:       any = '';
   PatientAddress:     any = '';
@@ -25,18 +27,21 @@ export class PatientViewComponent implements OnInit {
   constructor(private patientApi: PatientService) {
     //1 will be changed later
     this.patientApi.GetById(1).subscribe(response => {
+      console.log("accessed patient")
+      console.log(response)
       this.patientExists = true;
 
-      this.PatientName = response.PatientName
-      this.PatientPhone = response.PatientPhone
-      this.PatientAddress = response.PatientAddress
-      this.DateOfBirth = response.DateOfBirth
-      this.Conditions = response.Conditions
-      this.Allergies = response.Allergies
-      this.Surgeries = response.Surgeries
+      this.UserProfile =        response.UserProfile
+      this.PatientName =        this.UserProfile.firstName
+      this.PatientPhone =       this.UserProfile.phoneNumber
+      this.PatientAddress =     response.PatientAddress
+      this.DateOfBirth =        response.DateOfBirth
+      this.Conditions =         response.Conditions
+      this.Allergies =          response.Allergies
+      this.Surgeries =          response.Surgeries
       this.CurrentMedications = response.CurrentMedications
-      this.VitalHistory = response.VitalHistory
-      this.Assessments = response.Assessments
+      this.VitalHistory =       response.VitalHistory
+      this.Assessments =        response.Assessments
 
     })
    }
