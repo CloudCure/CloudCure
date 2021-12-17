@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Ok(_repo.GetById(id));
+                return Ok(_repo.GetbyPatientWithNav(id));
             }
             catch (Exception e)
             {
@@ -50,6 +50,8 @@ namespace WebAPI.Controllers
                 return BadRequest("Invalid get patient by id request.");
             }
         }
+
+        
 
         // POST Patient/Add
         [HttpPost("Add")]
