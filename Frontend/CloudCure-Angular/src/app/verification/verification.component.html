@@ -8,7 +8,7 @@
     <div class="column middle">
       <h5>PLEASE SELECT THE ANSWER THAT APPLIES TO PATIENT!</h5>
 
-      <form [formGroup] = " verifiGroup">
+      <form [formGroup] = " verifyGroup">
         <div class="form-check form-group">
 
           <p>Question 1:</p>
@@ -16,9 +16,9 @@
             you experienced any of the symptoms in
             the list below in the past 48 hours?
             <dd>
-              <input type="radio" formControlName="question1" id="yes" name="question1" value="yes" checked="">
+              <input type="radio" formControlName="question1" id="yes" name="question1" value="true" checked="">
               <label for="yes">Yes</label>
-              <input type="radio" formControlName="question1" id="no" name="question1" value="no" checked="">
+              <input type="radio" formControlName="question1" id="no" name="question1" value="false" checked="">
               <label for="no">No</label>
             </dd>
           </dl>
@@ -30,9 +30,9 @@
             tested positive for COVID-19 or are worried
             that you may be sick with COVID-19?
             <dd>
-              <input type="radio" formControlName="question2" id="yes" name="question2" value="yes" checked="">
+              <input type="radio" formControlName="question2" id="yes" name="question2" value="true" checked="">
               <label for="yes">Yes</label>
-              <input type="radio" formControlName="question2" id="no" name="question2" value="no" checked="">
+              <input type="radio" formControlName="question2" id="no" name="question2" value="false" checked="">
               <label for="no">No</label>
             </dd>
           </dl>
@@ -43,9 +43,9 @@
           <dl> Has anyone in your household experienced
             any symptoms in the past 14 days?
             <dd>
-              <input type="radio" formControlName="question3" id="yes" name="question3" value="yes" checked="">
+              <input type="radio" formControlName="question3" id="yes" name="question3" value="true" checked="">
               <label for="yes">Yes</label>
-              <input type="radio" formControlName="question3" id="no" name="question3" value="no" checked="">
+              <input type="radio" formControlName="question3" id="no" name="question3" value="false" checked="">
               <label for="no">No</label>
             </dd>
           </dl>
@@ -55,9 +55,9 @@
           <p>Question 4:</p>
           <dl>Have you traveled in the past 10 days?
             <dd>
-              <input type="radio" formControlName="question4" id="yes" name="question4" value="yes" checked="">
+              <input type="radio" formControlName="question4" id="yes" name="question4" value="true" checked="">
               <label for="yes">Yes</label>
-              <input type="radio" formControlName="question4" id="no" name="question4" value="no" checked="">
+              <input type="radio" formControlName="question4" id="no" name="question4" value="false" checked="">
               <label for="no">No</label>
             </dd>
           </dl>
@@ -70,14 +70,14 @@
               as a close contact of someone with
               suspected or confirmed COVID-19?
               <dd>
-                <input type="radio" formControlName="question5" id="yes" name="question5" value="yes" checked="">
+                <input type="radio" formControlName="question5" id="yes" name="question5" value="true" checked="">
                 <label for="yes">Yes</label>
-                <input type="radio" formControlName="question5" id="no" name="question5" value="no" checked="">
+                <input type="radio" formControlName="question5" id="no" name="question5" value="false" checked="">
                 <label for="no">No</label>
               </dd>
             </dl>
 
-            <button type="submit" class="btn btn-dark btn-sm" (click)="submitForm()">Submit</button>
+            <button type="submit" class="btn btn-dark btn-sm" (click)="submitForm(verifyGroup)">Submit</button>
 
         </div>
       </form>
