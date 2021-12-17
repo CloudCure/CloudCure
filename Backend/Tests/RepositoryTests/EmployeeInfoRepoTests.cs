@@ -39,6 +39,23 @@ namespace Tests
         }
 
         /// <summary>
+        /// Testing the VerifyEmail method to make sure it returns the expected result
+        /// </summary>
+        [Fact]
+        public void VerifyEmailShouldReturnMatchingEmail()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                string testEmail = "drJohn@email.com";
+                var result = repo.VerifyEmail(testEmail);
+
+                Assert.NotNull(result);
+                Assert.Equal("101", result.RoomNumber);
+            }
+        }
+
+        /// <summary>
         /// Testing the Create method
         /// </summary>
         [Fact]
