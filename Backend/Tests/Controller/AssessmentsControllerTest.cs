@@ -117,5 +117,26 @@ namespace Tests
             var  okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
         }
+
+        [Fact]
+        public void GetByIdShouldReturnBadRequestOnInvalidId()
+        {
+            var repository = new Mock<IAssessmentRepository>();
+            var controller = new AssessmentController(repository.Object);
+
+            var assessment = new Assessment
+            {
+                PatientId = 1,
+                ChiefComplaint = "Sore throat",
+                PainAssessment = "throat",
+                PainScale = 7,
+                //EncounterDate = new DateTime(2021, 12, 17)
+            };
+
+            var entry = controller.Add(assessment);
+            var result = controller.GetById(2);
+            var  okResponse = (IStatusCodeActionResult)result;
+            Assert.Equal(200, okResponse.StatusCode);
+        }
     }
 }
