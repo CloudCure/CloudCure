@@ -9,7 +9,7 @@ export class TextBoxComponent implements OnInit {
 
   @Input('boxes') boxes: string[];
 
-  @Output('boxes') boxesChange = new EventEmitter<string[]>();
+  @Output('boxes') boxesEmitter = new EventEmitter<string[]>();
 
   
   constructor() { 
@@ -28,7 +28,10 @@ export class TextBoxComponent implements OnInit {
   }
 
   boxesChanged() {
-    this.boxesChange.emit(this.boxes);
+    this.boxesEmitter.emit(this.boxes);
+    console.log(this.boxes);
   }
+
+  customTrackBy(index: number, obj: any): any { return index; }
 
 }
