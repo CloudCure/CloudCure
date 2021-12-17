@@ -50,4 +50,7 @@ export class TextBoxComponent implements OnInit {
     console.log(this.boxes)
   }
 
+    customTrackBy(index: number, obj: any): any {
+         return index;
+     }
 }

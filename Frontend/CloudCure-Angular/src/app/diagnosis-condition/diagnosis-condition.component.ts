@@ -39,11 +39,11 @@ export class DiagnosisConditionComponent implements OnInit {
       }
       console.log(this.conditions);
 
-      // this.ConditionApi.Add(ConditionInfo).subscribe(
-      //   (response) => {
-      //     console.log("Condition added");
-      //     console.log(response);
-      //   })
+      this.ConditionApi.Add(ConditionInfo).subscribe(
+        (response) => {
+          console.log("Condition added");
+          console.log(response);
+        })
        });
 
       

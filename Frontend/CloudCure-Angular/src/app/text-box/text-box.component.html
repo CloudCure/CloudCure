@@ -5,8 +5,8 @@
 
 <!-- [(ngModel)]="box.text" -->
 <!-- <button (click)="addFeature()">Add</button> -->
-<div *ngFor="let box of boxes; let i = index">
-    <input type="text" [(ngModel)]="boxes[i]"> <button (click)="deleteOne(i)" class="btn btn-danger"> - </button>
+<div *ngFor="let box of boxes; let i = index trackBy:customTrackBy">
+    <input type="text" [(ngModel)]="boxes[i]" > <button (click)="deleteOne(i)" class="btn btn-danger"> - </button>
     <br>
 </div>
 <br>
