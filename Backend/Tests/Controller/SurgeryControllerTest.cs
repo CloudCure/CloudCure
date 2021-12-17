@@ -87,5 +87,23 @@ namespace Tests.Controller
             Assert.Equal(200, okResponse.StatusCode);
             
          }
+
+         [Fact]
+         public void GetbyIdShouldReturnOKGetAllergyById()
+         {
+            var repository = new Mock<ISurgeryRepository>();
+            var controller = new SurgeryController(repository.Object);
+
+            var surgery = new Surgery
+            {
+                PatientId = 1,
+                SurgeryName = "Right Knee"
+            };
+
+            var entry = controller.Add(surgery);
+            var results = controller.GetById(1);
+            var okResponse = (IStatusCodeActionResult)results;
+            Assert.Equal(200, okResponse.StatusCode);
+         }
     }
 }
