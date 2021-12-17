@@ -25,5 +25,7 @@ namespace Models.Diagnosis
         public List<Assessment> Assessments { get; set; }
 
         public List<Diagnosis> Diagnoses { get; set; }
+
+        public EmployeeInformation Doctor { get; set; }
     }
 }
