@@ -29,7 +29,7 @@ namespace Tests
                 IAllergyRepository repository = new AllergyRepository(context);
                 var Allergy = repository.SearchByPatientId(1);
 
-                Assert.NotEmpty(Allergy);
+                Assert.NotNull(Allergy);
             }
         }
 

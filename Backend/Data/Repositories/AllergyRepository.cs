@@ -8,17 +8,17 @@ using Models.Diagnosis;
 namespace Data
 {
 
-   public class AllergyRepository : Repository<Allergy>, IAllergyRepository
-   {
-       readonly CloudCureDbContext repository;
-       public AllergyRepository(CloudCureDbContext context) : base(context)
+    public class AllergyRepository : Repository<Allergy>, IAllergyRepository
+    {
+        readonly CloudCureDbContext repository;
+        public AllergyRepository(CloudCureDbContext context) : base(context)
         {
             repository = context;
         }
 
         public IEnumerable<Allergy> SearchByAllergy(string query)
         {
-             var allergy = GetAll().Where(b => b.AllergyName.Equals(query));
+            var allergy = GetAll().Where(b => b.AllergyName.Equals(query));
             if (!allergy.Any())
             {
                 throw new KeyNotFoundException("Allergy not found.");
@@ -29,20 +29,20 @@ namespace Data
             }
         }
 
-      public Allergy SearchByPatientId(int query)
+        public IEnumerable<Allergy> SearchByPatientId(int query)
         {
-              try
-            {
             var result = base.GetAll()
-                        .FirstOrDefault(allergy => allergy.PatientId == query);
-            return result;
-            }
-            catch (System.Exception)
+                        .Where(i => i.PatientId.Equals(query));
+            if (!result.Any())
             {
-                
-                throw new KeyNotFoundException("No Vitals Found");
+                throw new KeyNotFoundException("No result found");
             }
 
+            return result;
+
+
         }
+
     }
 }
+
