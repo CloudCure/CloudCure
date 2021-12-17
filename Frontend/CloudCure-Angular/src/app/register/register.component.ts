@@ -33,18 +33,40 @@ export class RegisterComponent implements OnInit {
       UserRole: new FormControl("", Validators.required),// RoleId from UserProfile model
       
   });
+  get FirstName() {return this.registerGroup.get("FirstName");}
+  get LastName() {return this.registerGroup.get("LastName");}
+  get DateOfBirth() {return this.registerGroup.get("DateOfBirth");}
+  get PhoneNumber() {return this.registerGroup.get("PhoneNumber");}
+  get Address() {return this.registerGroup.get("Address");}
+  get EmergencyName() {return this.registerGroup.get("EmergencyName");}
+  get EmergencyContactPhone() {return this.registerGroup.get("EmergencyContactPhone");}
+  get Specialization() {return this.registerGroup.get("Specialization");}
+  get StartDate() {return this.registerGroup.get("StartDate");}
+  get EducationDegree() {return this.registerGroup.get("EducationDegree");}
+  get RoomNumber() {return this.registerGroup.get("RoomNumber");}
+  get UserRole() {return this.registerGroup.get("UserRole");}
   email:string | undefined = '';
-  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService) 
+  date: Date = new Date;
+  offset = this.date.getTimezoneOffset();
+  today:string = "";
+  tele = document.querySelector('#telle');
+
+  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService, private router: Router) 
   { 
     this.auth0.user$.subscribe(
       (user) => {
         this.email = user?.email;
       }
     )
+    //This allows us to set the maximum date to today for verification purposes
+    //also adjusts to time zone
+    this.date = new Date(this.date.getTime()-(this.offset*60*1000));
+    this.today = this.date.toISOString().split('T')[0];
   }
 
   ngOnInit(): void {
   }
+
 
   //when the submit button is clicked from the htlm of this component this function is called
   //will check if all verifications passed in the form group(so no feilds are null)
@@ -54,34 +76,39 @@ export class RegisterComponent implements OnInit {
       //valid property of a FormGroup will let you know if the Form group the user sent is valid or not
       if (registerGroup.valid) {
         let UserInfo: UserProfile = {
-          FirstName: registerGroup.get("FirstName")?.value,
-          LastName: registerGroup.get("LastName")?.value,
-          DateOfBirth: new Date(registerGroup.get("DateOfBirth")?.value).toISOString(),
-          PhoneNumber: registerGroup.get("PhoneNumber")?.value,
-          Address: registerGroup.get("Address")?.value,
-          EmergencyName: registerGroup.get("EmergencyName")?.value,
-          EmergencyContactPhone: registerGroup.get("EmergencyContactPhone")?.value,
-          RoleId: registerGroup.get("UserRole")?.value,
+          firstName: registerGroup.get("FirstName")?.value,
+          lastName: registerGroup.get("LastName")?.value,
+          dateOfBirth: new Date(registerGroup.get("DateOfBirth")?.value).toISOString(),
+          phoneNumber: registerGroup.get("PhoneNumber")?.value,
+          address: registerGroup.get("Address")?.value,
+          emergencyName: registerGroup.get("EmergencyName")?.value,
+          emergencyContactPhone: registerGroup.get("EmergencyContactPhone")?.value,
+          roleId: registerGroup.get("UserRole")?.value,
         }
-        this.userApi.Add(UserInfo).subscribe(
-          (response) => {
-            console.log(response);
+        // this.userApi.Add(UserInfo).subscribe(
+        //   (response) => {
+            //console.log(response);
             //console.log(response.id);
             let EmployeeInfo: EmployeeInformation = {
-              UserProfileId: response.id,
-              WorkEmail: this.email,
-              Specialization: registerGroup.get("Specialization")?.value,
-              StartDate: new Date(registerGroup.get("StartDate")?.value).toISOString(),
-              RoomNumber: registerGroup.get("RoomNumber")?.value,
-              EducationDegree: registerGroup.get("EducationDegree")?.value
+              userProfile: UserInfo,
+              workEmail: this.email,
+              specialization: registerGroup.get("Specialization")?.value,
+              startDate: new Date(registerGroup.get("StartDate")?.value).toISOString(),
+              roomNumber: registerGroup.get("RoomNumber")?.value,
+              educationDegree: registerGroup.get("EducationDegree")?.value
             }
             this.employeeApi.Add(EmployeeInfo).subscribe(
               (response) => {
                 console.log(response);
+                this.router.navigateByUrl("/home");
               }
             )
-          }
-        )
+        
+      
+      }
+      else
+      {
+        this.registerGroup.markAllAsTouched();
       }
   }
 }
