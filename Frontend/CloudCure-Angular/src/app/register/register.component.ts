@@ -16,7 +16,7 @@ import { UserProfile } from '../AngularModels/UserProfile';
 })
 export class RegisterComponent implements OnInit {
 
-  //Creates a form group for the User model 
+  //Creates a form group for the User model
   registerGroup:FormGroup = new FormGroup({
       WorkEmail: new FormControl(""),//from EmployeeInformation model
       FirstName: new FormControl("", Validators.required),//from UserProfile model
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
       EducationDegree: new FormControl("", Validators.required),//from EmployeeInformation model
       RoomNumber: new FormControl("", Validators.required),//from EmployeeInformation model
       UserRole: new FormControl("", Validators.required),// RoleId from UserProfile model
-      
+
   });
   get FirstName() {return this.registerGroup.get("FirstName");}
   get LastName() {return this.registerGroup.get("LastName");}
@@ -51,8 +51,8 @@ export class RegisterComponent implements OnInit {
   today:string = "";
   tele = document.querySelector('#telle');
 
-  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService, private router: Router) 
-  { 
+  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService, private router: Router)
+  {
     this.auth0.user$.subscribe(
       (user) => {
         this.email = user?.email;
@@ -103,8 +103,6 @@ export class RegisterComponent implements OnInit {
                 this.router.navigateByUrl("/home");
               }
             )
-        
-      
       }
       else
       {
