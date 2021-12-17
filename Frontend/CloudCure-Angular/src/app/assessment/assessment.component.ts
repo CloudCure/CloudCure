@@ -24,8 +24,11 @@ export class AssessmentComponent implements OnInit {
 
   //patientAssessment
   patientAssesment: Assessment = {
+    PatientId: 1,
     ChiefComplaint: '',
-    HistOfPresentIllness: '',
+
+    HistoryOfPresentIllness: '',
+
     PainAssessment: '',
     PainScale: 0,
   };
@@ -69,6 +72,7 @@ export class AssessmentComponent implements OnInit {
     );
   }
 
+  /*
   //Delete Assessment
   deleteAsssessment(Id: number) {
     this.patientService.Delete(Id).subscribe(
@@ -90,6 +94,7 @@ export class AssessmentComponent implements OnInit {
       }
     );
   }
+  */
   //Update Assessment
   //updateAssessment() {}
 
@@ -101,12 +106,25 @@ export class AssessmentComponent implements OnInit {
   }
   //Body Clicker
 
+  clickedParts: string[] = [];
+
   getClick(bodypart: Clickable) {
-    this.chiefComplaint += bodypart.name + ', ';
-    console.log(this.chiefComplaint);
+    console.log(`Clicked on ${bodypart.name}`);
+
+    if (this.clickedParts.find((x) => x === bodypart.name)) {
+      this.clickedParts.splice(this.clickedParts.indexOf(bodypart.name!), 1);
+    } else {
+      this.clickedParts.push(bodypart.name!);
+    }
+    console.log(this.clickedParts);
+  }
+  clickedPartsConverter() {
+    return this.clickedParts.join(', ');
   }
 
-  send() {
+  submitClicked() {
+    this.patientAssesment.ChiefComplaint = this.clickedPartsConverter();
     console.log(this.patientAssesment);
+    this.AddAsssessment();
   }
 }

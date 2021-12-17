@@ -146,11 +146,11 @@
       <h4>History of present illness</h4>
       <label for="HistOfPresentIllness"></label>
       <textarea
-        id="HistOfPresentIllness"
-        name="HistOfPresentIllness"
+        id="HistoryOfPresentIllness"
+        name="HistoryOfPresentIllness"
         class="form-control"
         rows="3"
-        [(ngModel)]="patientAssesment.HistOfPresentIllness"
+        [(ngModel)]="patientAssesment.HistoryOfPresentIllness"
       ></textarea>
 
       <h4>Pain assessment</h4>
@@ -178,7 +178,10 @@
     <!---------------------------------------------------------------------------------------------------------------->
 
     <div>
-      <button class="btn btn-primary" (click)="send()">Submit</button>
+      <button class="btn btn-primary" (click)="submitClicked()">Submit</button>
     </div>
   </form>
 </div>
+<br />
+<br />
+<br />
