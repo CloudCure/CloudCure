@@ -8,7 +8,7 @@
     <div class="column middle">
       <h5>PLEASE SELECT THE ANSWER THAT APPLIES TO PATIENT!</h5>
 
-      <form [formGroup] = " verifiGroup">
+      <form [formGroup] = " verifyGroup">
         <div class="form-check form-group">
 
           <p>Question 1:</p>
@@ -77,7 +77,7 @@
               </dd>
             </dl>
 
-            <button type="submit" class="btn btn-dark btn-sm" (click)="submitForm()">Submit</button>
+            <button type="submit" class="btn btn-dark btn-sm" (click)="submitForm(verifyGroup)">Submit</button>
 
         </div>
       </form>
