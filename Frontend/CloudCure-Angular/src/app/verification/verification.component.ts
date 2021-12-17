@@ -13,7 +13,7 @@ import { CovidVerify } from '../AngularModels/CovidVerify';
 })
 export class VerificationComponent implements OnInit {
 
-  verifiGroup: FormGroup = new FormGroup({
+  verifyGroup: FormGroup = new FormGroup({
     'question1': new FormControl(),
     'question2': new FormControl(),
     'question3': new FormControl(),
@@ -31,7 +31,31 @@ export class VerificationComponent implements OnInit {
 
     }
 
-    submitForm(){
-      console.log(this.verifiGroup.value);
+    submitForm(verifyGroup: FormGroup) {
+
+      console.log("test");
+      if (verifyGroup.valid) {
+        console.log("test2");
+        let Info: CovidVerify = {
+          //Id: verifyGroup.get("ID")?.value,
+          UserId: 53,
+          question1: verifyGroup.get("question1")? true: false,
+          question2: verifyGroup.get("question2")? true: false,
+          question3: verifyGroup.get("question3")? true: false,
+          question4: verifyGroup.get("question4")? true: false,
+          question5: verifyGroup.get("question5")? true: false,
+        }
+        console.log(this.verifyGroup.value);
+        this.covidService.Add(Info).subscribe(
+          (response) => {
+            console.log("inner test");
+            console.log(response);
+          }
+        )
+        console.log(this.verifyGroup.value);
+      }
+      this.router.navigateByUrl("/**");
+  
+  
     }
   }
