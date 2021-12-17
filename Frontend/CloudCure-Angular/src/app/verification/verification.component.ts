@@ -23,7 +23,7 @@ export class VerificationComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router, private covidService: CovidService) {
 
    }
 
