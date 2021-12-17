@@ -17,7 +17,7 @@ namespace Tests
         {
             _options = new DbContextOptionsBuilder<CloudCureDbContext>()
                         .UseSqlite("Filename = Repository.db; Foreign Keys=False").Options;
-                    Seed();
+            Seed();
         }
         [Fact]
         public void GetByCovidIdShouldPopulateCovidId()
@@ -37,16 +37,16 @@ namespace Tests
             using (var context = new CloudCureDbContext(_options))
             {
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
-                CovidVerify newCovid = new ()
+                CovidVerify newCovid = new()
                 {
                     question1 = false,
-                    
+
                 };
                 repository.Create(newCovid);
                 repository.Save();
 
                 Assert.Equal(newCovid.question1, repository.GetById(3).question1);
-                
+
             }
         }
 
@@ -78,7 +78,7 @@ namespace Tests
             }
         }
 
-         [Fact]
+        [Fact]
         public void DeleteCovidshouldDeleteCovid()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -89,12 +89,12 @@ namespace Tests
                 repository.Save();
 
                 var result = repository.GetAll();
-                
+
                 Assert.Single(result);
             }
         }
 
-       
+
 
         void Seed()
         {
@@ -146,7 +146,7 @@ namespace Tests
                         question5 = true
                     }
                 );
-                
+
 
                 context.SaveChanges();
             }
