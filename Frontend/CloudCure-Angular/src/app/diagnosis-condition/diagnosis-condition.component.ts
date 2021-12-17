@@ -9,7 +9,7 @@ import { ConditionService } from '../services/condition.service';
 })
 export class DiagnosisConditionComponent implements OnInit {
 
-  display: boolean = false;
+  display: boolean = true;
   conditions: string[] = [""];
  
   constructor(private ConditionApi: ConditionService) {}
@@ -26,7 +26,7 @@ export class DiagnosisConditionComponent implements OnInit {
         PatientId: PatientId,
         ConditionName: element,
       }
-      console.log(this.conditions);
+      console.log(element);
 
       this.ConditionApi.Add(ConditionInfo).subscribe(
       (response) => {

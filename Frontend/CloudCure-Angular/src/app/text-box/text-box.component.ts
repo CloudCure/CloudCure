@@ -29,8 +29,4 @@ export class TextBoxComponent implements OnInit {
 
   customTrackBy(index: number, obj: any): any { return index; }
     
-  sendToParent(){
-    this.boxesEmitter.emit(this.boxes);
-    console.log(this.boxes)
-  }
 }
