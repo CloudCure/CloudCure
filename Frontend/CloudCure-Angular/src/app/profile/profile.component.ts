@@ -1,3 +1,5 @@
+import { EmployeeInformation } from './../AngularModels/EmployeeInformation';
+import { UserService } from './../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { UserProfile } from '../AngularModels/UserProfile';
@@ -30,6 +32,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   // changes tabs in main card
   id:any= "dashboard";
   tabChange(ids:any){

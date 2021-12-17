@@ -9,6 +9,7 @@ namespace Models.Diagnosis
         
        //This is Allergies that the patient may have
         [Display(Name = "Allergies")]
+        
         public string AllergyName { get; set; }
     }
 }

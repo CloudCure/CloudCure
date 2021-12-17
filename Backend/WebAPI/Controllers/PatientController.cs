@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Nothing returned");
+                return BadRequest("Invalid get all patients request.");
             }
         }
 
@@ -42,14 +42,16 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Ok(_repo.GetById(id));
+                return Ok(_repo.GetbyPatientWithNav(id));
             }
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Not a valid search id");
+                return BadRequest("Invalid get patient by id request.");
             }
         }
+
+        
 
         // POST Patient/Add
         [HttpPost("Add")]
@@ -65,7 +67,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Not a valid search id");
+                return BadRequest("Invalid patient add request");
             }
         }
 
@@ -82,7 +84,7 @@ namespace WebAPI.Controllers
             catch
             {
                 //Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("Invalid patient update request");
             }
         }
 
@@ -99,7 +101,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("Invalid patient delete request");
             }
         }
     }

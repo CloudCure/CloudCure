@@ -64,7 +64,7 @@ namespace WebAPI.Controllers
 
         //PUT: Vitals/Id
         [HttpPut("Update/{id}")]
-        public IActionResult UpdateVitals(int id, [FromBody] Vitals p_vitals)
+        public IActionResult Update(int id, [FromBody] Vitals p_vitals)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace WebAPI.Controllers
 
         //Delete: Vitals/Id
         [HttpDelete("Delete/{id}")]
-        public IActionResult DeleteVitals([FromBody] Vitals p_vitals)
+        public IActionResult Delete([FromBody] Vitals p_vitals)
         {
             try
             {
