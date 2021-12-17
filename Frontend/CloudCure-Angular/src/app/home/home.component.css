@@ -22,4 +22,15 @@
 .medium-text {
     font-size: 35px;
 }
+
+#plus-sign {
+  font-size: 85px;
+  cursor: pointer;
+}
+
+.patient {
+  background-color: rgb(115,165,194);
+  border-radius: .3rem;
+  padding-bottom: 2rem;
+}
   

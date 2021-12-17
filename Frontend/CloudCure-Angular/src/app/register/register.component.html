@@ -19,58 +19,91 @@
 
               <div class="col-lg-6">
                 <label>First Name</label>
-                <input type="text" formControlName = "FirstName" class="form-control" placeholder="Enter your first name...">
+                <input type="text" formControlName="FirstName" class="form-control" placeholder="Enter Your First Name...">
+                <div *ngIf="FirstName?.invalid && (FirstName?.dirty || FirstName?.touched)">
+                  <div class="text-danger" *ngIf="FirstName?.errors?.['required']">Required</div>
+                </div>
               </div>
 
               <div class="col-lg-6">
                 <label>Last Name</label>
-                <input type="text"formControlName = "LastName" class="form-control" placeholder="Enter your last name...">
+                <input type="text"formControlName = "LastName" class="form-control" placeholder="Enter Your Last Name...">
+                <div *ngIf="LastName?.invalid && (LastName?.dirty || LastName?.touched)">
+                  <div class="text-danger" *ngIf="LastName?.errors?.['required']">Required</div>
+                </div>
               </div>
             </div>
 
             <br/>
             <label>Date of Birth</label>
-            <input type="text" formControlName = "DateOfBirth" class="form-control" placeholder="Enter your Date of Birth...">
+            <input type="date" min="1900-01-01" [max]="today" formControlName = "DateOfBirth" class="form-control" placeholder="Enter Your Date Of Birth...">
+            <div *ngIf="DateOfBirth?.invalid && (DateOfBirth?.dirty || DateOfBirth?.touched)">
+              <div class="text-danger" *ngIf="DateOfBirth?.errors?.['required']">Required</div>
+            </div>
             <br/>
 
             <label>Address</label>
-            <input type="text" formControlName = "Address" class="form-control" placeholder="Enter your Date of Birth...">
+            <input type="text" formControlName = "Address" class="form-control" placeholder="Enter Your Address...">
+            <div *ngIf="Address?.invalid && (Address?.dirty || Address?.touched)">
+              <div class="text-danger" *ngIf="Address?.errors?.['required']">Required</div>
+            </div>
             <br/>
 
             <label>Phone Number</label>
-            <input type="text" formControlName = "PhoneNumber" class="form-control" placeholder="Enter your Date of Birth...">
+            <input type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" formControlName = "PhoneNumber" class="form-control" placeholder="Enter Your Phone Number...">
+            <div *ngIf="PhoneNumber?.invalid && (PhoneNumber?.dirty || PhoneNumber?.touched)">
+              <div class="text-danger" *ngIf="PhoneNumber?.errors?.['required']">Required</div>
+            </div>
             <br/>
 
             <div class="row">
               <div class="col-lg-6">
                 <label>Emergency Contact Name</label>
-                <input type="text" formControlName = "EmergencyName" class="form-control" placeholder="Enter your contact name...">
+                <input type="text" formControlName = "EmergencyName" class="form-control" placeholder="Enter Your Contact Name...">
+                <div *ngIf="EmergencyName?.invalid && (EmergencyName?.dirty || EmergencyName?.touched)">
+                  <div class="text-danger" *ngIf="EmergencyName?.errors?.['required']">Required</div>
+                </div>
               </div>
 
               <div class="col-lg-6">
                 <label>Emergency Contact Number</label>
-                <input type="text" formControlName = "EmergencyContactPhone" class="form-control" placeholder="Enter your contact number...">
+                <input type="text" formControlName = "EmergencyContactPhone" class="form-control" placeholder="Enter Your Contact Number...">
+                <div *ngIf="EmergencyContactPhone?.invalid && (EmergencyContactPhone?.dirty || EmergencyContactPhone?.touched)">
+                  <div class="text-danger" *ngIf="EmergencyContactPhone?.errors?.['required']">Required</div>
+                </div>
               </div>
             </div>
 
             <br/>
             <label>Education</label>
-            <input type="text" formControlName = "EducationDegree" class="form-control" placeholder="Enter degree...">
+            <input type="text" formControlName = "EducationDegree" class="form-control" placeholder="Enter Degree...">
+            <div *ngIf="EducationDegree?.invalid && (EducationDegree?.dirty || EducationDegree?.touched)">
+              <div class="text-danger" *ngIf="EducationDegree?.errors?.['required']">Required</div>
+            </div>
             <br/>
 
             <label>Specialization</label>
-            <input type="text" formControlName = "Specialization" class="form-control" placeholder="Enter speciality...">
+            <input type="text" formControlName = "Specialization" class="form-control" placeholder="Enter Speciality...">
+            <div *ngIf="Specialization?.invalid && (Specialization?.dirty || Specialization?.touched)">
+              <div class="text-danger" *ngIf="Specialization?.errors?.['required']">Required</div>
+            </div>
             <br/>
 
             <div class="row">
               <div class="col-lg-6">
                 <label>Start Date</label>
-                <input type="text" formControlName = "StartDate" class="form-control" placeholder="Enter employment start date...">
+                <input type="date" min="1900-01-01" [max]="today" formControlName = "StartDate" class="form-control" placeholder="Enter Employment Start Date...">
+                <div *ngIf="StartDate?.invalid && (StartDate?.dirty || StartDate?.touched)">
+                  <div class="text-danger" *ngIf="StartDate?.errors?.['required']">Required</div>
+                </div>
               </div>
 
               <div class="col-lg-6">
                 <label>Room No.</label>
-                <input type="text" formControlName = "RoomNumber" class="form-control" placeholder="Enter room number...">
+                <input type="text" formControlName = "RoomNumber" class="form-control" placeholder="Enter Room Number...">
+                <div *ngIf="RoomNumber?.invalid && (RoomNumber?.dirty || RoomNumber?.touched)">
+                  <div class="text-danger" *ngIf="RoomNumber?.errors?.['required']">Required</div>
+                </div>
               </div>
             </div>
 
@@ -81,6 +114,9 @@
               <option value="2">Doctor..</option>
               <option value="3">Other..</option>
             </select>
+            <div *ngIf="UserRole?.invalid && (UserRole?.dirty || UserRole?.touched)">
+              <div class="text-danger" *ngIf="UserRole?.errors?.['required']">Required</div>
+            </div>
 
             <br/>
             <button type="submit" class="btn btn-dark" (click)="RegisterUser(registerGroup)">Register</button>
@@ -92,79 +128,3 @@
     </div>
   </div>
 </body>
-
-
-
-<!-- <body>
-  <div class="header">
-    <h1>Registration Form</h1>
-  </div>
-    <div class="container"> *ngIf="showModifyUser"
-    <div class="row gutters">
-      <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-        <div class="card h-100">
-          <div class="card-body">
-            <div class="row gutters">
-
-              <form [formGroup] = "registerGroup" >
-                <div class="mb-3">
-                  <label for="InputFirstName" class="form-label" aria-placeholder="Enter First Name">First Name</label>
-                  <input type="text" formControlName = "FirstName" class="form-control" id="InputFirstName" aria-describedby="FirstNameHelp">
-                </div>
-                <div class="mb-3">
-                  <label for="InputLastName" class="form-label">Last Name</label>
-                  <input type="text" formControlName = "LastName" class="form-control" id="InputLastName">
-                </div>
-                <div class="mb-3">
-                  <label for="InputDateOfBirth" class="form-label">Date Of Birth</label>
-                  <input type="text" formControlName = "DateOfBirth" class="form-control" id="InputDateOfBirth">
-                </div>
-                <div class="mb-3">
-                  <label for="InputPhoneNumber" class="form-label">Phone Number</label>
-                  <input type="text" formControlName = "PhoneNumber" class="form-control" id="InputPhoneNumber">
-                </div>
-                <div class="mb-3">
-                  <label for="InputAddress" class="form-label">Address</label>
-                  <input type="text" formControlName = "Address" class="form-control" id="InputAddress">
-                </div>
-                <div class="mb-3">
-                  <label for="InputEmergencyName" class="form-label">Emergency Name</label>
-                  <input type="text" formControlName = "EmergencyName" class="form-control" id="InputEmergencyName">
-                </div>
-                <div class="mb-3">
-                  <label for="InputEmergencyContactPhone" class="form-label">Emergency Contact Phone</label>
-                  <input type="text" formControlName = "EmergencyContactPhone" class="form-control" id="InputContactPhone">
-                </div>
-                <div class="mb-3">
-                  <label for="InputSpecialization" class="form-label">Specialization</label>
-                  <input type="text" formControlName = "Specialization" class="form-control" id="InputSpecialization">
-                </div>
-                <div class="mb-3">
-                  <label for="InputStartDate" class="form-label">Start Date</label>
-                  <input type="text" formControlName = "StartDate" class="form-control" id="InputStartDate">
-                </div>
-                <div class="mb-3">
-                  <label for="InputRoomNumber" class="form-label">Room Number</label>
-                  <input type="text" formControlName = "RoomNumber" class="form-control" id="InputRoomNumber">
-                </div>
-                <div class="mb-3">
-                  <label for="InputEducationDegree" class="form-label">Education Degree</label>
-                  <input type="text" formControlName = "EducationDegree" class="form-control" id="InputEducationDegree">
-                </div>
-                <div class="mb-3">
-                  <label for="disabledSelect" class="form-label">Role</label>
-                  <select id="disabledSelect" class="form-select" formControlName="UserRole">
-                    <option value="1">Nurse</option>
-                    <option value="2">Doctor</option>
-                  </select>
-                </div>
-                <br/>
-                <button type="submit" class="btn btn-dark" (click)="RegisterUser(registerGroup)">Submit</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</body> -->
