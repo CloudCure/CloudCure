@@ -32,6 +32,11 @@ export class PatientViewComponent implements OnInit {
       this.PatientAddress = response.PatientAddress
       this.DateOfBirth = response.DateOfBirth
       this.Conditions = response.Conditions
+      this.Allergies = response.Allergies
+      this.Surgeries = response.Surgeries
+      this.CurrentMedications = response.CurrentMedications
+      this.VitalHistory = response.VitalHistory
+      this.Assessments = response.Assessments
 
     })
    }
