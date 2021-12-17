@@ -51,6 +51,21 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet("GetNav/{id}")]
+        public IActionResult GetByIdWithNav(int p_id)
+        {
+            try
+            {
+                 return Ok(_repo.GetbyPatientWithNav(p_id));
+            }
+            catch (Exception e)
+            {
+                
+                Log.Error(e.Message);
+                return BadRequest("Invalid get patient by id request.");
+            }
+        }
+
         // POST Patient/Add
         [HttpPost("Add")]
         public IActionResult Add([FromBody] Patient p_patient)
