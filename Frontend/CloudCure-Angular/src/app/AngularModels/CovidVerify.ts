@@ -6,4 +6,5 @@ export interface CovidVerify{
     question3:Boolean
     question4:Boolean
     question5:Boolean   
+    //ddddd
 }
