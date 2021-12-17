@@ -101,8 +101,8 @@ namespace Tests
             };
 
             var entry = controller.Add(allergy);
-            var result = controller.GetById(1);
-            var okResponse = (IStatusCodeActionResult)result;
+            var results = controller.GetById(1);
+            var okResponse = (IStatusCodeActionResult)results;
             Assert.Equal(200, okResponse.StatusCode);
          }
 
