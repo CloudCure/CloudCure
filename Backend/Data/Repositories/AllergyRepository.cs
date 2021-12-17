@@ -29,17 +29,19 @@ namespace Data
             }
         }
 
-      public IEnumerable<Allergy> SearchByPatientId(int query)
+      public Allergy SearchByPatientId(int query)
         {
-            var result = base.GetAll()
-                        .Where(i => i.PatientId.Equals(query));
-            if (!result.Any())
+              try
             {
-                throw new KeyNotFoundException("No result found");
-            }
-
+            var result = base.GetAll()
+                        .FirstOrDefault(allergy => allergy.PatientId == query);
             return result;
-
+            }
+            catch (System.Exception)
+            {
+                
+                throw new KeyNotFoundException("No Vitals Found");
+            }
 
         }
     }
