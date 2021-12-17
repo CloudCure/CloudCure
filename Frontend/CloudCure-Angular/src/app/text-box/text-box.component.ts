@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -10,47 +9,28 @@ import { FormGroup } from '@angular/forms';
 export class TextBoxComponent implements OnInit {
 
   @Input('boxes') boxes: string[];
-
-  //////////////////////// testing////////////////////////////
-  @Input() public state: string;
-  public fromChild="is this working";
-
-  @Output() event: EventEmitter<string[]> = new EventEmitter();
-  // textEvent: EventEmitter<string[]> = new EventEmitter<string[]>();
-  sendToParent(){
-    console.log("Button pushed")
-    // this.event.emit(this.fromChild)
-    // this.textEvent.emit(this.boxes)
-    this.event.emit(this.boxes);
-    console.log(this.boxes)
-  }
-  /////////////////////////////////////////////////////////////
-
-  @Output('boxes') boxesChange = new EventEmitter<string[]>();
+  @Output('boxes') boxesEmitter = new EventEmitter<string[]>();
 
   
   constructor() { 
     this.boxes = [''];
-    this.state = "";
   }
 
-  ngOnInit(): void {
-  }
-
-  addOne() {
-    this.boxes.push("");
-  }
+  ngOnInit(): void {}
   
-  deleteOne(i:number) {
-    this.boxes.splice(i,1); 
-  }
-
+  addOne() {this.boxes.push("");}
+    
+  deleteOne(i:number) {this.boxes.splice(i,1); }
+    
   boxesChanged() {
-    this.boxesChange.emit(this.boxes);
+    this.boxesEmitter.emit(this.boxes);
     console.log(this.boxes)
   }
 
-    customTrackBy(index: number, obj: any): any {
-         return index;
-     }
+  customTrackBy(index: number, obj: any): any { return index; }
+    
+  sendToParent(){
+    this.boxesEmitter.emit(this.boxes);
+    console.log(this.boxes)
+  }
 }

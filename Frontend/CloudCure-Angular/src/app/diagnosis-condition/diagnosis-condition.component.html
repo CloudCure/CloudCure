@@ -1,23 +1,12 @@
 
 
-<p>{{test}}</p>
 <p>{{conditions}}</p>
 <button (click)="display = !display">Add Conditions</button>
 <br>
 <ng-container *ngIf="display">
-    
-     <!-- <form [formGroup] = "ConditionGroup">
-            <div class="row">
-                <div class="col-lg-6">
-                  <label>Condition </label>
-                  <input type="text" formControlName = "ConditionName" class="form-control" placeholder="Enter Condition description...">
-                </div>
-            </div>
-            <button class="btn btn-dark" type="button" (click)="AddCondition(ConditionGroup)">Submit</button>
-        </form>     -->
-        <div>
-            <app-text-box [state]="test" (event)="SetDataFromChild($event)"> </app-text-box>
-        </div>
+    <div>
+        <app-text-box [boxes]="conditions" (boxesEmitter)="SetDataFromChild($event)"> </app-text-box>
+    </div>
     
     <button class="btn btn-dark" type="button" (click)="AddCondition(2)">Submit</button>
 </ng-container>
