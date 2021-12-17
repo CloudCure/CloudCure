@@ -1,6 +1,8 @@
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AccordionModule } from 'primeng/accordion';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '@auth0/auth0-angular';
 import { RouterModule } from '@angular/router';
@@ -28,6 +30,8 @@ import { PatientComponent } from './patient/patient.component';
 
 import { CheckboxModule } from 'primeng/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageService } from 'primeng/api';
+import { AssessmentService } from './services/assessement.service';
 
 
 @NgModule({
@@ -63,7 +67,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     CheckboxModule,
     ReactiveFormsModule,
+    AccordionModule,
+    InputTextareaModule,
     FormsModule,
+    ReactiveFormsModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
       clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq',
@@ -90,6 +97,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers: [
   ],
+  providers: [MessageService, AssessmentService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
