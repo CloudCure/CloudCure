@@ -23,5 +23,7 @@ namespace Models.Diagnosis
         public List<Vitals> VitalHistory { get; set; }
         
         public List<Assessment> Assessments { get; set; }
+
+        public List<Diagnosis> Diagnoses {get;set;}
     }
 }
