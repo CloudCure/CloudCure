@@ -29,6 +29,7 @@ import { PatientComponent } from './patient/patient.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,18 +69,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq',
     }),
     RouterModule.forRoot([
-      { path: 'verification', component: VerificationComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'diagnosis', component: DiagnosisComponent },
-      { path: 'print', component: PrintComponent },
-      { path: 'body-clicker', component: BodyClickerComponent },
-      { path: 'diagnosis-condition', component:DiagnosisConditionComponent},
-      { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
-      { path: 'assessment', component: AssessmentComponent },
-      { path: '**', component: HomeComponent },
-      { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent },
-      { path: 'text-box', component: TextBoxComponent },
-      { path : 'register', component:RegisterComponent},
+      //canActivate:[AuthGuardService] means that log-in required in order to hit this route
+      { path: "verification", component: VerificationComponent, canActivate:[AuthGuardService] },
+      { path: "profile", component: ProfileComponent, canActivate:[AuthGuardService] },
+      { path: 'diagnosis', component: DiagnosisComponent, canActivate:[AuthGuardService] },
+      { path: 'print', component: PrintComponent, canActivate:[AuthGuardService] },
+      { path: 'body-clicker', component: BodyClickerComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'diagnosis-condition', component:DiagnosisConditionComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'assessment', component: AssessmentComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'diagnosis-medication', component: DiagnosisMedicationComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'text-box', component: TextBoxComponent, canActivate:[AuthGuardService] },
+      { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
+      { path: 'register', component:RegisterComponent },
+      { path: "home", component: HomeComponent },
+      { path: 'diagnosis-surgery', component: DiagnosisSurgeriesComponent },
       { path: "**", component: HomeComponent }
     ])
   ],
