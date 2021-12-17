@@ -1,5 +1,5 @@
 export interface CovidVerify{
-    UserId:Number
+    userId:Number
     question1:string
     question2:string
     question3:string

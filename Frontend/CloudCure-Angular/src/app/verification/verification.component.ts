@@ -38,7 +38,7 @@ export class VerificationComponent implements OnInit {
         console.log("test2");
         let Info: CovidVerify = {
           //Id: verifyGroup.get("ID")?.value,
-          UserId: 10,
+          userId: 10,
           question1: verifyGroup.get("question1")?.value,
           question2: verifyGroup.get("question2")?.value,
           question3: verifyGroup.get("question3")?.value,
