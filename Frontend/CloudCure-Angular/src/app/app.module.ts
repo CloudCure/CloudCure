@@ -79,6 +79,7 @@ import { PatientComponent } from './patient/patient.component';
       { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'register', component:RegisterComponent },
       { path: "home", component: HomeComponent },
+      { path: 'diagnosis-surgery', component: DiagnosisSurgeriesComponent },
       { path: "**", component: HomeComponent }
     ])
   ],
