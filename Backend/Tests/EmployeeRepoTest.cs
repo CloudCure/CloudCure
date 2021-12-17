@@ -29,7 +29,7 @@ namespace Tests
                 var result = _repo.VerifyEmail(_testEmail);
 
                 Assert.NotNull(result);
-                Assert.Equal("112", result.RoomNumber);
+                Assert.Equal("Employee@example.com", result.WorkEmail);
             }
         }
 */
