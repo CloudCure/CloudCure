@@ -3,7 +3,8 @@ import { UserService } from './../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { UserProfile } from '../AngularModels/UserProfile';
-import { EmployeeService } from '../services/employee.service';
+import { UserService } from '../services/user.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -12,26 +13,21 @@ import { EmployeeService } from '../services/employee.service';
 })
 export class ProfileComponent implements OnInit {
 
-  employee: EmployeeInformation = {} as EmployeeInformation
+  user:UserProfile | null= {
+    FirstName: "",
+    LastName: "",
+    DateOfBirth: "",
+    PhoneNumber: "",
+    Address: "",
+    EmergencyName: "",
+    EmergencyContactPhone: "",
+    RoleId: 0,
+    id: 0
 
-  email:string | undefined = '';
+  };
 
-  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService)
-  {
-    this.auth0.user$.subscribe(
-      (user) => {
-        this.email = user?.email;
-
-        this.employeeApi.verifyEmployee(this.email).subscribe(
-          (response) => {
-            console.log(response);
-            this.employee=response
-
-            console.log(response);
-          }
-        )
-      }
-    )
+  constructor(public auth0:AuthService, service:UserService) {
+    //this.user = service.GetById();
   }
 
   ngOnInit(): void {
