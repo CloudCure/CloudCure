@@ -11,15 +11,15 @@ namespace Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public bool question1 { get; set; }
+        public string question1 { get; set; }
         [Required]
-        public bool question2 { get; set; }
+        public string question2 { get; set; }
         [Required]
-        public bool question3 { get; set; }
+        public string question3 { get; set; }
         [Required]
-        public bool question4 { get; set; }
+        public string question4 { get; set; }
         [Required]
-        public bool question5 { get; set; }
+        public string question5 { get; set; }
         [Required]
         public int UserId { get; set; }
         

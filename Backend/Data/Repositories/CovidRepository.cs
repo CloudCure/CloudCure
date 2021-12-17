@@ -8,10 +8,10 @@ using Models;
 namespace Data
 {
 
-   public class CovidRepository : Repository<CovidVerify>, ICovidRepository
-   {
-       readonly CloudCureDbContext repository;
-       public CovidRepository(CloudCureDbContext context) : base(context)
+    public class CovidRepository : Repository<CovidVerify>, ICovidRepository
+    {
+        readonly CloudCureDbContext repository;
+        public CovidRepository(CloudCureDbContext context) : base(context)
         {
             repository = context;
         }
