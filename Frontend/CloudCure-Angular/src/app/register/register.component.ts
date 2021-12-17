@@ -54,26 +54,26 @@ export class RegisterComponent implements OnInit {
       //valid property of a FormGroup will let you know if the Form group the user sent is valid or not
       if (registerGroup.valid) {
         let UserInfo: UserProfile = {
-          FirstName: registerGroup.get("FirstName")?.value,
-          LastName: registerGroup.get("LastName")?.value,
-          DateOfBirth: new Date(registerGroup.get("DateOfBirth")?.value).toISOString(),
-          PhoneNumber: registerGroup.get("PhoneNumber")?.value,
-          Address: registerGroup.get("Address")?.value,
-          EmergencyName: registerGroup.get("EmergencyName")?.value,
-          EmergencyContactPhone: registerGroup.get("EmergencyContactPhone")?.value,
-          RoleId: registerGroup.get("UserRole")?.value,
+          firstName: registerGroup.get("FirstName")?.value,
+          lastName: registerGroup.get("LastName")?.value,
+          dateOfBirth: new Date(registerGroup.get("DateOfBirth")?.value).toISOString(),
+          phoneNumber: registerGroup.get("PhoneNumber")?.value,
+          address: registerGroup.get("Address")?.value,
+          emergencyName: registerGroup.get("EmergencyName")?.value,
+          emergencyContactPhone: registerGroup.get("EmergencyContactPhone")?.value,
+          roleId: registerGroup.get("UserRole")?.value,
         }
         // this.userApi.Add(UserInfo).subscribe(
         //   (response) => {
             //console.log(response);
             //console.log(response.id);
             let EmployeeInfo: EmployeeInformation = {
-              UserProfile: UserInfo,
-              WorkEmail: this.email,
-              Specialization: registerGroup.get("Specialization")?.value,
-              StartDate: new Date(registerGroup.get("StartDate")?.value).toISOString(),
-              RoomNumber: registerGroup.get("RoomNumber")?.value,
-              EducationDegree: registerGroup.get("EducationDegree")?.value
+              userProfile: UserInfo,
+              workEmail: this.email,
+              specialization: registerGroup.get("Specialization")?.value,
+              startDate: new Date(registerGroup.get("StartDate")?.value).toISOString(),
+              roomNumber: registerGroup.get("RoomNumber")?.value,
+              educationDegree: registerGroup.get("EducationDegree")?.value
             }
             this.employeeApi.Add(EmployeeInfo).subscribe(
               (response) => {

@@ -42,14 +42,14 @@ export class PatientComponent implements OnInit {
     //valid property of a FormGroup will let you know if the Form group the user sent is valid or not
     if (registerGroup.valid) {
       let UserInfo: UserProfile = {
-        FirstName: registerGroup.get("FirstName")?.value,
-        LastName: registerGroup.get("LastName")?.value,
-        DateOfBirth: new Date(registerGroup.get("DateOfBirth")?.value).toISOString(),
-        PhoneNumber: registerGroup.get("PhoneNumber")?.value,
-        Address: registerGroup.get("Address")?.value,
-        EmergencyName: registerGroup.get("EmergencyName")?.value,
-        EmergencyContactPhone: registerGroup.get("EmergencyContactPhone")?.value,
-        RoleId: 3,
+        firstName: registerGroup.get("FirstName")?.value,
+        lastName: registerGroup.get("LastName")?.value,
+        dateOfBirth: new Date(registerGroup.get("DateOfBirth")?.value).toISOString(),
+        phoneNumber: registerGroup.get("PhoneNumber")?.value,
+        address: registerGroup.get("Address")?.value,
+        emergencyName: registerGroup.get("EmergencyName")?.value,
+        emergencyContactPhone: registerGroup.get("EmergencyContactPhone")?.value,
+        roleId: 3,
       }
 
         let PatientInfo: Patient = {

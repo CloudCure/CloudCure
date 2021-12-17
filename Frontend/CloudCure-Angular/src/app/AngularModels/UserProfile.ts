@@ -1,12 +1,12 @@
 export interface UserProfile {
 
-    FirstName : string
-    LastName : string
-    DateOfBirth: string | Date
-    PhoneNumber : string 
-    Address : string
-    EmergencyName: string
-    EmergencyContactPhone: string 
-    RoleId : number
+    firstName : string
+    lastName : string
+    dateOfBirth: string | Date
+    phoneNumber : string 
+    address : string
+    emergencyName: string
+    emergencyContactPhone: string 
+    roleId : number
     id? : number
 }

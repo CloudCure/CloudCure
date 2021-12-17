@@ -12,29 +12,10 @@ import { EmployeeService } from '../services/employee.service';
 })
 export class ProfileComponent implements OnInit {
 
-  user:UserProfile | null= {
-    FirstName: "",
-    LastName: "",
-    DateOfBirth: "",
-    PhoneNumber: "",
-    Address: "",
-    EmergencyName: "",
-    EmergencyContactPhone: "",
-    RoleId: 0,
-    id: 0
-
-  };
-  employee:EmployeeInformation={
-  WorkEmail: "string",
-  Specialization: "string",
-  StartDate: "string",
-  RoomNumber: "string",
-  EducationDegree: "string",
-  user: undefined,
-  UserProfile: undefined
-  }
+  employee: EmployeeInformation = {} as EmployeeInformation
 
   email:string | undefined = '';
+
   constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService)
   {
     this.auth0.user$.subscribe(
@@ -46,25 +27,15 @@ export class ProfileComponent implements OnInit {
             console.log(response);
             this.employee=response
 
-
             console.log(response);
-
-            this.employeeApi.GetById(29).subscribe(
-              (response2) => {
-                console.log(response2);
-              }
-            )
           }
         )
-
       }
     )
   }
 
-
   ngOnInit(): void {
   }
-
 
   // changes tabs in main card
   id:any= "dashboard";
