@@ -10,14 +10,22 @@ import { FormGroup } from '@angular/forms';
 export class TextBoxComponent implements OnInit {
 
   @Input('boxes') boxes: string[];
+
   //////////////////////// testing////////////////////////////
   @Input() public state: string;
   public fromChild="is this working";
-  @Output() event: EventEmitter<string> = new EventEmitter();
+
+  @Output() event: EventEmitter<string[]> = new EventEmitter();
+  // textEvent: EventEmitter<string[]> = new EventEmitter<string[]>();
   sendToParent(){
-    this.event.emit(this.fromChild)
+    console.log("Button pushed")
+    // this.event.emit(this.fromChild)
+    // this.textEvent.emit(this.boxes)
+    this.event.emit(this.boxes);
+    console.log(this.boxes)
   }
   /////////////////////////////////////////////////////////////
+
   @Output('boxes') boxesChange = new EventEmitter<string[]>();
 
   

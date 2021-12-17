@@ -13,7 +13,7 @@ import { TextBoxComponent } from '../text-box/text-box.component';
 export class DiagnosisConditionComponent implements OnInit {
 
   display: boolean = false;
-  conditions: string[] = [""]
+  conditions: string[] = ["test"]
   ////////////////////////////////////
   test:string = "Can You See ME"
   ///////////////////////////////////////////
@@ -26,7 +26,9 @@ export class DiagnosisConditionComponent implements OnInit {
   }
   //////////////////////////////////////////////
   public SetDataFromChild(data:any){
-    this.test=data 
+    // this.test=data 
+    console.log("Data received?")
+    this.conditions = data;
   }
   //////////////////////////////////////////////
   AddCondition(PatientId: number){
