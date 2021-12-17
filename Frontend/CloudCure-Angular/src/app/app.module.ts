@@ -1,6 +1,8 @@
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AccordionModule } from 'primeng/accordion';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '@auth0/auth0-angular';
 import { RouterModule } from '@angular/router';
@@ -24,10 +26,19 @@ import { DiagnosisSurgeriesComponent } from './diagnosis-surgeries/diagnosis-sur
 import { DiagnosisMedicationComponent } from './diagnosis-medication/diagnosis-medication.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormControlName,
+  ReactiveFormsModule,
+  FormGroup,
+  Validators,
+  FormsModule,
+} from '@angular/forms';
 
 import { CheckboxModule } from 'primeng/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageService } from 'primeng/api';
+import { AssessmentService } from './services/assessement.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +73,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     CheckboxModule,
     ReactiveFormsModule,
+    AccordionModule,
+    InputTextareaModule,
     FormsModule,
+    ReactiveFormsModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
       clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq',
@@ -73,18 +87,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       { path: 'diagnosis', component: DiagnosisComponent },
       { path: 'print', component: PrintComponent },
       { path: 'body-clicker', component: BodyClickerComponent },
-      { path: 'diagnosis-condition', component:DiagnosisConditionComponent},
+      { path: 'diagnosis-condition', component: DiagnosisConditionComponent },
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent },
       { path: 'assessment', component: AssessmentComponent },
+      { path: 'assessment/Update/:Id', component: AssessmentComponent },
+
       { path: '**', component: HomeComponent },
       { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent },
       { path: 'text-box', component: TextBoxComponent },
-      { path : 'register', component:RegisterComponent},
-      { path: "**", component: HomeComponent }
-    ])
+      { path: 'register', component: RegisterComponent },
+      { path: '**', component: HomeComponent },
+    ]),
   ],
-  providers: [
-  ],
+  providers: [MessageService, AssessmentService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

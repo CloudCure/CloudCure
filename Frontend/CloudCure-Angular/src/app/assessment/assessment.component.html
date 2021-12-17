@@ -1,11 +1,12 @@
-<div class="container">
+<!--<div class="container">
   <h3>Assessment Form</h3>
-  <form>
+  <form [formGroup]="form">
     <div class="form-group">
       <label for="HistOfPresentIllness">Chief/Major complaint</label>
       <textarea
         id="HistOfPresentIllness"
         name="HistOfPresentIllness"
+        formControlName="HistOfPresentIllness"
         class="form-control"
         cols="30"
         rows="10"
@@ -17,6 +18,7 @@
       <textarea
         id="ChiefComplaint"
         name="ChiefComplaint"
+        formControlName="ChiefComplaint"
         class="form-control"
         cols="30"
         rows="10"
@@ -28,6 +30,7 @@
       <textarea
         id="PainAssessment"
         name="PainAssessment"
+        formControlName="PainAssessment"
         class="form-control"
         cols="30"
         rows="10"
@@ -42,11 +45,151 @@
     <br />
     <button class="btn btn-primary">Submit</button>
   </form>
+</div>-->
+
+<!--<form>
+  <div class="textform">
+    <div>
+      <textarea
+        formControlName="HistOfPresentIllness"
+        rows="5"
+        cols="170"
+      ></textarea>
+    </div>
+    <div>
+      <textarea formControlName="ChiefComplaint" rows="5" cols="170"></textarea>
+    </div>
+    <div>
+      <textarea
+        formControlName="PainAssessment"
+        rows="5"
+        cols="170"
+        pInputTextarea
+      ></textarea>
+    </div>
+    <div>
+      <input name="PainScale" id="PainScale" type="number" min="0" max="10" />
+    </div>
+    <div>
+      <button class="btn btn-primary" id="button">Submit</button>
+    </div>
+  </div>
+</form>-->
+
+<!------------------------------------------------------------------------------------------------------------>
+<!--<div class="textform">
+  <h3>Assessment Form</h3>
+  <form #userForm="ngForm">
+    {{ patientAssessment | json }}
+    <div class="form-group">
+      <h4>Chief complaint</h4>
+      <label for="ChiefComplaint"></label>
+      <textarea
+        id="ChiefComplaint"
+        name="ChiefComplaint"
+        class="form-control"
+        rows="3"
+        [(ngModel)]="patientAssessment.ChiefComplaint"
+      ></textarea>
+
+      <h4>History of present illness</h4>
+      <label for="HistOfPresentIllness"></label>
+      <textarea
+        id="HistOfPresentIllness"
+        name="HistOfPresentIllness"
+        class="form-control"
+        rows="3"
+        [(ngModel)]="patientAssessment.HistOfPresentillness"
+      ></textarea>
+
+      <h4>Pain assessment</h4>
+      <label for="PainAssessment"></label>
+      <textarea
+        id="PainAssessment"
+        name="PainAssessment"
+        class="form-control"
+        rows="3"
+        [(ngModel)]="patientAssessment.PainAssessment"
+      ></textarea>
+    </div>
+    <div>
+      <h4>Pain scale</h4>
+      <input
+        name="PainScale"
+        id="PainScale"
+        type="number"
+        min="0"
+        max="10"
+        [(ngModel)]="patientAssessment.PainScale"
+      />
+    </div>
+    <br />
+    <div>
+      <button class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>-->
+
+<!---------------------------------------------------------------------------------------------------------------->
+<div class="textform">
+  <h3>Assessment Form</h3>
+  <form #userForm="ngForm">
+    {{ patientAssesment | json }}
+    <div class="form-group">
+      <h4>Chief complaint</h4>
+      <label for="ChiefComplaint"></label>
+      <textarea
+        id="ChiefComplaint"
+        name="ChiefComplaint"
+        class="form-control"
+        rows="3"
+        [(ngModel)]="patientAssesment.ChiefComplaint"
+      ></textarea>
+
+      <h4>History of present illness</h4>
+      <label for="HistOfPresentIllness"></label>
+      <textarea
+        id="HistOfPresentIllness"
+        name="HistOfPresentIllness"
+        class="form-control"
+        rows="3"
+        [(ngModel)]="patientAssesment.HistOfPresentIllness"
+      ></textarea>
+
+      <h4>Pain assessment</h4>
+      <label for="PainAssessment"></label>
+      <textarea
+        id="PainAssessment"
+        name="PainAssessment"
+        class="form-control"
+        rows="3"
+        [(ngModel)]="patientAssesment.PainAssessment"
+      ></textarea>
+    </div>
+    <div>
+      <h4>Pain scale</h4>
+      <input
+        name="PainScale"
+        id="PainScale"
+        type="number"
+        min="0"
+        max="10"
+        [(ngModel)]="patientAssesment.PainScale"
+      />
+    </div>
+
+    <h3 (click)="showBodyClicker = !showBodyClicker">Show Bodyclicker</h3>
+    <ng-container *ngIf="showBodyClicker">
+      <body-clicker
+        (onClick)="getClick($event)"
+        [canEdit]="true"
+      ></body-clicker>
+    </ng-container>
+
+    <!---------------------------------------------------------------------------------------------------------------->
+
+    <div>
+      <button class="btn btn-primary">Submit</button>
+    </div>
+  </form>
 </div>
-
-
-<h3 (click)="showBodyClicker = !showBodyClicker">Show Bodyclicker</h3>
-<ng-container *ngIf="showBodyClicker">
-    <body-clicker (onClick)="getClick($event)" [canEdit]="true"></body-clicker>
-</ng-container>
-
