@@ -33,18 +33,40 @@ export class RegisterComponent implements OnInit {
       UserRole: new FormControl("", Validators.required),// RoleId from UserProfile model
       
   });
+  get FirstName() {return this.registerGroup.get("FirstName");}
+  get LastName() {return this.registerGroup.get("LastName");}
+  get DateOfBirth() {return this.registerGroup.get("DateOfBirth");}
+  get PhoneNumber() {return this.registerGroup.get("PhoneNumber");}
+  get Address() {return this.registerGroup.get("Address");}
+  get EmergencyName() {return this.registerGroup.get("EmergencyName");}
+  get EmergencyContactPhone() {return this.registerGroup.get("EmergencyContactPhone");}
+  get Specialization() {return this.registerGroup.get("Specialization");}
+  get StartDate() {return this.registerGroup.get("StartDate");}
+  get EducationDegree() {return this.registerGroup.get("EducationDegree");}
+  get RoomNumber() {return this.registerGroup.get("RoomNumber");}
+  get UserRole() {return this.registerGroup.get("UserRole");}
   email:string | undefined = '';
-  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService) 
+  date: Date = new Date;
+  offset = this.date.getTimezoneOffset();
+  today:string = "";
+  tele = document.querySelector('#telle');
+
+  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService, private router: Router) 
   { 
     this.auth0.user$.subscribe(
       (user) => {
         this.email = user?.email;
       }
     )
+    //This allows us to set the maximum date to today for verification purposes
+    //also adjusts to time zone
+    this.date = new Date(this.date.getTime()-(this.offset*60*1000));
+    this.today = this.date.toISOString().split('T')[0];
   }
 
   ngOnInit(): void {
   }
+
 
   //when the submit button is clicked from the htlm of this component this function is called
   //will check if all verifications passed in the form group(so no feilds are null)
@@ -78,10 +100,15 @@ export class RegisterComponent implements OnInit {
             this.employeeApi.Add(EmployeeInfo).subscribe(
               (response) => {
                 console.log(response);
+                this.router.navigateByUrl("/home");
               }
             )
         
       
+      }
+      else
+      {
+        this.registerGroup.markAllAsTouched();
       }
   }
 }

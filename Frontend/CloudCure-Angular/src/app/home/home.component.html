@@ -4,15 +4,31 @@
         <div class="col-md-10">
             <div class="jumbotron rounded-lg m-3">
                 <h1 class="revature-font-medium big-text">CloudCure</h1>
-                <hr class="my-4 white-text">
-                <br/>
-                <p class="lead white-text medium-text">Worry Less, Heal More</p>
-                <br/>
-                <p class="white-text">Our Policy Is To Make Sure Health,</p> 
-                <p class="white-text">Comes First</p>
+                <ng-container *ngIf="auth0.isAuthenticated$ | async; else loggedOut"></ng-container>
+                <ng-template #loggedOut>
+                    <hr class="my-4 white-text">
+                    <br/>
+                    <p class="lead white-text medium-text">Worry Less, Heal More</p>
+                    <br/>
+                    <p class="white-text">Our Policy Is To Make Sure Health,</p> 
+                    <p class="white-text">Comes First</p>
+                </ng-template>               
             </div>
         </div>
         <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-2">
+            <ng-container *ngIf="auth0.isAuthenticated$ | async;">
+                    <div (click)="newPatient()" class="patient">
+
+                        <div id="plus-sign"class="white-text">+</div>
+                        <h5 class="card-title white-text">New Patient</h5>
+                    </div>
+            </ng-container>
+        </div>
+        <div class="col-md-5"></div>
     </div>
 </div>
 

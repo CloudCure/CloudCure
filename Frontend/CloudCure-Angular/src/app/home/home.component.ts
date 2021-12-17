@@ -39,4 +39,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  newPatient(){
+    this.router.navigateByUrl("/patient");
+  }
+
 }
