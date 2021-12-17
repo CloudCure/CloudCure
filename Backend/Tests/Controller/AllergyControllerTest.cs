@@ -39,7 +39,7 @@ namespace Tests
             var allergy = new Allergy
             {
                 PatientId = 1,
-                AllergyName = "Hay fever"
+                AllergyName = "Leather"
             };
 
             var entry = controller.Add(allergy);
@@ -58,7 +58,7 @@ namespace Tests
             var allergy = new Allergy
             {
                 PatientId = 1,
-                AllergyName = "Hay fever"
+                AllergyName = "Metal"
             };
 
             var entry = controller.Add(allergy);
@@ -78,7 +78,7 @@ namespace Tests
             var allergy = new Allergy
             {
                 PatientId = 1,
-                AllergyName = "Hay fever"
+                AllergyName = "Dog hair"
             };
 
             var entry = controller.Add(allergy);
@@ -86,11 +86,25 @@ namespace Tests
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
             
+         }
 
+         [Fact]
+         public void GetbyIdShouldGetAllergyById()
+         {
+             var repository = new Mock<IAllergyRepository>();
+            var controller = new AllergyController(repository.Object);
 
+            var allergy = new Allergy
+            {
+                PatientId = 1,
+                AllergyName = "Risperidol"
+            };
 
-            
-        }
+            var entry = controller.Add(allergy);
+            var result = controller.GetById(1);
+            var okResponse = (IStatusCodeActionResult)result;
+            Assert.Equal(200, okResponse.StatusCode);
+         }
 
 
         private List<Allergy> GetAllergyList()
