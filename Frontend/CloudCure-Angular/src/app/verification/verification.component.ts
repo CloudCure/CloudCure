@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, FormControlName, ReactiveFormsModule } from '@angular/forms';
+import { CovidService } from 'src/app/services/covid.service';
+import { Router } from '@angular/router';
+import { CovidVerify } from '../AngularModels/CovidVerify';
 
 
 
