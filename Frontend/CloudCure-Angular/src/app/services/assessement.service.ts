@@ -35,8 +35,4 @@ export class AssessmentService {
   Update(Id: number | undefined, Info: Assessment | undefined) {
     return this.http.put<Assessment>(`${this.endpoint}/Update/${Id}`, Info);
   }
-
-  postAssessment(pAment: Assessment) {
-    return of(pAment);
-  }
 }

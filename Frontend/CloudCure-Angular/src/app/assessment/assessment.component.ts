@@ -13,13 +13,8 @@ import { AssessmentService } from '../services/assessement.service';
 })
 export class AssessmentComponent implements OnInit {
   isUpdated: boolean = false;
-  patientAssessment: any = [];
 
-  newAssessment: Assessment = {
-    PatientId: 0,
-    ChiefComplaint: '',
-    HistOfPresentIllness: '',
-  };
+  chiefComplaint: string = '';
 
   //variables
   public textAreaForm = FormGroup;
@@ -27,11 +22,12 @@ export class AssessmentComponent implements OnInit {
   showBodyClicker: boolean = true;
   messageService: any;
 
+  //patientAssessment
   patientAssesment: Assessment = {
-    ChiefComplaint: 'Describe your complaint',
-    HistOfPresentIllness: 'Describe the history of your present illness',
-    PainAssessment: 'Pain assessment',
-    PainScale: 5,
+    ChiefComplaint: '',
+    HistOfPresentIllness: '',
+    PainAssessment: '',
+    PainScale: 0,
   };
 
   constructor(
@@ -49,17 +45,11 @@ export class AssessmentComponent implements OnInit {
       PainScale: [''],
     });
     */
-
-    //get all the patient assessments
-    this.patientService.GetAll().subscribe((response) => {
-      this.patientAssessment = response;
-      console.log(this.patientAssessment);
-    });
   }
 
   //Add assessment
   AddAsssessment() {
-    this.patientService.Add(this.newAssessment).subscribe(
+    this.patientService.Add(this.patientAssesment).subscribe(
       (response) => {
         this.messageService.add({
           severity: 'success',
@@ -104,8 +94,7 @@ export class AssessmentComponent implements OnInit {
   //updateAssessment() {}
 
   onSubmit(form: NgForm) {
-    console.log('onSubmit ', form.valid);
-    this.patientService.postAssessment(this.patientAssessment).subscribe(
+    this.patientService.Add(this.patientAssesment).subscribe(
       (result) => console.log('success ', result),
       (error) => console.log('error ', error)
     );
@@ -113,6 +102,11 @@ export class AssessmentComponent implements OnInit {
   //Body Clicker
 
   getClick(bodypart: Clickable) {
-    console.log(`Clicked on ${bodypart.name}`);
+    this.chiefComplaint += bodypart.name + ', ';
+    console.log(this.chiefComplaint);
+  }
+
+  send() {
+    console.log(this.patientAssesment);
   }
 }

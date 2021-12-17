@@ -136,16 +136,13 @@
   <form #userForm="ngForm">
     {{ patientAssesment | json }}
     <div class="form-group">
-      <h4>Chief complaint</h4>
-      <label for="ChiefComplaint"></label>
-      <textarea
-        id="ChiefComplaint"
-        name="ChiefComplaint"
-        class="form-control"
-        rows="3"
-        [(ngModel)]="patientAssesment.ChiefComplaint"
-      ></textarea>
-
+      <h3 (click)="showBodyClicker = !showBodyClicker">Show Bodyclicker</h3>
+      <ng-container *ngIf="showBodyClicker">
+        <body-clicker
+          (onClick)="getClick($event)"
+          [canEdit]="true"
+        ></body-clicker>
+      </ng-container>
       <h4>History of present illness</h4>
       <label for="HistOfPresentIllness"></label>
       <textarea
@@ -178,18 +175,10 @@
       />
     </div>
 
-    <h3 (click)="showBodyClicker = !showBodyClicker">Show Bodyclicker</h3>
-    <ng-container *ngIf="showBodyClicker">
-      <body-clicker
-        (onClick)="getClick($event)"
-        [canEdit]="true"
-      ></body-clicker>
-    </ng-container>
-
     <!---------------------------------------------------------------------------------------------------------------->
 
     <div>
-      <button class="btn btn-primary">Submit</button>
+      <button class="btn btn-primary" (click)="send()">Submit</button>
     </div>
   </form>
 </div>
