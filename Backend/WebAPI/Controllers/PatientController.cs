@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Ok(_repo.GetAll());
+                return Ok(_repo.GetAllWithNav());
             }
             catch (Exception e)
             {

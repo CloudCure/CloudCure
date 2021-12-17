@@ -16,9 +16,9 @@
             you experienced any of the symptoms in
             the list below in the past 48 hours?
             <dd>
-              <input type="radio" formControlName="question1" id="yes" name="question1" value="yes" checked="">
+              <input type="radio" formControlName="question1" id="yes" name="question1" value="true" checked="">
               <label for="yes">Yes</label>
-              <input type="radio" formControlName="question1" id="no" name="question1" value="no" checked="">
+              <input type="radio" formControlName="question1" id="no" name="question1" value="false" checked="">
               <label for="no">No</label>
             </dd>
           </dl>
@@ -77,7 +77,7 @@
               </dd>
             </dl>
 
-            <button type="button" class="btn btn-dark btn-sm" (click)="submitForm(verifyGroup)">Submit</button>
+            <button type="submit" class="btn btn-dark btn-sm" (click)="submitForm(verifyGroup)">Submit</button>
 
         </div>
       </form>

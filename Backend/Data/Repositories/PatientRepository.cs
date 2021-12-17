@@ -29,5 +29,20 @@ namespace Data
 
             return patient;
         }
+
+        public IEnumerable<Patient> GetAllWithNav()
+        {
+            var patients = this.repository.Patients
+                .Include(p => p.UserProfile)
+                    .Include(p => p.Assessments)
+                    .Include(p => p.Conditions)
+                    .Include(p => p.CurrentMedications)
+                    .Include(p => p.Surgeries)
+                    .Include(p => p.Allergies)
+                    .Include(p => p.UserProfile.CovidAssesments)
+                    .Where(p => p.Id > 0);
+
+            return patients;
+        }
     }
 }

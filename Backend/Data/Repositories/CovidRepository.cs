@@ -20,8 +20,7 @@ namespace Data
         {
             try
             {
-                return repository.CovidAssessments
-                .Single(e => e.UserId.Equals(p_Id));
+                return repository.CovidAssessments.Single(e => e.UserId.Equals(p_Id));
             }
             catch (System.Exception)
             {
