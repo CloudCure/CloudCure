@@ -90,11 +90,11 @@ namespace Tests
             covidList.Add(
                 new CovidVerify
                 {
-                    question1 = true,
-                    question2 = true,
-                    question3 = true,
-                    question4 = true,
-                    question5 = true
+                    question1 = "true",
+                    question2 = "true",
+                    question3 = "true",
+                    question4 = "true",
+                    question5 = "true"
                 }
             );
             var user = new User
