@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     FirstName: new FormControl("", Validators.required),
     LastName: new FormControl("", Validators.required)
   })
+  fullPatientList:Patient[] = [];
   patientList:Patient[] = [];
   constructor(public auth0: AuthService, @Inject(DOCUMENT) public document: Document, public router: Router, public employeeAPI: EmployeeService, private patientAPI: PatientService ) 
   { 
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
     this.patientAPI.GetAll().subscribe(
       (response) => {
         this.patientList = response;
+        this.fullPatientList = response;
         console.log(this.patientList);
       }
     )
@@ -63,6 +65,16 @@ export class HomeComponent implements OnInit {
       firstName: patientSearchGroup.get("FirstName")?.value,
       lastName: patientSearchGroup.get("LastName")?.value
     }
+    let firstNameSearch = (search:any) => this.patientList.filter(({ userProfile }) => userProfile.firstName.toLowerCase().includes(search.firstName))
+    let lastNameSearch = (search: any) => this.patientList.filter(({ userProfile }) => userProfile.lastName.toLowerCase().includes(search.lastName))
     console.log(search)
+    if (search.firstName === '' && search.lastName === ''){
+      this.patientList = this.fullPatientList;
+    }
+    else
+    {
+      this.patientList = firstNameSearch(search);
+      this.patientList = lastNameSearch(search);
+    }
   }
 }
