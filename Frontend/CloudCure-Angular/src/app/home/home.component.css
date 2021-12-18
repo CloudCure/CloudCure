@@ -1,5 +1,3 @@
-
-
 .jumbotron {
     padding: 2rem 1rem;
     margin-bottom: 2rem;
@@ -24,14 +22,15 @@
 }
 
 #plus-sign {
-  font-size: 85px;
+  font-size: 60px;
   cursor: pointer;
 }
 
 .patient {
   background-color: rgb(115,165,194);
   border-radius: .3rem;
-  padding-bottom: 2rem;
+  margin: 5rem;
+  padding: 1rem;;
 }
 
 .btn-center {
@@ -39,4 +38,11 @@
   justify-content: center;
   text-align: center
 }
-  
+
+.card-custom {
+margin: 5px;
+}
+
+.patient-text {
+  font-size: 20px;
+}

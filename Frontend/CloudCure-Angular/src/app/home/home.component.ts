@@ -3,7 +3,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { Patient } from '../AngularModels/Patient';
 import { EmployeeService } from '../services/employee.service';
+import { PatientService } from '../services/patient.service';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +17,16 @@ export class HomeComponent implements OnInit {
     FirstName: new FormControl("", Validators.required),
     LastName: new FormControl("", Validators.required)
   })
-  constructor(public auth0: AuthService, @Inject(DOCUMENT) public document: Document, public router: Router, public employeeAPI: EmployeeService ) 
+  patientList:Patient[] = [];
+  constructor(public auth0: AuthService, @Inject(DOCUMENT) public document: Document, public router: Router, public employeeAPI: EmployeeService, private patientAPI: PatientService ) 
   { 
+    console.log(this.patientAPI.currentPatientId);
+    this.patientAPI.GetAll().subscribe(
+      (response) => {
+        this.patientList = response;
+        console.log(this.patientList);
+      }
+    )
     // checks if user is currently logged into auth0.
     this.auth0.user$.subscribe(
       (user) => {

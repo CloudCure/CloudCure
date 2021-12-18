@@ -1,23 +1,13 @@
-<div class="container">
-    <div class="row">
-        <div class="card" style="width:500px">
-            <div class="card-img-overlay">
-                <h4 class="card-title">FirstName LastName</h4>
-                <p class="card-text">PhoneNumber</p>
-                <p class="card-text">DateOfBirth</p>
-                <p class="card-text">Address</p>
-                <a href="#" class="btn btn-primary">Allergies</a>
-                <a href="#" class="btn btn-primary">Conditions</a>
-                <a href="#" class="btn btn-primary">Diagnosis</a>
-                <br/>
-                <a href="#" class="btn btn-primary">Medications</a>
-                <a href="#" class="btn btn-primary">Surgeries</a>
-                <a href="#" class="btn btn-primary">Vitals</a>
-            </div>
-        </div>
-    </div>
+<div class="card-body">
+    <h4 class="card-title">{{patient.userProfile.firstName}} {{patient.userProfile.lastName}}</h4>
+    <p class="card-text">Phone: {{patient.userProfile.phoneNumber}}</p>
+    <p class="card-text">DOB: {{patient.userProfile.dateOfBirth | date: 'MM/dd/yyyy'}}</p>
+    <p class="card-text">Address: {{patient.userProfile.address}}</p>
+    <a (click)="allergy()" class="btn btn-primary">Allergies</a>
+    <a (click)="conditions()" class="btn btn-primary">Conditions</a>
+    <a (click)="diagnosis()" class="btn btn-primary">Diagnosis</a>
+    <!-- <br /> -->
+    <a (click)="medications()" class="btn btn-primary">Medications</a>
+    <a (click)="surgeries()" class="btn btn-primary">Surgeries</a>
+    <a (click)="vitals()" class="btn btn-primary">Vitals</a>
 </div>
-
-
-<!--Name, Phone Number, Address, DoB, 
-Button for adding allergies/condition/diganosis/medications/surgeries/vitals -->
