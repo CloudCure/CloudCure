@@ -17,6 +17,7 @@ export class ListPatientComponent implements OnInit {
 
   @Input()
   patient: Patient = {} as Patient;
+
   constructor(private router: Router, private patientAPI:PatientService) {
     console.log(this.patient);
     
@@ -25,10 +26,15 @@ export class ListPatientComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  allergy()
+  allergies()
   {
     this.patientAPI.currentPatientId = this.patient.id;
     this.router.navigateByUrl("/diagnosis-allergy");
+  }
+
+  viewAllergies()
+  {
+
   }
 
   conditions()
@@ -36,15 +42,29 @@ export class ListPatientComponent implements OnInit {
     this.router.navigateByUrl("/diagnosis-condition");
   }
 
-  diagnosis()
+  viewConditions()
+  {
+
+  }
+
+  assessments()
   { 
-    this.router.navigateByUrl("/diagnosis");
+    this.router.navigateByUrl("/assessment");
+  }
+
+  viewAssessments()
+  {
+
   }
 
   medications()
   { 
     // this.router.navigateByUrl("/");
-    console.log(this.patientAPI.currentPatientId);
+  }
+
+  viewMedications()
+  {
+
   }
 
   surgeries()
@@ -52,8 +72,25 @@ export class ListPatientComponent implements OnInit {
     this.router.navigateByUrl("/");
   }
 
+  viewSurgeries()
+  {
+
+  }
+
   vitals()
   {
     this.router.navigateByUrl("/diagnosis-vitals");
+  }
+
+  viewVitals()
+  {
+
+  }
+
+  finalize()
+  {
+    //not sure what we do when we finalize?
+    console.log(this.patient.allergies);
+    console.log(this.patient.allergies !== undefined);
   }
 }

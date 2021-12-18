@@ -59,18 +59,17 @@
     <div class="container">
         <div class="card-group justify-content-center">
             <div>
-                <div (click)="newPatient()" class="patient card" style="max-width: 18rem; max-height: 20rem;">
+                <div (click)="newPatient()" class="patient card pointer" style="max-width: 18rem; max-height: 21rem;">
                     <div id="plus-sign" class="white-text">+</div>
                     <h5 class="white-text patient-text">New Patient</h5>
                 </div>
             </div>
             <div *ngFor="let patient of patientList">
-                <div class="card card-custom" style="max-width: 18rem; max-height: 20rem;">
+                <div class="card card-custom" style="max-width: 18rem; height: 21rem;">
                     <app-list-patient [patient]="patient"></app-list-patient>
                 </div>
 
             </div>
         </div>
     </div>
-
 </ng-container>

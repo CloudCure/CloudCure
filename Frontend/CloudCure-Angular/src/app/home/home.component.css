@@ -30,7 +30,7 @@
   background-color: rgb(115,165,194);
   border-radius: .3rem;
   margin: 5rem;
-  padding: 1rem;;
+  padding: 0.9rem;;
 }
 
 .btn-center {
@@ -45,4 +45,8 @@ margin: 5px;
 
 .patient-text {
   font-size: 20px;
+}
+
+.pointer:hover {
+  cursor: pointer;
 }
