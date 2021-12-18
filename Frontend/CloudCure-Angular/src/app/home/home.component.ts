@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   })
   fullPatientList:Patient[] = [];
   patientList:Patient[] = [];
+  role:number = 0;
   constructor(public auth0: AuthService, @Inject(DOCUMENT) public document: Document, public router: Router, public employeeAPI: EmployeeService, private patientAPI: PatientService ) 
   { 
     console.log(this.patientAPI.currentPatientId);
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
           this.employeeAPI.verifyEmployee(user.email).subscribe(
             (response) => 
             {
+              this.role = response.userProfile.roleId;
               console.log(response);
               if (!response)
               {
@@ -67,7 +69,6 @@ export class HomeComponent implements OnInit {
     }
     let firstNameSearch = (search:any) => this.patientList.filter(({ userProfile }) => userProfile.firstName.toLowerCase().includes(search.firstName))
     let lastNameSearch = (search: any) => this.patientList.filter(({ userProfile }) => userProfile.lastName.toLowerCase().includes(search.lastName))
-    console.log(search)
     if (search.firstName === '' && search.lastName === ''){
       this.patientList = this.fullPatientList;
     }

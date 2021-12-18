@@ -7,6 +7,11 @@
     <p class="text">Doctor: <span></span></p>
 
     <div class="row">
+        <!-- 
+                --- BTN Colors ---
+            Orange: Still need to Add.
+            Blue: Ready to View.
+        -->
 
         <!-- Allergy -->
         <div class="col">
@@ -78,20 +83,17 @@
     </div>
 
     <!-- For Nurse Eyes Only -->
-    <div class="row">
-    
+    <div *ngIf="role === 1;" class="row">
         <div class="col-md-12">
             <button (click)="finalize()" class="finalize btn btn-custom btn-primary diagnosis">Assign Doctor</button>
         </div>
     </div>
 
-
     <!-- For Doctors Eyes Only -->
-    <!-- <div class="row">
-
+    <div *ngIf="role === 2;" class="row">
         <div class="col-md-12">
             <button (click)="finalize()" class="finalize btn btn-custom btn-primary diagnosis">Finalize Report</button>
         </div>
-    </div> -->
+    </div>
 
 </div>

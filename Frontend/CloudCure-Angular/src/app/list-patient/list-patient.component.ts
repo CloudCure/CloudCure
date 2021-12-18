@@ -18,6 +18,9 @@ export class ListPatientComponent implements OnInit {
   @Input()
   patient: Patient = {} as Patient;
 
+  @Input()
+  role: number = 0;
+
   constructor(private router: Router, private patientAPI:PatientService) {
     console.log(this.patient);
     
