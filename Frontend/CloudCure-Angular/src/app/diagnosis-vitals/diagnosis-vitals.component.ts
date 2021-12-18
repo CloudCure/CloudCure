@@ -54,7 +54,7 @@ export class DiagnosisVitalsComponent implements OnInit {
         Diastolic:       vitalsGroup.get("Diastolic")?.value,
         OxygenSat:       vitalsGroup.get("OxygenSat")?.value,
         HeartRate:       vitalsGroup.get("HeartRate")?.value,
-        Temperature:     vitalsGroup.get("Temperature")?.value,
+        Tempature:     vitalsGroup.get("Temperature")?.value,
         RespiratoryRate: vitalsGroup.get("RespiratoryRate")?.value,
         Height:          vitalsGroup.get("Height")?.value,
         Weight:          vitalsGroup.get("Weight")?.value,

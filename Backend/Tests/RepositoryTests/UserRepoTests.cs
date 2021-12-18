@@ -30,7 +30,7 @@ namespace Tests
                 Assert.NotNull(result);
                 Assert.Equal("John", result.FirstName);
                 Assert.Equal("Doctor", result.Role.RoleName);
-                Assert.True(result.CovidAssesments[0].question1);
+                Assert.Equal("true", result.CovidAssesments[0].question1);
             }
         }
 
@@ -45,11 +45,11 @@ namespace Tests
                 covidList.Add(
                     new CovidVerify
                     {
-                        question1 = true,
-                        question2 = true,
-                        question3 = true,
-                        question4 = true,
-                        question5 = true
+                        question1 = "true",
+                        question2 = "true",
+                        question3 = "true",
+                        question4 = "true",
+                        question5 = "true"
                     }
                 );
 

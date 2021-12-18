@@ -70,6 +70,8 @@ import { ListPatientComponent } from './list-patient/list-patient.component';
       { path: 'diagnosis', component: DiagnosisComponent, canActivate:[AuthGuardService] },
       { path: 'print', component: PrintComponent, canActivate:[AuthGuardService] },
       { path: 'body-clicker', component: BodyClickerComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'diagnosis-surgeries', component:DiagnosisSurgeriesComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'diagnosis-medication', component:DiagnosisMedicationComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'diagnosis-condition', component:DiagnosisConditionComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'assessment', component: AssessmentComponent, /*canActivate:[AuthGuardService]*/ },
