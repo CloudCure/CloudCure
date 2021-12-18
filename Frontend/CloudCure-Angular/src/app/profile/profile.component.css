@@ -1,10 +1,11 @@
-/* .column {
-  float: left;
-  padding: 10px;
+body{
+  margin-top:20px;
 }
 
-.column.middle {
-  width: 50%;
+.column {
+  float: center;
+  width: 100%;
+  padding: 20px;
 }
 
 .row:after {
@@ -13,245 +14,109 @@
   clear: both;
 }
 
-.profile-card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
-  max-width: 300px;
-  margin: auto;
+.profile-header-img img {
+  max-width: 100%;
+}
+
+.profile-header {
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-header .profile-header-cover{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(115, 165, 194);
+}
+
+.profile-header .profile-header-cover:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgb(185,185,186),rgba(115, 165, 194) 50%, rgb(242,105,38) 100%);
+}
+
+.profile-header .profile-header-content,
+.profile-header .profile-header-tab,
+.profile-header-img {
+  position: relative;
+}
+
+.profile-header .profile-header-tab {
+  background: #fff;
+  list-style-type: none;
+  margin: -1.25rem 0 0;
+  padding: 0 10px 0 0;
+  border-bottom: 50px solid #c8c7cc;
+  white-space: nowrap;
   text-align: center;
-  font-family: arial;
 }
 
-.content-card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 100vw;
-  margin: auto;
-  text-align: left;
-  font-family: arial;
-  display: grid;
+.profile-header .profile-header-tab > li > i {
+  display: block;
+  color: #000;
+  line-height: 1.25rem;
+  padding: 0.625rem 1.25rem;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
 }
 
-.mb-0 {
-  margin-bottom: 1rem!important;
-  margin-left: 1rem!important;
+.profile-header .profile-header-tab > li > i:hover{
+  color: rgb(253, 181, 21) ;
+}
+.profile-header .profile-header-tab > li.active > i,
+.profile-header .profile-header-tab > li > i.active {
+  color: lightgray;
 }
 
-h2 button {
-
- margin-right: 10px;
- float: right;
+.profile-header .profile-header-content:after,
+.profile-header .profile-header-content:before {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-h2 button:hover {
+.profile-header .profile-header-content {
+  color: #fff;
+  padding: 1.25rem;
+  font-size: 25px;
+}
 
-  background-color: plum;
- }
+.profile-header-img {
+  float: left;
+  z-index: 10;
+  margin: 0 1em 1.5em 0;
+  border-radius: 0.25rem;
+  background: #fff;
+}
 
-#navbar-animmenu {
-	background: skyblue;
-	float: left;
-	overflow: hidden;
-	position: relative;
-	padding: 10px 0px;
+.profile-header-info h4 {
+  font-weight: 500;
+  margin-bottom: 0.3125rem;
+  font-size: 50px;
+}
+
+.card{
+  border: none;
+  padding: 25px;
   width: 100%;
-  justify-content: center;
-}
-
-#navbar-animmenu ul{
-	padding: 0px;
-	margin: 0px;
-}
-
-#navbar-animmenu ul li a i{
-	margin-right: 10px;
-
-}
-
-#navbar-animmenu li {
-	list-style-type: none;
-	float: left;
-}
-
-#navbar-animmenu ul li a{
-	  color: whitesmoke;
-    text-decoration: none;
-    font-size: 15px;
-    line-height: 45px;
-    display: block;
-    padding: 0px 20px;
-    transition-duration:0.6s;
-	  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    position: relative;
-}
-
-#navbar-animmenu>ul>li.active>a{
-	color: whitesmoke;
-	background-color: transparent;
-	transition: all 0.7s;
-}
-
-#navbar-animmenu a:not(:only-child):after {
-	content: "\f105";
-	position: absolute;
-	right: 20px;
-	top: 10%;
-	font-size: 14px;
-	font-family: "Font Awesome 5 Free";
-	display: inline-block;
-	padding-right: 3px;
-	vertical-align: middle;
-	font-weight: 900;
-	transition: 0.5s;
-}
-
-#navbar-animmenu .active>a:not(:only-child):after {
-	transform: rotate(90deg);
-}
-
-
-@media screen and (max-width: 600px) {
-  .column.side, .column.middle {
-    width: 100%;
-  }
-} */
-
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  overflow-y: hidden;
-  overflow-x: hidden;
-}
-
-.header {
-  background-color: none;
-  padding: 20px;
-  text-align: center;
+  height: 100%;
 }
 
 .container {
   height: 100vh;
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
   height: 100%;
-  padding-top: 100px;
-
+  padding-top: 75px;
 }
-
-/* Columns */
-
-.column {
-  float: left;
-  padding: 10px;
-}
-
-.column.side {
-  width: 25%;
-
-}
-
-.column.middle {
-  float: center;
-  width: 50%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin-top: 12px;
-  margin-bottom:200px;
-  border-radius: 25px;
-
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-#table-content {
-  padding-bottom: 2px;
-  padding-top: 100px;
-
-}
-
-.table:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Profile Card */
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  border-radius: 25px;
-  height: 0;
-}
-
-.card img {
-  position: relative;
-  max-width: 250px;
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-
-}
-
-.title {
-  color: grey;
-  font-size: 18px;
-}
-
-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 2px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-  border-radius: 25px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-
-/* Tabs */
-.tabs .tab-header{
-  height: 0;
-  display: flex;
-  align-items: center;
-}
-
-.tabs .tab-header > div{
-width: calc(100% / 4);
-text-align: center;
-font-weight: 600;
-font-size: 15px;
-text-transform: uppercase;
-outline: none;
-
-}
-
-.tabs .tab-header > div > i{
-  display: block;
-  justify-content: center;
-  margin-top: 100px;
-  margin-bottom: 5px;
-  cursor: pointer;
-  }
-
-.tabs .tab-header > div i:hover{
-  color: rgb(253, 181, 21) ;
-  }

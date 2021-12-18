@@ -51,8 +51,6 @@ namespace WebAPI.Controllers
             }
         }
 
-        
-
         // POST Patient/Add
         [HttpPost("Add")]
         public IActionResult Add([FromBody] Patient p_patient)

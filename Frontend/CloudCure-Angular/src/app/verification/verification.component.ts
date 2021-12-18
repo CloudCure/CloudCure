@@ -38,7 +38,7 @@ export class VerificationComponent implements OnInit {
         console.log("test2");
         let Info: CovidVerify = {
           //Id: verifyGroup.get("ID")?.value,
-          userId: 10,
+          userId: 15,
           question1: verifyGroup.get("question1")?.value,
           question2: verifyGroup.get("question2")?.value,
           question3: verifyGroup.get("question3")?.value,
@@ -54,15 +54,7 @@ export class VerificationComponent implements OnInit {
         )
         console.log(this.verifyGroup.value);
       }
-      console.log(this.verifyGroup.value);
-      this.covidService.Add(Info).subscribe(
-        (response) => {
-          console.log("inner test");
-          console.log(response);
-        }
-      )
-      console.log(this.verifyGroup.value);
-    }
+     
     this.router.navigateByUrl("/**");
   }
 }
