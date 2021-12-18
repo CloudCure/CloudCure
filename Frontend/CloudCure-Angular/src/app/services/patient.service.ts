@@ -13,6 +13,7 @@ export class PatientService {
 
   private endpoint: string = "https://cloudcure-api.azurewebsites.net/Patient";
   constructor(private http:HttpClient) {} 
+  public currentPatientId: number | undefined = 0;
 
   ////////////// Patient //////////////
   GetAll(){ 

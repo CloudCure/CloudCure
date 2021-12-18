@@ -25,6 +25,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
 import { PatientComponent } from './patient/patient.component';
+import { ListPatientComponent } from './list-patient/list-patient.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { PatientComponent } from './patient/patient.component';
     DiagnosisMedicationComponent,
     RegisterComponent,
     PatientComponent,
+    ListPatientComponent
   ],
 
   imports: [
