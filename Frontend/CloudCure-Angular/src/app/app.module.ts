@@ -26,6 +26,8 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
 import { AuthGuardService } from './services/auth-guard.service';
 import { PatientComponent } from './patient/patient.component';
 import { ListPatientComponent } from './list-patient/list-patient.component';
+import { DocsearchComponent } from './docsearch/docsearch.component';
+import { ListDoctorComponent } from './list-doctor/list-doctor.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { ListPatientComponent } from './list-patient/list-patient.component';
     DiagnosisMedicationComponent,
     RegisterComponent,
     PatientComponent,
-    ListPatientComponent
+    ListPatientComponent,
+    DocsearchComponent,
+    ListDoctorComponent
   ],
 
   imports: [
@@ -79,6 +83,7 @@ import { ListPatientComponent } from './list-patient/list-patient.component';
       { path: 'text-box', component: TextBoxComponent, canActivate:[AuthGuardService] },
       { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'register', component:RegisterComponent },
+      { path: 'search', component: DocsearchComponent},
       { path: "home", component: HomeComponent },
       { path: "**", component: HomeComponent }
     ])
