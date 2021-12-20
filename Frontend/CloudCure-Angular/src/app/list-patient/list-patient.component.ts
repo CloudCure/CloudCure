@@ -93,7 +93,6 @@ export class ListPatientComponent implements OnInit {
   finalize()
   {
     //not sure what we do when we finalize?
-    console.log(this.patient.allergies);
-    console.log(this.patient.allergies !== undefined);
+    this.router.navigateByUrl("/view-diagnosis");
   }
 }
