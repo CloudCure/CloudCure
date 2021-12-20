@@ -17,8 +17,9 @@ namespace Tests
         {
             _options = new DbContextOptionsBuilder<CloudCureDbContext>()
                         .UseSqlite("Filename = Repository.db; Foreign Keys=False").Options;
-                    Seed();
+            Seed();
         }
+
         [Fact]
         public void GetByCovidIdShouldPopulateCovidId()
         {
@@ -27,7 +28,7 @@ namespace Tests
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
                 var result = repository.GetById(1);
 
-                Assert.Equal(true, result.question1);
+                Assert.Equal("true", result.question1);
             }
         }
 
@@ -37,16 +38,19 @@ namespace Tests
             using (var context = new CloudCureDbContext(_options))
             {
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
-                CovidVerify newCovid = new ()
+                CovidVerify newCovid = new()
                 {
-                    question1 = false,
-                    
+                    question1 = "false",
+                    question2 = "true",
+                    question3 = "false",
+                    question4 = "true",
+                    question5 = "false"
                 };
                 repository.Create(newCovid);
                 repository.Save();
 
                 Assert.Equal(newCovid.question1, repository.GetById(3).question1);
-                
+
             }
         }
 
@@ -70,15 +74,15 @@ namespace Tests
             {
                 IRepository<CovidVerify> repository = new Repository<CovidVerify>(context);
                 var testCovid = repository.GetById(1);
-                testCovid.question1 = false;
+                testCovid.question1 = "false";
                 repository.Update(testCovid);
                 repository.Save();
 
-                Assert.Equal(false, testCovid.question1);
+                Assert.Equal("false", testCovid.question1);
             }
         }
 
-         [Fact]
+        [Fact]
         public void DeleteCovidshouldDeleteCovid()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -89,12 +93,12 @@ namespace Tests
                 repository.Save();
 
                 var result = repository.GetAll();
-                
+
                 Assert.Single(result);
             }
         }
 
-       
+
 
         void Seed()
         {
@@ -130,23 +134,23 @@ namespace Tests
                 context.CovidAssessments.AddRange(
                     new CovidVerify
                     {
-                        question1 = true,
-                        question2 = true,
-                        question3 = false,
-                        question4 = false,
-                        question5 = true
+                        question1 = "true",
+                        question2 = "true",
+                        question3 = "false",
+                        question4 = "false",
+                        question5 = "true"
 
                     },
                     new CovidVerify
                     {
-                        question1 = true,
-                        question2 = true,
-                        question3 = false,
-                        question4 = false,
-                        question5 = true
+                        question1 = "true",
+                        question2 = "true",
+                        question3 = "false",
+                        question4 = "false",
+                        question5 = "true"
                     }
                 );
-                
+
 
                 context.SaveChanges();
             }

@@ -7,33 +7,70 @@
                 <ng-container *ngIf="auth0.isAuthenticated$ | async; else loggedOut"></ng-container>
                 <ng-template #loggedOut>
                     <hr class="my-4 white-text">
-                    <br/>
+                    <br />
                     <p class="lead white-text medium-text">Worry Less, Heal More</p>
-                    <br/>
-                    <p class="white-text">Our Policy Is To Make Sure Health,</p> 
+                    <br />
+                    <p class="white-text">Our Policy Is To Make Sure Health,</p>
                     <p class="white-text">Comes First</p>
-                </ng-template>               
+                </ng-template>
             </div>
         </div>
         <div class="col-md-1"></div>
     </div>
-    <div class="row">
-        <div class="col-md-5"></div>
-        <div class="col-md-2">
-            <ng-container *ngIf="auth0.isAuthenticated$ | async;">
-                    <div (click)="newPatient()" class="patient">
-
-                        <div id="plus-sign"class="white-text">+</div>
-                        <h5 class="card-title white-text">New Patient</h5>
-                    </div>
-            </ng-container>
-        </div>
-        <div class="col-md-5"></div>
-    </div>
 </div>
 
+<ng-container *ngIf="auth0.isAuthenticated$ | async;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form [formGroup]="patientSearchGroup">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>First Name</label>
+                            <input type="text" formControlName="FirstName" class="form-control"
+                                placeholder="Patient's First Name...">
+                        </div>
+                        <div class="col-md-5">
+                            <label>Last Name</label>
+                            <input type="text" formControlName="LastName" class="form-control"
+                                placeholder="Patient's Last Name...">
+                        </div>
+                        <div class="col-md-2">
+                            <br />
+                            <button type="submit" class="btn btn-dark "
+                                (click)="searchPatient(patientSearchGroup)">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
 
+        <div class="row">
+            <div class="col-md-4">
 
+            </div>
 
+        </div>
+    </div>
 
+    <br />
+    <div class="container">
+        <div class="card-group justify-content-center">
+            <div>
+                <div (click)="newPatient()" class="patient card pointer" style="max-width: 18rem; max-height: 21rem;">
+                    <div id="plus-sign" class="white-text">+</div>
+                    <h5 class="white-text patient-text">New Patient</h5>
+                </div>
+            </div>
+            <div *ngFor="let patient of patientList">
+                <div class="card card-custom" style="max-width: 18rem; height: 21rem;">
+                    <app-list-patient [role]="role" [patient]="patient"></app-list-patient>
+                </div>
 
+            </div>
+        </div>
+    </div>
+
+</ng-container>

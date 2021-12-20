@@ -68,7 +68,7 @@ export class PatientComponent implements OnInit {
       }
 
         let PatientInfo: Patient = {
-          UserProfile: UserInfo,
+          userProfile: UserInfo,
         }
         console.log("Patient Info created");
         console.log(PatientInfo);
@@ -86,5 +86,4 @@ export class PatientComponent implements OnInit {
       }
     }
   }
-
 

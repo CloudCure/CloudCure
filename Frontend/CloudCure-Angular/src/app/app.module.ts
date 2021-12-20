@@ -25,8 +25,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
 import { PatientComponent } from './patient/patient.component';
-
-
+import { ListPatientComponent } from './list-patient/list-patient.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +50,8 @@ import { PatientComponent } from './patient/patient.component';
     DiagnosisSurgeriesComponent,
     DiagnosisMedicationComponent,
     RegisterComponent,
-    PatientComponent
+    PatientComponent,
+    ListPatientComponent
   ],
 
   imports: [
@@ -70,16 +70,16 @@ import { PatientComponent } from './patient/patient.component';
       { path: 'diagnosis', component: DiagnosisComponent, canActivate:[AuthGuardService] },
       { path: 'print', component: PrintComponent, canActivate:[AuthGuardService] },
       { path: 'body-clicker', component: BodyClickerComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'diagnosis-surgeries', component:DiagnosisSurgeriesComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'diagnosis-medication', component:DiagnosisMedicationComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'diagnosis-condition', component:DiagnosisConditionComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'assessment', component: AssessmentComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent, /*canActivate:[AuthGuardService]*/ },
-      { path: 'diagnosis-medication', component: DiagnosisMedicationComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'text-box', component: TextBoxComponent, canActivate:[AuthGuardService] },
       { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'register', component:RegisterComponent },
       { path: "home", component: HomeComponent },
-      { path: 'diagnosis-surgery', component: DiagnosisSurgeriesComponent },
       { path: "**", component: HomeComponent }
     ])
   ],

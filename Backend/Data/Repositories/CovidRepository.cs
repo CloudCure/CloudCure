@@ -8,10 +8,10 @@ using Models;
 namespace Data
 {
 
-   public class CovidRepository : Repository<CovidVerify>, ICovidRepository
-   {
-       readonly CloudCureDbContext repository;
-       public CovidRepository(CloudCureDbContext context) : base(context)
+    public class CovidRepository : Repository<CovidVerify>, ICovidRepository
+    {
+        readonly CloudCureDbContext repository;
+        public CovidRepository(CloudCureDbContext context) : base(context)
         {
             repository = context;
         }
@@ -20,13 +20,7 @@ namespace Data
         {
             try
             {
-                return repository.CovidAssessments
-                .Include(q => q.question1)
-                .Include(q => q.question2)
-                .Include(q => q.question3)
-                .Include(q => q.question4)
-                .Include(q => q.question5)
-                .Single(e => e.UserId.Equals(p_Id));
+                return repository.CovidAssessments.Single(e => e.UserId.Equals(p_Id));
             }
             catch (System.Exception)
             {

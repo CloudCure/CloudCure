@@ -8,16 +8,16 @@ import { UserProfile } from "./UserProfile";
 
 export interface Patient 
 {
-    PatientId?:          number;
-    UserProfile:         UserProfile;
-    PatientName?:         string;
-    PatientPhone?:        string;
-    PatientAddress?:      string;
-    DateOfBirth?:        Date;
-    Conditions?:         Condition[];
-    Allergies?:          Allergy[];
-    Surgeries?:          Surgery[];
-    CurrentMedications?: Medication[];
-    VitalHistory?:       Vitals[];
-    Assessments?:        Assessment[];
+    id?:                 number;
+    userProfile:         UserProfile;
+    patientName?:         string;
+    patientPhone?:        string;
+    patientAddress?:      string;
+    dateOfBirth?:        Date;
+    conditions?:         Condition[];
+    allergies?:          Allergy[];
+    surgeries?:          Surgery[];
+    currentMedications?: Medication[];
+    vitalHistory?:       Vitals[];
+    assessments?:        Assessment[];
 }
