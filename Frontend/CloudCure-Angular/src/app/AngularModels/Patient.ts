@@ -9,15 +9,15 @@ import { UserProfile } from "./UserProfile";
 export interface Patient 
 {
     PatientId?:          number;
-    UserProfile:         UserProfile;
+    userProfile:         UserProfile;
     PatientName?:         string;
     PatientPhone?:        string;
     PatientAddress?:      string;
     DateOfBirth?:        Date;
-    Conditions?:         Condition[];
-    Allergies?:          Allergy[];
-    Surgeries?:          Surgery[];
-    CurrentMedications?: Medication[];
-    VitalHistory?:       Vitals[];
-    Assessments?:        Assessment[];
+    conditions?:         Condition;
+    allergies?:          Allergy[];
+    surgeries?:          Surgery[];
+    currentMedications?: Medication[];
+    vitalHistory?:       Vitals[];
+    assessments?:        Assessment[];
 }

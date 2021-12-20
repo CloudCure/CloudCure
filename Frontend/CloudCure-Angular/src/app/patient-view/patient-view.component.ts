@@ -10,14 +10,16 @@ import { PatientService } from '../services/patient.service';
 export class PatientViewComponent implements OnInit {
 
   patientExists: Boolean = true;
-  
+  //Patient Variables
   PatientId:          any;
-  UserProfile:        any;
+  UserProfile:        any = {};
   PatientName:        string | undefined = 'Timmy';
+  FirstName:          string = '';
+  LastName:           string = '';
   PatientPhone:       any = '';
   PatientAddress:     any = '';
   DateOfBirth:        any = '';
-  Conditions:         any = [];
+  Conditions:         any = {};
   Allergies:          any = [];
   Surgeries:          any = [];
   CurrentMedications: any = [];
@@ -25,23 +27,25 @@ export class PatientViewComponent implements OnInit {
   Assessments:        any = [];
 
   constructor(private patientApi: PatientService) {
-    //1 will be changed later
+    //1 will be changed later to a dynamic patient number
     this.patientApi.GetById(1).subscribe(response => {
       console.log("accessed patient")
       console.log(response)
       this.patientExists = true;
-
-      this.UserProfile =        response.UserProfile
-      this.PatientName =        this.UserProfile.firstName
+      //Instantiating Patient Variables
+      this.UserProfile =        response.userProfile
+      this.FirstName =          this.UserProfile.firstName
+      this.LastName =           this.UserProfile.lastName
+      this.PatientName =        this.FirstName.concat(' ', this.LastName)
       this.PatientPhone =       this.UserProfile.phoneNumber
-      this.PatientAddress =     response.PatientAddress
-      this.DateOfBirth =        response.DateOfBirth
-      this.Conditions =         response.Conditions
-      this.Allergies =          response.Allergies
-      this.Surgeries =          response.Surgeries
-      this.CurrentMedications = response.CurrentMedications
-      this.VitalHistory =       response.VitalHistory
-      this.Assessments =        response.Assessments
+      this.PatientAddress =     this.UserProfile.address
+      this.DateOfBirth =        this.UserProfile.dateOfBirth
+      this.Conditions =         response.conditions
+      this.Allergies =          response.allergies
+      this.Surgeries =          response.surgeries
+      this.CurrentMedications = response.currentMedications
+      this.VitalHistory =       response.vitalHistory
+      this.Assessments =        response.assessments
 
     })
    }
