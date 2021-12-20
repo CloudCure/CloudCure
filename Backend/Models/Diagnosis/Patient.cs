@@ -21,6 +21,11 @@ namespace Models.Diagnosis
         public List<Medication> CurrentMedications { get; set; }
 
         public List<Vitals> VitalHistory { get; set; }
+
         public List<Assessment> Assessments { get; set; }
+
+        public List<Diagnosis> Diagnoses { get; set; }
+
+        public EmployeeInformation Doctor { get; set; }
     }
 }

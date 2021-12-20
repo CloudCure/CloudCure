@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid get all request.");
+                return BadRequest("Invalid get all users request.");
             }
         }
 
@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Not a valid ID");
+                return BadRequest("Invalid get user by id request.");
             }
         }
 

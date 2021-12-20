@@ -29,9 +29,9 @@ namespace Tests
 
                 Assert.NotNull(results);
                 Assert.Equal("true", results.question1);
-                // Assert.Equal("true", results.question2);
-                // Assert.Equal(1, results.UserId);
-                // Assert.Equal(1, results.Id);
+                Assert.Equal("true", results.question2);
+                Assert.Equal(1, results.UserId);
+                Assert.Equal(1, results.Id);
             }
         }
 
@@ -44,7 +44,6 @@ namespace Tests
 
                 CovidVerify covid = new CovidVerify
                 {
-                    Id = 1,
                     question1 = "true",
                     question2 = "true",
                     question3 = "true",

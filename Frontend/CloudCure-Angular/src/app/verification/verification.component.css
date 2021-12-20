@@ -74,8 +74,14 @@ input[type="radio"] {
 }
 
 button{
-  margin-top: 10px;
-  margin-right: 20px;
-  margin-left: 10px;
-  float: right;
+    margin-top: 10px;
+    margin-right: 50%;
+    margin-left: 45.4%;
+    float:left;
+}
+
+.button-btm
+{
+  padding: 0px 0px 70px 50px;
+  float: left;
 }

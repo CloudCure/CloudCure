@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        // GET api/covid/Get/{p_id}
+        // GET api/covid/Get/{id}
         [HttpGet("Get/{id}")]
         public IActionResult GetById(int id)
         {

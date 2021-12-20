@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Condition } from '../AngularModels/Condition';
+import { ConditionService } from '../services/condition.service';
 
 @Component({
   selector: 'diagnosis-condition',
@@ -8,14 +9,31 @@ import { Router } from '@angular/router';
 })
 export class DiagnosisConditionComponent implements OnInit {
 
-  display: boolean = false;
-  conditions: string[] = [''];
-
-  constructor() { }
-
-  ngOnInit(): void {
+  display: boolean = true;
+  conditions: string[] = [""];
+ 
+  constructor(private ConditionApi: ConditionService) {}
+  
+  ngOnInit(): void {}
+  
+  public SetDataFromChild(data:any){
+    this.conditions = data;
   }
 
+  AddCondition(PatientId: number){
+    this.conditions.forEach(element => {
+      let ConditionInfo: Condition = {
+        PatientId: PatientId,
+        ConditionName: element,
+      }
+      console.log(element);
 
+      this.ConditionApi.Add(ConditionInfo).subscribe(
+      (response) => {
+        console.log("Condition added");
+        console.log(response);
+      })
+    });
+  }
 
 }

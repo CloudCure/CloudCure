@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public auth0:AuthService, @Inject(DOCUMENT) public document: Document) { }
+  constructor(public auth0:AuthService, @Inject(DOCUMENT) public document: Document, public router:Router) { }
 
   ngOnInit(): void {
   }
@@ -17,5 +18,9 @@ export class LoginComponent implements OnInit {
   login()
   {
     this.auth0.loginWithRedirect();
+  }
+  profile()
+  {
+    this.router.navigateByUrl("/profile");
   }
 }

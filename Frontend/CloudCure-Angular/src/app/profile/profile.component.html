@@ -1,55 +1,38 @@
-
-
 <body>
 
-  <div class="header">
-    <h1></h1>
-  </div>
-
   <div class="container">
-    <div class="row">
-      <div class="column side">
-        <div class="card">
-          <img src="../../assets/Images/user.png" alt="John" style="width: 100%">
-          <br/>
-          <h1>John Doe</h1>
-          <p>Doctor/Nurse</p>
-        </div>
-      </div>
 
-      <div class="column middle">
-        <div class="tabs">
-          <div class="tab-header">
-            <div class="active">
-              <i id="dashboard" class="fa fa-slack" (click)="tabChange('dashboard')"></i> Dashboard
-            </div>
-            <div>
-              <i id="education" class="fa fa-graduation-cap" (click)="tabChange('education')"></i> Education
-            </div>
-            <div>
-              <i id="certification" class="fa fa-certificate" (click)="tabChange('certification')"></i> Certification
-            </div>
-              <div>
-                <i id="contact"  class="fa fa-address-book" (click)="tabChange('contact')"></i> Contact
-              </div>
+    <div id="content" class="content p-0">
+
+      <div class="profile-header">
+
+        <div class="profile-header-cover"></div>
+
+        <div class="profile-header-content">
+          <div class="profile-header-img">
+            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" style="width: 200px" />
+          </div>
+
+          <div class="profile-header-info">
+            <h4 class="m-t-sm">{{ employee.userProfile.firstName }} {{employee.userProfile.lastName}}</h4>
+            <p class="m-b-sm">{{employee.specialization}}</p>
+            <button href="#" class="btn btn-xs btn-primary mb-3">Edit Profile</button>
           </div>
         </div>
-
-        <div id="table-content">
-          <div class="content-value" *ngIf="id === 'dashboard'">
+        <ul class="profile-header-tab nav nav-tabs">
+          <li class="nav-item"><i id="dashboard" class="nav-link fa fa-slack"
+              (click)="tabChange('dashboard')">DASHBOARD</i></li>
+          <li class="nav-item"><i id="education" class="nav-link fa fa-graduation-cap" data-toggle="tab"
+              (click)="tabChange('education')">EDUCATION</i></li>
+          <li class="nav-item"><i id="certification" class="nav-link fa fa-certificate" data-toggle="tab"
+              (click)="tabChange('certification')">CERTIFICATIONS</i></li>
+          <li class="nav-item"><i id="contact" class="nav-link fa fa-address-book" data-toggle="tab"
+              (click)="tabChange('contact')">CONTACT</i></li>
+        </ul>
+        <div class="card">
+          <div clss="content-value" *ngIf="id === 'dashboard'">
             <table class="table table-user-information">
               <tbody>
-                <tr>
-                  <td>
-                    <strong>
-                      <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                      <i class="fa fa-address-card" aria-hidden="true"></i> Identificacion
-                    </strong>
-                  </td>
-                  <td class="text-primary">
-                    123456789
-                  </td>
-                </tr>
                 <tr>
                   <td>
                     <strong>
@@ -58,7 +41,7 @@
                     </strong>
                   </td>
                   <td class="text-primary">
-                    John
+                    {{employee.userProfile.firstName}}
                   </td>
                 </tr>
                 <tr>
@@ -69,7 +52,7 @@
                     </strong>
                   </td>
                   <td class="text-primary">
-                    Doe
+                    {{employee.userProfile.lastName}}
                   </td>
                 </tr>
 
@@ -81,7 +64,7 @@
                     </strong>
                   </td>
                   <td class="text-primary">
-                    Admin
+                    {{employee.userProfile.roleId}}
                   </td>
                 </tr>
                 <tr>
@@ -92,7 +75,7 @@
                     </strong>
                   </td>
                   <td class="text-primary">
-                    noreply@email.com
+                    {{employee.workEmail}}
                   </td>
                 </tr>
                 <tr>
@@ -103,7 +86,7 @@
                     </strong>
                   </td>
                   <td class="text-primary">
-                    123-456-7890
+                    {{employee.userProfile.phoneNumber}}
                   </td>
                 </tr>
               </tbody>
@@ -112,115 +95,59 @@
 
           <div class="content-value" *ngIf="id === 'education'">
             <h2>Education</h2>
-            <p>Please Work</p>
+            <table class="table table-user-information">
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-user  text-primary"></span>
+                      <i class="fa fa-university" aria-hidden="true"></i> Degree
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{employee.educationDegree}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="content-value" *ngIf="id === 'certification'">
             <h2>Certification</h2>
-            <p>Please Work</p>
+            <p>Insert</p>
           </div>
 
           <div class="content-value" *ngIf="id === 'contact'">
-            <h2>Contact</h2>
-            <p>Please Work</p>
-          </div>
-
-
-
-        </div>
-      </div>
-    </div>
-    </div>
-</body>
-
-
-
-
-
-
-<!-- <body>
-  <div class="row">
-    <div class="column side">
-      <div class="profile-card">
-        <img src="../../assets/Images/user.png" alt="John" style="width:100%">
-        <h1>John Doe</h1>
-        <p class="title">(Role)</p>
-        <p>(Specialization)</p>
-        <div style="margin: 24px 0;">
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-instagram"></i></a>
-          <p><button>Contact</button></p>
-        </div>
-      </div>
-    </div>
-      <div class="column middle">
-        <div class="content-card">
-          <div id="navbar-animmenu">
-            <ul class="show-dropdown main-navbar">
-                <li>
-                    <a href=""><i class="fas fa-id-card"></i>Dashboard</a>
-                </li>
-                <li class="active">
-                    <a href=""><i class="far fas fa-school"></i>Education</a>
-                </li>
-                <li>
-                    <a href=""><i class="fas fa-book"></i>Certification</a>
-                </li>
-                <li>
-                  <a href=""><i class="fas fa-book"></i>Contact</a>
-              </li>
-            </ul>
-        </div>
-        <br>
-        <h2><button class="btn btn-sm " target="__blank" href="">Edit</button></h2>
-        <br>
-        <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">First Name</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            Prince
+            <h2>Emergency Contact</h2>
+            <table class="table table-user-information">
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-user  text-primary"></span>
+                      Name
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{employee.userProfile.emergencyName}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-user  text-primary"></span>
+                      Phone Number
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{employee.userProfile.emergencyContactPhone}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-        <hr>
-        <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Last Name</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            Vegeta
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Phone</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            (123) 456-7890
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Email</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            super@cloudcure.net
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Alt. Email</h6>
-          </div>
-          <div class="col-sm-9 text-secondary">
-            sayian@cloudcure.net
-          </div>
-        </div>
-        <br>
       </div>
     </div>
   </div>
-</body> -->
+</body>
