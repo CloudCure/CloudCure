@@ -17,6 +17,9 @@
     filter: brightness(90%);
 }
 
+.hover {
+    cursor: pointer;
+}
 
 
 .navbar-center {
