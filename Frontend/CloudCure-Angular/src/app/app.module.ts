@@ -26,8 +26,7 @@ import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators
 import { AuthGuardService } from './services/auth-guard.service';
 import { PatientComponent } from './patient/patient.component';
 import { PatientViewComponent } from './patient-view/patient-view.component';
-
-
+import { ListPatientComponent } from './list-patient/list-patient.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +53,7 @@ import { PatientViewComponent } from './patient-view/patient-view.component';
     RegisterComponent,
     PatientComponent,
     PatientViewComponent
+    ListPatientComponent
   ],
 
   imports: [
@@ -72,17 +72,17 @@ import { PatientViewComponent } from './patient-view/patient-view.component';
       { path: 'diagnosis', component: DiagnosisComponent, canActivate:[AuthGuardService] },
       { path: 'print', component: PrintComponent, canActivate:[AuthGuardService] },
       { path: 'body-clicker', component: BodyClickerComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'diagnosis-surgeries', component:DiagnosisSurgeriesComponent, /*canActivate:[AuthGuardService]*/ },
+      { path: 'diagnosis-medication', component:DiagnosisMedicationComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'diagnosis-condition', component:DiagnosisConditionComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'diagnosis-vitals', component: DiagnosisVitalsComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'assessment', component: AssessmentComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent, /*canActivate:[AuthGuardService]*/ },
-      { path: 'diagnosis-medication', component: DiagnosisMedicationComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'text-box', component: TextBoxComponent, canActivate:[AuthGuardService] },
       { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'patient-view', component: PatientViewComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'register', component:RegisterComponent },
       { path: "home", component: HomeComponent },
-      { path: 'diagnosis-surgery', component: DiagnosisSurgeriesComponent },
       { path: "**", component: HomeComponent }
     ])
   ],

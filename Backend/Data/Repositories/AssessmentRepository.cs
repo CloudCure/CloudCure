@@ -18,19 +18,19 @@ namespace Data
         {
             try
             {
-                 var result = base.GetAll()
-                        .First(i => i.PatientId.Equals(query));
+                var result = base.GetAll()
+                    .First(i => i.PatientId.Equals(query));
 
-                        return result;
+                return result;
             }
             catch (System.Exception)
             {
-                
+
                 throw new KeyNotFoundException("No result found");
             }
-             
-      
-            
+
+
+
         }
     }
 }

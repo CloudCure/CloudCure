@@ -1,0 +1,76 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+  padding: 0;
+  margin: 0;
+}
+
+.header {
+  padding: 60px;
+  text-align: center;
+  background: rgb(115, 165, 194);
+  color: white;
+  font-size: 100px;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  padding: 50px;
+}
+
+.center {
+  text-align: center;
+  padding: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.diagnosis{
+  width: 7rem;
+  margin: 1px;
+}
+
+.text{
+  margin: auto;
+}
+
+.btn-custom {
+  width: 100%;
+}
+
+.view {
+  background-color: #72A4C2;
+  border-color: #72A4C2;
+}
+
+.view:hover {
+  background-color: #72A4C2;
+  border-color: #72A4C2;
+  filter: brightness(90%);
+}
+
+.add {
+  background-color: #F26925;
+  border-color: #F26925;
+}
+
+.add:hover {
+  background-color: #F26925;
+  border-color: #F26925;
+  filter: brightness(90%);
+}
+
+.finalize {
+  margin-top: 12px;
+  background-color: #474C55;
+  border-color: #474C55;
+}
+
+.finalize:hover {
+  background-color: #474C55;
+  border-color: #474C55;
+  filter: brightness(90%);
+}

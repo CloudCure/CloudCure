@@ -6,7 +6,7 @@ export interface Vitals
     Diastolic:       number;
     OxygenSat:       number;
     HeartRate:       number;
-    Temperature:     number;
+    Tempature:     number;
     RespiratoryRate: number;
     Height:          number;
     Weight:          number;
