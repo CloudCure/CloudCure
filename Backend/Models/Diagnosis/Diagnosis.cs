@@ -21,5 +21,8 @@ namespace Models.Diagnosis
         public List<Surgery> Surgeries { get; set; }
         public Vitals Vitals { get; set; }
         public Assessment Assessment { get; set; }
+
+        public string DoctorDiagnosis { get; set; }
+        public string RecommendedTreatment { get; set; }
     }
 }

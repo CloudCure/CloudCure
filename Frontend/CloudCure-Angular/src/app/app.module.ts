@@ -25,6 +25,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
 import { PatientComponent } from './patient/patient.component';
+import { PatientViewComponent } from './patient-view/patient-view.component';
 import { ListPatientComponent } from './list-patient/list-patient.component';
 import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.component';
 
@@ -53,7 +54,8 @@ import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.componen
     RegisterComponent,
     PatientComponent,
     ListPatientComponent,
-    ViewDiagnosisComponent
+    ViewDiagnosisComponent,
+    PatientViewComponent
   ],
 
   imports: [
@@ -81,6 +83,7 @@ import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.componen
       { path: 'text-box', component: TextBoxComponent, canActivate:[AuthGuardService] },
       { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'view-diagnosis', component: ViewDiagnosisComponent, canActivate:[AuthGuardService]},
+      { path: 'patient-view', component: PatientViewComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'register', component:RegisterComponent },
       { path: "home", component: HomeComponent },
       { path: "**", component: HomeComponent }
