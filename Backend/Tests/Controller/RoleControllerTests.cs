@@ -21,12 +21,25 @@ namespace Tests
 
             var role = new Role
             {
+                Id = 1,
                 RoleName = "Doctor"
             };
 
             var result = controller.Add(role);
             var okResponse = (IStatusCodeActionResult)result;
+            Assert.Equal(1, role.Id);
             Assert.Equal(201, okResponse.StatusCode);
+        }
+
+        [Fact]
+        public void CreateShouldThrowExceptionWithInvalidInput()
+        {
+            var repository = new Mock<IRoleRepository>();
+            var controller = new RoleController(repository.Object);
+
+            //var result = controller.Add(null);
+            //var response = (IStatusCodeActionResult)result;
+            //Assert.Equal(400, response.StatusCode);
         }
 
         [Fact]
