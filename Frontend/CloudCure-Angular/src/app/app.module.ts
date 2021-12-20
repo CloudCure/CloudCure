@@ -52,7 +52,7 @@ import { ListPatientComponent } from './list-patient/list-patient.component';
     DiagnosisMedicationComponent,
     RegisterComponent,
     PatientComponent,
-    PatientViewComponent
+    PatientViewComponent,
     ListPatientComponent
   ],
 
