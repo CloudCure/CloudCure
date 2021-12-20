@@ -25,6 +25,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormControl, FormControlName,ReactiveFormsModule, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { AuthGuardService } from './services/auth-guard.service';
 import { PatientComponent } from './patient/patient.component';
+import { PatientViewComponent } from './patient-view/patient-view.component';
 import { ListPatientComponent } from './list-patient/list-patient.component';
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ListPatientComponent } from './list-patient/list-patient.component';
     DiagnosisMedicationComponent,
     RegisterComponent,
     PatientComponent,
+    PatientViewComponent
     ListPatientComponent
   ],
 
@@ -78,6 +80,7 @@ import { ListPatientComponent } from './list-patient/list-patient.component';
       { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'text-box', component: TextBoxComponent, canActivate:[AuthGuardService] },
       { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
+      { path: 'patient-view', component: PatientViewComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'register', component:RegisterComponent },
       { path: "home", component: HomeComponent },
       { path: "**", component: HomeComponent }
