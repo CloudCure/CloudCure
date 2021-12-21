@@ -46,6 +46,28 @@ namespace Tests
             }
         }
 
+        [Fact]
+        public void SearchByPatientIdShouldThrowAnException()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAllergyRepository repo = new AllergyRepository(context);
+
+                Assert.Throws<KeyNotFoundException>(() => repo.SearchByPatientId(-1));
+            }
+        }
+
+        [Fact]
+        public void SearchByAllergyShouldThrowAnException()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAllergyRepository repo = new AllergyRepository(context);
+
+                Assert.Throws<KeyNotFoundException>(() => repo.SearchByAllergy("can'tfindme"));
+            }
+        }
+
         private void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
