@@ -40,13 +40,15 @@ export class HomeComponent implements OnInit {
           this.employeeAPI.verifyEmployee(user.email).subscribe(
             (response) => 
             {
-              this.role = response.userProfile.roleId;
+
+              console.log("hit");
               console.log(response);
-              if (!response)
-              {
+              if (!response) {
                 // send them to register page if they arent currently a user in our db.
                 this.router.navigateByUrl("/register");
               }
+              this.role = response.userProfile.roleId;
+
             }
           )          
         }
