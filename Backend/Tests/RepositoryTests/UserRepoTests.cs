@@ -47,6 +47,17 @@ namespace Tests
             }
         }
 
+        [Fact]
+        public void GetUserByIdShouldThrowAnException()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IUserRepository repo = new UserRepository(context);
+
+                Assert.Throws<KeyNotFoundException>(() => repo.GetUserById(-1));
+            }
+        }
+
         void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
