@@ -33,7 +33,7 @@ export class VerificationComponent implements OnInit {
   }
   
     submitForm(verifyGroup: FormGroup) {
-
+      console.log(this.patientAPI.currentPatientId);
       if (verifyGroup.valid) {
         let Info: CovidVerify = {
           userId: this.patientAPI.currentPatientId,
@@ -43,7 +43,8 @@ export class VerificationComponent implements OnInit {
           question4: verifyGroup.get("question4")?.value,
           question5: verifyGroup.get("question5")?.value
         }
-        console.log(this.verifyGroup.value);
+        console.log(Info);
+        console.log(this.patientAPI.currentPatientId);
         this.covidService.Add(Info).subscribe(
           (response) => {
             console.log(response);
