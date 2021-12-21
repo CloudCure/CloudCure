@@ -60,7 +60,7 @@ import { VitalsviewComponent } from './vitalsview/vitalsview.component';
     ListPatientComponent,
     ViewDiagnosisComponent,
     PatientViewComponent,
-    VitalsviewComponent
+    VitalsviewComponent,
     DocsearchComponent,
     ListDoctorComponent,
     ViewDiagnosisComponent
