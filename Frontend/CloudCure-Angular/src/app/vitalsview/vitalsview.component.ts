@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PatientService } from '../services/patient.service';
 import { VitalsService } from '../services/vitals.service';
 
 @Component({
@@ -9,36 +10,45 @@ import { VitalsService } from '../services/vitals.service';
 export class VitalsviewComponent implements OnInit {
 
   //vitalsExists: Boolean = true;
-  VitalsId:       any = '';
+  VitalsId:        any = '';
   PatientId:       any = '';
-  Systolic:        any = '';
-  Diastolic:       any = '';
-  OxygenSat:       any = '';
-  HeartRate:       any = '';
-  Tempature:     any = '';
-  RespiratoryRate: any = '';
-  Height:          any = '';
-  Weight:          any = '';
-  EncounterDate:  any = '';
+  Systolic:        any = 120;
+  Diastolic:       any = 80;
+  OxygenSat:       any = 98;
+  HeartRate:       any = 75;
+  Temperature:     any = 98;
+  RespiratoryRate: any = 15;
+  Height:          any = 72;
+  Weight:          any = 185;
+  EncounterDate:   any = '';
 
-  constructor(private vitalsApi: VitalsService) {
-    this.vitalsApi.GetById(1).subscribe(response => {
-      console.log("accessed vitals")
+  constructor(private vitalsApi: VitalsService, private patientApi: PatientService) {
+    this.vitalsApi.GetByPatientId(2).subscribe(response => {
+      console.log("accessed1")
       console.log(response)
-      //this.vitalsExists = true;
-      //Instantiating Vitals Variables
-      this.PatientId =        response.PatientId
-      this.Systolic =          this.Systolic
-      this.Diastolic =           this.Diastolic
-      this.OxygenSat =        this.OxygenSat
-      this.HeartRate =       this.HeartRate
-      this.Tempature =     this.Tempature
-      this.RespiratoryRate =        this.RespiratoryRate
-      this.Height =         response.Height
-      this.Weight =          response.Weight
-      this.EncounterDate =          response.EncounterDate
+    //this.vitalsExists = true;
+    //Instantiating Vitals Variables
+    this.Systolic =        response.systolic
+    this.Diastolic =       response.diastolic
+    this.OxygenSat =       response.oxygenSat
+    this.HeartRate =       response.heartRate
+    this.Temperature =     response.temperature
+    this.RespiratoryRate = response.respiratoryRate
+    this.Height =          response.height
+    this.Weight =          response.weight
+    this.EncounterDate =   response.encounterDate
 
     })
+
+    // this.patientApi.GetById(2).subscribe(response => {
+    //   console.log("accessed2")
+    //   console.log(response)
+    // })
+
+    // this.vitalsApi.GetAll().subscribe(response => {
+    //   console.log("accessed3")
+    //   console.log(response)
+    // })
    }
 
   ngOnInit(): void {
