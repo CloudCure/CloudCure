@@ -55,7 +55,6 @@ import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.componen
     PatientComponent,
     ListPatientComponent,
     ViewDiagnosisComponent,
-    PatientViewComponent
   ],
 
   imports: [
