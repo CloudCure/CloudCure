@@ -12,7 +12,7 @@ namespace Tests.Diagnosis
 {
     public class PatientTest
     {
-          readonly DbContextOptions<CloudCureDbContext> _options;
+        readonly DbContextOptions<CloudCureDbContext> _options;
 
         public PatientTest()
         {
@@ -22,7 +22,7 @@ namespace Tests.Diagnosis
         }
 
 
-       [Fact]
+        [Fact]
         public void GetByIdWithNavShouldPopulateNavProps()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -34,10 +34,20 @@ namespace Tests.Diagnosis
             }
         }
 
+        [Fact]
+        public void GetAllWithNavShouldWork()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IPatientRepository repository = new PatientRepository(context);
+                
+                var patients = repository.GetAllWithNav();
+                
+                Assert.NotEmpty(patients);
+            }
+        }
 
-
-
-         void Seed()
+        void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {
@@ -49,7 +59,7 @@ namespace Tests.Diagnosis
                     {
                         UserProfile = new User
                         {
-                            
+
                             FirstName = "dldfk",
                             LastName = "sdfksdf",
                             PhoneNumber = "dkfadl",
@@ -65,14 +75,14 @@ namespace Tests.Diagnosis
                             new Condition{
                                 PatientId = 1,
                                 ConditionName = "dddf",
-                                
+
                             }
                         },
                         Allergies = new List<Allergy>()
                         {
                             new Allergy{
                                 AllergyName = "dddfd",
-                               
+
                                 PatientId = 1
                             }
                         },
@@ -81,7 +91,7 @@ namespace Tests.Diagnosis
                             new Surgery{
                                 PatientId = 1,
                                 SurgeryName = "dfkjdf"
-                                
+
                             }
                         },
                         CurrentMedications = new List<Medication>()
