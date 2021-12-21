@@ -4,6 +4,7 @@ import { Surgery } from '../AngularModels/Surgery';
 import { SurgeryService } from '../services/surgery.service';
 
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PatientService } from '../services/patient.service';
 
 @Component({
   selector: 'diagnosis-surgeries',
@@ -20,8 +21,9 @@ export class DiagnosisSurgeriesComponent implements OnInit {
   
   display: boolean = false;
   surgeries: string[] = [''];
+  PatientID: number = this.patientAPI.currentPatientId!;
 
-  constructor(private SurgeryApi: SurgeryService) { }
+  constructor(private SurgeryApi: SurgeryService, private patientAPI:PatientService) { }
 
   ngOnInit(): void {
   }
