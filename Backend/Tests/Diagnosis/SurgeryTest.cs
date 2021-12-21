@@ -35,6 +35,20 @@ namespace Tests.Diagnosis
             
         }
 
+        [Fact]
+        public void GetbyIdShouldReturnSurgeryId()
+        {
+           using (var context = new CloudCureDbContext(_options))
+            {
+                ISurgeryRepository repository = new SurgeryRepository(context);
+                var surgery = repository.GetById(1);
+
+                Assert.Equal(1, surgery.Id);
+                
+            }
+            
+        }
+
            void Seed()
         {
             using (var context = new CloudCureDbContext(_options))

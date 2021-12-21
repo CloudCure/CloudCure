@@ -146,6 +146,18 @@ namespace Tests
                 Assert.Equal("false", employee.UserProfile.CovidAssesments[0].question1);
             }
         }
+
+        [Fact]
+        public void GetEmployeeIdShouldGetEmployeeId()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repository = new EmployeeInformationRepository(context);
+                var employee = repository.GetById(1);
+
+                Assert.Equal(1, employee.Id);
+            }
+        }
         public void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
