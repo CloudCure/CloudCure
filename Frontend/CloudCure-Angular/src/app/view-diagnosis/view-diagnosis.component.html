@@ -1,0 +1,36 @@
+<h1>Patient View Here</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form [formGroup]="doctorDiagnosis">
+                <div class="mb-3">
+                    <label class="form-label">Doctor's Diagnosis</label>
+                    <textarea class="form-control textarea" formControlName="diagnosis"></textarea>
+                    <div *ngIf="diagnosis?.invalid && (diagnosis?.dirty || diagnosis?.touched)">
+                        <div class="text-danger" *ngIf="diagnosis?.errors?.['required']">*Required</div>
+                    </div>
+                </div>
+
+                <br />
+                <div class="mb-3">
+                    <label class="form-label">Recommended Treatment</label>
+                    <textarea class="form-control textarea" type="text" formControlName="treatment"></textarea>
+                    <div *ngIf="treatment?.invalid && (treatment?.dirty || treatment?.touched)">
+                        <div class="text-danger" *ngIf="treatment?.errors?.['required']">*Required</div>
+                    </div>
+                </div>
+                <br />
+                <div class="center">
+                    <button class="btn btn-primary"
+                        (click)="submit(doctorDiagnosis)">Finalize Diagnosis</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+<br />
+<br />
+<br />

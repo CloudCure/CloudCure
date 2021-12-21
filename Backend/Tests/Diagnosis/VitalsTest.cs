@@ -30,7 +30,7 @@ namespace Tests
                 var Vitals = repository.SearchByPatientId(1);
 
                 Assert.NotNull(Vitals);
-                Assert.Equal(98.6, Vitals.Tempature);
+                Assert.Equal(98.6, Vitals.Temperature);
             }
             
             // Given
@@ -55,7 +55,7 @@ namespace Tests
                         OxygenSat = 96.5,
                         HeartRate = 70,
                         RespiratoryRate = 12,
-                        Tempature = 98.6,
+                        Temperature = 98.6,
                         Height = 75,
                         Weight = 145,
                         //EncounterDate = DateTime.Now

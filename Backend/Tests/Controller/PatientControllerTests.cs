@@ -144,7 +144,7 @@ namespace Tests
                         Height = 75,
                         Weight = 200,
                         OxygenSat = 98.2,
-                        Tempature = 97.2,
+                        Temperature = 97.2,
                         RespiratoryRate = 14,
                         EncounterDate = DateTime.Now
 

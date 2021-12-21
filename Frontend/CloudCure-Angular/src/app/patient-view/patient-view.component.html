@@ -1,0 +1,75 @@
+<p>Test</p>
+
+<div>
+
+    <h2>Name</h2>
+    <p>{{PatientName}}</p>
+
+    <h2>Phone</h2>
+    <p>{{PatientPhone}}</p>
+    
+    <h2>Address</h2>
+    <p>{{PatientAddress}}</p>
+    
+    <h2>Date of Birth</h2>
+    <p>{{DateOfBirth}}</p>
+    
+    <h2>Conditions</h2>        
+    <p *ngFor="let condition of Conditions">{{condition.conditionName}}</p>
+    
+    <h2>Allergies</h2>         
+    <p *ngFor="let allergy of Allergies">{{allergy.allergyName}}</p>
+    
+    <h2>Surgeries</h2>          
+    <p *ngFor="let surgery of Surgeries">{{surgery.surgeryName}}</p>
+    
+    <h2>Current Medications</h2>          
+    <p *ngFor="let med of CurrentMedications">{{med.medicationName}}</p>
+    
+    <h2>Vital History</h2>
+    <table class="table table hover">
+        <thead>
+            <th>Systolic (mmHg)</th>
+            <th>Diastolic (mmHg)</th>
+            <th>Oxygen Saturation (%)</th>
+            <th>Heart Rate (bpm)</th>
+            <th>Temperature(℉)</th>
+            <th>Respiratory Rate (breaths / min)</th>
+            <th>Height (inches)</th>
+            <th>Weight (lbs.)</th>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let vital of VitalHistory">
+                <td>{{vital.systolic}}</td>
+                <td>{{vital.diastolic}}</td>
+                <td>{{vital.oxygenSat}}</td>
+                <td>{{vital.heartRate}}</td>
+                <td>{{vital.temperature}}</td>
+                <td>{{vital.respiratoryRate}}</td>
+                <td>{{vital.height}}</td>
+                <td>{{vital.weight}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Assessments</h2>
+    <table class="table table hover">
+        <thead>
+            <th>Chief Complaint</th>
+            <th>History of Present Illness</th>
+            <th>Pain Assessment</th>
+            <th>Pain Scale (0-10)</th>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let assessment of Assessments">
+                <td>{{assessment.chiefComplaint}}</td>
+                <td>{{assessment.historyOfPresentIllness}}</td>
+                <td>{{assessment.painAssessment}}</td>
+                <td>{{assessment.painScale}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
