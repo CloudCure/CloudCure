@@ -2,13 +2,13 @@ export interface Vitals
 {
     VitalsId?:       number;
     PatientId:       number;
-    Systolic:        number;
-    Diastolic:       number;
-    OxygenSat:       number;
-    HeartRate:       number;
-    Tempature:     number;
-    RespiratoryRate: number;
-    Height:          number;
-    Weight:          number;
-    EncounterDate?:  Date;
+    systolic:        number;
+    diastolic:       number;
+    oxygenSat:       number;
+    heartRate:       number;
+    temperature:     number;
+    respiratoryRate: number;
+    height:          number;
+    weight:          number;
+    encounterDate?:  Date;
 }
