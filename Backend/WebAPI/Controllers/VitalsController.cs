@@ -45,6 +45,21 @@ namespace WebAPI.Controllers
             }
         }
 
+        //GET: Vitals/PatientId
+        [HttpGet("Get/Patient{id}")]
+        public IActionResult GetByPatientId(int id)
+        {
+            try
+            {
+                return Ok(_repo.SearchByPatientId(id));
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Not a valid ID");
+            }
+        }
+
         //POST: Vitals/Add
         [HttpPost("Add")]
         public IActionResult Add([FromBody] Vitals p_vitals)
