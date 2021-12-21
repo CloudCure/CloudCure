@@ -168,12 +168,14 @@ namespace Tests
             var repository = new Mock<IRoleRepository>();
             var controller = new RoleController(repository.Object);
 
-
-            var result = controller.GetById(100);
-
-            var objectResult = Assert.IsType<OkObjectResult>(result);
-            
-
+            try
+            {
+                var result = controller.GetById(100);
+            }
+            catch (Exception e)
+            {
+                Assert.True(e.Message.Contains("Not a valid ID"));
+            }
         }
     }
 }
