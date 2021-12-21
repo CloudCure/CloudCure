@@ -95,6 +95,100 @@ namespace Tests
             Assert.Equal(200, okResponse.StatusCode);
         }
 
+        [Fact]
+        public void CreateReturnsBadRequestEmployee()
+        {
+            var repository = new Mock<IEmployeeInformationRepository>();
+            var controller = new EmployeeInformationController(repository.Object);
+
+            var info = newEmployee();
+
+            try
+            {
+                controller.Add(info);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+         [Fact]
+        public void GetAllShouldReturnBadRequestEmployee()
+        {
+            var repository = new Mock<IEmployeeInformationRepository>();
+            var controller = new EmployeeInformationController(repository.Object);
+
+            var info = newEmployee();
+
+            try
+            {
+                controller.Add(info);
+                controller.GetAll();
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
+        public void DeleteShouldReturnBadRequestEmployee()
+        {
+            var repository = new Mock<IEmployeeInformationRepository>();
+            var controller = new EmployeeInformationController(repository.Object);
+
+            var info = newEmployee();
+
+            try
+            {
+                controller.Add(info);
+                controller.Delete(0);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+        [Fact]
+        public void UpdateShouldReturnBadRequestEmployeeInfo()
+        {
+            var repository = new Mock<IEmployeeInformationRepository>();
+            var controller = new EmployeeInformationController(repository.Object);
+
+            var info = newEmployee();
+
+            try
+            {
+                controller.Add(info);
+                controller.Update(0, info);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+           [Fact]
+        public void GetByIdShouldGetEmployeeInfoByIdWithBadRequest()
+        {
+            var repository = new Mock<IEmployeeInformationRepository>();
+            var controller = new EmployeeInformationController(repository.Object);
+
+            var info = newEmployee();
+
+            try
+            {
+                controller.Add(info);
+                controller.GetById(0);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+
         private EmployeeInformation newEmployee()
         {
             List<CovidVerify> covidList = new List<CovidVerify>();
