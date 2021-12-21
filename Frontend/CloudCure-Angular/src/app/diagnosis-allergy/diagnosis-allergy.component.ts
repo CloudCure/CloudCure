@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Allergy } from '../AngularModels/Allergy';
 import { AllergyService } from '../services/allergy.service';
+import { PatientService } from '../services/patient.service';
 import { TextBoxComponent } from '../text-box/text-box.component';
 
 @Component({
@@ -14,8 +15,9 @@ export class DiagnosisAllergyComponent implements OnInit {
   //variables
   display: boolean = false;
   allergies: string[] = [''];
+  PatientID: number = this.patientAPI.currentPatientId!;
   
-  constructor(private AllergyApi: AllergyService) { }
+  constructor(private AllergyApi: AllergyService, private patientAPI:PatientService) { }
 
   ngOnInit(): void {
   }

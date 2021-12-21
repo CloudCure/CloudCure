@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Condition } from '../AngularModels/Condition';
 import { ConditionService } from '../services/condition.service';
+import { PatientService } from '../services/patient.service';
 
 @Component({
   selector: 'diagnosis-condition',
@@ -11,8 +12,10 @@ export class DiagnosisConditionComponent implements OnInit {
 
   display: boolean = true;
   conditions: string[] = [""];
+  PatientID: number = this.patientAPI.currentPatientId!;
+
  
-  constructor(private ConditionApi: ConditionService) {}
+  constructor(private ConditionApi: ConditionService, private patientAPI:PatientService) {}
   
   ngOnInit(): void {}
   
