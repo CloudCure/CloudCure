@@ -8,6 +8,8 @@ namespace Data
 {
     public interface IConditionRepository : IRepository<Condition>
     {
-        
+        //Condition SearchByPatientId(int query);
+        IEnumerable<Condition> SearchByPatientId(int query);
+        IEnumerable<Condition> SearchByCondition(string query);
     }
 }

@@ -18,6 +18,10 @@ export class ConditionService {
     return this.http.get<Condition>(`${this.endpoint}/Get/${Id}`);
   }
 
+  SearchByPatientId(Id:Number | undefined){ 
+    return this.http.get<Condition>(`${this.endpoint}/Get/Patient${Id}`);
+  }
+
   Add(Info:Condition | undefined){ 
     return this.http.post<Condition>(`${this.endpoint}/Add`,Info);
   }  
