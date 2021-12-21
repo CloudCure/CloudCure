@@ -34,6 +34,18 @@ namespace Tests.Diagnosis
             }
         }
 
+        [Fact]
+        public void GetByIdShouldReturnPatientId()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IPatientRepository repository = new PatientRepository(context);
+                var patient = repository.GetById(1);
+
+                Assert.Equal(1, patient.Id);
+            }
+        }
+
 
 
 
