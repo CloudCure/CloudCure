@@ -28,6 +28,7 @@ import { PatientComponent } from './patient/patient.component';
 import { PatientViewComponent } from './patient-view/patient-view.component';
 import { ListPatientComponent } from './list-patient/list-patient.component';
 import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.component';
+import { VitalsviewComponent } from './vitalsview/vitalsview.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.componen
     PatientComponent,
     ListPatientComponent,
     ViewDiagnosisComponent,
-    PatientViewComponent
+    PatientViewComponent,
+    VitalsviewComponent
   ],
 
   imports: [
