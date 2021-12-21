@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Data;
 using Moq;
 using Xunit;
@@ -29,6 +27,23 @@ namespace Tests
         }
 
         [Fact]
+        public void CreateShouldThrowAnException()
+        {
+            var repository = new Mock<IPatientRepository>();
+            var repository2 = new Mock<IAllergyRepository>();
+            var controller = new PatientController(repository.Object, repository2.Object);
+
+            try
+            {
+                var result = controller.Add(null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void GetAllShouldGetAll()
         {
             var repository = new Mock<IPatientRepository>();
@@ -41,6 +56,23 @@ namespace Tests
             var result = controller.GetAll();
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
+        }
+
+        [Fact]
+        public void GetAllShouldThrowAnException()
+        {
+            var repository = new Mock<IPatientRepository>();
+            var repository2 = new Mock<IAllergyRepository>();
+            var controller = new PatientController(repository.Object, repository2.Object);
+
+            try
+            {
+                var result = controller.GetAll();
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
         }
 
         [Fact]
@@ -59,6 +91,23 @@ namespace Tests
         }
 
         [Fact]
+        public void DeleteShouldThrowAnException()
+        {
+            var repository = new Mock<IPatientRepository>();
+            var repository2 = new Mock<IAllergyRepository>();
+            var controller = new PatientController(repository.Object, repository2.Object);
+
+            try
+            {
+                var result = controller.Delete(null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void UpdateShouldUpdatePatient()
         {
             var repository = new Mock<IPatientRepository>();
@@ -74,6 +123,23 @@ namespace Tests
         }
 
         [Fact]
+        public void UpdateShouldThrowAnException()
+        {
+            var repository = new Mock<IPatientRepository>();
+            var repository2 = new Mock<IAllergyRepository>();
+            var controller = new PatientController(repository.Object, repository2.Object);
+
+            try
+            {
+                var result = controller.Update(1, null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void GetByIdShouldGetPatientById()
         {
             var repository = new Mock<IPatientRepository>();
@@ -86,6 +152,23 @@ namespace Tests
             var result = controller.GetById(1);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
+        }
+
+        [Fact]
+        public void GetByIdShouldThrowAnException()
+        {
+            var repository = new Mock<IPatientRepository>();
+            var repository2 = new Mock<IAllergyRepository>();
+            var controller = new PatientController(repository.Object, repository2.Object);
+
+            try
+            {
+                var result = controller.GetById(1);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
         }
 
         private Patient newPatient()

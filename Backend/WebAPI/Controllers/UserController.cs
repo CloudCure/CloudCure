@@ -6,7 +6,6 @@ using Serilog;
 
 namespace WebAPI.Controllers
 {
-
     [Route("[Controller]")]
     [ApiController]
     public class UserController : ControllerBase
