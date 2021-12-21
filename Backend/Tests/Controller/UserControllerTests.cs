@@ -26,6 +26,22 @@ namespace Tests
         }
 
         [Fact]
+        public void CreateShouldThrowAnException()
+        {
+            var repository = new Mock<IUserRepository>();
+            var controller = new UserController(repository.Object);
+
+            try
+            {
+                var result = controller.Add(null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void GetAllShouldGetAll()
         {
             var repository = new Mock<IUserRepository>();
@@ -40,6 +56,22 @@ namespace Tests
         }
 
         [Fact]
+        public void GetAllShouldThrowAnException()
+        {
+            var repository = new Mock<IUserRepository>();
+            var controller = new UserController(repository.Object);
+
+            try
+            {
+                var result = controller.GetAll();
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void DeleteShouldDeleteEntry()
         {
             var repository = new Mock<IUserRepository>();
@@ -51,6 +83,22 @@ namespace Tests
             var result = controller.Delete(1);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
+        }
+
+        [Fact]
+        public void DeleteShouldThrowAnException()
+        {
+            var repository = new Mock<IUserRepository>();
+            var controller = new UserController(repository.Object);
+
+            try
+            {
+                var result = controller.Delete(1);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
         }
 
         [Fact]
@@ -69,6 +117,22 @@ namespace Tests
         }
 
         [Fact]
+        public void UpdateShouldThrowAnException()
+        {
+            var repository = new Mock<IUserRepository>();
+            var controller = new UserController(repository.Object);
+
+            try
+            {
+                var result = controller.Update(1, null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void GetByIdShouldGetUserById()
         {
             var repository = new Mock<IUserRepository>();
@@ -80,6 +144,22 @@ namespace Tests
             var result = controller.GetById(1);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
+        }
+
+        [Fact]
+        public void GetByIdShouldThrowAnException()
+        {
+            var repository = new Mock<IUserRepository>();
+            var controller = new UserController(repository.Object);
+
+            try
+            {
+                var result = controller.GetById(1);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
         }
 
         private User newUser()

@@ -1,0 +1,52 @@
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #474C55;
+    border-radius: .3rem;
+  }
+
+.big-text {
+      font-size: 90px;
+      text-align: center;
+      color: #F26925;
+      text-align: center;
+  } 
+
+.white-text {
+    color:#FFFFFF;
+    text-align: center;
+}
+
+.medium-text {
+    font-size: 35px;
+}
+
+#plus-sign {
+  font-size: 60px;
+  cursor: pointer;
+}
+
+.patient {
+  background-color: rgb(115,165,194);
+  border-radius: .3rem;
+  margin: 5rem;
+  padding: 0.9rem;;
+}
+
+.btn-center {
+  display: flex;
+  justify-content: center;
+  text-align: center
+}
+
+.card-custom {
+margin: 5px;
+}
+
+.patient-text {
+  font-size: 20px;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}

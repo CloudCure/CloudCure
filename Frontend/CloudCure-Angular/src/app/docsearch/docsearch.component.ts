@@ -16,7 +16,8 @@ import { DOCUMENT } from '@angular/common';
 export class DocsearchComponent implements OnInit {
   patientSearchGroup:FormGroup = new FormGroup({
     FirstName: new FormControl("", Validators.required),
-    LastName: new FormControl("", Validators.required)
+    LastName: new FormControl("", Validators.required),
+    Specialization: new FormControl("", Validators.required)
   })
 
   fullDoctorList:EmployeeInformation[] = [];
@@ -67,18 +68,21 @@ export class DocsearchComponent implements OnInit {
   {
     let search = 
     {
-      firstName: patientSearchGroup.get("FirstName")?.value,
-      lastName: patientSearchGroup.get("LastName")?.value
+      firstName: patientSearchGroup.get("FirstName")?.value.toLowerCase(),
+      lastName: patientSearchGroup.get("LastName")?.value.toLowerCase(),
+      specialization: patientSearchGroup.get("Specialization")?.value.toLowerCase()
     }
     let firstNameSearch = (search:any) => this.doctorList.filter(({ userProfile }) => userProfile.firstName.toLowerCase().includes(search.firstName))
     let lastNameSearch = (search: any) => this.doctorList.filter(({ userProfile }) => userProfile.lastName.toLowerCase().includes(search.lastName))
-    if (search.firstName === '' && search.lastName === ''){
+    let specializationSearch = (search: any) => this.doctorList.filter(({ specialization }) => specialization.toLowerCase().includes(search.specialization))
+    if (search.firstName === '' && search.lastName === '' && search.specialization === ''){
       this.doctorList = this.fullDoctorList;
     }
     else
     {
       this.doctorList = firstNameSearch(search);
       this.doctorList = lastNameSearch(search);
+      this.doctorList = specializationSearch(search);
     }
   }
 }

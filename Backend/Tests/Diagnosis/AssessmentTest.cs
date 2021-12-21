@@ -19,7 +19,6 @@ namespace Tests.Diagnosis
                         .UseSqlite("Filename = AssessmentTest.db; Foreign Keys=False").Options;
             Seed();
         }
-
         [Fact]
         public void SearchByPatientIdShouldReturnResults()
         {
@@ -41,8 +40,17 @@ namespace Tests.Diagnosis
                 Assert.Throws<KeyNotFoundException>(() => repository.SearchByPatientId(3));
             }
         }
+        [Fact]
+        public void GetbyIdShouldReturnAssessmentId()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAssessmentRepository repository = new AssessmentRepository(context);
+                var assessment = repository.GetById(1);
 
-
+                Assert.Equal(1, assessment.Id);
+            }
+        }
         void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -76,9 +84,6 @@ namespace Tests.Diagnosis
                 context.SaveChanges();
 
             }
-
-
-
         }
     }
 }

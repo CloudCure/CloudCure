@@ -29,6 +29,18 @@ export class ListPatientComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  profile()
+  {
+    this.patientAPI.currentPatientId = this.patient.id;
+    this.router.navigateByUrl("/diagnosis");
+  }
+
+  viewProfile()
+  {
+    this.patientAPI.currentPatientId = this.patient.id;
+    this.router.navigateByUrl("/view/diagnosis");
+  }
+
   allergies()
   {
     this.patientAPI.currentPatientId = this.patient.id;
