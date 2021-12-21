@@ -10,8 +10,6 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ConditionController : ControllerBase
     {
-
-
         private readonly IRepository<Condition> conditionRepository;
 
         public ConditionController(IRepository<Condition> context)
@@ -65,7 +63,6 @@ namespace WebAPI.Controllers
                 return BadRequest("Failed to update");
 
             }
-
         }
 
         // PUT Condition/Edit
@@ -84,7 +81,6 @@ namespace WebAPI.Controllers
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
-
         }
 
         // POST Condition/Add
