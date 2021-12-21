@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Models.Diagnosis;
@@ -31,9 +28,25 @@ namespace Tests.Controller
         }
 
         [Fact]
+        public void CreateShouldThrowAnException()
+        {
+            var repository = new Mock<ISurgeryRepository>();
+            var controller = new SurgeryController(repository.Object);
+
+            try
+            {
+                var result = controller.Add(null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void GetAllReturnsOKSurgery()
         {
-             var repository = new Mock<ISurgeryRepository>();
+            var repository = new Mock<ISurgeryRepository>();
             var controller = new SurgeryController(repository.Object);
 
             var surgery = new Surgery
@@ -46,13 +59,28 @@ namespace Tests.Controller
             var result = controller.GetAll();
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
-
         }
 
-         [Fact]
+        [Fact]
+        public void GetAllShoudThrowAnException()
+        {
+            var repository = new Mock<ISurgeryRepository>();
+            var controller = new SurgeryController(repository.Object);
+
+            try
+            {
+                var result = controller.GetAll();
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void DeleteShouldReturnOKSurgery()
         {
-              var repository = new Mock<ISurgeryRepository>();
+            var repository = new Mock<ISurgeryRepository>();
             var controller = new SurgeryController(repository.Object);
 
             var surgery = new Surgery
@@ -66,13 +94,28 @@ namespace Tests.Controller
             var result = controller.Delete(surgery);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
-
         }
 
-         [Fact]
+        [Fact]
+        public void DeleteShouldThrowAnException()
+        {
+            var repository = new Mock<ISurgeryRepository>();
+            var controller = new SurgeryController(repository.Object);
+
+            try
+            {
+                var result = controller.Delete(null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void UpdateShouldReturnOKAllergy()
         {
-             var repository = new Mock<ISurgeryRepository>();
+            var repository = new Mock<ISurgeryRepository>();
             var controller = new SurgeryController(repository.Object);
 
             var surgery = new Surgery
@@ -82,15 +125,30 @@ namespace Tests.Controller
             };
 
             var entry = controller.Add(surgery);
-            var result = controller.Update(1 , surgery);
+            var result = controller.Update(1, surgery);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
-            
-         }
+        }
 
-         [Fact]
-         public void GetbyIdShouldReturnOKGetAllergyById()
-         {
+        [Fact]
+        public void UpdateShouldThrowAnException()
+        {
+            var repository = new Mock<ISurgeryRepository>();
+            var controller = new SurgeryController(repository.Object);
+
+            try
+            {
+                var result = controller.Update(1, null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
+        public void GetbyIdShouldReturnOKGetAllergyById()
+        {
             var repository = new Mock<ISurgeryRepository>();
             var controller = new SurgeryController(repository.Object);
 
@@ -104,6 +162,22 @@ namespace Tests.Controller
             var results = controller.GetById(1);
             var okResponse = (IStatusCodeActionResult)results;
             Assert.Equal(200, okResponse.StatusCode);
-         }
+        }
+
+        [Fact]
+        public void GetByIdShouldThrowAnException()
+        {
+            var repository = new Mock<ISurgeryRepository>();
+            var controller = new SurgeryController(repository.Object);
+
+            try
+            {
+                var result = controller.GetById(1);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
     }
 }

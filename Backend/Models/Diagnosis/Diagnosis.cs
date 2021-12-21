@@ -20,5 +20,6 @@ namespace Models.Diagnosis
 
         public string DoctorDiagnosis { get; set; }
         public string RecommendedTreatment { get; set; }
+        public bool IsFinalized { get; set; }
     }
 }

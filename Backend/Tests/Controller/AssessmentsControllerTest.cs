@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Data;
 using Moq;
 using Xunit;
@@ -34,6 +31,22 @@ namespace Tests
         }
 
         [Fact]
+        public void CreateShouldThrowAnExceptionWithInvalidData()
+        {
+            var repository = new Mock<IAssessmentRepository>();
+            var controller = new AssessmentController(repository.Object);
+
+            try
+            {
+                var result = controller.Add(null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void GetAllShouldGetAll()
         {
             var repository = new Mock<IAssessmentRepository>();
@@ -55,6 +68,22 @@ namespace Tests
         }
 
         [Fact]
+        public void GetAllShouldReturnNullWithEmptyDb()
+        {
+            var repository = new Mock<IAssessmentRepository>();
+            var controller = new AssessmentController(repository.Object);
+
+            try
+            {
+                var result = controller.GetAll();
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void DeleteShouldDeleteEntry()
         {
             var repository = new Mock<IAssessmentRepository>();
@@ -73,6 +102,22 @@ namespace Tests
             var result = controller.Delete(1);
             var  okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
+        }
+
+        [Fact]
+        public void DeleteShouldThrowAnException()
+        {
+            var repository = new Mock<IAssessmentRepository>();
+            var controller = new AssessmentController(repository.Object);
+
+            try
+            {
+                var result = controller.Delete(1);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
         }
 
         [Fact]
@@ -98,6 +143,22 @@ namespace Tests
         }
 
         [Fact]
+        public void UpdateShouldThrowAnException()
+        {
+            var repository = new Mock<IAssessmentRepository>();
+            var controller = new AssessmentController(repository.Object);
+
+            try
+            {
+                var result = controller.Update(1, new Assessment());
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void GetByIdShouldGetAssessmentById()
         {
             var repository = new Mock<IAssessmentRepository>();
@@ -119,24 +180,19 @@ namespace Tests
         }
 
         [Fact]
-        public void GetByIdShouldReturnBadRequestOnInvalidId()
+        public void GetByIdShouldThrowAnException()
         {
             var repository = new Mock<IAssessmentRepository>();
             var controller = new AssessmentController(repository.Object);
 
-            var assessment = new Assessment
+            try
             {
-                PatientId = 1,
-                ChiefComplaint = "Sore throat",
-                PainAssessment = "throat",
-                PainScale = 7,
-                //EncounterDate = new DateTime(2021, 12, 17)
-            };
-
-            var entry = controller.Add(assessment);
-            var result = controller.GetById(2);
-            var  okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetById(1);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
         }
     }
 }
