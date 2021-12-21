@@ -31,6 +31,23 @@ namespace Data
             }
         }
 
+        public List<EmployeeInformation> GetAllEmployee()
+        {
+            try
+            {
+                return repository.Employee
+                .Include(e => e.UserProfile)
+                .ThenInclude(c => c.CovidAssesments)
+                .Include(e => e.UserProfile)
+                .ThenInclude(u => u.Role)
+                .ToList();
+            }
+            catch (System.Exception)
+            {
+                throw new KeyNotFoundException("Get all failed on employee info!");
+            }
+        }
+
         public EmployeeInformation VerifyEmail(string p_email)
         {
             try
