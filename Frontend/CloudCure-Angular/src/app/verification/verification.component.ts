@@ -5,13 +5,12 @@ import { Router } from '@angular/router';
 import { CovidVerify } from '../AngularModels/CovidVerify';
 import { PatientService } from '../services/patient.service';
 
-
-
 @Component({
   selector: 'app-verification',
   templateUrl: './verification.component.html',
   styleUrls: ['./verification.component.css']
 })
+
 export class VerificationComponent implements OnInit {
 
   verifyGroup: FormGroup = new FormGroup({
@@ -21,8 +20,6 @@ export class VerificationComponent implements OnInit {
     'question4': new FormControl(),
     'question5': new FormControl()
   })
-
-
 
   constructor(private fb: FormBuilder, private router: Router, private covidService: CovidService, private patientAPI:PatientService) {
 
