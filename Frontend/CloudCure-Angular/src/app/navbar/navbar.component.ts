@@ -22,4 +22,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   { 
     this.router.navigateByUrl("/");
   }
+  search()
+  { 
+    this.router.navigateByUrl("/search");
+  }
 }

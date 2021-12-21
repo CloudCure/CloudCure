@@ -30,6 +30,18 @@ namespace Tests
                 Assert.NotNull(result);
             }
         }
+
+        [Fact]
+        public void GetRoleIdShouldGetRoleId()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IRoleRepository repository = new RoleRepository(context);
+                var role = repository.GetById(1);
+
+                Assert.Equal(1, role.Id);
+            }
+        }
         
         public void Seed()
         {

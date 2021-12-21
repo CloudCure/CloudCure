@@ -21,15 +21,15 @@ namespace Tests.Controller
 
             var vital = new Vitals
             {
-                        PatientId = 1,
-                        Systolic = 120,
-                        Diastolic = 80,
-                        OxygenSat = 96.5,
-                        HeartRate = 70,
-                        RespiratoryRate = 12,
-                        Tempature = 98.6,
-                        Height = 75,
-                        Weight = 145,
+                PatientId = 1,
+                Systolic = 120,
+                Diastolic = 80,
+                OxygenSat = 96.5,
+                HeartRate = 70,
+                RespiratoryRate = 12,
+                Temperature = 98.6,
+                Height = 75,
+                Weight = 145,
             };
 
             var result = controller.Add(vital);
@@ -37,23 +37,23 @@ namespace Tests.Controller
             Assert.Equal(201, okResponse.StatusCode);
         }
 
-         [Fact]
+        [Fact]
         public void GetAllReturnsOKVitals()
         {
             var repository = new Mock<IVitalsRepository>();
             var controller = new VitalsController(repository.Object);
 
-           var vital = new Vitals
+            var vital = new Vitals
             {
-                        PatientId = 1,
-                        Systolic = 120,
-                        Diastolic = 80,
-                        OxygenSat = 96.5,
-                        HeartRate = 70,
-                        RespiratoryRate = 12,
-                        Tempature = 98.6,
-                        Height = 75,
-                        Weight = 145,
+                PatientId = 1,
+                Systolic = 120,
+                Diastolic = 80,
+                OxygenSat = 96.5,
+                HeartRate = 70,
+                RespiratoryRate = 12,
+                Temperature = 98.6,
+                Height = 75,
+                Weight = 145,
             };
 
             var entry = controller.Add(vital);
@@ -63,7 +63,7 @@ namespace Tests.Controller
 
         }
 
-         [Fact]
+        [Fact]
         public void DeleteShouldReturnOKVital()
         {
             var repository = new Mock<IVitalsRepository>();
@@ -71,15 +71,15 @@ namespace Tests.Controller
 
             var vital = new Vitals
             {
-                        PatientId = 1,
-                        Systolic = 120,
-                        Diastolic = 80,
-                        OxygenSat = 96.5,
-                        HeartRate = 70,
-                        RespiratoryRate = 12,
-                        Tempature = 98.6,
-                        Height = 75,
-                        Weight = 145,
+                PatientId = 1,
+                Systolic = 120,
+                Diastolic = 80,
+                OxygenSat = 96.5,
+                HeartRate = 70,
+                RespiratoryRate = 12,
+                Temperature = 98.6,
+                Height = 75,
+                Weight = 145,
             };
 
             var entry = controller.Add(vital);
@@ -95,50 +95,50 @@ namespace Tests.Controller
             var repository = new Mock<IVitalsRepository>();
             var controller = new VitalsController(repository.Object);
 
-           var vital = new Vitals
+            var vital = new Vitals
             {
-                        PatientId = 1,
-                        Systolic = 120,
-                        Diastolic = 80,
-                        OxygenSat = 96.5,
-                        HeartRate = 70,
-                        RespiratoryRate = 12,
-                        Tempature = 98.6,
-                        Height = 75,
-                        Weight = 145,
+                PatientId = 1,
+                Systolic = 120,
+                Diastolic = 80,
+                OxygenSat = 96.5,
+                HeartRate = 70,
+                RespiratoryRate = 12,
+                Temperature = 98.6,
+                Height = 75,
+                Weight = 145,
             };
 
             var entry = controller.Add(vital);
-            var result = controller.Update(1 , vital);
+            var result = controller.Update(1, vital);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
-            
-         }
+
+        }
 
         [Fact]
-         public void GetbyIdShouldReturnOKGetVitalsById()
-         {
-             var repository = new Mock<IVitalsRepository>();
+        public void GetbyIdShouldReturnOKGetVitalsById()
+        {
+            var repository = new Mock<IVitalsRepository>();
             var controller = new VitalsController(repository.Object);
 
-              var vital = new Vitals
+            var vital = new Vitals
             {
-                        PatientId = 1,
-                        Systolic = 120,
-                        Diastolic = 80,
-                        OxygenSat = 96.5,
-                        HeartRate = 70,
-                        RespiratoryRate = 12,
-                        Tempature = 98.6,
-                        Height = 75,
-                        Weight = 145,
+                PatientId = 1,
+                Systolic = 120,
+                Diastolic = 80,
+                OxygenSat = 96.5,
+                HeartRate = 70,
+                RespiratoryRate = 12,
+                Temperature = 98.6,
+                Height = 75,
+                Weight = 145,
             };
 
             var entry = controller.Add(vital);
             var results = controller.GetById(1);
             var okResponse = (IStatusCodeActionResult)results;
             Assert.Equal(200, okResponse.StatusCode);
-         }
+        }
 
     }
 }

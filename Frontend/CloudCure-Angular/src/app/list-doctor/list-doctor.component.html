@@ -1,0 +1,8 @@
+<div class="card-body">
+    <h4 class="card-title center revature-font-heavy">{{doctor.userProfile.firstName}} {{doctor.userProfile.lastName}}
+    </h4>
+    <p class="text revature-font-heavy">Phone: <span>{{doctor.userProfile.phoneNumber}}</span></p>
+    <p class="text">DOB: {{doctor.userProfile.dateOfBirth | date: 'MM/dd/yyyy'}}</p>
+    <p class="text">Address: {{doctor.userProfile.address}}</p>
+
+</div>

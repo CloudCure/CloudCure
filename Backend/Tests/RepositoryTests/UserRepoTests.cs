@@ -34,6 +34,19 @@ namespace Tests
             }
         }
 
+
+        [Fact]
+        public void GetUserIdShouldGetUserById()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IUserRepository repository = new UserRepository(context);
+                var user = repository.GetById(1);
+
+                Assert.Equal(1, user.Id);
+            }
+        }
+
         void Seed()
         {
             using (var context = new CloudCureDbContext(_options))

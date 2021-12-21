@@ -36,7 +36,7 @@ namespace Models.Diagnosis
 
         //This is the tempature of the patient
         [Required]
-        public double Tempature { get; set; }
+        public double Temperature { get; set; }
 
         [Required]
         public double Height {get; set;}

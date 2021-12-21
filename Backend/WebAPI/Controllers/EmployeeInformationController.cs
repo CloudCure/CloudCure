@@ -21,7 +21,7 @@ namespace WebAPI
         {
             try
             {
-                return Ok(_repo.GetAll());
+                return Ok(_repo.GetAllEmployee());
             }
             catch (Exception e)
             {

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Models;
 
 namespace Data
@@ -12,6 +13,9 @@ namespace Data
         /// <param name="p_id">User ID</param>
         /// <returns>EmployeeInformation object | throws KeyNotFoundException if user ID is not found</returns>
         EmployeeInformation GetEmployeeInformationById(int p_id);
+
+        ///todo
+        List<EmployeeInformation> GetAllEmployee();
 
         /// <summary>
         /// Will check our database if there is an employee with an email matching p_email 
