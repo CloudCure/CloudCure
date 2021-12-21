@@ -15,10 +15,14 @@ namespace WebAPI.Controllers
 
         // GET: api/Assessment/Get/All
         [HttpGet("Get/All")]
-        public IActionResult GetAll(){
-            try{
+        public IActionResult GetAll()
+        {
+            try
+            {
                 return Ok(_repo.GetAll());
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 Log.Error(e.Message);
                 return BadRequest("Invalid get all Assessment request.");
             }
@@ -26,10 +30,14 @@ namespace WebAPI.Controllers
 
         // GET api/Assessment/Get/{id}
         [HttpGet("Get/{id}")]
-        public IActionResult GetById(int id){
-            try{
+        public IActionResult GetById(int id)
+        {
+            try
+            {
                 return Ok(_repo.GetById(id));
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 Log.Error(e.Message);
                 return BadRequest("Invalid Assessment Get request.");
             }
@@ -37,12 +45,16 @@ namespace WebAPI.Controllers
 
         //POST api/Assessment/add 
         [HttpPost("Add")]
-        public IActionResult Add([FromBody] Assessment p_Assessment){ 
-            try{
+        public IActionResult Add([FromBody] Assessment p_Assessment)
+        {
+            try
+            {
                 _repo.Create(p_Assessment);
                 _repo.Save();
                 return Created("Assessment/Add", p_Assessment);
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 Log.Error(e.Message);
                 return BadRequest("Invalid Assessment Add Request.");
             }
@@ -50,13 +62,17 @@ namespace WebAPI.Controllers
 
         // DELETE api/delete/{id}
         [HttpDelete("Delete/{id}")]
-        public IActionResult Delete(int id){
-            try{
+        public IActionResult Delete(int id)
+        {
+            try
+            {
                 var topic = _repo.GetById(id);
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 Log.Error(e.Message);
                 return BadRequest("Invalid Assessment Delete request.");
             }
@@ -64,13 +80,17 @@ namespace WebAPI.Controllers
 
         // PUT api/Assessment/update/{id}
         [HttpPut("Update/{id}")]
-        public IActionResult Update(int id, [FromBody] Assessment p_Assessment){ 
-            try{
+        public IActionResult Update(int id, [FromBody] Assessment p_Assessment)
+        {
+            try
+            {
                 p_Assessment.Id = id;
                 _repo.Update(p_Assessment);
                 _repo.Save();
                 return Ok();
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 Log.Error(e.Message);
                 return BadRequest("Invalid Assessments Update");
             }
