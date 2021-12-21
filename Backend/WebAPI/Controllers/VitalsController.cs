@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
         }
 
         //GET: Vitals/PatientId
-        [HttpGet("Get/Patient{id}")]
+        [HttpGet("Get/Patient/{id}")]
         public IActionResult GetByPatientId(int id)
         {
             try
