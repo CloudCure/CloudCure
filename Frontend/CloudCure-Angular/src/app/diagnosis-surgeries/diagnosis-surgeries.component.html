@@ -16,5 +16,5 @@
 
     <app-text-box [boxes]="surgeries" (boxesEmitter)="SetDataFromChild($event)"></app-text-box>
 
-    <button class="btn btn-dark" type="button" (click)="AddSurgery(1)">Submit</button>
+    <button class="btn btn-dark" type="button" (click)="AddSurgery(PatientID)">Submit</button>
 </ng-container>
