@@ -12,7 +12,7 @@ namespace Tests.Diagnosis
 {
     public class PatientTest
     {
-          readonly DbContextOptions<CloudCureDbContext> _options;
+        readonly DbContextOptions<CloudCureDbContext> _options;
 
         public PatientTest()
         {
@@ -22,7 +22,7 @@ namespace Tests.Diagnosis
         }
 
 
-       [Fact]
+        [Fact]
         public void GetByIdWithNavShouldPopulateNavProps()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -37,7 +37,7 @@ namespace Tests.Diagnosis
 
 
 
-         void Seed()
+        void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {
@@ -49,7 +49,7 @@ namespace Tests.Diagnosis
                     {
                         UserProfile = new User
                         {
-                            
+
                             FirstName = "dldfk",
                             LastName = "sdfksdf",
                             PhoneNumber = "dkfadl",
@@ -65,14 +65,14 @@ namespace Tests.Diagnosis
                             new Condition{
                                 PatientId = 1,
                                 ConditionName = "dddf",
-                                
+
                             }
                         },
                         Allergies = new List<Allergy>()
                         {
                             new Allergy{
                                 AllergyName = "dddfd",
-                               
+
                                 PatientId = 1
                             }
                         },
@@ -81,7 +81,7 @@ namespace Tests.Diagnosis
                             new Surgery{
                                 PatientId = 1,
                                 SurgeryName = "dfkjdf"
-                                
+
                             }
                         },
                         CurrentMedications = new List<Medication>()
@@ -101,7 +101,7 @@ namespace Tests.Diagnosis
                                 Height = 75,
                                 Weight = 200,
                                 OxygenSat = 98.2,
-                                Tempature = 97.2,
+                                Temperature = 97.2,
                                 RespiratoryRate = 14,
                                 EncounterDate = DateTime.Now
 
@@ -110,7 +110,7 @@ namespace Tests.Diagnosis
                         Assessments = new List<Assessment>()
                         {
                             new Assessment{
-                                 PatientId = 2,
+                                PatientId = 2,
                                 PainAssessment = "asdfas",
                                 PainScale = 2,
                                 ChiefComplaint = "dfdssdf",
