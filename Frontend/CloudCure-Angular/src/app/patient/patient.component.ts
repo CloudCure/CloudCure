@@ -78,7 +78,8 @@ export class PatientComponent implements OnInit {
           (response) => {
             console.log("Patient added");
             console.log(response);
-            this.PatientApi.currentPatientId = response.id;
+            this.PatientApi.currentPatientId = response.userProfile.id;
+            console.log(this.PatientApi.currentPatientId);
             this.router.navigateByUrl("/verification");
           })
 
