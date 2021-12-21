@@ -5,6 +5,7 @@ using Xunit;
 using WebAPI.Controllers;
 using Models;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Tests
 {
@@ -167,14 +168,12 @@ namespace Tests
             var repository = new Mock<IRoleRepository>();
             var controller = new RoleController(repository.Object);
 
-            try
-            {
-                var result = controller.GetById(1);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
-            }
+
+            var result = controller.GetById(100);
+
+            var objectResult = Assert.IsType<OkObjectResult>(result);
+            
+
         }
     }
 }
