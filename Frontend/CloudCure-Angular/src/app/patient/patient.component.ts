@@ -7,6 +7,7 @@ import { UserService } from '../services/user.service';
 
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserProfile } from '../AngularModels/UserProfile';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class PatientComponent implements OnInit {
   offset = this.date.getTimezoneOffset();
   today:string = "";
 
-  constructor(private PatientApi: PatientService, private UserApi: UserService) { 
+  constructor(private PatientApi: PatientService, private UserApi: UserService, private router: Router) { 
     
     this.date = new Date(this.date.getTime()-(this.offset*60*1000));
     this.today = this.date.toISOString().split('T')[0];
@@ -77,6 +78,8 @@ export class PatientComponent implements OnInit {
           (response) => {
             console.log("Patient added");
             console.log(response);
+            this.PatientApi.currentPatientId = response.id;
+            this.router.navigateByUrl("/verification");
           })
 
         }

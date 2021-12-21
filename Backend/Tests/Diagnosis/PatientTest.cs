@@ -34,8 +34,17 @@ namespace Tests.Diagnosis
             }
         }
 
-
-
+        [Fact]
+        public void GetAllWithNavShouldWork()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IPatientRepository repository = new PatientRepository(context);                
+                var patients = repository.GetAllWithNav();
+                
+                Assert.NotEmpty(patients);
+            }
+        }
 
         void Seed()
         {

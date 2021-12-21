@@ -20,6 +20,10 @@ export class VitalsService {
     return this.http.get<Vitals>(`${this.endpoint}/Get/${Id}`);
   }
 
+  GetByPatientId(Id:Number | undefined){
+    return this.http.get<Vitals>(`${this.endpoint}/Get/Patient/${Id}`);
+  }
+
   Add(Info:Vitals | undefined){
     return this.http.post<Vitals>(`${this.endpoint}/Add`,Info);
   }  

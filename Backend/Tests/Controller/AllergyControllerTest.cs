@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Data;
 using Moq;
 using Xunit;
@@ -82,16 +80,16 @@ namespace Tests
             };
 
             var entry = controller.Add(allergy);
-            var result = controller.Update(1 , allergy);
+            var result = controller.Update(1, allergy);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
-            
-         }
 
-         [Fact]
-         public void GetbyIdShouldReturnOKGetAllergyById()
-         {
-             var repository = new Mock<IAllergyRepository>();
+        }
+
+        [Fact]
+        public void GetbyIdShouldReturnOKGetAllergyById()
+        {
+            var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
 
             var allergy = new Allergy
@@ -104,8 +102,7 @@ namespace Tests
             var results = controller.GetById(1);
             var okResponse = (IStatusCodeActionResult)results;
             Assert.Equal(200, okResponse.StatusCode);
-         }
-
+        }
 
         private List<Allergy> GetAllergyList()
         {
@@ -116,6 +113,5 @@ namespace Tests
 
             return testAllergy;
         }
-
     }
 }
