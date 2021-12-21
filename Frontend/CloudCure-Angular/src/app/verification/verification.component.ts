@@ -54,7 +54,7 @@ export class VerificationComponent implements OnInit {
         )
         console.log(this.verifyGroup.value);
       }
-     
+      
     this.router.navigateByUrl("/**");
   }
 }
