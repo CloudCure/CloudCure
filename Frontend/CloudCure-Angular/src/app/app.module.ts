@@ -28,7 +28,6 @@ import { PatientComponent } from './patient/patient.component';
 import { PatientViewComponent } from './patient-view/patient-view.component';
 import { ListPatientComponent } from './list-patient/list-patient.component';
 import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,8 +64,10 @@ import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.componen
     FormsModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
-      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
-    }),
+      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq', 
+      cacheLocation: 'localstorage', 
+      useRefreshTokens: true      
+    }),    
     RouterModule.forRoot([
       //canActivate:[AuthGuardService] means that log-in required in order to hit this route
       { path: "verification", component: VerificationComponent, canActivate:[AuthGuardService] },
