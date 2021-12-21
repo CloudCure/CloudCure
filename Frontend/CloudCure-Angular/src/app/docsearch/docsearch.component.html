@@ -3,7 +3,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-10">
             <div class="jumbotron rounded-lg m-3">
-                <h1 class="revature-font-medium big-text">CloudCure</h1>
+                <h1 class="revature-font-medium big-text">Doctor Search</h1>
                 <ng-container *ngIf="auth0.isAuthenticated$ | async; else loggedOut"></ng-container>
                 <ng-template #loggedOut>
                     <hr class="my-4 white-text">
@@ -26,15 +26,20 @@
             <div class="col-md-8">
                 <form [formGroup]="patientSearchGroup">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-3">
                             <label>First Name</label>
                             <input type="text" formControlName="FirstName" class="form-control"
-                                placeholder="Patient's First Name...">
+                                placeholder="Doctor's First Name...">
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-3">
                             <label>Last Name</label>
                             <input type="text" formControlName="LastName" class="form-control"
-                                placeholder="Patient's Last Name...">
+                                placeholder="Doctor's Last Name...">
+                        </div>
+                        <div class="col-md-3">
+                            <label>Specialization</label>
+                            <input type="text" formControlName="Specialization" class="form-control"
+                                placeholder="Doctor's Specialization...">
                         </div>
                         <div class="col-md-2">
                             <br />
@@ -59,7 +64,7 @@
     <div class="container">
         <div class="card-group justify-content-center">
             <div *ngFor="let employeeinformation of doctorList">
-                <div class="card card-custom" style="max-width: 18rem; height: 21rem;">
+                <div class="card card-custom" style="max-width: 18rem; height: 15rem;">
                     <app-list-doctor [role]="role" [doctor]="employeeinformation"></app-list-doctor>
                 </div>
 

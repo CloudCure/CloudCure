@@ -1,4 +1,6 @@
 <ng-container *ngIf="auth0.isAuthenticated$ | async; else loggedOut">
+  <a class="navbar-brand navbar-text revature-font-bold" (click)="search()">Doctor Search</a>
+  <a></a>
     <a class="navbar-brand navbar-text revature-font-bold" (click)="profile()">Profile</a>
     <button class="btn btn-primary btn-logout" (click)="auth0.logout({ returnTo: document.location.origin })">
       Log out
