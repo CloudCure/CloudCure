@@ -27,6 +27,11 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { PatientComponent } from './patient/patient.component';
 import { PatientViewComponent } from './patient-view/patient-view.component';
 import { ListPatientComponent } from './list-patient/list-patient.component';
+import { DocsearchComponent } from './docsearch/docsearch.component';
+import { ListDoctorComponent } from './list-doctor/list-doctor.component';
+import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.component';
+import { VitalsviewComponent } from './vitalsview/vitalsview.component';
+
 
 @NgModule({
   declarations: [
@@ -52,8 +57,13 @@ import { ListPatientComponent } from './list-patient/list-patient.component';
     DiagnosisMedicationComponent,
     RegisterComponent,
     PatientComponent,
-    PatientViewComponent
-    ListPatientComponent
+    ListPatientComponent,
+    ViewDiagnosisComponent,
+    PatientViewComponent,
+    VitalsviewComponent
+    DocsearchComponent,
+    ListDoctorComponent,
+    ViewDiagnosisComponent
   ],
 
   imports: [
@@ -63,8 +73,10 @@ import { ListPatientComponent } from './list-patient/list-patient.component';
     FormsModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
-      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq'
-    }),
+      clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq', 
+      cacheLocation: 'localstorage', 
+      useRefreshTokens: true      
+    }),    
     RouterModule.forRoot([
       //canActivate:[AuthGuardService] means that log-in required in order to hit this route
       { path: "verification", component: VerificationComponent, canActivate:[AuthGuardService] },
@@ -80,8 +92,10 @@ import { ListPatientComponent } from './list-patient/list-patient.component';
       { path: 'diagnosis-allergy', component: DiagnosisAllergyComponent, /*canActivate:[AuthGuardService]*/ },
       { path: 'text-box', component: TextBoxComponent, canActivate:[AuthGuardService] },
       { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
+      { path: 'view-diagnosis', component: ViewDiagnosisComponent, canActivate:[AuthGuardService]},
       { path: 'patient-view', component: PatientViewComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'register', component:RegisterComponent },
+      { path: 'search', component: DocsearchComponent},
       { path: "home", component: HomeComponent },
       { path: "**", component: HomeComponent }
     ])

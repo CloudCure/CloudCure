@@ -21,7 +21,7 @@
                 <label>First Name</label>
                 <input type="text" formControlName="FirstName" class="form-control" placeholder="Enter Your First Name...">
                 <div *ngIf="FirstName?.invalid && (FirstName?.dirty || FirstName?.touched)">
-                  <div class="text-danger" *ngIf="FirstName?.errors?.['required']">Required</div>
+                  <div class="text-danger" *ngIf="FirstName?.errors?.['required']">*Required</div>
                 </div>
               </div>
 
@@ -29,7 +29,7 @@
                 <label>Last Name</label>
                 <input type="text"formControlName = "LastName" class="form-control" placeholder="Enter Your Last Name...">
                 <div *ngIf="LastName?.invalid && (LastName?.dirty || LastName?.touched)">
-                  <div class="text-danger" *ngIf="LastName?.errors?.['required']">Required</div>
+                  <div class="text-danger" *ngIf="LastName?.errors?.['required']">*Required</div>
                 </div>
               </div>
             </div>
@@ -38,21 +38,21 @@
             <label>Date of Birth</label>
             <input type="date" min="1900-01-01" [max]="today" formControlName = "DateOfBirth" class="form-control" placeholder="Enter Your Date Of Birth...">
             <div *ngIf="DateOfBirth?.invalid && (DateOfBirth?.dirty || DateOfBirth?.touched)">
-              <div class="text-danger" *ngIf="DateOfBirth?.errors?.['required']">Required</div>
+              <div class="text-danger" *ngIf="DateOfBirth?.errors?.['required']">*Required</div>
             </div>
             <br/>
 
             <label>Address</label>
             <input type="text" formControlName = "Address" class="form-control" placeholder="Enter Your Address...">
             <div *ngIf="Address?.invalid && (Address?.dirty || Address?.touched)">
-              <div class="text-danger" *ngIf="Address?.errors?.['required']">Required</div>
+              <div class="text-danger" *ngIf="Address?.errors?.['required']">*Required</div>
             </div>
             <br/>
 
             <label>Phone Number</label>
             <input type="text" formControlName = "PhoneNumber" class="form-control" placeholder="Enter Your Phone Number...">
             <div *ngIf="PhoneNumber?.invalid && (PhoneNumber?.dirty || PhoneNumber?.touched)">
-              <div class="text-danger" *ngIf="PhoneNumber?.errors?.['required']">Required</div>
+              <div class="text-danger" *ngIf="PhoneNumber?.errors?.['required']">*Required</div>
             </div>
             <br/>
 
@@ -61,7 +61,7 @@
                 <label>Emergency Contact Name</label>
                 <input type="text" formControlName = "EmergencyName" class="form-control" placeholder="Enter Your Contact Name...">
                 <div *ngIf="EmergencyName?.invalid && (EmergencyName?.dirty || EmergencyName?.touched)">
-                  <div class="text-danger" *ngIf="EmergencyName?.errors?.['required']">Required</div>
+                  <div class="text-danger" *ngIf="EmergencyName?.errors?.['required']">*Required</div>
                 </div>
               </div>
 
@@ -69,7 +69,7 @@
                 <label>Emergency Contact Number</label>
                 <input type="text" formControlName = "EmergencyContactPhone" class="form-control" placeholder="Enter Your Contact Number...">
                 <div *ngIf="EmergencyContactPhone?.invalid && (EmergencyContactPhone?.dirty || EmergencyContactPhone?.touched)">
-                  <div class="text-danger" *ngIf="EmergencyContactPhone?.errors?.['required']">Required</div>
+                  <div class="text-danger" *ngIf="EmergencyContactPhone?.errors?.['required']">*Required</div>
                 </div>
               </div>
             </div>
@@ -78,14 +78,14 @@
             <label>Education</label>
             <input type="text" formControlName = "EducationDegree" class="form-control" placeholder="Enter Degree...">
             <div *ngIf="EducationDegree?.invalid && (EducationDegree?.dirty || EducationDegree?.touched)">
-              <div class="text-danger" *ngIf="EducationDegree?.errors?.['required']">Required</div>
+              <div class="text-danger" *ngIf="EducationDegree?.errors?.['required']">*Required</div>
             </div>
             <br/>
 
             <label>Specialization</label>
             <input type="text" formControlName = "Specialization" class="form-control" placeholder="Enter Speciality...">
             <div *ngIf="Specialization?.invalid && (Specialization?.dirty || Specialization?.touched)">
-              <div class="text-danger" *ngIf="Specialization?.errors?.['required']">Required</div>
+              <div class="text-danger" *ngIf="Specialization?.errors?.['required']">*Required</div>
             </div>
             <br/>
 
@@ -94,7 +94,7 @@
                 <label>Start Date</label>
                 <input type="date" min="1900-01-01" [max]="today" formControlName = "StartDate" class="form-control" placeholder="Enter Employment Start Date...">
                 <div *ngIf="StartDate?.invalid && (StartDate?.dirty || StartDate?.touched)">
-                  <div class="text-danger" *ngIf="StartDate?.errors?.['required']">Required</div>
+                  <div class="text-danger" *ngIf="StartDate?.errors?.['required']">*Required</div>
                 </div>
               </div>
 
@@ -102,7 +102,7 @@
                 <label>Room No.</label>
                 <input type="text" formControlName = "RoomNumber" class="form-control" placeholder="Enter Room Number...">
                 <div *ngIf="RoomNumber?.invalid && (RoomNumber?.dirty || RoomNumber?.touched)">
-                  <div class="text-danger" *ngIf="RoomNumber?.errors?.['required']">Required</div>
+                  <div class="text-danger" *ngIf="RoomNumber?.errors?.['required']">*Required</div>
                 </div>
               </div>
             </div>
@@ -115,12 +115,16 @@
               <option value="3">Other..</option>
             </select>
             <div *ngIf="UserRole?.invalid && (UserRole?.dirty || UserRole?.touched)">
-              <div class="text-danger" *ngIf="UserRole?.errors?.['required']">Required</div>
+              <div class="text-danger" *ngIf="UserRole?.errors?.['required']">*Required</div>
             </div>
 
             <br/>
-            <button type="submit" class="btn btn-dark" (click)="RegisterUser(registerGroup)">Register</button>
-
+            <div class="center">
+              <button type="submit" class="btn btn-dark" (click)="RegisterUser(registerGroup)">Register</button>
+            </div>
+            <br />
+            <br />
+            <br />
           </form>
         </div>
       </div>

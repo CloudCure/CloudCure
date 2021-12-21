@@ -42,6 +42,7 @@ export class ListPatientComponent implements OnInit {
 
   conditions()
   { 
+    this.patientAPI.currentPatientId = this.patient.id;
     this.router.navigateByUrl("/diagnosis-condition");
   }
 
@@ -52,6 +53,7 @@ export class ListPatientComponent implements OnInit {
 
   assessments()
   { 
+    this.patientAPI.currentPatientId = this.patient.id;
     this.router.navigateByUrl("/assessment");
   }
 
@@ -62,7 +64,8 @@ export class ListPatientComponent implements OnInit {
 
   medications()
   { 
-    // this.router.navigateByUrl("/");
+    this.patientAPI.currentPatientId = this.patient.id;
+    this.router.navigateByUrl("/diagnosis-medication");
   }
 
   viewMedications()
@@ -72,7 +75,8 @@ export class ListPatientComponent implements OnInit {
 
   surgeries()
   {
-    this.router.navigateByUrl("/");
+    this.patientAPI.currentPatientId = this.patient.id;
+    this.router.navigateByUrl("/diagnosis-surgeries");
   }
 
   viewSurgeries()
@@ -82,6 +86,7 @@ export class ListPatientComponent implements OnInit {
 
   vitals()
   {
+    this.patientAPI.currentPatientId = this.patient.id;
     this.router.navigateByUrl("/diagnosis-vitals");
   }
 
@@ -93,7 +98,6 @@ export class ListPatientComponent implements OnInit {
   finalize()
   {
     //not sure what we do when we finalize?
-    console.log(this.patient.allergies);
-    console.log(this.patient.allergies !== undefined);
+    this.router.navigateByUrl("/view-diagnosis");
   }
 }

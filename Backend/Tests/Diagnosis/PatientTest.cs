@@ -39,8 +39,7 @@ namespace Tests.Diagnosis
         {
             using (var context = new CloudCureDbContext(_options))
             {
-                IPatientRepository repository = new PatientRepository(context);
-                
+                IPatientRepository repository = new PatientRepository(context);                
                 var patients = repository.GetAllWithNav();
                 
                 Assert.NotEmpty(patients);
@@ -111,7 +110,7 @@ namespace Tests.Diagnosis
                                 Height = 75,
                                 Weight = 200,
                                 OxygenSat = 98.2,
-                                Tempature = 97.2,
+                                Temperature = 97.2,
                                 RespiratoryRate = 14,
                                 EncounterDate = DateTime.Now
 
@@ -120,7 +119,7 @@ namespace Tests.Diagnosis
                         Assessments = new List<Assessment>()
                         {
                             new Assessment{
-                                 PatientId = 2,
+                                PatientId = 2,
                                 PainAssessment = "asdfas",
                                 PainScale = 2,
                                 ChiefComplaint = "dfdssdf",

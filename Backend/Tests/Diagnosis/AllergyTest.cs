@@ -55,6 +55,17 @@ namespace Tests
                 Assert.NotEmpty(allergy);
             }
         }
+        [Fact]
+        public void GetbyIdAllergyShouldReturnId()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAllergyRepository repository = new AllergyRepository(context);
+                var allergy = repository.GetById(1);
+
+                Assert.Equal(1, allergy.Id);
+            }
+        }
 
         void Seed()
         {

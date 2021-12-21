@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="jumbotron rounded-lg m-3">
+                <h1 class="revature-font-medium big-text">CloudCure</h1>
+                <ng-container *ngIf="auth0.isAuthenticated$ | async; else loggedOut"></ng-container>
+                <ng-template #loggedOut>
+                    <hr class="my-4 white-text">
+                    <br />
+                    <p class="lead white-text medium-text">Worry Less, Heal More</p>
+                    <br />
+                    <p class="white-text">Our Policy Is To Make Sure Health,</p>
+                    <p class="white-text">Comes First</p>
+                </ng-template>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+
+<ng-container *ngIf="auth0.isAuthenticated$ | async;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form [formGroup]="patientSearchGroup">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>First Name</label>
+                            <input type="text" formControlName="FirstName" class="form-control"
+                                placeholder="Patient's First Name...">
+                        </div>
+                        <div class="col-md-5">
+                            <label>Last Name</label>
+                            <input type="text" formControlName="LastName" class="form-control"
+                                placeholder="Patient's Last Name...">
+                        </div>
+                        <div class="col-md-2">
+                            <br />
+                            <button type="submit" class="btn btn-dark "
+                            (click)="searchPatient(patientSearchGroup)">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+
+        </div>
+    </div>
+
+    <br />
+    <div class="container">
+        <div class="card-group justify-content-center">
+            <div *ngFor="let employeeinformation of doctorList">
+                <div class="card card-custom" style="max-width: 18rem; height: 21rem;">
+                    <app-list-doctor [role]="role" [doctor]="employeeinformation"></app-list-doctor>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</ng-container>

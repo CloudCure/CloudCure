@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Medication } from '../AngularModels/Medication';
 import { MedicationService } from '../services/medication.service';
+import { PatientService } from '../services/patient.service';
 
 @Component({
   selector: 'diagnosis-medication',
@@ -12,8 +13,9 @@ export class DiagnosisMedicationComponent implements OnInit {
   // variables
   display: boolean = false;
   medications: string[] = [''];
+  PatientID: number = this.patientAPI.currentPatientId!;
 
-  constructor(private MedsApi: MedicationService) { }
+  constructor(private MedsApi: MedicationService, private patientAPI:PatientService) { }
 
   ngOnInit(): void {
   }
