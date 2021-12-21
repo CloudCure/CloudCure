@@ -16,7 +16,7 @@ namespace Tests
         [Fact]
         public void CreateReturnsOkCondition()
         {
-            var repository = new Mock<IRepository<Condition>>();
+            var repository = new Mock<IConditionRepository>();
             var controller = new ConditionController(repository.Object);
 
             var condition = new Condition
@@ -33,7 +33,7 @@ namespace Tests
          [Fact]
         public void GetAllReturnsOKCondition()
         {
-            var repository = new Mock<IRepository<Condition>>();
+            var repository = new Mock<IConditionRepository>();
             var controller = new ConditionController(repository.Object);
             
             
@@ -52,7 +52,7 @@ namespace Tests
            [Fact]
         public void DeleteShouldReturnOKCondition()
         {
-            var repository = new Mock<IRepository<Condition>>();
+            var repository = new Mock<IConditionRepository>();
             var controller = new ConditionController(repository.Object);
             
             
@@ -72,7 +72,7 @@ namespace Tests
           [Fact]
         public void UpdateShouldReturnOKCondition()
         {
-            var repository = new Mock<IRepository<Condition>>();
+            var repository = new Mock<IConditionRepository>();
             var controller = new ConditionController(repository.Object);
             
             
