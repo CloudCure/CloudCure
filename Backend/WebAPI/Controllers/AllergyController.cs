@@ -37,6 +37,20 @@ namespace WebAPI.Controllers
             }
         }
 
+        [HttpGet("Get/Patient{id}")]
+        public IActionResult GetByPatientId(int id)
+        {
+            try
+            {
+                return Ok(_repo.SearchByPatientId(id));
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Failed to get allergy by id");
+            }
+        }
+
         // DELETE: Allergy/Delete/Id
         [HttpDelete("Delete/{id}")]
         public IActionResult Delete([FromBody] Allergy p_allergy){
