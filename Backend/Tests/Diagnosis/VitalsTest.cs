@@ -30,7 +30,7 @@ namespace Tests
                 var Vitals = repository.SearchByPatientId(1);
 
                 Assert.NotNull(Vitals);
-                Assert.Equal(98.6, Vitals.Tempature);
+                Assert.Equal(98.6, Vitals.Temperature);
             }
             
             // Given
@@ -39,6 +39,17 @@ namespace Tests
         
             // Then
         }
+         [Fact]
+        public void GetbyIdShouldReturnVitalsId()
+            {
+                using ( var context = new CloudCureDbContext(_options))
+                {
+                    IVitalsRepository repository = new VitalsRepository(context);
+                    var assessment = repository.GetById(1);
+
+                    Assert.Equal(1, assessment.Id);
+                }
+            }
         void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -55,7 +66,7 @@ namespace Tests
                         OxygenSat = 96.5,
                         HeartRate = 70,
                         RespiratoryRate = 12,
-                        Tempature = 98.6,
+                        Temperature = 98.6,
                         Height = 75,
                         Weight = 145,
                         //EncounterDate = DateTime.Now
