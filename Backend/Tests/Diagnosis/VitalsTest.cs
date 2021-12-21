@@ -39,6 +39,17 @@ namespace Tests
         
             // Then
         }
+         [Fact]
+        public void GetbyIdShouldReturnVitalsId()
+            {
+                using ( var context = new CloudCureDbContext(_options))
+                {
+                    IVitalsRepository repository = new VitalsRepository(context);
+                    var assessment = repository.GetById(1);
+
+                    Assert.Equal(1, assessment.Id);
+                }
+            }
         void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
