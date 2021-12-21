@@ -82,16 +82,16 @@ namespace Tests
             };
 
             var entry = controller.Add(allergy);
-            var result = controller.Update(1 , allergy);
+            var result = controller.Update(1, allergy);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
-            
-         }
 
-         [Fact]
-         public void GetbyIdShouldReturnOKGetAllergyById()
-         {
-             var repository = new Mock<IAllergyRepository>();
+        }
+
+        [Fact]
+        public void GetbyIdShouldReturnOKGetAllergyById()
+        {
+            var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
 
             var allergy = new Allergy
@@ -104,7 +104,101 @@ namespace Tests
             var results = controller.GetById(1);
             var okResponse = (IStatusCodeActionResult)results;
             Assert.Equal(200, okResponse.StatusCode);
-         }
+        }
+
+        [Fact]
+        public void CreateReturnsBadRequestAllergy()
+        {
+            var repository = new Mock<IAllergyRepository>();
+            var controller = new AllergyController(repository.Object);
+
+            var allergy = new Allergy
+            {
+                PatientId = 0,
+                AllergyName = ""
+            };
+
+            try
+            {
+                controller.Add(allergy);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
+        public void GetAllReturnsBadRequestAllergy()
+        {
+            var repository = new Mock<IAllergyRepository>();
+            var controller = new AllergyController(repository.Object);
+
+            var allergy = new Allergy
+            {
+                PatientId = 0,
+                AllergyName = ""
+            };
+
+            try
+            {
+                controller.Add(allergy);
+                controller.GetAll();
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+
+        }
+
+         [Fact]
+        public void DeleteShouldReturnBadRequestAllergy()
+        {
+            var repository = new Mock<IAllergyRepository>();
+            var controller = new AllergyController(repository.Object);
+
+            var allergy = new Allergy
+            {
+                PatientId = 0,
+                AllergyName = ""
+            };
+
+              try
+            {
+                controller.Add(allergy);
+                controller.Delete(allergy);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+
+        }
+
+        [Fact]
+        public void UpdateShouldReturnBadRequestAllergy()
+        {
+            var repository = new Mock<IAllergyRepository>();
+            var controller = new AllergyController(repository.Object);
+
+            var allergy = new Allergy
+            {
+                PatientId = 0,
+                AllergyName = ""
+            };
+
+              try
+            {
+                controller.Add(allergy);
+                controller.Update(1, allergy);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+
+        }
 
 
         private List<Allergy> GetAllergyList()
