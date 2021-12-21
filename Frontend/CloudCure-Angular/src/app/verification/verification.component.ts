@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl, FormControlName, ReactiveFormsModu
 import { CovidService } from 'src/app/services/covid.service';
 import { Router } from '@angular/router';
 import { CovidVerify } from '../AngularModels/CovidVerify';
+import { PatientService } from '../services/patient.service';
 
 
 
@@ -23,7 +24,7 @@ export class VerificationComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private router: Router, private covidService: CovidService) {
+  constructor(private fb: FormBuilder, private router: Router, private covidService: CovidService, private patientAPI:PatientService) {
 
   }
 
@@ -32,30 +33,26 @@ export class VerificationComponent implements OnInit {
   }
   
     submitForm(verifyGroup: FormGroup) {
-
-      console.log("test");
+      console.log(this.patientAPI.currentPatientId);
       if (verifyGroup.valid) {
-        console.log("test2");
         let Info: CovidVerify = {
-          //Id: verifyGroup.get("ID")?.value,
-          userId: 15,
+          userId: this.patientAPI.currentPatientId,
           question1: verifyGroup.get("question1")?.value,
           question2: verifyGroup.get("question2")?.value,
           question3: verifyGroup.get("question3")?.value,
           question4: verifyGroup.get("question4")?.value,
           question5: verifyGroup.get("question5")?.value
         }
-        console.log(this.verifyGroup.value);
+        console.log(Info);
+        console.log(this.patientAPI.currentPatientId);
         this.covidService.Add(Info).subscribe(
           (response) => {
-            console.log("inner test");
             console.log(response);
+            this.router.navigateByUrl("/**");
           }
         )
         console.log(this.verifyGroup.value);
       }
-      
-    this.router.navigateByUrl("/**");
   }
 }
 
