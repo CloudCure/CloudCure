@@ -3,7 +3,7 @@ using Models.Diagnosis;
 
 namespace Data
 {
-     public interface IDiagnosisRepository
+     public interface IDiagnosisRepository: IRepository<Diagnosis>
     {
         IEnumerable<Diagnosis> GetAllDiagnosisByPatientIdWithNav(int query);
         Diagnosis GetByPatientIdWithNav(int query);

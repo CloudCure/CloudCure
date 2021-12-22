@@ -10,9 +10,9 @@ namespace WebAPI.Controllers
     [ApiController]
     public class DiagnosisController : ControllerBase
     {
-        private readonly IRepository<Diagnosis> DiagnosisRepository;
+        private readonly IDiagnosisRepository DiagnosisRepository;
 
-        public DiagnosisController(IRepository<Diagnosis> context)
+        public DiagnosisController(IDiagnosisRepository context)
         {
             DiagnosisRepository = context;
         }
@@ -80,10 +80,38 @@ namespace WebAPI.Controllers
           {
               Log.Error(e.Message);
               return BadRequest("Invalid Diagnosis Delete request");
-              
+
 
           }
       }
+
+      [HttpGet("Get/GetPatientId{id}")]
+        public IActionResult GetByPatientIdWithNav(int id)
+        {
+            try
+            {
+                return Ok(DiagnosisRepository.GetByPatientIdWithNav(id));
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Invalid get diagnosis by patient Id");
+            }
+        }
+
+        [HttpGet("Get/GetAllPatient{id}")]
+        public IActionResult GetAllDiagnosisByPatientIdWithNav(int id)
+        {
+            try
+            {
+                return Ok(DiagnosisRepository.GetAllDiagnosisByPatientIdWithNav(id));
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Invalid get diagnosis by patient Id");
+            }
+        }
 
     }
 }
