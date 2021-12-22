@@ -26,6 +26,7 @@ import { DocsearchComponent } from './docsearch/docsearch.component';
 import { ListDoctorComponent } from './list-doctor/list-doctor.component';
 import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.component';
 import { VitalsviewComponent } from './vitalsview/vitalsview.component';
+import { ViewConditionsComponent } from './view-conditions/view-conditions.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { VitalsviewComponent } from './vitalsview/vitalsview.component';
     VitalsviewComponent,
     DocsearchComponent,
     ListDoctorComponent,
-    ViewDiagnosisComponent
+    ViewDiagnosisComponent,
+    ViewConditionsComponent
   ],
 
   imports: [
@@ -79,6 +81,7 @@ import { VitalsviewComponent } from './vitalsview/vitalsview.component';
       { path: 'patient', component: PatientComponent,  /*canActivate:[AuthGuardService]*/ },
       { path: 'view-diagnosis', component: ViewDiagnosisComponent, canActivate:[AuthGuardService]},
       { path: 'patient-view', component: PatientViewComponent,  /*canActivate:[AuthGuardService]*/ },
+      { path: 'view-conditions', component: ViewConditionsComponent},
       { path: 'register', component:RegisterComponent },
       { path: 'search', component: DocsearchComponent},
       { path: "home", component: HomeComponent },
