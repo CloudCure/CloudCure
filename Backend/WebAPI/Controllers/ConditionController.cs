@@ -11,9 +11,9 @@ namespace WebAPI.Controllers
     public class ConditionController : ControllerBase
     {
 
-        private readonly IRepository<Condition> conditionRepository;
+        private readonly IConditionRepository conditionRepository;
 
-        public ConditionController(IRepository<Condition> context)
+        public ConditionController(IConditionRepository context)
         {
             conditionRepository = context;
         }

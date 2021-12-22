@@ -30,7 +30,7 @@ namespace Tests
         [Fact]
         public void CreateShouldThrowAnException()
         {
-            var repository = new Mock<IRepository<Condition>>();
+            var repository = new Mock<IConditionRepository>();
             var controller = new ConditionController(repository.Object);
 
             try
@@ -66,7 +66,7 @@ namespace Tests
         [Fact]
         public void GetAllShouldThrowAnException()
         {
-            var repository = new Mock<IRepository<Condition>>();
+            var repository = new Mock<IConditionRepository>();
             var controller = new ConditionController(repository.Object);
 
             try
@@ -101,7 +101,7 @@ namespace Tests
         [Fact]
         public void DeleteShouldThrowAnException()
         {
-            var repository = new Mock<IRepository<Condition>>();
+            var repository = new Mock<IConditionRepository>();
             var controller = new ConditionController(repository.Object);
 
             try
@@ -136,7 +136,7 @@ namespace Tests
         [Fact]
         public void UpdateShouldThrowAnException()
         {
-            var repository = new Mock<IRepository<Condition>>();
+            var repository = new Mock<IConditionRepository>();
             var controller = new ConditionController(repository.Object);
 
             try
