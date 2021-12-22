@@ -42,7 +42,7 @@ export class DiagnosisVitalsComponent implements OnInit {
 
   PatientProfile()
   {
-    this.router.navigateByUrl("/profile");
+    this.router.navigateByUrl("patient-view");
   }
 
   Assessments()
