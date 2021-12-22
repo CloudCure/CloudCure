@@ -10,6 +10,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ConditionController : ControllerBase
     {
+
         private readonly IRepository<Condition> conditionRepository;
 
         public ConditionController(IRepository<Condition> context)
@@ -44,6 +45,20 @@ namespace WebAPI.Controllers
             {
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
+            }
+        }
+
+        [HttpGet("Get/Patient{id}")]
+        public IActionResult GetByPatientId(int id)
+        {
+            try
+            {
+                return Ok(conditionRepository.SearchByPatientId(id));
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Failed to get congition by id");
             }
         }
 
