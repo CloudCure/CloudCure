@@ -3,6 +3,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,9 +11,13 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public auth0:AuthService, @Inject(DOCUMENT) public document: Document, public router:Router) { }
+  constructor(public auth0:AuthService, 
+              @Inject(DOCUMENT) public document: Document, 
+              public router:Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  { 
+ 
   }
 
   login()
@@ -22,5 +27,9 @@ export class LoginComponent implements OnInit {
   profile()
   {
     this.router.navigateByUrl("/profile");
+  }
+  search()
+  { 
+    this.router.navigateByUrl("/search");
   }
 }

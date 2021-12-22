@@ -50,14 +50,14 @@ export class DiagnosisVitalsComponent implements OnInit {
     if (vitalsGroup.valid) {
       let VitalsInfo: Vitals = {
         PatientId: this.patientId,
-        Systolic:        vitalsGroup.get("Systolic")?.value,
-        Diastolic:       vitalsGroup.get("Diastolic")?.value,
-        OxygenSat:       vitalsGroup.get("OxygenSat")?.value,
-        HeartRate:       vitalsGroup.get("HeartRate")?.value,
-        Temperature:     vitalsGroup.get("Temperature")?.value,
-        RespiratoryRate: vitalsGroup.get("RespiratoryRate")?.value,
-        Height:          vitalsGroup.get("Height")?.value,
-        Weight:          vitalsGroup.get("Weight")?.value,
+        systolic:        vitalsGroup.get("Systolic")?.value,
+        diastolic:       vitalsGroup.get("Diastolic")?.value,
+        oxygenSat:       vitalsGroup.get("OxygenSat")?.value,
+        heartRate:       vitalsGroup.get("HeartRate")?.value,
+        temperature:     vitalsGroup.get("Temperature")?.value,
+        respiratoryRate: vitalsGroup.get("RespiratoryRate")?.value,
+        height:          vitalsGroup.get("Height")?.value,
+        weight:          vitalsGroup.get("Weight")?.value,
       }
 
       // logs if valid

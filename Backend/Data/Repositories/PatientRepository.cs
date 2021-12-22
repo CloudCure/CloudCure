@@ -25,6 +25,7 @@ namespace Data
                     .Include(p => p.Surgeries)
                     .Include(p => p.Allergies)
                     .Include(p => p.UserProfile.CovidAssesments)
+                    .Include(p => p.Doctor.UserProfile)
                     .Single(p => p.Id.Equals(query));
 
             return patient;
@@ -40,6 +41,7 @@ namespace Data
                     .Include(p => p.Surgeries)
                     .Include(p => p.Allergies)
                     .Include(p => p.UserProfile.CovidAssesments)
+                    .Include(p => p.Doctor.UserProfile)
                     .Where(p => p.Id > 0);
 
             return patients;

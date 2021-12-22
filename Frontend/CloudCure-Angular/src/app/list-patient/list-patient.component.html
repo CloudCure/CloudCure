@@ -1,0 +1,114 @@
+<div class="card-body">
+    <h4 class="card-title center revature-font-heavy">{{patient.userProfile.firstName}} {{patient.userProfile.lastName}}
+    </h4>
+    <p class="text revature-font-heavy">Phone: <span>{{patient.userProfile.phoneNumber}}</span></p>
+    <p class="text">DOB: {{patient.userProfile.dateOfBirth | date: 'MM/dd/yyyy'}}</p>
+    <p class="text">Address: {{patient.userProfile.address}}</p>
+    <p class="text">Doctor: <span></span></p>
+
+    
+    <div class="row">
+        <div class="col-md-12">
+            <ng-container *ngIf="patient.allergies?.length === 0 || patient.conditions?.length === 0 || patient.currentMedications?.length === 0 || patient.currentMedications?.length === 0; else theBestProfile;">
+                <button (click)="profile()" class="finalize btn btn-custom btn-primary diagnosis border">Patient Profile</button>
+            </ng-container>
+            <ng-template #theBestProfile>
+                <button (click)="viewProfile()" class="finalize btn btn-custom btn-primary diagnosis border">Patient Profile</button>
+            </ng-template>
+        </div>
+        <!-- 
+                --- BTN Colors ---
+            Orange: Still need to Add.
+            Blue: Ready to View.
+        -->
+
+        <!-- Allergy 
+        <div class="col">
+            <ng-container *ngIf="patient.allergies?.length === 0; else viewAllergy;">
+                <button (click)="allergies()" class="add btn btn-primary diagnosis">Allergies</button>
+            </ng-container>
+            <ng-template #viewAllergy>
+                <button (click)="viewAllergies()" class="view btn btn-primary diagnosis">Allergies</button>
+            </ng-template>
+        </div>
+
+        <!-- Conditions 
+        <div class="col">
+            <ng-container *ngIf="patient.conditions?.length === 0; else viewCondition;">
+                <button (click)="conditions()" class="add btn btn-primary diagnosis">Conditions</button>
+            </ng-container>
+            <ng-template #viewCondition>
+                <button (click)="viewConditions()" class="view btn btn-primary diagnosis">Conditions</button>
+            </ng-template>
+        </div>
+        -->
+
+    </div>
+
+
+
+    <!--
+    <div class="row">
+
+         Medications 
+        <div class="col">
+            <ng-container *ngIf="patient.currentMedications?.length === 0; else viewMedication;">
+                <button (click)="medications()" class="add btn btn-primary diagnosis">Medications</button>
+            </ng-container>
+            <ng-template #viewMedication>
+                <button (click)="viewMedications()" class="view btn btn-primary diagnosis">Medications</button>
+            </ng-template>
+        </div>
+    </div>
+    -->
+
+    <div class="row">
+
+        <!-- Surgeries 
+        <div class="col">
+            <ng-container *ngIf="patient.surgeries?.length === 0; else viewSurgery;">
+                <button (click)="surgeries()" class="add btn btn-primary diagnosis">Surgeries</button>
+            </ng-container>
+            <ng-template #viewSurgery>
+                <button (click)="viewSurgeries()" class="view btn btn-primary diagnosis">Surgeries</button>
+            </ng-template>
+        </div>
+        -->
+                <!-- Assessmentss 
+        
+        <div class="col">
+            <ng-container *ngIf="patient.assessments?.length === 0; else viewAssessment;">
+                <button (click)="assessments()" class="add btn btn-primary diagnosis">Assessments</button>
+            </ng-container>
+            <ng-template #viewAssessment>
+                <button (click)="viewAssessments()" class="view btn btn-primary diagnosis">Assessments</button>
+            </ng-template>
+        </div>
+
+        <!-- Vitals 
+        <div class="col">
+            <ng-container *ngIf="patient.vitalHistory?.length === 0; else viewVital;">
+                <button (click)="vitals()" class="add btn btn-primary diagnosis">Vitals</button>
+            </ng-container>
+            <ng-template #viewVital>
+                <button (click)="viewVitals()" class="view btn btn-primary diagnosis">Vitals</button>
+            </ng-template>
+
+        </div>
+        -->
+    </div>
+
+    <!-- For Nurse Eyes Only -->
+    <div *ngIf="role === 1;" class="row">
+        <div class="col-md-12">
+            <button (click)="finalize()" class="finalize btn btn-custom btn-primary diagnosis">Assign Doctor</button>
+        </div>
+    </div>
+
+    <!-- For Doctors Eyes Only -->
+    <div *ngIf="role === 2;" class="row">
+        <div class="col-md-12">
+            <button (click)="finalize()" class="finalize btn btn-custom btn-primary diagnosis">Finalize Report</button>
+        </div>
+    </div>
+</div>

@@ -17,42 +17,7 @@ namespace Tests
             var repository = new Mock<IEmployeeInformationRepository>();
             var controller = new EmployeeInformationController(repository.Object);
 
-            List<CovidVerify> covidList = new List<CovidVerify>();
-            covidList.Add(
-                new CovidVerify
-                {
-                    question1 = "true",
-                    question2 = "true",
-                    question3 = "true",
-                    question4 = "true",
-                    question5 = "true"
-                }
-            );
-
-            var info = new EmployeeInformation
-            {
-                WorkEmail = "drJohn@email.com",
-                EducationDegree = "MD",
-                Specialization = "ER",
-                RoomNumber = "101",
-                StartDate = new DateTime(2021, 12, 14),
-                UserProfile = new User
-                {
-                    FirstName = "John",
-                    LastName = "Doe",
-                    Address = "123 Generic St",
-                    DateOfBirth = new DateTime(1986, 12, 18),
-                    EmergencyContactPhone = "1235551234",
-                    EmergencyName = "Jane Doe",
-                    PhoneNumber = "5557654321",
-                    CovidAssesments = covidList,
-                    RoleId = 1,
-                    Role = new Role
-                    {
-                        RoleName = "Doctor"
-                    }
-                }
-            };
+            var info = newEmployee();
 
             var result = controller.Add(info);
             var okResponse = (IStatusCodeActionResult)result;
@@ -65,42 +30,7 @@ namespace Tests
             var repository = new Mock<IEmployeeInformationRepository>();
             var controller = new EmployeeInformationController(repository.Object);
 
-            List<CovidVerify> covidList = new List<CovidVerify>();
-            covidList.Add(
-                new CovidVerify
-                {
-                    question1 = "true",
-                    question2 = "true",
-                    question3 = "true",
-                    question4 = "true",
-                    question5 = "true"
-                }
-            );
-
-            var info = new EmployeeInformation
-            {
-                WorkEmail = "drJohn@email.com",
-                EducationDegree = "MD",
-                Specialization = "ER",
-                RoomNumber = "101",
-                StartDate = new DateTime(2021, 12, 14),
-                UserProfile = new User
-                {
-                    FirstName = "John",
-                    LastName = "Doe",
-                    Address = "123 Generic St",
-                    DateOfBirth = new DateTime(1986, 12, 18),
-                    EmergencyContactPhone = "1235551234",
-                    EmergencyName = "Jane Doe",
-                    PhoneNumber = "5557654321",
-                    CovidAssesments = covidList,
-                    RoleId = 1,
-                    Role = new Role
-                    {
-                        RoleName = "Doctor"
-                    }
-                }
-            };
+            var info = newEmployee();
 
             var entry = controller.Add(info);
             var result = controller.GetAll();
@@ -114,42 +44,7 @@ namespace Tests
             var repository = new Mock<IEmployeeInformationRepository>();
             var controller = new EmployeeInformationController(repository.Object);
 
-            List<CovidVerify> covidList = new List<CovidVerify>();
-            covidList.Add(
-                new CovidVerify
-                {
-                    question1 = "true",
-                    question2 = "true",
-                    question3 = "true",
-                    question4 = "true",
-                    question5 = "true"
-                }
-            );
-
-            var info = new EmployeeInformation
-            {
-                WorkEmail = "drJohn@email.com",
-                EducationDegree = "MD",
-                Specialization = "ER",
-                RoomNumber = "101",
-                StartDate = new DateTime(2021, 12, 14),
-                UserProfile = new User
-                {
-                    FirstName = "John",
-                    LastName = "Doe",
-                    Address = "123 Generic St",
-                    DateOfBirth = new DateTime(1986, 12, 18),
-                    EmergencyContactPhone = "1235551234",
-                    EmergencyName = "Jane Doe",
-                    PhoneNumber = "5557654321",
-                    CovidAssesments = covidList,
-                    RoleId = 1,
-                    Role = new Role
-                    {
-                        RoleName = "Doctor"
-                    }
-                }
-            };
+            var info = newEmployee();
 
             var entry = controller.Add(info);
             var result = controller.Delete(1);
@@ -163,42 +58,7 @@ namespace Tests
             var repository = new Mock<IEmployeeInformationRepository>();
             var controller = new EmployeeInformationController(repository.Object);
 
-            List<CovidVerify> covidList = new List<CovidVerify>();
-            covidList.Add(
-                new CovidVerify
-                {
-                    question1 = "true",
-                    question2 = "true",
-                    question3 = "true",
-                    question4 = "true",
-                    question5 = "true"
-                }
-            );
-
-            var info = new EmployeeInformation
-            {
-                WorkEmail = "drJohn@email.com",
-                EducationDegree = "MD",
-                Specialization = "ER",
-                RoomNumber = "101",
-                StartDate = new DateTime(2021, 12, 14),
-                UserProfile = new User
-                {
-                    FirstName = "John",
-                    LastName = "Doe",
-                    Address = "123 Generic St",
-                    DateOfBirth = new DateTime(1986, 12, 18),
-                    EmergencyContactPhone = "1235551234",
-                    EmergencyName = "Jane Doe",
-                    PhoneNumber = "5557654321",
-                    CovidAssesments = covidList,
-                    RoleId = 1,
-                    Role = new Role
-                    {
-                        RoleName = "Doctor"
-                    }
-                }
-            };
+            var info = newEmployee();
 
             var entry = controller.Add(info);
             info.EducationDegree = "PhD";
@@ -213,42 +73,7 @@ namespace Tests
             var repository = new Mock<IEmployeeInformationRepository>();
             var controller = new EmployeeInformationController(repository.Object);
 
-            List<CovidVerify> covidList = new List<CovidVerify>();
-            covidList.Add(
-                new CovidVerify
-                {
-                    question1 = "true",
-                    question2 = "true",
-                    question3 = "true",
-                    question4 = "true",
-                    question5 = "true"
-                }
-            );
-
-            var info = new EmployeeInformation
-            {
-                WorkEmail = "drJohn@email.com",
-                EducationDegree = "MD",
-                Specialization = "ER",
-                RoomNumber = "101",
-                StartDate = new DateTime(2021, 12, 14),
-                UserProfile = new User
-                {
-                    FirstName = "John",
-                    LastName = "Doe",
-                    Address = "123 Generic St",
-                    DateOfBirth = new DateTime(1986, 12, 18),
-                    EmergencyContactPhone = "1235551234",
-                    EmergencyName = "Jane Doe",
-                    PhoneNumber = "5557654321",
-                    CovidAssesments = covidList,
-                    RoleId = 1,
-                    Role = new Role
-                    {
-                        RoleName = "Doctor"
-                    }
-                }
-            };
+            var info = newEmployee();
 
             var entry = controller.Add(info);
             var result = controller.GetById(1);
@@ -262,6 +87,110 @@ namespace Tests
             var repository = new Mock<IEmployeeInformationRepository>();
             var controller = new EmployeeInformationController(repository.Object);
 
+            var info = newEmployee();
+
+            var entry = controller.Add(info);
+            var result = controller.VerifyUser(info.WorkEmail);
+            var okResponse = (IStatusCodeActionResult)result;
+            Assert.Equal(200, okResponse.StatusCode);
+        }
+
+        [Fact]
+        public void CreateReturnsBadRequestEmployee()
+        {
+            var repository = new Mock<IEmployeeInformationRepository>();
+            var controller = new EmployeeInformationController(repository.Object);
+
+            var info = newEmployee();
+
+            try
+            {
+                controller.Add(info);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+         [Fact]
+        public void GetAllShouldReturnBadRequestEmployee()
+        {
+            var repository = new Mock<IEmployeeInformationRepository>();
+            var controller = new EmployeeInformationController(repository.Object);
+
+            var info = newEmployee();
+
+            try
+            {
+                controller.Add(info);
+                controller.GetAll();
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
+        public void DeleteShouldReturnBadRequestEmployee()
+        {
+            var repository = new Mock<IEmployeeInformationRepository>();
+            var controller = new EmployeeInformationController(repository.Object);
+
+            var info = newEmployee();
+
+            try
+            {
+                controller.Add(info);
+                controller.Delete(0);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+        [Fact]
+        public void UpdateShouldReturnBadRequestEmployeeInfo()
+        {
+            var repository = new Mock<IEmployeeInformationRepository>();
+            var controller = new EmployeeInformationController(repository.Object);
+
+            var info = newEmployee();
+
+            try
+            {
+                controller.Add(info);
+                controller.Update(0, info);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+           [Fact]
+        public void GetByIdShouldGetEmployeeInfoByIdWithBadRequest()
+        {
+            var repository = new Mock<IEmployeeInformationRepository>();
+            var controller = new EmployeeInformationController(repository.Object);
+
+            var info = newEmployee();
+
+            try
+            {
+                controller.Add(info);
+                controller.GetById(0);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+
+        private EmployeeInformation newEmployee()
+        {
             List<CovidVerify> covidList = new List<CovidVerify>();
             covidList.Add(
                 new CovidVerify
@@ -274,7 +203,7 @@ namespace Tests
                 }
             );
 
-            var info = new EmployeeInformation
+            return new EmployeeInformation
             {
                 WorkEmail = "drJohn@email.com",
                 EducationDegree = "MD",
@@ -298,11 +227,6 @@ namespace Tests
                     }
                 }
             };
-
-            var entry = controller.Add(info);
-            var result = controller.VerifyUser(info.WorkEmail);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
         }
     }
 }

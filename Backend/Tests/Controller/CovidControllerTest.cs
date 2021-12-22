@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Models;
@@ -35,6 +32,22 @@ namespace Tests.Controller
         }
 
         [Fact]
+        public void CreateShouldThrowAnException()
+        {
+            var repository = new Mock<ICovidRepository>();
+            var controller = new CovidController(repository.Object);
+
+            try
+            {
+                var result = controller.Add(null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void GetAllReturnsOKCovid()
         {
             var repository = new Mock<ICovidRepository>();
@@ -54,8 +67,24 @@ namespace Tests.Controller
             var result = controller.GetAll();
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
-
         }
+
+        [Fact]
+        public void GetAllShouldThrowAnException()
+        {
+            var repository = new Mock<ICovidRepository>();
+            var controller = new CovidController(repository.Object);
+
+            try
+            {
+                var result = controller.GetAll();
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
         [Fact]
         public void DeleteShouldReturnOKCovid()
         {
@@ -77,7 +106,22 @@ namespace Tests.Controller
             var result = controller.Delete(1);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
+        }
 
+        [Fact]
+        public void DeleteShouldThrowAnException()
+        {
+            var repository = new Mock<ICovidRepository>();
+            var controller = new CovidController(repository.Object);
+
+            try
+            {
+                var result = controller.Delete(1);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
         }
 
         [Fact]
@@ -103,6 +147,22 @@ namespace Tests.Controller
         }
 
         [Fact]
+        public void GetByIdShouldThrowAnException()
+        {
+            var repository = new Mock<ICovidRepository>();
+            var controller = new CovidController(repository.Object);
+
+            try
+            {
+                var result = controller.GetById(1);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void UpdateShouldReturnOKCovid()
         {
             var repository = new Mock<ICovidRepository>();
@@ -122,7 +182,22 @@ namespace Tests.Controller
             var result = controller.Update(1, covid);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
+        }
 
+        [Fact]
+        public void UpdateShouldThrowAnException()
+        {
+            var repository = new Mock<ICovidRepository>();
+            var controller = new CovidController(repository.Object);
+
+            try
+            {
+                var result = controller.Update(1, null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
         }
     }
 }

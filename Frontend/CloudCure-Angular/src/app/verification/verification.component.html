@@ -8,11 +8,12 @@
       <div class="column middle">
         <h5>PLEASE SELECT THE ANSWER THAT APPLIES TO PATIENT!</h5>
         <div class="form-check form-group">
-          <p>Question 1:</p>
+          <p><strong>Question 1:</strong></p>
           <dl>Regardless of your vaccination status, have
             you experienced any of the symptoms in
             the list below in the past 48 hours?
             <dd>
+              <br />
               <input type="radio" formControlName="question1" id="yes" name="question1" value="true" checked="">
               <label for="yes">Yes</label>
               <input type="radio" formControlName="question1" id="no" name="question1" value="false" checked="">
@@ -20,11 +21,12 @@
             </dd>
           </dl>
           <br />
-          <p>Question 2:</p>
+          <p><strong>Question 2:</strong></p>
           <dl> Are you isolating or quarantining because you
             tested positive for COVID-19 or are worried
             that you may be sick with COVID-19?
             <dd>
+              <br />
               <input type="radio" formControlName="question2" id="yes" name="question2" value="true" checked="">
               <label for="yes">Yes</label>
               <input type="radio" formControlName="question2" id="no" name="question2" value="false" checked="">
@@ -32,10 +34,11 @@
             </dd>
           </dl>
           <br />
-          <p>Question 3:</p>
+          <p><strong>Question 3:</strong></p>
           <dl> Has anyone in your household experienced
             any symptoms in the past 14 days?
             <dd>
+              <br />
               <input type="radio" formControlName="question3" id="yes" name="question3" value="true" checked="">
               <label for="yes">Yes</label>
               <input type="radio" formControlName="question3" id="no" name="question3" value="false" checked="">
@@ -43,9 +46,10 @@
             </dd>
           </dl>
           <br />
-          <p>Question 4:</p>
+          <p><strong>Question 4:</strong></p>
           <dl>Have you traveled in the past 10 days?
             <dd>
+              <br />
               <input type="radio" formControlName="question4" id="yes" name="question4" value="true" checked="">
               <label for="yes">Yes</label>
               <input type="radio" formControlName="question4" id="no" name="question4" value="false" checked="">
@@ -53,15 +57,16 @@
             </dd>
           </dl>
           <br />
-          <p>Question 5:</p>
+          <p><strong>Question 5:</strong></p>
           <dl>
             In the past 14 days, have you been identified
             as a close contact of someone with
             suspected or confirmed COVID-19?
             <dd>
-              <input type="radio" formControlName="question5" id="yes" name="question5" value="yes" checked="">
+              <br />
+              <input type="radio" formControlName="question5" id="yes" name="question5" value="true" checked="">
               <label for="yes">Yes</label>
-              <input type="radio" formControlName="question5" id="no" name="question5" value="no" checked="">
+              <input type="radio" formControlName="question5" id="no" name="question5" value="false" checked="">
               <label for="no">No</label>
             </dd>
           </dl>

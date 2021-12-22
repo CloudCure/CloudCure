@@ -8,9 +8,9 @@
 
     <div class="row">
 
-      <div class="col-lg-3"></div>
+      <div class="col-lg-2"></div>
 
-      <div class="col-lg-6">
+      <div class="col-lg-8">
 
         <div id="form">
 
@@ -61,8 +61,7 @@
             <div class="row">
               <div class="col-lg-12">
                 <label>Address</label>
-                <input type="text" formControlName="Address" class="form-control"
-                  placeholder="Enter Your Address...">
+                <input type="text" formControlName="Address" class="form-control" placeholder="Enter Your Address...">
                 <div *ngIf="Address?.invalid && (Address?.dirty || Address?.touched)">
                   <div class="text-danger" *ngIf="Address?.errors?.['required']">Required</div>
                 </div>
@@ -94,15 +93,102 @@
               </div>
             </div>
             <br>
-            <!-- <diagnosis-condition></diagnosis-condition>
-                <diagnosis-allergy></diagnosis-allergy>
-                <diagnosis-surgery></diagnosis-surgery>
-                <diagnosis-medication></diagnosis-medication> -->
 
+            <!--  Conditions  -->
+            <div class="title-btn">
+              <h1>Previous Medical Conditions</h1>
+              <button class="btn btn-primary add" (click)="addMoreElements('condition')">+</button>
+            </div>
+            <div formArrayName="conditions">
+              <div *ngFor="let cond of conditions().controls; let i=index;" [formGroupName]="i">
+                <div>
+                  <br />
+                  <div class="row">
+                    <div class="col-md-11">
+                      <textarea rows="1" formControlName="text" class="form-control"></textarea>
+                    </div>
+                    <div class="col-md-1">
+                      <button class="btn btn-primary subtract" (click)="removeElement('condition', i)">X</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
 
-            <br>
-            <button type="submit" class="btn btn-dark" (click)="RegisterPatient(registerGroup)">Register</button>
+            <!--  Allergy  -->
+            <div class="title-btn">
+              <h1>Allergies</h1>
+              <button class="btn btn-primary add" (click)="addMoreElements('allergy')">+</button>
+            </div>
+            <div formArrayName="allergies">
+              <div *ngFor="let algy of allergies().controls; let i=index;" [formGroupName]="i">
+                <div>
+                  <br />
+                  <div class="row">
+                    <div class="col-md-11">
+                      <textarea rows="1" formControlName="text" class="form-control"></textarea>
+                    </div>
+                    <div class="col-md-1">
+                      <button class="btn btn-primary subtract" (click)="removeElement('allergy', i)">X</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+
+            <!--  Surgery  -->
+            <div class="title-btn">
+              <h1>Surgeries</h1>
+              <button class="btn btn-primary add" (click)="addMoreElements('surgery')">+</button>
+            </div>
+
+            <div formArrayName="surgeries">
+              <div *ngFor="let surg of surgeries().controls; let i=index;" [formGroupName]="i">
+                <div>
+                  <br />
+                  <div class="row">
+                    <div class="col-md-11">
+                      <textarea rows="1" formControlName="text" class="form-control"></textarea>
+                    </div>
+                    <div class="col-md-1">
+                      <button class="btn btn-primary subtract" (click)="removeElement('surgery', i)">X</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+
+            <!--  Medication  -->
+            <div class="title-btn">
+              <h1>Medications</h1>
+              <button class="btn btn-primary add" (click)="addMoreElements('medication')">+</button>
+            </div>
+            <div formArrayName="medications">
+              <div *ngFor="let medi of medications().controls; let i=index;" [formGroupName]="i">
+                <div>
+                  <br />
+                  <div class="row">
+                    <div class="col-md-11">
+                      <textarea rows="1" formControlName="text" class="form-control"></textarea>
+                    </div>
+                    <div class="col-md-1">
+                      <button class="btn btn-primary subtract" (click)="removeElement('medication', i)">X</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <br />
+
           </form>
+
+          <button type="submit" class="btn btn-dark" (click)="RegisterPatient(registerGroup)">Register</button>
+          <br />
+          <br />
         </div>
       </div>
 
