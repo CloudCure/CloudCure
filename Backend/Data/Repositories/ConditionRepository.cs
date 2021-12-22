@@ -10,10 +10,8 @@ namespace Data
 
     public class ConditionRepository : Repository<Condition>, IConditionRepository
     {
-        readonly CloudCureDbContext repository;
         public ConditionRepository(CloudCureDbContext context) : base(context)
         {
-            repository = context;
         }
 
         public IEnumerable<Condition> SearchByCondition(string query)
@@ -29,10 +27,10 @@ namespace Data
             }
         }
 
-        public IEnumerable<Condition> SearchByPatientId(int p_patientId)
+        public IEnumerable<Condition> SearchByPatientId(int query)
         {
             var result = base.GetAll()
-                        .Where(i => i.PatientId.Equals(p_patientId));
+                        .Where(i => i.PatientId.Equals(query));
             if (!result.Any())
             {
                 throw new KeyNotFoundException("No result found");

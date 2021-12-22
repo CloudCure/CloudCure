@@ -45,7 +45,7 @@ namespace Tests
             }
         }
 
-         [Fact]
+        [Fact]
         public void GetCovidVerifybyIdshouldReturnId()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -57,7 +57,7 @@ namespace Tests
             }
         }
 
-        public void Seed()
+        void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {
