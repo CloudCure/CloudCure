@@ -13,21 +13,23 @@ namespace Data
         readonly CloudCureDbContext repository;
         public DiagnosisRepository(CloudCureDbContext context) : base(context)
         {
-            repository = context;
+            repository = context; 
         }
-    }
-     public Patient GetbyPatientIdWithNav(int query)
+
+        public Diagnosis GetByPatientIdWithNav(int query)
         {
-            var patient = repository.Patients
-                    .Include(p => p.UserProfile)
-                    .Include(p => p.Assessments)
-                    .Include(p => p.Conditions)
-                    .Include(p => p.CurrentMedications)
-                    .Include(p => p.Surgeries)
-                    .Include(p => p.Allergies)
-                    .Include(p => p.UserProfile.CovidAssesments)
-                    .Single(p => p.Id.Equals(query));
+            var patient = repository.Diagnoses
+               .Include(p => p.Vitals)
+               .Include(p => p.Patient)
+               .Include(c => c.Patient.Allergies)
+                .Include(c => c.Patient.Conditions)
+                .Include(c => c.Patient.Surgeries)
+                .Include(c => c.Patient.CurrentMedications)
+               .Include(p => p.Assessment)               
+               .Single(p => p.Patient.Id.Equals(query));
 
             return patient;
+          
         }
+    }
 }
