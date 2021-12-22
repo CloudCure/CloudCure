@@ -6,6 +6,7 @@ import { Patient } from '../AngularModels/Patient';
 import { Vitals } from '../AngularModels/Vitals';
 import { PatientService } from '../services/patient.service';
 import { VitalsService } from '../services/vitals.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'diagnosis-vitals',
@@ -31,12 +32,22 @@ export class DiagnosisVitalsComponent implements OnInit {
     Weight:          new FormControl("", Validators.required),
   });
 
-  constructor(private VitalsAPI:VitalsService, private PatientAPI:PatientService, private route: ActivatedRoute) { }
+  constructor(private VitalsAPI:VitalsService, private PatientAPI:PatientService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     // this way has worked in the past
     // depends on how we wish to implement Patient ID in the routing
     // this.patientId = Number(this.route.snapshot.paramMap.get("id"))
+  }
+
+  PatientProfile()
+  {
+    this.router.navigateByUrl("/profile");
+  }
+
+  Assessments()
+  {
+    this.router.navigateByUrl("/assessment");
   }
 
   // function that runs on form submission
