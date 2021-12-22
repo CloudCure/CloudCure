@@ -27,24 +27,24 @@
                 <input type="number" formControlName = "HeartRate" class="form-control" placeholder="Heart Rate...">
               </div>
 
-              <div class="col-lg-6">
-                  <label>Respiratory Rate (breaths / min)</label>
-                  <input type="number" formControlName = "RespiratoryRate" class="form-control" placeholder="Respiratory Rate...">
+              <div class="col-lg-6 moreSpace">
+                  <label>Respiratory Rate (B/M)</label>
+                  <input type="number" formControlName = "RespiratoryRate" class="form-control moreSpace" placeholder="Respiratory Rate...">
               </div>
 
-              <div class="col-lg-6">
+              <div class="col-lg-6 moreSpace">
                   <label>Oxygen Saturation (%)</label>
-                  <input type="number" formControlName = "OxygenSat" class="form-control" placeholder="Oxygen Saturation...">
+                  <input type="number" formControlName = "OxygenSat" class="form-control moreSpace" placeholder="Oxygen Saturation...">
               </div>
 
-              <div class="col-lg-6">
+              <div class="col-lg-6 moreSpace">
                   <label>Temperature (℉)</label>
-                  <input type="number" step="0.1" formControlName = "Temperature" class="form-control" placeholder="Temperature...">
+                  <input type="number" step="0.1" formControlName = "Temperature" class="form-control moreSpace" placeholder="Temperature...">
               </div>
 
-              <div>
+              <div class="moreSpace">
                   <label>Height (inches)</label>
-                  <input type="number" formControlName = "Height" class="form-control" placeholder="Height...">
+                  <input type="number" formControlName = "Height" class="form-control moreSpace" placeholder="Height...">
               </div>
 
               <div>
@@ -56,7 +56,10 @@
 
           </div>
           <br>
-          <button type="submit" class="btn btn-dark" (click)="RegisterVitals(vitalsGroup)">Submit</button>
+          <button type="submit" class="btn btn-dark center width-150px" (click)="RegisterVitals(vitalsGroup)">Submit</button>
+          <br/>
+          <button class="btn btn-dark width-150px" (click)="PatientProfile()">Return To Profile</button>
+          <button style="float: right;" class="btn btn-dark width-150px" (click)="Assessments()">Assessments</button>
           </form>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Patient } from '../AngularModels/Patient';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,17 +13,19 @@ import { DOCUMENT } from '@angular/common';
   templateUrl: './docsearch.component.html',
   styleUrls: ['./docsearch.component.css']
 })
-export class DocsearchComponent implements OnInit {
+export class DocsearchComponent implements OnInit, OnDestroy {
   patientSearchGroup:FormGroup = new FormGroup({
     FirstName: new FormControl("", Validators.required),
-    LastName: new FormControl("", Validators.required)
+    LastName: new FormControl("", Validators.required),
+    Specialization: new FormControl("", Validators.required)
   })
 
   fullDoctorList:EmployeeInformation[] = [];
   doctorList:EmployeeInformation[] = [];
   role:number = 0;
+  nurse:string = '';
 
-  constructor(public auth0: AuthService, public router: Router, public employeeAPI: EmployeeService, @Inject(DOCUMENT) public document: Document) {
+  constructor(public auth0: AuthService, public router: Router, public employeeAPI: EmployeeService, @Inject(DOCUMENT) public document: Document, private patientAPI: PatientService) {
     this.employeeAPI.GetAll().subscribe(
       (response) => {
         this.doctorList = response;
@@ -53,11 +55,18 @@ export class DocsearchComponent implements OnInit {
         }
       }
     )
-   }
-
-  ngOnInit(): void {
+  }
+  ngOnDestroy(): void {
+    this.patientAPI.assigningDoctor = false;
   }
 
+  ngOnInit(): void 
+  {
+    if (this.patientAPI.assigningDoctor)
+    {
+      this.nurse = 'nurseSelect'
+    }
+  }
 
   newPatient(){
     this.router.navigateByUrl("/patient");
@@ -67,18 +76,21 @@ export class DocsearchComponent implements OnInit {
   {
     let search = 
     {
-      firstName: patientSearchGroup.get("FirstName")?.value,
-      lastName: patientSearchGroup.get("LastName")?.value
+      firstName: patientSearchGroup.get("FirstName")?.value.toLowerCase(),
+      lastName: patientSearchGroup.get("LastName")?.value.toLowerCase(),
+      specialization: patientSearchGroup.get("Specialization")?.value.toLowerCase()
     }
     let firstNameSearch = (search:any) => this.doctorList.filter(({ userProfile }) => userProfile.firstName.toLowerCase().includes(search.firstName))
     let lastNameSearch = (search: any) => this.doctorList.filter(({ userProfile }) => userProfile.lastName.toLowerCase().includes(search.lastName))
-    if (search.firstName === '' && search.lastName === ''){
+    let specializationSearch = (search: any) => this.doctorList.filter(({ specialization }) => specialization.toLowerCase().includes(search.specialization))
+    if (search.firstName === '' && search.lastName === '' && search.specialization === ''){
       this.doctorList = this.fullDoctorList;
     }
     else
     {
       this.doctorList = firstNameSearch(search);
       this.doctorList = lastNameSearch(search);
+      this.doctorList = specializationSearch(search);
     }
   }
 }

@@ -50,6 +50,18 @@ namespace Tests
                     Assert.Equal(1, assessment.Id);
                 }
             }
+
+        [Fact]
+        public void GetPatientVitalsShouldThrowException()
+        {
+             using ( var context = new CloudCureDbContext(_options))
+                {
+                    IVitalsRepository repository = new VitalsRepository(context);
+                    
+                    context.Database.EnsureDeleted();
+                    Assert.Throws<KeyNotFoundException>(() => repository.SearchByPatientId(-1));
+                }
+        }
         void Seed()
         {
             using (var context = new CloudCureDbContext(_options))

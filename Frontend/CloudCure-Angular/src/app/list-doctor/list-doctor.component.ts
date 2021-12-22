@@ -8,6 +8,7 @@ import { Allergy } from '../AngularModels/Allergy';
 import { Router } from '@angular/router';
 import { EmployeeInformation } from '../AngularModels/EmployeeInformation'
 import { EmployeeService } from '../services/employee.service';
+import { PatientService } from '../services/patient.service';
 
 @Component({
   selector: 'app-list-doctor',
@@ -22,20 +23,32 @@ export class ListDoctorComponent implements OnInit {
   @Input()
   role: number = 0;
 
-  constructor(private router: Router, public employeeAPI: EmployeeService) { }
+  constructor(private router: Router, public employeeAPI: EmployeeService, private patientAPI: PatientService) { }
 
   ngOnInit(): void {
   }
 
-  allergies()
+  assignDoctor()
   {
+    if (this.patientAPI.assigningDoctor) {
+      this.patientAPI.GetById(this.patientAPI.currentPatientId).subscribe(
+        (response) => {
+          let result = response;
 
-  }
-
-
-
-  finalize()
-  {
-
+          this.employeeAPI.GetById(this.doctor.id).subscribe(
+            (doctorResponse) => {
+              
+              result.doctor = doctorResponse;
+              this.patientAPI.Update(result.id, result).subscribe(
+                (updateResponse) => {
+                  console.log("patient's doctor has been updated.");
+                  this.router.navigateByUrl('/');
+                }
+              )
+            }
+          )
+        }
+      )
+    }
   }
 }

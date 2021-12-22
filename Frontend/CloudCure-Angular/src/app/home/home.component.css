@@ -29,8 +29,10 @@
 .patient {
   background-color: rgb(115,165,194);
   border-radius: .3rem;
-  margin: 5rem;
-  padding: 0.9rem;;
+  margin-top: 5rem;
+  margin-right: 5rem;
+  margin-left: 5rem;
+  padding: 0.4rem;
 }
 
 .btn-center {

@@ -5,6 +5,7 @@ import { Medication } from "./Medication";
 import { Surgery } from "./Surgery";
 import { Vitals } from "./Vitals";
 import { UserProfile } from "./UserProfile";
+import { EmployeeInformation } from "./EmployeeInformation";
 
 export interface Patient 
 {
@@ -20,4 +21,5 @@ export interface Patient
     currentMedications?: Medication[];
     vitalHistory?:       Vitals[];
     assessments?:        Assessment[];
+    doctor?: EmployeeInformation | undefined;
 }

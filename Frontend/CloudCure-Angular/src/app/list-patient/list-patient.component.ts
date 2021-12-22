@@ -22,77 +22,28 @@ export class ListPatientComponent implements OnInit {
   role: number = 0;
 
   constructor(private router: Router, private patientAPI:PatientService) {
-    console.log(this.patient);
-    
   }
 
   ngOnInit(): void {
   }
 
-  allergies()
+  addProfile()
   {
     this.patientAPI.currentPatientId = this.patient.id;
-    this.router.navigateByUrl("/diagnosis-allergy");
+    this.router.navigateByUrl("/diagnosis");
   }
 
-  viewAllergies()
-  {
-
-  }
-
-  conditions()
-  { 
-    this.patientAPI.currentPatientId = this.patient.id;
-    this.router.navigateByUrl("/diagnosis-condition");
-  }
-
-  viewConditions()
-  {
-
-  }
-
-  assessments()
-  { 
-    this.patientAPI.currentPatientId = this.patient.id;
-    this.router.navigateByUrl("/assessment");
-  }
-
-  viewAssessments()
-  {
-
-  }
-
-  medications()
-  { 
-    this.patientAPI.currentPatientId = this.patient.id;
-    this.router.navigateByUrl("/diagnosis-medication");
-  }
-
-  viewMedications()
-  {
-
-  }
-
-  surgeries()
+  viewProfile()
   {
     this.patientAPI.currentPatientId = this.patient.id;
-    this.router.navigateByUrl("/diagnosis-surgeries");
+    this.router.navigateByUrl("/patient-view");
   }
 
-  viewSurgeries()
+  assignDoctor()
   {
-
-  }
-
-  vitals()
-  {
+    this.patientAPI.assigningDoctor = true;
     this.patientAPI.currentPatientId = this.patient.id;
-    this.router.navigateByUrl("/diagnosis-vitals");
-  }
-
-  viewVitals()
-  {
-
+    this.router.navigateByUrl('/search');
   }
 
   finalize()

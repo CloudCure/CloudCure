@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DiagnosisSurgeriesComponent } from './diagnosis-surgeries.component';
+import { ViewConditionsComponent } from './view-conditions.component';
 
-describe('DiagnosisSurgeriesComponent', () => {
-  let component: DiagnosisSurgeriesComponent;
-  let fixture: ComponentFixture<DiagnosisSurgeriesComponent>;
+describe('ViewConditionsComponent', () => {
+  let component: ViewConditionsComponent;
+  let fixture: ComponentFixture<ViewConditionsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiagnosisSurgeriesComponent ]
+      declarations: [ ViewConditionsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DiagnosisSurgeriesComponent);
+    fixture = TestBed.createComponent(ViewConditionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

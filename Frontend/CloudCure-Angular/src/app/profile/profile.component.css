@@ -74,6 +74,7 @@ body{
 .profile-header .profile-header-tab > li > i:hover{
   color: rgb(253, 181, 21) ;
 }
+
 .profile-header .profile-header-tab > li.active > i,
 .profile-header .profile-header-tab > li > i.active {
   color: lightgray;
@@ -120,3 +121,5 @@ body{
   height: 100%;
   padding-top: 75px;
 }
+
+
