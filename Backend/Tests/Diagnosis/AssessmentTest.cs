@@ -51,6 +51,18 @@ namespace Tests.Diagnosis
                 Assert.Equal(1, assessment.Id);
             }
         }
+
+        [Fact]
+        public void GetPatientSurgeryShouldThrowException()
+        {
+             using ( var context = new CloudCureDbContext(_options))
+                {
+                    IAssessmentRepository repository = new AssessmentRepository(context);
+                    
+                    context.Database.EnsureDeleted();
+                    Assert.Throws<KeyNotFoundException>(() => repository.SearchByPatientId(-1));
+                }
+        }
         void Seed()
         {
             using (var context = new CloudCureDbContext(_options))

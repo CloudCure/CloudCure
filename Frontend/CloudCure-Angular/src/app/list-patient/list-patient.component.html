@@ -6,14 +6,23 @@
     <p class="text">Address: {{patient.userProfile.address}}</p>
     <p class="text">Doctor: <span></span></p>
 
+    
     <div class="row">
+        <div class="col-md-12">
+            <ng-container *ngIf="patient.allergies?.length === 0 || patient.conditions?.length === 0 || patient.currentMedications?.length === 0 || patient.currentMedications?.length === 0; else theBestProfile;">
+                <button (click)="profile()" class="finalize btn btn-custom btn-primary diagnosis border">Patient Profile</button>
+            </ng-container>
+            <ng-template #theBestProfile>
+                <button (click)="viewProfile()" class="finalize btn btn-custom btn-primary diagnosis border">Patient Profile</button>
+            </ng-template>
+        </div>
         <!-- 
                 --- BTN Colors ---
             Orange: Still need to Add.
             Blue: Ready to View.
         -->
 
-        <!-- Allergy -->
+        <!-- Allergy 
         <div class="col">
             <ng-container *ngIf="patient.allergies?.length === 0; else viewAllergy;">
                 <button (click)="allergies()" class="add btn btn-primary diagnosis">Allergies</button>
@@ -23,7 +32,7 @@
             </ng-template>
         </div>
 
-        <!-- Conditions -->
+        <!-- Conditions 
         <div class="col">
             <ng-container *ngIf="patient.conditions?.length === 0; else viewCondition;">
                 <button (click)="conditions()" class="add btn btn-primary diagnosis">Conditions</button>
@@ -32,22 +41,16 @@
                 <button (click)="viewConditions()" class="view btn btn-primary diagnosis">Conditions</button>
             </ng-template>
         </div>
+        -->
 
     </div>
 
+
+
+    <!--
     <div class="row">
 
-        <!-- Assessmentss -->
-        <div class="col">
-            <ng-container *ngIf="patient.assessments?.length === 0; else viewAssessment;">
-                <button (click)="assessments()" class="add btn btn-primary diagnosis">Assessments</button>
-            </ng-container>
-            <ng-template #viewAssessment>
-                <button (click)="viewAssessments()" class="view btn btn-primary diagnosis">Assessments</button>
-            </ng-template>
-        </div>
-
-        <!-- Medications -->
+         Medications 
         <div class="col">
             <ng-container *ngIf="patient.currentMedications?.length === 0; else viewMedication;">
                 <button (click)="medications()" class="add btn btn-primary diagnosis">Medications</button>
@@ -57,10 +60,11 @@
             </ng-template>
         </div>
     </div>
+    -->
 
     <div class="row">
 
-        <!-- Surgeries -->
+        <!-- Surgeries 
         <div class="col">
             <ng-container *ngIf="patient.surgeries?.length === 0; else viewSurgery;">
                 <button (click)="surgeries()" class="add btn btn-primary diagnosis">Surgeries</button>
@@ -69,8 +73,19 @@
                 <button (click)="viewSurgeries()" class="view btn btn-primary diagnosis">Surgeries</button>
             </ng-template>
         </div>
+        -->
+                <!-- Assessmentss 
+        
+        <div class="col">
+            <ng-container *ngIf="patient.assessments?.length === 0; else viewAssessment;">
+                <button (click)="assessments()" class="add btn btn-primary diagnosis">Assessments</button>
+            </ng-container>
+            <ng-template #viewAssessment>
+                <button (click)="viewAssessments()" class="view btn btn-primary diagnosis">Assessments</button>
+            </ng-template>
+        </div>
 
-        <!-- Vitals -->
+        <!-- Vitals 
         <div class="col">
             <ng-container *ngIf="patient.vitalHistory?.length === 0; else viewVital;">
                 <button (click)="vitals()" class="add btn btn-primary diagnosis">Vitals</button>
@@ -80,6 +95,7 @@
             </ng-template>
 
         </div>
+        -->
     </div>
 
     <!-- For Nurse Eyes Only -->
@@ -95,5 +111,4 @@
             <button (click)="finalize()" class="finalize btn btn-custom btn-primary diagnosis">Finalize Report</button>
         </div>
     </div>
-
 </div>

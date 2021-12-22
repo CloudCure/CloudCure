@@ -30,7 +30,7 @@ body{
 
 .diagnosis{
   width: 7rem;
-  margin: 1px;
+  margin: 1px; 
 }
 
 .text{
@@ -73,4 +73,10 @@ body{
   background-color: #474C55;
   border-color: #474C55;
   filter: brightness(90%);
+}
+
+.border {
+margin: 12px;
+margin-left: auto;
+margin-right: auto;
 }
