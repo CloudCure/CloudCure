@@ -34,16 +34,15 @@ export class ListDoctorComponent implements OnInit {
       this.patientAPI.GetById(this.patientAPI.currentPatientId).subscribe(
         (response) => {
           let result = response;
-          console.log(result);
 
           this.employeeAPI.GetById(this.doctor.id).subscribe(
             (doctorResponse) => {
               
               result.doctor = doctorResponse;
-              console.log(result);
               this.patientAPI.Update(result.id, result).subscribe(
                 (updateResponse) => {
-                  console.log(updateResponse);
+                  console.log("patient's doctor has been updated.");
+                  this.router.navigateByUrl('/');
                 }
               )
             }
