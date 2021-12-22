@@ -1,6 +1,6 @@
 import { UserProfile } from "./UserProfile";
 export interface EmployeeInformation {
-    
+    id? : number | undefined;
     userProfile : UserProfile
     workEmail: string | undefined
     specialization: string

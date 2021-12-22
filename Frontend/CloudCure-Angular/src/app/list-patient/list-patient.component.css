@@ -55,6 +55,7 @@ body{
 .add {
   background-color: #F26925;
   border-color: #F26925;
+  margin-top: 12px;
 }
 
 .add:hover {
@@ -80,3 +81,4 @@ margin: 12px;
 margin-left: auto;
 margin-right: auto;
 }
+
