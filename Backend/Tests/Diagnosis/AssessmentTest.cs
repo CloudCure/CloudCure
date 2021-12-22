@@ -78,6 +78,7 @@ namespace Tests.Diagnosis
                         PainScale = 2,
                         ChiefComplaint = "dfdssdf",
                         HistoryOfPresentIllness = "dssdfs",
+                        EncounterDate = DateTime.Now
 
 
                     },
@@ -87,7 +88,9 @@ namespace Tests.Diagnosis
                                 PainAssessment = "asdfas",
                                 PainScale = 2,
                                 ChiefComplaint = "dfdssdf",
-                                HistoryOfPresentIllness = "dssdfs"
+                                HistoryOfPresentIllness = "dssdfs",
+                                EncounterDate = DateTime.Now
+                                
 
 
                             });

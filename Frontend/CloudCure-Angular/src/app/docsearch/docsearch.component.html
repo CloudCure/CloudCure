@@ -64,7 +64,7 @@
     <div class="container">
         <div class="card-group justify-content-center">
             <div *ngFor="let employeeinformation of doctorList">
-                <div class="card card-custom" style="max-width: 18rem; height: 15rem;">
+                <div class="card card-custom" [class]="nurse" style="max-width: 18rem; height: 15rem;">
                     <app-list-doctor [role]="role" [doctor]="employeeinformation"></app-list-doctor>
                 </div>
 
