@@ -4,7 +4,7 @@
     <p class="text revature-font-heavy">Phone: <span>{{patient.userProfile.phoneNumber}}</span></p>
     <p class="text">DOB: {{patient.userProfile.dateOfBirth | date: 'MM/dd/yyyy'}}</p>
     <p class="text">Address: {{patient.userProfile.address}}</p>
-    <p class="text">Doctor: <span></span></p>
+    <p class="text">Doctor: <span>{{patient.doctor?.userProfile?.firstName}} {{patient.doctor?.userProfile?.lastName}}</span></p>
 
     
     <div class="row">
