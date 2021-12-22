@@ -71,13 +71,14 @@ namespace WebAPI.Controllers
         {
             try
             {
+                // CHECK PLEASE
                 _repo.Update(p_patient);
                 _repo.Save();
                 return Ok();
             }
-            catch
+            catch (Exception e)
             {
-                //Log.Error(e.Message);
+                Log.Error(e.Message);
                 return BadRequest("Invalid patient update request");
             }
         }

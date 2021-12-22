@@ -80,6 +80,7 @@ namespace WebAPI.Controllers
         {
             try
             {
+                // CHECK PLEASE
                 var allergy = _repo.GetById(id);
 
                 _repo.Update(p_allergy);

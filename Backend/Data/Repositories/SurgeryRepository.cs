@@ -20,7 +20,6 @@ namespace Data
             {
                 throw new KeyNotFoundException("No result found");
             }
-
             return result;
         }
     }
