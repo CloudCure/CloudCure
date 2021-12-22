@@ -14,14 +14,18 @@ namespace WebAPI.Controllers
         //Dependency injection
         private readonly IRoleRepository _repo;
 
-        public RoleController(IRoleRepository p_repo){_repo = p_repo;}
+        public RoleController(IRoleRepository p_repo) { _repo = p_repo; }
 
         // GET: Role/Get/All
         [HttpGet("Get/All")]
-        public IActionResult GetAll(){
-            try{
+        public IActionResult GetAll()
+        {
+            try
+            {
                 return Ok(_repo.GetAll());
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 Log.Error(e.Message);
                 return BadRequest("Invalid get all request.");
             }
@@ -29,10 +33,14 @@ namespace WebAPI.Controllers
 
         // GET: Role/Get/Id
         [HttpGet("Get/{id}")]
-        public IActionResult GetById(int id){
-            try{
+        public IActionResult GetById(int id)
+        {
+            try
+            {
                 return Ok(_repo.GetById(id));
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 Log.Error(e.Message);
                 return BadRequest("Not a valid ID");
             }
@@ -40,12 +48,16 @@ namespace WebAPI.Controllers
 
         // POST: Role/Add
         [HttpPost("Add")]
-        public IActionResult Add([FromBody] Role p_role){
-            try{
+        public IActionResult Add([FromBody] Role p_role)
+        {
+            try
+            {
                 _repo.Create(p_role);
                 _repo.Save();
                 return Created("Role/Add", p_role);
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 Log.Error(e.Message);
                 return BadRequest("Invalid input.");
             }
@@ -53,12 +65,16 @@ namespace WebAPI.Controllers
 
         // PUT: Role/Update/Id
         [HttpPut("Update/{id}")]
-        public IActionResult Update(int id, [FromBody] Role p_role){
-            try{
+        public IActionResult Update(int id, [FromBody] Role p_role)
+        {
+            try
+            {
                 _repo.Update(p_role);
                 _repo.Save();
                 return Ok();
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 Log.Error(e.Message);
                 return BadRequest("Invalid input.");
             }
@@ -66,12 +82,16 @@ namespace WebAPI.Controllers
 
         // DELETE: Role/Delete/Id
         [HttpDelete("Delete/{id}")]
-        public IActionResult Delete([FromBody] Role p_role){
-            try{
+        public IActionResult Delete([FromBody] Role p_role)
+        {
+            try
+            {
                 _repo.Delete(p_role);
                 _repo.Save();
                 return Ok();
-            }catch (Exception e){
+            }
+            catch (Exception e)
+            {
                 Log.Error(e.Message);
                 return BadRequest("Invalid input.");
             }

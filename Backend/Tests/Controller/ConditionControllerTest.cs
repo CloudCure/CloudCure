@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Models.Diagnosis;
@@ -30,13 +27,29 @@ namespace Tests
             Assert.Equal(201, okResponse.StatusCode);
         }
 
-         [Fact]
+        [Fact]
+        public void CreateShouldThrowAnException()
+        {
+            var repository = new Mock<IRepository<Condition>>();
+            var controller = new ConditionController(repository.Object);
+
+            try
+            {
+                var result = controller.Add(null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void GetAllReturnsOKCondition()
         {
             var repository = new Mock<IRepository<Condition>>();
             var controller = new ConditionController(repository.Object);
-            
-            
+
+
             var condition = new Condition
             {
                 PatientId = 1,
@@ -49,13 +62,29 @@ namespace Tests
             Assert.Equal(200, okResponse.StatusCode);
 
         }
-           [Fact]
+        
+        [Fact]
+        public void GetAllShouldThrowAnException()
+        {
+            var repository = new Mock<IRepository<Condition>>();
+            var controller = new ConditionController(repository.Object);
+
+            try
+            {
+                var result = controller.GetAll();
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+        
+        [Fact]
         public void DeleteShouldReturnOKCondition()
         {
             var repository = new Mock<IRepository<Condition>>();
             var controller = new ConditionController(repository.Object);
-            
-            
+
             var condition = new Condition
             {
                 PatientId = 1,
@@ -67,15 +96,31 @@ namespace Tests
             var result = controller.Delete(condition);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
-
         }
-          [Fact]
+
+        [Fact]
+        public void DeleteShouldThrowAnException()
+        {
+            var repository = new Mock<IRepository<Condition>>();
+            var controller = new ConditionController(repository.Object);
+
+            try
+            {
+                var result = controller.Delete(new Condition());
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
+
+        [Fact]
         public void UpdateShouldReturnOKCondition()
         {
             var repository = new Mock<IRepository<Condition>>();
             var controller = new ConditionController(repository.Object);
-            
-            
+
+
             var condition = new Condition
             {
                 PatientId = 1,
@@ -83,10 +128,25 @@ namespace Tests
             };
 
             var entry = controller.Add(condition);
-            var result = controller.Update(1 , condition);
+            var result = controller.Update(1, condition);
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
-            
-         }
+        }
+
+        [Fact]
+        public void UpdateShouldThrowAnException()
+        {
+            var repository = new Mock<IRepository<Condition>>();
+            var controller = new ConditionController(repository.Object);
+
+            try
+            {
+                var result = controller.Update(1, null);
+            }
+            catch (Exception e)
+            {
+                Assert.NotNull(e);
+            }
+        }
     }
 }

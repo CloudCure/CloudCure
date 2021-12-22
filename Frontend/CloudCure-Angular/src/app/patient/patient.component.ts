@@ -145,7 +145,6 @@ export class PatientComponent implements OnInit {
         emergencyContactPhone: registerGroup.get("EmergencyContactPhone")?.value,
         roleId: 3,
       }
-
       let PatientInfo: Patient = {
         userProfile: UserInfo,
       }
@@ -173,7 +172,7 @@ export class PatientComponent implements OnInit {
                 console.log(conditionResponse);
               }
             )
-          })
+          });
 
 
           //Allergies
@@ -228,8 +227,7 @@ export class PatientComponent implements OnInit {
                 console.log(medicationResponse);
               }
             )
-          })
-
+          });
 
           this.PatientApi.currentPatientId = response.id;
           this.router.navigateByUrl("/verification");

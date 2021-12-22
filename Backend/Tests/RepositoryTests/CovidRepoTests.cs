@@ -34,6 +34,17 @@ namespace Tests
                 Assert.Equal(1, results.Id);
             }
         }
+         [Fact]
+        public void GetCovidVerifybyIdshouldReturnId()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                ICovidRepository repository = new CovidRepository(context);
+                var assessment = repository.GetById(1);
+
+                Assert.Equal(1, assessment.Id);
+            }
+        }
 
         public void Seed()
         {

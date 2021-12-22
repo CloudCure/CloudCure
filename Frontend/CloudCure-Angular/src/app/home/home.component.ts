@@ -66,8 +66,8 @@ export class HomeComponent implements OnInit {
   {
     let search = 
     {
-      firstName: patientSearchGroup.get("FirstName")?.value,
-      lastName: patientSearchGroup.get("LastName")?.value
+      firstName: patientSearchGroup.get("FirstName")?.value.toLowerCase(),
+      lastName: patientSearchGroup.get("LastName")?.value.toLowerCase()
     }
     let firstNameSearch = (search:any) => this.patientList.filter(({ userProfile }) => userProfile.firstName.toLowerCase().includes(search.firstName))
     let lastNameSearch = (search: any) => this.patientList.filter(({ userProfile }) => userProfile.lastName.toLowerCase().includes(search.lastName))
