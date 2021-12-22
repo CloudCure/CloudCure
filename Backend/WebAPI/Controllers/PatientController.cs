@@ -12,12 +12,10 @@ namespace WebAPI.Controllers
     {
         //Dependency injection
         private readonly IPatientRepository _repo;
-        private readonly IAllergyRepository _allergy;
 
         public PatientController(IPatientRepository p_repo, IAllergyRepository p_allergy)
         {
             _repo = p_repo;
-            _allergy = p_allergy;
         }
         // GET: Patient/All
         [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All

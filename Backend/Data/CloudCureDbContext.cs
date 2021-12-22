@@ -22,6 +22,5 @@ namespace Data
         public virtual DbSet<EmployeeInformation> Employee { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Diagnosis> Diagnoses { get; set; }
-        public object Diagnosis { get; internal set; }
     }
 }

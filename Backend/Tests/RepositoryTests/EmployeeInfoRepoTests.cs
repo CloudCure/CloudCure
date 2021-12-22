@@ -38,6 +38,17 @@ namespace Tests
             }
         }
 
+        [Fact]
+        public void GetInfoByIdShouldThrowAnException()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                
+                Assert.Throws<KeyNotFoundException>(() => repo.GetEmployeeInformationById(-1));
+            }
+        }
+
         /// <summary>
         /// Testing the VerifyEmail method to make sure it returns the expected result
         /// </summary>
@@ -158,7 +169,45 @@ namespace Tests
                 Assert.Equal(1, employee.Id);
             }
         }
-        public void Seed()
+
+        [Fact]
+        public void GetAllEmployeeShouldGetAll()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+
+                List<EmployeeInformation> allEmployees = repo.GetAllEmployee();
+                
+                Assert.Equal("ER", allEmployees[0].Specialization);
+            }
+        }
+
+        [Fact]
+        public void GetAllEmployeeShouldThrowAnException()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                context.Database.EnsureDeleted();
+                
+                Assert.Throws<KeyNotFoundException>(() => repo.GetAllEmployee());
+            }
+        }
+
+        [Fact]
+        public void VerifyEmailShouldThrowAnException()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                context.Database.EnsureDeleted();
+
+                Assert.Throws<KeyNotFoundException>(() => repo.VerifyEmail("fail!"));
+            }
+        }
+
+        void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {

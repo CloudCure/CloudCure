@@ -174,7 +174,7 @@ namespace Tests
             }
             catch (Exception e)
             {
-                Assert.True(e.Message.Contains("Not a valid ID"));
+                Assert.Equal("Not a valid ID", e.Message);
             }
         }
     }

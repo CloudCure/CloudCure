@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Collections.Generic;
 using System;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +33,19 @@ namespace Tests
                 Assert.Equal(1, results.Id);
             }
         }
-         [Fact]
+
+        [Fact]
+        public void GetCovidInfoForUserShouldThrowAnException()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                ICovidRepository repo = new CovidRepository(context);
+
+                Assert.Throws<KeyNotFoundException>(() => repo.GetCovidInfoForUser(-1));
+            }
+        }
+
+        [Fact]
         public void GetCovidVerifybyIdshouldReturnId()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -46,7 +57,7 @@ namespace Tests
             }
         }
 
-        public void Seed()
+        void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {
