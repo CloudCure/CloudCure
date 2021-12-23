@@ -12,23 +12,11 @@ namespace Data
         {
         }
 
-        public Assessment SearchByPatientId(int query)
+        public IEnumerable<Assessment> SearchByPatientId(int query)
         {
-            try
-            {
-                var result = base.GetAll()
-                    .First(i => i.PatientId.Equals(query));
-
-                return result;
-            }
-            catch (System.Exception)
-            {
-
-                throw new KeyNotFoundException("No result found");
-            }
-
-
-
+            var result = base.GetAll()
+                .Where(i => i.PatientId.Equals(query));
+            return result;
         }
     }
 }

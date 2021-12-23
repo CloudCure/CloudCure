@@ -37,7 +37,8 @@ namespace Tests.Diagnosis
             {
                 IAssessmentRepository repository = new AssessmentRepository(context);
 
-                Assert.Throws<KeyNotFoundException>(() => repository.SearchByPatientId(3));
+                                    Assert.Empty(repository.SearchByPatientId(-1));
+
             }
         }
         [Fact]
@@ -52,17 +53,18 @@ namespace Tests.Diagnosis
             }
         }
 
-        [Fact]
-        public void GetPatientSurgeryShouldThrowException()
-        {
-             using ( var context = new CloudCureDbContext(_options))
-                {
-                    IAssessmentRepository repository = new AssessmentRepository(context);
+        // [Fact]
+        // public void GetPatientAssessmentShouldThrowException()
+        // {
+        //      using ( var context = new CloudCureDbContext(_options))
+        //         {
+        //             IAssessmentRepository repository = new AssessmentRepository(context);
                     
-                    context.Database.EnsureDeleted();
-                    Assert.Throws<KeyNotFoundException>(() => repository.SearchByPatientId(-1));
-                }
-        }
+        //                                 Assert.Empty(repository.SearchByPatientId(-1));
+
+        //         }
+        // }
+        
         void Seed()
         {
             using (var context = new CloudCureDbContext(_options))

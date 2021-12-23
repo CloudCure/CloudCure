@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
             {
                 if (_repo.GetById(id) == null)
                     throw new Exception("Invalid Id");
-                return Ok(_repo.SearchByPatientId(id));
+                return Ok(_repo.GetById(id));
             }
             catch (Exception e)
             {

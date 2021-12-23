@@ -1,9 +1,10 @@
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Models;
 using Data;
 using Serilog;
-
+using System.Collections.Generic;
 
 namespace WebAPI
 {
@@ -21,6 +22,9 @@ namespace WebAPI
         {
             try
             {
+                List<EmployeeInformation> e = _repo.GetAll().ToList();
+                if (e.Count == 0)
+                    throw new Exception("No data found");
                 return Ok(_repo.GetAllEmployee());
             }
             catch (Exception e)
@@ -36,6 +40,8 @@ namespace WebAPI
         {
             try
             {
+                if (_repo.GetById(id) == null)
+                    throw new Exception("Invalid Id");
                 return Ok(_repo.GetEmployeeInformationById(id));
             }
             catch (Exception e)
@@ -51,6 +57,8 @@ namespace WebAPI
         {
             try
             {
+                if (p_email == null || _repo.VerifyEmail(p_email) == null)
+                    throw new Exception("Invalid email");
                 return Ok(_repo.VerifyEmail(p_email));
             }
             catch (Exception e)
@@ -66,6 +74,8 @@ namespace WebAPI
         {
             try
             {
+                if (p_employee == null)
+                    throw new Exception("Invalid data!");
                 _repo.Create(p_employee);
                 _repo.Save();
                 return Created("Employee/Add", p_employee);
@@ -84,6 +94,8 @@ namespace WebAPI
             try
             {
                 var topic = _repo.GetById(id);
+                if (topic == null)
+                    throw new Exception("Delete failed!");
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();
