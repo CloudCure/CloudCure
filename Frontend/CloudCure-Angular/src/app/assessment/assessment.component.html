@@ -143,6 +143,16 @@
           [canEdit]="true"
         ></body-clicker>
       </ng-container>
+      <br />
+      <h4>Chief Complaint</h4>
+      <label for="chiefComplaint"></label>
+      <textarea
+        id="chiefComplaint"
+        name="chiefComplaint"
+        class="form-control"
+        rows="3"
+        [(ngModel)]="patientAssesment.chiefComplaint"
+      ></textarea>
       <h4>History of present illness</h4>
       <label for="histOfPresentIllness"></label>
       <textarea
@@ -174,7 +184,7 @@
         [(ngModel)]="patientAssesment.painScale"
       />
     </div>
-
+    <br />
     <!---------------------------------------------------------------------------------------------------------------->
 
     <div>
