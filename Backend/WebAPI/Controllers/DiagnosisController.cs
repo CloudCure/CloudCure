@@ -85,7 +85,7 @@ namespace WebAPI.Controllers
           }
       }
 
-      [HttpGet("Get/GetPatientId{id}")]
+      [HttpGet("Get/GetPatientId/{id}")]
         public IActionResult GetByPatientIdWithNav(int id)
         {
             try
@@ -99,7 +99,7 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet("Get/GetAllPatient{id}")]
+        [HttpGet("Get/GetAllPatient/{id}")]
         public IActionResult GetAllDiagnosisByPatientIdWithNav(int id)
         {
             try
@@ -127,6 +127,7 @@ namespace WebAPI.Controllers
                 return BadRequest("Fail to Add diagnosis ");
             }
         }
+
 
     }
 }
