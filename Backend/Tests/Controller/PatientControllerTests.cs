@@ -261,7 +261,7 @@ namespace Tests
 
                 Patient p = newPatient();
 
-                context.Add(p);
+                context.Patients.Add(p);
                 context.SaveChanges();
             }
         }
