@@ -68,7 +68,9 @@ namespace Tests
             }
         }
 
-        void Seed()
+
+        private void Seed()
+
         {
             using (var context = new CloudCureDbContext(_options))
             {

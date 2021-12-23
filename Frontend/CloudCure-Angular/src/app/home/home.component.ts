@@ -3,7 +3,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
+import { EmployeeInformation } from '../AngularModels/EmployeeInformation';
 import { Patient } from '../AngularModels/Patient';
+import { UserProfile } from '../AngularModels/UserProfile';
 import { EmployeeService } from '../services/employee.service';
 import { PatientService } from '../services/patient.service';
 
@@ -20,16 +22,11 @@ export class HomeComponent implements OnInit {
   fullPatientList:Patient[] = [];
   patientList:Patient[] = [];
   role:number = 0;
+  user!:EmployeeInformation;
+
   constructor(public auth0: AuthService, @Inject(DOCUMENT) public document: Document, public router: Router, public employeeAPI: EmployeeService, private patientAPI: PatientService ) 
   { 
     console.log(this.patientAPI.currentPatientId);
-    this.patientAPI.GetAll().subscribe(
-      (response) => {
-        this.patientList = response;
-        this.fullPatientList = response;
-        console.log(this.patientList);
-      }
-    )
     // checks if user is currently logged into auth0.
     this.auth0.user$.subscribe(
       (user) => {
@@ -40,15 +37,33 @@ export class HomeComponent implements OnInit {
           this.employeeAPI.verifyEmployee(user.email).subscribe(
             (response) => 
             {
+              this.user = response;
 
-              console.log("hit");
               console.log(response);
               if (!response) {
                 // send them to register page if they arent currently a user in our db.
                 this.router.navigateByUrl("/register");
               }
               this.role = response.userProfile.roleId;
-
+              this.patientAPI.GetAll().subscribe(
+                (patientResponse) => {
+                  this.patientList = patientResponse;
+                  this.fullPatientList = patientResponse;
+                  if (this.role == 2)
+                  {
+                    console.log(this.patientList);
+                    for (let i = 0; i < this.patientList.length; i++) {
+                      if (this.patientList[i].doctor?.id == response.id)
+                      {
+                        let temp = this.patientList[i];
+                        this.patientList.splice(i,1);
+                        this.patientList.unshift(temp);
+                        this.patientAPI.patientCount++;
+                      }
+                    }
+                  }
+                }
+              )
             }
           )          
         }

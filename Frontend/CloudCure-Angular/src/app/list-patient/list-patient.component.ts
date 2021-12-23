@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Patient } from '../AngularModels/Patient';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserProfile } from '../AngularModels/UserProfile';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './list-patient.component.html',
   styleUrls: ['./list-patient.component.css']
 })
-export class ListPatientComponent implements OnInit {
+export class ListPatientComponent implements OnInit, OnDestroy {
 
   @Input()
   patient: Patient = {} as Patient;
@@ -21,16 +21,39 @@ export class ListPatientComponent implements OnInit {
   @Input()
   role: number = 0;
 
+  pairedDoctor:string = '';
+
   constructor(private router: Router, private patientAPI:PatientService) {
+
+  }
+  ngOnDestroy(): void {
+    this.patientAPI.patientCount = 0;
   }
 
   ngOnInit(): void {
+    if (this.patientAPI.patientCount > 0) {
+      this.pairedDoctor = "test"
+    }
+    this.patientAPI.patientCount--;
+
   }
 
   addProfile()
   {
     this.patientAPI.currentPatientId = this.patient.id;
     this.router.navigateByUrl("/diagnosis");
+  }
+
+  viewVitals()
+  {
+    this.patientAPI.currentPatientId = this.patient.id;
+    this.router.navigateByUrl("/diagnosis-vitals");
+  }
+
+  viewAssessments()
+  {
+    this.patientAPI.currentPatientId = this.patient.id;
+    this.router.navigateByUrl("/assessment");
   }
 
   viewProfile()

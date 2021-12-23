@@ -24,19 +24,18 @@ export class AssessmentComponent implements OnInit {
 
   //patientAssessment
   patientAssesment: Assessment = {
-    PatientId: 1,
-    ChiefComplaint: '',
+    patientId: 1,
+    chiefComplaint: '',
 
-    HistoryOfPresentIllness: '',
+    historyOfPresentIllness: '',
 
-    PainAssessment: '',
-    PainScale: 0,
+    painAssessment: '',
+    painScale: 0,
   };
 
   constructor(
     private patientService: AssessmentService,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private route: ActivatedRoute //private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +50,13 @@ export class AssessmentComponent implements OnInit {
   }
 
   //Add assessment
+  AddAsssessment() {
+    this.patientService.Add(this.patientAssesment).subscribe((response) => {
+      console.log(response);
+    });
+  }
+
+  /*
   AddAsssessment() {
     this.patientService.Add(this.patientAssesment).subscribe(
       (response) => {
@@ -71,6 +77,7 @@ export class AssessmentComponent implements OnInit {
       }
     );
   }
+  */
 
   /*
   //Delete Assessment
@@ -123,7 +130,7 @@ export class AssessmentComponent implements OnInit {
   }
 
   submitClicked() {
-    this.patientAssesment.ChiefComplaint = this.clickedPartsConverter();
+    this.patientAssesment.chiefComplaint = this.clickedPartsConverter();
     console.log(this.patientAssesment);
     this.AddAsssessment();
   }
