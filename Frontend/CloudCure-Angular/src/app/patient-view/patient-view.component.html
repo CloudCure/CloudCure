@@ -9,7 +9,7 @@
           <p>{{PatientName}}</p>
         </div>
         <div class="col-md-4"><h4>Date Of Birth</h4>
-          <p>{{DateOfBirth}}</p>
+          <p>{{DateOfBirth | date: 'MM/dd/yyyy'}}</p>
         </div>
         <div class="col-md-4"><h4>Contact Number</h4>
           <p>{{PatientPhone}}</p>
@@ -73,6 +73,7 @@
     <div class="content">
       <div class="content-title">
         <button (click)="showHistory()">Show</button>
+        <button class="nice-button" (click)="vitalsPage()">Add Vitals</button>
         <h1>Vitals History</h1>
       </div>
       <div class="row">
@@ -106,6 +107,7 @@
     <div class="content">
       <div class="content-title">
         <button (click)="showAssessment()">Show</button>
+        <button class="nice-button" (click)="assessmentsPage()">Add Assessments</button>
         <h1>Assessments</h1>
       </div>
       <div class="row">

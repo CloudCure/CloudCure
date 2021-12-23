@@ -7,10 +7,8 @@ namespace Data
 
     public class AllergyRepository : Repository<Allergy>, IAllergyRepository
     {
-        readonly CloudCureDbContext repository;
         public AllergyRepository(CloudCureDbContext context) : base(context)
         {
-            repository = context;
         }
 
         public IEnumerable<Allergy> SearchByAllergy(string query)

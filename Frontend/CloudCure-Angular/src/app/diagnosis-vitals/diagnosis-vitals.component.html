@@ -15,6 +15,14 @@
         <div id="form">
 
           <form [formGroup] = "vitalsGroup">
+            <label>Diagnosis</label>
+            <select formControlName="Date" class="form-select" aria-label="Default select example">
+              <option value="null" disabled>Select New or Previous Assessment Diagnosis</option>
+              <option [value]="date"selected>New Vitals Diagnosis - <span>{{date | date: 'MM/dd/yyyy'}}</span></option>
+              <option *ngFor="let a of patient.assessments; let i = index;" [value]="a.id">Date: {{a.encounterDate | date: 'MM/dd/yyyy'}}, ID: {{a.id}}</option>
+            </select>
+            <br />
+
           <div class="row">
 
               <label>Blood Pressure (mmHg)</label>
@@ -51,19 +59,25 @@
                   <label>Weight (lbs.)</label>
                   <input type="number" formControlName = "Weight" class="form-control" placeholder="Weight...">
               </div>
-               
+                  
                   <br>
 
           </div>
           <br>
-          <button type="submit" class="btn btn-dark center width-150px" (click)="RegisterVitals(vitalsGroup)">Submit</button>
-          <br/>
-          <button class="btn btn-dark width-150px" (click)="PatientProfile()">Return To Profile</button>
-          <button style="float: right;" class="btn btn-dark width-150px" (click)="Assessments()">Assessments</button>
+          <ng-container *ngIf="OurBoolean; else theBestProfile;">
+            <button (click)="RegisterVitals(vitalsGroup)" class="btn btn-dark center width-150px">Submit</button>
+          </ng-container>
+          <ng-template #theBestProfile>
+            <br/>
+            <button class="btn btn-dark width-150px" (click)="PatientProfile()">Return To Profile</button>
+            <button style="float: right;" class="btn btn-dark width-150px" (click)="Assessments()">Assessments</button>
+          </ng-template>         
           </form>
+          
         </div>
       </div>
 
     </div>
   </div>
+  <br />
 </body>

@@ -2,6 +2,7 @@ import { Assessment } from './../AngularModels/Assessment';
 import { UserProfile } from './../AngularModels/UserProfile';
 import { Component, OnInit, Input } from '@angular/core';
 import { PatientService } from '../services/patient.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-view',
@@ -34,7 +35,7 @@ export class PatientViewComponent implements OnInit {
   viewHistory: boolean = false;
   viewAssessment: boolean = false;
 
-  constructor(private patientApi: PatientService) {
+  constructor(private patientApi: PatientService, private router: Router) {
     //1 will be changed later to a dynamic patient number
     this.patientApi.GetById(1).subscribe(response => {
       console.log("accessed patient")
@@ -59,6 +60,18 @@ export class PatientViewComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  vitalsPage()
+  {
+    this.patientApi.currentPatientId = this.PatientId;
+    this.router.navigateByUrl("/diagnosis-vitals");
+  }
+
+  assessmentsPage()
+  {
+    this.patientApi.currentPatientId = this.PatientId;
+    this.router.navigateByUrl("/assessment");
   }
 
   showConditions()

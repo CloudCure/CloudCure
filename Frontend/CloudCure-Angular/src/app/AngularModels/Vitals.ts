@@ -1,7 +1,7 @@
 export interface Vitals
 {
     VitalsId?:       number;
-    PatientId:       number;
+    PatientId:       number|undefined;
     systolic:        number;
     diastolic:       number;
     oxygenSat:       number;
@@ -10,5 +10,6 @@ export interface Vitals
     respiratoryRate: number;
     height:          number;
     weight:          number;
-    encounterDate?:  Date;
+    encounterDate?:  string;
+    id?: number;
 }

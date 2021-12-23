@@ -14,7 +14,6 @@ namespace Data
         /// <returns>EmployeeInformation object | throws KeyNotFoundException if user ID is not found</returns>
         EmployeeInformation GetEmployeeInformationById(int p_id);
 
-        ///todo
         List<EmployeeInformation> GetAllEmployee();
 
         /// <summary>
