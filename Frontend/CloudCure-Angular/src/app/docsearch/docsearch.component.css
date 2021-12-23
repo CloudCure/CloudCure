@@ -41,7 +41,8 @@
 
 .card-custom {
   margin: 5px;
-  border: 2px solid white;
+  border: 1px solid white;
+  box-shadow: 0 0px 8px rgba(255, 255, 255, 0);
 }
 
 .patient-text {
@@ -54,5 +55,6 @@
 
 .nurseSelect:hover {
   cursor: pointer;
-  border: 2px solid #FCB414;
+  border: 1px solid #FCB414;
+  box-shadow: 0 0px 8px #FCB414;
 }
