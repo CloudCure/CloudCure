@@ -113,6 +113,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (p_vitals == null)
+                    throw new Exception("Delete failed!");
                 _repo.Delete(p_vitals);
                 _repo.Save();
                 return Ok();
