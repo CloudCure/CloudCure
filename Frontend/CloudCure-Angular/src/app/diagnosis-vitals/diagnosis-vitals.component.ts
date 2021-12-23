@@ -108,6 +108,7 @@ export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
         respiratoryRate: vitalsGroup.get("RespiratoryRate")?.value,
         height:          vitalsGroup.get("Height")?.value,
         weight:          vitalsGroup.get("Weight")?.value,
+        encounterDate:   vitalsGroup.get("Date")?.value
       }
 
       // logs if valid

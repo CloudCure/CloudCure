@@ -1,31 +1,32 @@
 .coordinates-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-  
-    .area {
-      position: absolute;
-      cursor: pointer;
-      transition: all 0.1s;
-      &:hover{
-        border: 2px solid lightgray;
-        box-shadow: 0 0px 5px darkgray;
-      }
-    }
-    .area-clicked {
   position: absolute;
-  cursor: pointer;
-  border: 2px solid lightgray;
-  box-shadow: 0 0px 5px darkgray;
-}
-  }
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   
-  #image-container {
-    margin: auto;
-    position: relative;
+  .area {
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.1s;
+    &:hover{
+      border: 1px solid #FCB414;
+      box-shadow: 0 0px 8px #FCB414;
+    }
   }
+  .area-clicked {
+    position: absolute;
+    cursor: pointer;
+    border: 1px solid #FCB414;
+    box-shadow: 0 0px 8px #FCB414;
+    background-color: #fcb2148e;
+  }
+}
+  
+#image-container {
+  margin: auto;
+  position: relative;
+}
 
 
 

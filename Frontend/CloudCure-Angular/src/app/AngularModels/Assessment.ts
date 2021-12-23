@@ -1,6 +1,6 @@
 export interface Assessment {
   id?: number;
-  patientId: number;
+  patientId: number|undefined;
   chiefComplaint: string;
   historyOfPresentIllness: string;
   painAssessment?: string;
