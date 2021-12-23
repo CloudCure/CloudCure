@@ -82,3 +82,11 @@ margin-left: auto;
 margin-right: auto;
 }
 
+.card-custom {
+margin: 5px;
+}
+
+.test {
+  border: 1px solid #FCB414;
+  box-shadow: 0 0px 8px #FCB414;
+}
