@@ -30,8 +30,6 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddJsonOptions(x =>
-                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             services.AddDbContext<CloudCureDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("database")));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEmployeeInformationRepository, EmployeeInformationRepository>();
