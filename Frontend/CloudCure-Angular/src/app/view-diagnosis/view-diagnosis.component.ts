@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Diagnosis } from '../AngularModels/Diagnosis';
 import { DiagnosisService } from '../services/diagnosis.service';
+import { PatientService } from '../services/patient.service';
 
 @Component({
   selector: 'app-view-diagnosis',
@@ -9,18 +11,20 @@ import { DiagnosisService } from '../services/diagnosis.service';
 })
 export class ViewDiagnosisComponent implements OnInit {
 
-  constructor(private DiagnosisApi : DiagnosisService) { }
+  constructor(private DiagnosisApi : DiagnosisService, private PatientApi : PatientService) { }
+
+
 
   doctorDiagnosis:FormGroup = new FormGroup({
     diagnosis: new FormControl("", Validators.required),
     treatment: new FormControl("", Validators.required),
-    EncounterDate: new FormControl("", Validators.required),
-    Patient: new FormControl("", Validators.required),
-    vitals: new FormControl("", Validators.required),
-    Assessment: new FormControl("", Validators.required),
-    DoctorDiagnosis: new FormControl("", Validators.required),
-    RecommendedTreatment: new FormControl("", Validators.required),
-    IsFinalized: new FormControl("", Validators.required)
+    EncounterDate: new FormControl(""),
+    Patient: new FormControl("Tim"),
+    vitals: new FormControl("Healthy"),
+    Assessment: new FormControl("Good"),
+    DoctorDiagnosis: new FormControl("Cool"),
+    RecommendedTreatment: new FormControl("Yoga"),
+    IsFinalized: new FormControl(true)
   })
   get diagnosis() {return this.doctorDiagnosis.get("diagnosis");}
   get treatment() {return this.doctorDiagnosis.get("treatment");}
@@ -41,18 +45,15 @@ export class ViewDiagnosisComponent implements OnInit {
   
     if (doctorDiagnosis.valid)
     {
-      let diagnosis =
-      {
-        diagnosis: doctorDiagnosis.get("diagnosis")?.value,
-        treatment: doctorDiagnosis.get("treatment")?.value,
-        EncounterDate : doctorDiagnosis.get("EncounterDate")?.value,
-        Patient : doctorDiagnosis.get("Patient")?.value,
-        vitals : doctorDiagnosis.get("vitals")?.value,
-        Assessment : doctorDiagnosis.get("Assessment")?.value,
-        DoctorDiagnosis : doctorDiagnosis.get("DoctorDiagnosis")?.value,
-        RecommendedTreatment : doctorDiagnosis.get("RecommendedTreatment")?.value,
-        IsFinalized : doctorDiagnosis.get("IsFinalized")?.value
-      }
+      let diagnosis : Diagnosis = {} as Diagnosis
+      
+        diagnosis.DoctorDiagnosis =  doctorDiagnosis.get("diagnosis")?.value,
+        diagnosis.RecommendedTreatment = doctorDiagnosis.get("treatment")?.value,
+        diagnosis.Patient!.id = this.PatientApi.currentPatientId,
+        //diagnosis.vitals = doctorDiagnosis.get("vitals")?.value,
+        //diagnosis.Assessment = doctorDiagnosis.get("Assessment")?.value,
+        diagnosis.IsFinalized = doctorDiagnosis.get("IsFinalized")?.value
+      
       console.log(diagnosis);
       this.DiagnosisApi.Add(diagnosis).subscribe(
         (response) => {
