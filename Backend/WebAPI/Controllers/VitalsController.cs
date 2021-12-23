@@ -1,8 +1,10 @@
+using System.Linq;
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using Data;
 using Serilog;
+using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
@@ -21,6 +23,9 @@ namespace WebAPI.Controllers
         {
             try
             {
+                List<Vitals> v = _repo.GetAll().ToList();
+                if (v.Count == 0)
+                    throw new Exception("No data found");
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
@@ -36,6 +41,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (_repo.GetById(id) == null)
+                    throw new Exception("Invalid Id");
                 return Ok(_repo.GetById(id));
             }
             catch (Exception e)
@@ -51,6 +58,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (_repo.SearchByPatientId(id) == null)
+                    throw new Exception("Invaild Id");
                 return Ok(_repo.SearchByPatientId(id));
             }
             catch (Exception e)
@@ -66,6 +75,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (p_vitals == null)
+                    throw new Exception("Invalid data!");
                 _repo.Create(p_vitals);
                 _repo.Save();
                 return Created("Vitals/Add", p_vitals);
@@ -83,6 +94,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (_repo.GetById(id) == null)
+                    throw new Exception("Update failed!");
                 _repo.Update(p_vitals);
                 _repo.Save();
                 return Ok();
