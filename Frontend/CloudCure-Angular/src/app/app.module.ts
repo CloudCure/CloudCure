@@ -35,6 +35,7 @@ import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.componen
 import { VitalsviewComponent } from './vitalsview/vitalsview.component';
 import { ViewConditionsComponent } from './view-conditions/view-conditions.component';
 import { ViewAssessmentsComponent } from './view-assessments/view-assessments.component';
+import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/finalized-diagnosis-view.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ViewAssessmentsComponent } from './view-assessments/view-assessments.co
     DiagnosisVitalsComponent,
     AssessmentComponent,
     TextBoxComponent,
+    FinalizedDiagnosisViewComponent,
     // patientdiagnosis,
     DiagnosisVitalsComponent,
     VerificationComponent,
@@ -64,6 +66,7 @@ import { ViewAssessmentsComponent } from './view-assessments/view-assessments.co
     ViewDiagnosisComponent,
     ViewConditionsComponent,
     ViewAssessmentsComponent,
+    FinalizedDiagnosisViewComponent,
   ],
 
   imports: [
@@ -128,6 +131,7 @@ import { ViewAssessmentsComponent } from './view-assessments/view-assessments.co
         path: 'patient-view',
         component: PatientViewComponent /*canActivate:[AuthGuardService]*/,
       },
+      { path: 'finalized-diagnosis-view', component: FinalizedDiagnosisViewComponent },
       { path: 'view-conditions', component: ViewConditionsComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'search', component: DocsearchComponent },
