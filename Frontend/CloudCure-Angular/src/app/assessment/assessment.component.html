@@ -29,23 +29,37 @@
           <body-clicker class="translate-right" (onClick)="getClick($event)" [canEdit]="true"></body-clicker>
         </ng-container>
 
-      
-      <div class="row">
-        <label [class]="HideStuff">History of present illness</label>
-        <textarea formControlName="history" id="historyOfPresentIllness" name="historyOfPresentIllness"
-          class="form-control bodyclickerstuff" rows="3">
-              </textarea>
-      </div>
+<div class="textform">
+  <h3>Assessment Form</h3>
+  <form #userForm="ngForm">
+    {{ patientAssesment | json }}
+    <div class="form-group">
+      <h3 (click)="showBodyClicker = !showBodyClicker">Show Bodyclicker</h3>
+      <ng-container *ngIf="showBodyClicker">
+        <body-clicker
+          (onClick)="getClick($event)"
+          [canEdit]="true"
+        ></body-clicker>
+      </ng-container>
       <br />
-      
-      <div class="row">
-        <label>Pain assessment</label>
-        <textarea formControlName="painAssessment" id="painAssessment" name="painAssessment"
-          class="form-control bodyclickerstuff" rows="3">
-              </textarea>
-      </div>
-      <br />
-      
+      <h4>Chief Complaint</h4>
+      <label for="chiefComplaint"></label>
+      <textarea
+        id="chiefComplaint"
+        name="chiefComplaint"
+        class="form-control"
+        rows="3"
+        [(ngModel)]="patientAssesment.chiefComplaint"
+      ></textarea>
+      <h4>History of present illness</h4>
+      <label for="histOfPresentIllness"></label>
+      <textarea
+        id="historyOfPresentIllness"
+        name="historyOfPresentIllness"
+        class="form-control"
+        rows="3"
+        [(ngModel)]="patientAssesment.historyOfPresentIllness"
+      ></textarea>
 
       
         <label>Pain scale</label>
@@ -55,6 +69,7 @@
         <button class="btn btn-primary center" (click)="onSubmit(assessmentGroup)">Submit</button>
       </div>
     </div>
+
   </form>
 
   <br />
