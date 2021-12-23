@@ -53,7 +53,9 @@ namespace Tests
             {
                 IAllergyRepository repo = new AllergyRepository(context);
 
-                Assert.Throws<KeyNotFoundException>(() => repo.SearchByPatientId(-1));
+                Action action = () => repo.SearchByPatientId(-1);
+                var caughtException = Assert.Throws<KeyNotFoundException>(action);
+                Assert.Equal("No result found", caughtException.Message);
             }
         }
 
