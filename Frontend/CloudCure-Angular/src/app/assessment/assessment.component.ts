@@ -21,6 +21,7 @@ export class AssessmentComponent implements OnInit {
   pAssessment: Assessment[] = [];
   showBodyClicker: boolean = true;
   messageService: any;
+  HideStuff: string="top-margin";
 
   //patientAssessment
   patientAssesment: Assessment = {
@@ -47,6 +48,18 @@ export class AssessmentComponent implements OnInit {
       PainScale: [''],
     });
     */
+  }
+
+  show()
+  {
+    this.showBodyClicker = !this.showBodyClicker;
+    if (this.HideStuff === "top-margin")
+    {
+      this.HideStuff = "";
+    }
+    else{
+      this.HideStuff = "top-margin";
+    }
   }
 
   //Add assessment

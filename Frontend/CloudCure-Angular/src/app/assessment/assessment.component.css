@@ -6,3 +6,111 @@
 #button {
   margin-left: 8px;
 }
+
+.showBodyClicker {
+  cursor: pointer;
+}
+.showBodyClicker:hover {
+  background-color: rgb(115, 165, 194);
+  border-color: rgb(115, 165, 194);
+  filter: brightness(90%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body{
+  padding: 0;
+  margin: 0;
+}
+
+.header {
+  padding: 60px;
+  text-align: center;
+  background: rgb(115, 165, 194);
+  color: white;
+  font-size: 100px;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  padding: 50px;
+}
+
+.add {
+  background-color: rgb(115, 165, 194);
+  border-color: rgb(115, 165, 194);
+  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 1vw;
+}
+
+.add:hover {
+background-color: rgb(115, 165, 194);
+border-color: rgb(115, 165, 194);
+filter: brightness(90%);
+}
+
+.subtract {
+background-color: #F26925;
+border-color: #F26925;
+}
+
+.subtract:hover {
+background-color: #F26925;
+border-color: #F26925;
+filter: brightness(90%);
+}
+
+.title-btn {
+display: flex;
+}
+
+.moreSpace {
+  margin-bottom: 0.5rem;
+}
+
+.overThere {
+  text-align: center;
+  margin: auto;
+  margin-left: 15rem;
+
+}
+
+.center {
+  margin: 0 auto;
+  display: block;
+}
+
+.width-150px{
+  width: 150px;
+}
+
+.container {
+  height: 100vh;
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  width: 50%;
+  height: 100%;
+  /* padding-top: 75px; */
+}
+
+
+.bodyclickerstuff {
+  margin: auto;
+}
+
+.translate-right {
+  position: absolute;
+  left: 50%;
+  transform: translatex(-50%);
+}
+
+.top-margin {
+  margin-top: 600px;
+}
+

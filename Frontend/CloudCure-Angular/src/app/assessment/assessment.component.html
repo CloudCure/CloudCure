@@ -131,24 +131,28 @@
 </div>-->
 
 <!---------------------------------------------------------------------------------------------------------------->
-<div class="textform">
-  <h3>Assessment Form</h3>
+<body>
+<!-- <div class="textform"> -->
+  <div class="header">
+    <h1>ASSESSMENT FORM</h1>
+  </div>
   <form #userForm="ngForm">
-    {{ patientAssesment | json }}
-    <div class="form-group">
-      <h3 (click)="showBodyClicker = !showBodyClicker">Show Bodyclicker</h3>
+    <div class="form-group container">
+      <button class="showBodyClicker center"(click)="show()">Show Bodyclicker</button>
       <ng-container *ngIf="showBodyClicker">
         <body-clicker
+          class="translate-right"
           (onClick)="getClick($event)"
           [canEdit]="true"
         ></body-clicker>
       </ng-container>
-      <h4>History of present illness</h4>
+
+      <h4 class="" [class]="HideStuff">History of present illness</h4>
       <label for="histOfPresentIllness"></label>
-      <textarea
+      <textarea 
         id="historyOfPresentIllness"
         name="historyOfPresentIllness"
-        class="form-control"
+        class="form-control bodyclickerstuff"
         rows="3"
         [(ngModel)]="patientAssesment.historyOfPresentIllness"
       ></textarea>
@@ -158,12 +162,12 @@
       <textarea
         id="painAssessment"
         name="painAssessment"
-        class="form-control"
+        class="form-control bodyclickerstuff"
         rows="3"
         [(ngModel)]="patientAssesment.painAssessment"
       ></textarea>
     </div>
-    <div>
+    <div class="container">
       <h4>Pain scale</h4>
       <input
         name="painScale"
@@ -178,10 +182,11 @@
     <!---------------------------------------------------------------------------------------------------------------->
 
     <div>
-      <button class="btn btn-primary" (click)="submitClicked()">Submit</button>
+      <button class="btn btn-primary center" (click)="submitClicked()">Submit</button>
     </div>
   </form>
-</div>
+<!-- </div> -->
+</body>
 <br />
 <br />
 <br />
