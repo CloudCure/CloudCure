@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
+
+
     public class DiagnosisRepository : Repository<Diagnosis>, IDiagnosisRepository
     {
         readonly CloudCureDbContext repository;
@@ -16,35 +18,24 @@ namespace Data
 
         public Diagnosis GetByPatientIdWithNav(int query)
         {
-            var patient = repository.Diagnoses
-                .Include(p => p.Vitals)
-                .Include(p => p.Patient)
-                .Include(p => p.Patient.UserProfile)
-                .Include(c => c.Patient.Allergies)
-                .Include(c => c.Patient.Conditions)
-                .Include(c => c.Patient.Surgeries)
-                .Include(c => c.Patient.CurrentMedications)
-                .Include(v => v.Patient.VitalHistory)
-                .Include(p => p.Assessment)
-                .Single(p => p.Patient.Id.Equals(query));
+            var diagnosis = repository.Diagnoses
+            .Include(d => d.Vitals)
+            .Include(d => d.Assessment)
+                .Single(d => d.Patient.Id.Equals(query));
 
-            return patient;
+            return diagnosis;
+
         }
 
         public IEnumerable<Diagnosis> GetAllDiagnosisByPatientIdWithNav(int query)
         {
-            var patient = repository.Diagnoses
-                .Include(p => p.Vitals)
-                .Include(p => p.Patient)
-                .Include(p => p.Patient.UserProfile)
-                .Include(c => c.Patient.Allergies)
-                .Include(c => c.Patient.Conditions)
-                .Include(c => c.Patient.Surgeries)
-                .Include(c => c.Patient.CurrentMedications)
-                .Include(v => v.Patient.VitalHistory)
-                .Include(p => p.Assessment);
+            var diagnoses = repository.Diagnoses
+                .Include(d => d.Vitals)
+                .Include(d => d.Assessment)
+               .Where(p => p.Patient.Id.Equals(query));
 
-            return patient;
+            return diagnoses;
+
         }
     }
 }

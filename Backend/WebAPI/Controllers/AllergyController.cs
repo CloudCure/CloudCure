@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("No results found");
             }
         }
 
