@@ -94,7 +94,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                if (_repo.GetById(id) == null)
+                if (_repo.GetById(id) == null || p_vitals == null)
                     throw new Exception("Update failed!");
                 _repo.Update(p_vitals);
                 _repo.Save();
