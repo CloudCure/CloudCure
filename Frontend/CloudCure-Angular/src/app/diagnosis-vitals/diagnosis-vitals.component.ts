@@ -32,7 +32,7 @@ export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
     Weight:          new FormControl("", Validators.required),
   });
 
-  Joshua: boolean = true;
+  OurBoolean: boolean = true;
   
   constructor(private VitalsAPI:VitalsService, private PatientAPI:PatientService, private route: ActivatedRoute, private router: Router) { }
   
@@ -44,7 +44,7 @@ export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.VitalsAPI.submitButton; 
-    this.Joshua = this.VitalsAPI.submitButton
+    this.OurBoolean = this.VitalsAPI.submitButton
     // this way has worked in the past
     // depends on how we wish to implement Patient ID in the routing
     // this.patientId = Number(this.route.snapshot.paramMap.get("id"))
@@ -52,13 +52,13 @@ export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
 
   submit()
   {
-    this.Joshua = false;
+    this.OurBoolean = false;
     this.router.navigateByUrl("/profile");
   }
 
   submitOne()
   {
-    this.Joshua = false;
+    this.OurBoolean = false;
     this.router.navigateByUrl("/patient");
   }
 
@@ -80,7 +80,7 @@ export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
     // logs the form
     console.log("register complete")
     console.log(vitalsGroup)
-    this.Joshua = false;
+    this.OurBoolean = false;
 
     // checks to see if form is valid
     if (vitalsGroup.valid) {
