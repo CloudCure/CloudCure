@@ -56,10 +56,14 @@
 
           </div>
           <br>
-          <button type="submit" class="btn btn-dark center width-150px" (click)="RegisterVitals(vitalsGroup)">Submit</button>
-          <br/>
-          <button class="btn btn-dark width-150px" (click)="PatientProfile()">Return To Profile</button>
-          <button style="float: right;" class="btn btn-dark width-150px" (click)="Assessments()">Assessments</button>
+          <ng-container *ngIf="OurBoolean; else theBestProfile;">
+            <button (click)="RegisterVitals(vitalsGroup)" class="btn btn-dark center width-150px">Submit</button>
+          </ng-container>
+          <ng-template #theBestProfile>
+            <br/>
+            <button class="btn btn-dark width-150px" (click)="PatientProfile()">Return To Profile</button>
+            <button style="float: right;" class="btn btn-dark width-150px" (click)="Assessments()">Assessments</button>
+          </ng-template>         
           </form>
         </div>
       </div>
