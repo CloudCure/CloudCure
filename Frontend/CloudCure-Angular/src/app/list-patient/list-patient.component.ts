@@ -33,6 +33,18 @@ export class ListPatientComponent implements OnInit {
     this.router.navigateByUrl("/diagnosis");
   }
 
+  viewVitals()
+  {
+    this.patientAPI.currentPatientId = this.patient.id;
+    this.router.navigateByUrl("/diagnosis-vitals");
+  }
+
+  viewAssessments()
+  {
+    this.patientAPI.currentPatientId = this.patient.id;
+    this.router.navigateByUrl("/assessment");
+  }
+
   viewProfile()
   {
     this.patientAPI.currentPatientId = this.patient.id;
