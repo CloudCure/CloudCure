@@ -23,14 +23,17 @@ namespace Tests.Controller
         [Fact]
         public void CreateReturnsOkVitals()
         {
-            var repository = new Mock<IVitalsRepository>();
-            var controller = new VitalsController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IVitalsRepository repo = new VitalsRepository(context);
+                var controller = new VitalsController(repo);
 
-            var vital = getVitals();
+                var v = getVitals();
 
-            var result = controller.Add(vital);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(201, okResponse.StatusCode);
+                var result = controller.Add(v);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(201, response.StatusCode);
+            }
         }
 
         [Fact]
@@ -111,7 +114,7 @@ namespace Tests.Controller
         }
 
         [Fact]
-        public void GetAllShouldGiveBadResponse()
+        public void GetAllShouldGiveBadRequest()
         {
             var repository = new Mock<IVitalsRepository>();
             var controller = new VitalsController(repository.Object);
@@ -122,7 +125,7 @@ namespace Tests.Controller
         }
 
         [Fact]
-        public void GetByIdShouldGiveBadResponse()
+        public void GetByIdShouldGiveBadRequest()
         {
             var repository = new Mock<IVitalsRepository>();
             var controller = new VitalsController(repository.Object);
@@ -136,7 +139,7 @@ namespace Tests.Controller
         }
 
         [Fact]
-        public void GetByPatientIdShouldGiveBadResponse()
+        public void GetByPatientIdShouldGiveBadRequest()
         {
             var repository = new Mock<IVitalsRepository>();
             var controller = new VitalsController(repository.Object);
@@ -150,7 +153,7 @@ namespace Tests.Controller
         }
 
         [Fact]
-        public void UpdateShouldGiveBadResponse()
+        public void UpdateShouldGiveBadRequest()
         {
             var repository = new Mock<IVitalsRepository>();
             var controller = new VitalsController(repository.Object);
@@ -161,7 +164,7 @@ namespace Tests.Controller
         }
 
         [Fact]
-        public void DeleteShouldGiveBadResponse()
+        public void DeleteShouldGiveBadRequest()
         {
             using (var context = new CloudCureDbContext(_options))
             {
@@ -177,7 +180,7 @@ namespace Tests.Controller
         }
 
         [Fact]
-        public void CreateShouldGiveBadResponse()
+        public void CreateShouldGiveBadRequest()
         {
             using (var context = new CloudCureDbContext(_options))
             {
