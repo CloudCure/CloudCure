@@ -1,6 +1,7 @@
 export interface Vitals
 {
     VitalsId?:       number;
+    id?:                any;
     PatientId:       number;
     systolic:        number;
     diastolic:       number;

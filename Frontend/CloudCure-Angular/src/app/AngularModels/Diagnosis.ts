@@ -4,13 +4,12 @@ import { Vitals } from "./Vitals";
 
 export interface Diagnosis
 {
-    id?: number
-    EncounterDate?: Date
-    Patient?: Patient
-    vitals?: Vitals
-    Assessment?: Assessment
-    DoctorDiagnosis?: String
-    RecommendedTreatment?: String
-    IsFinalized?: Boolean
+    id?: number;
+    assessment: Assessment
+    patient: Patient
+    doctorDiagnosis: string
+    isFinalized: boolean
+    recommendedTreatment: string
+    vitals: Vitals
 
 }

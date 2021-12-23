@@ -72,6 +72,7 @@ export class ListPatientComponent implements OnInit, OnDestroy {
   finalize()
   {
     //not sure what we do when we finalize?
+    this.patientAPI.currentPatientId = this.patient.id;
     this.router.navigateByUrl("/view-diagnosis");
   }
 }

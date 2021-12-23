@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class PatientViewComponent implements OnInit {
 
+  @Input() test: any
+
   patientExists: Boolean = true;
   //Patient Variables
   PatientId:          any;
@@ -37,7 +39,7 @@ export class PatientViewComponent implements OnInit {
 
   constructor(private patientApi: PatientService, private router: Router) {
     //1 will be changed later to a dynamic patient number
-    this.patientApi.GetById(1).subscribe(response => {
+    this.patientApi.GetById(this.patientApi.currentPatientId).subscribe(response => {
       console.log("accessed patient")
       console.log(response)
       this.patientExists = false;
