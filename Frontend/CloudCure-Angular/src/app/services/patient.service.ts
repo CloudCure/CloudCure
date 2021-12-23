@@ -15,6 +15,7 @@ export class PatientService {
   constructor(private http:HttpClient) {} 
   public currentPatientId: number | undefined = 0;
   public assigningDoctor: boolean = false;
+  public patientCount: number = 0;
 
   ////////////// Patient //////////////
   GetAll(){ 
