@@ -10,6 +10,8 @@ export class VitalsService {
   private endpoint: string = "https://cloudcure-api.azurewebsites.net/Vitals";
   constructor(public http:HttpClient) { }
 
+  public submitButton: boolean = true;
+
   ////////////// Vitals //////////////
 
   GetAll(){

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { VirtualAction } from 'rxjs';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './diagnosis-vitals.component.html',
   styleUrls: ['./diagnosis-vitals.component.css']
 })
-export class DiagnosisVitalsComponent implements OnInit {
+export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
 
   // patient ID should be a dynamic input that is recieved from somewhere else
   // I am using 2 for now since I know there is a patient ID of 2 in the DB
@@ -32,13 +32,37 @@ export class DiagnosisVitalsComponent implements OnInit {
     Weight:          new FormControl("", Validators.required),
   });
 
+  Joshua: boolean = true;
+  
   constructor(private VitalsAPI:VitalsService, private PatientAPI:PatientService, private route: ActivatedRoute, private router: Router) { }
+  
+  
+  
+  ngOnDestroy(): void {
+    this.VitalsAPI.submitButton = false;
+  }
 
   ngOnInit(): void {
+    this.VitalsAPI.submitButton; 
+    this.Joshua = this.VitalsAPI.submitButton
     // this way has worked in the past
     // depends on how we wish to implement Patient ID in the routing
     // this.patientId = Number(this.route.snapshot.paramMap.get("id"))
   }
+
+  submit()
+  {
+    this.Joshua = false;
+    this.router.navigateByUrl("/profile");
+  }
+
+  submitOne()
+  {
+    this.Joshua = false;
+    this.router.navigateByUrl("/patient");
+  }
+
+
 
   PatientProfile()
   {
@@ -56,6 +80,7 @@ export class DiagnosisVitalsComponent implements OnInit {
     // logs the form
     console.log("register complete")
     console.log(vitalsGroup)
+    this.Joshua = false;
 
     // checks to see if form is valid
     if (vitalsGroup.valid) {
