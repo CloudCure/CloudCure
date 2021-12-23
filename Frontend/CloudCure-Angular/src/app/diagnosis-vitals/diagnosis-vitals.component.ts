@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { VirtualAction } from 'rxjs';
 import { Patient } from '../AngularModels/Patient';
@@ -7,6 +7,7 @@ import { Vitals } from '../AngularModels/Vitals';
 import { PatientService } from '../services/patient.service';
 import { VitalsService } from '../services/vitals.service';
 import { Router } from '@angular/router';
+import { AssessmentService } from '../services/assessement.service';
 
 @Component({
   selector: 'diagnosis-vitals',
@@ -18,7 +19,7 @@ export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
   // patient ID should be a dynamic input that is recieved from somewhere else
   // I am using 2 for now since I know there is a patient ID of 2 in the DB
   // but it should change depending on what patient is being assessed
-  patientId:number = 2;
+  patientId:number|undefined = 0;
 
   // makes the form group for our vitals
   vitalsGroup:FormGroup = new FormGroup({
@@ -29,12 +30,17 @@ export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
     Temperature:     new FormControl("", Validators.required),
     RespiratoryRate: new FormControl("", Validators.required),
     Height:          new FormControl("", Validators.required),
-    Weight:          new FormControl("", Validators.required),
+    Weight:          new FormControl('', Validators.required),
+    Date: new FormControl(new Date().toISOString().split('T')[0], Validators.required)
   });
 
-  OurBoolean: boolean = true;
-  
-  constructor(private VitalsAPI:VitalsService, private PatientAPI:PatientService, private route: ActivatedRoute, private router: Router) { }
+  OurBoolean!: boolean;
+  patient!: Patient
+  date: string = new Date().toISOString().split('T')[0];
+  constructor(private VitalsAPI:VitalsService,private PatientAPI:PatientService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) 
+  {
+    
+  }
   
   
   
@@ -45,9 +51,17 @@ export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.VitalsAPI.submitButton; 
     this.OurBoolean = this.VitalsAPI.submitButton
+    this.OurBoolean = true;
     // this way has worked in the past
     // depends on how we wish to implement Patient ID in the routing
     // this.patientId = Number(this.route.snapshot.paramMap.get("id"))
+    this.patientId = this.PatientAPI.currentPatientId;
+    this.PatientAPI.GetById(this.patientId).subscribe(
+      (response) => {
+        console.log(response);
+        this.patient = response;
+      }
+    )
   }
 
   submit()
@@ -94,6 +108,7 @@ export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
         respiratoryRate: vitalsGroup.get("RespiratoryRate")?.value,
         height:          vitalsGroup.get("Height")?.value,
         weight:          vitalsGroup.get("Weight")?.value,
+        encounterDate:   vitalsGroup.get("Date")?.value
       }
 
       // logs if valid

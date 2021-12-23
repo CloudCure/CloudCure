@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
       StartDate: new FormControl("", Validators.required),//from EmployeeInformation model
       EducationDegree: new FormControl("", Validators.required),//from EmployeeInformation model
       RoomNumber: new FormControl("", Validators.required),//from EmployeeInformation model
-      UserRole: new FormControl("", Validators.required),// RoleId from UserProfile model
+    UserRole: new FormControl(1, Validators.required),// RoleId from UserProfile model
 
   });
   get FirstName() {return this.registerGroup.get("FirstName");}

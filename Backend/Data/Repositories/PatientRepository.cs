@@ -24,6 +24,7 @@ namespace Data
                     .Include(p => p.CurrentMedications)
                     .Include(p => p.Surgeries)
                     .Include(p => p.Allergies)
+                    .Include(p => p.VitalHistory)
                     .Include(p => p.UserProfile.CovidAssesments)
                     .Include(p => p.Doctor.UserProfile)
                     .Single(p => p.Id.Equals(query));
@@ -40,6 +41,7 @@ namespace Data
                     .Include(p => p.CurrentMedications)
                     .Include(p => p.Surgeries)
                     .Include(p => p.Allergies)
+                    .Include(p => p.VitalHistory)
                     .Include(p => p.UserProfile.CovidAssesments)
                     .Include(p => p.Doctor.UserProfile)
                     .Where(p => p.Id > 0);
