@@ -6,21 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-<<<<<<< HEAD
 
 
-=======
->>>>>>> b92ca5baf788915cc72a866f972115776ec89e42
     public class DiagnosisRepository : Repository<Diagnosis>, IDiagnosisRepository
     {
         readonly CloudCureDbContext repository;
-        readonly IPatientRepository patientRepository;
-        readonly IAssessmentRepository assessmentRepository;
-        public DiagnosisRepository(CloudCureDbContext context, IPatientRepository pcontext, IAssessmentRepository asscontext) : base(context)
+        public DiagnosisRepository(CloudCureDbContext context) : base(context)
         {
             repository = context;
-            patientRepository = pcontext;
-            assessmentRepository = asscontext;
         }
 
         public Diagnosis GetByPatientIdWithNav(int query)
