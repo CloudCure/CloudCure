@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Data;
 using Microsoft.AspNetCore.Builder;
@@ -29,6 +30,8 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             services.AddDbContext<CloudCureDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("database")));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEmployeeInformationRepository, EmployeeInformationRepository>();
@@ -38,6 +41,7 @@ namespace WebAPI
             services.AddScoped<IAllergyRepository, AllergyRepository>();
             services.AddScoped<IVitalsRepository, VitalsRepository>();
             services.AddScoped<IAssessmentRepository, AssessmentRepository>();
+            services.AddScoped<IDiagnosisRepository, DiagnosisRepository>();
             services.AddScoped(typeof(IRepository<Surgery>), typeof(Repository<Surgery>));
             services.AddScoped(typeof(IRepository<Condition>), typeof(Repository<Condition>));
             services.AddScoped(typeof(IRepository<Medication>), typeof(Repository<Medication>));

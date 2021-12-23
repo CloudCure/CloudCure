@@ -8,45 +8,45 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-   
+
 
     public class DiagnosisRepository : Repository<Diagnosis>, IDiagnosisRepository
     {
         readonly CloudCureDbContext repository;
-        public DiagnosisRepository(CloudCureDbContext context) : base(context)
+        readonly IPatientRepository patientRepository;
+        readonly IAssessmentRepository assessmentRepository;
+        public DiagnosisRepository(CloudCureDbContext context, IPatientRepository pcontext, IAssessmentRepository asscontext) : base(context)
         {
             repository = context;
+            patientRepository = pcontext;
+            assessmentRepository = asscontext;
         }
 
         public Diagnosis GetByPatientIdWithNav(int query)
         {
-            var patient = repository.Diagnoses
-               .Include(p => p.Vitals)
-               .Include(p => p.Patient)
-               .Include(c => c.Patient.Allergies)
-                .Include(c => c.Patient.Conditions)
-                .Include(c => c.Patient.Surgeries)
-                .Include(c => c.Patient.CurrentMedications)
-               .Include(p => p.Assessment)
-               .Single(p => p.Patient.Id.Equals(query));
+            var diagnosis = repository.Diagnoses
+            .Include(d => d.Vitals)
+            .Include(d => d.Assessment)
+                .Single(d => d.Patient.Id.Equals(query));
 
-            return patient;
+            var patient = repository.Patients
+                .Include(p => p.UserProfile)
+                .Single(p => p.Id.Equals(query));
+
+            diagnosis.Patient = patient;
+
+            return diagnosis;
 
         }
 
         public IEnumerable<Diagnosis> GetAllDiagnosisByPatientIdWithNav(int query)
         {
-            var patient = repository.Diagnoses
-               .Include(p => p.Vitals)
-               .Include(p => p.Patient)
-               .Include(c => c.Patient.Allergies)
-                .Include(c => c.Patient.Conditions)
-                .Include(c => c.Patient.Surgeries)
-                .Include(c => c.Patient.CurrentMedications)
-               .Include(p => p.Assessment)
+            var diagnoses = repository.Diagnoses
+                .Include(d => d.Vitals)
+                .Include(d => d.Assessment)
                .Where(p => p.Patient.Id.Equals(query));
 
-            return patient;
+            return diagnoses;
 
         }
     }
