@@ -14,8 +14,16 @@
         box-shadow: 0 0px 5px darkgray;
       }
     }
+    .area-clicked {
+  position: absolute;
+  cursor: pointer;
+  border: 2px solid lightgray;
+  box-shadow: 0 0px 5px darkgray;
+}
   }
   
   #image-container {
     position: relative;
   }
+
+

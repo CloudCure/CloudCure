@@ -5,9 +5,12 @@
       class="area"
       [ngStyle]="getAreaStyle(bodypart)"
       [title]="bodypart.name"
-      *ngFor="let bodypart of bodyparts"
+      *ngFor="let bodypart of bodyparts; let i = index"
       (click)="onAreaClick(bodypart)"
+      (click)="createBorder(i)"
+      [class]="test"
       (contextmenu)="onAreaEdit(bodypart)"
+      [id]="i"
     ></div>
   </div>
 </div>
