@@ -5,6 +5,7 @@ using Xunit;
 using WebAPI.Controllers;
 using Models;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Tests
 {
@@ -169,11 +170,11 @@ namespace Tests
 
             try
             {
-                var result = controller.GetById(1);
+                var result = controller.GetById(100);
             }
             catch (Exception e)
             {
-                Assert.NotNull(e);
+                Assert.True(e.Message.Contains("Not a valid ID"));
             }
         }
     }
