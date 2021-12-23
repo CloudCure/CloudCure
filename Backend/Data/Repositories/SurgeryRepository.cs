@@ -22,8 +22,6 @@ namespace Data
             }
 
             return result;
-
-
         }
     }
 }

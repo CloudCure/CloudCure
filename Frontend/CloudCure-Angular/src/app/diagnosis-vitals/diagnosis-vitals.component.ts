@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { VirtualAction } from 'rxjs';
@@ -6,13 +6,14 @@ import { Patient } from '../AngularModels/Patient';
 import { Vitals } from '../AngularModels/Vitals';
 import { PatientService } from '../services/patient.service';
 import { VitalsService } from '../services/vitals.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'diagnosis-vitals',
   templateUrl: './diagnosis-vitals.component.html',
   styleUrls: ['./diagnosis-vitals.component.css']
 })
-export class DiagnosisVitalsComponent implements OnInit {
+export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
 
   // patient ID should be a dynamic input that is recieved from somewhere else
   // I am using 2 for now since I know there is a patient ID of 2 in the DB
@@ -31,12 +32,46 @@ export class DiagnosisVitalsComponent implements OnInit {
     Weight:          new FormControl("", Validators.required),
   });
 
-  constructor(private VitalsAPI:VitalsService, private PatientAPI:PatientService, private route: ActivatedRoute) { }
+  OurBoolean: boolean = true;
+  
+  constructor(private VitalsAPI:VitalsService, private PatientAPI:PatientService, private route: ActivatedRoute, private router: Router) { }
+  
+  
+  
+  ngOnDestroy(): void {
+    this.VitalsAPI.submitButton = false;
+  }
 
   ngOnInit(): void {
+    this.VitalsAPI.submitButton; 
+    this.OurBoolean = this.VitalsAPI.submitButton
     // this way has worked in the past
     // depends on how we wish to implement Patient ID in the routing
     // this.patientId = Number(this.route.snapshot.paramMap.get("id"))
+  }
+
+  submit()
+  {
+    this.OurBoolean = false;
+    this.router.navigateByUrl("/profile");
+  }
+
+  submitOne()
+  {
+    this.OurBoolean = false;
+    this.router.navigateByUrl("/patient");
+  }
+
+
+
+  PatientProfile()
+  {
+    this.router.navigateByUrl("patient-view");
+  }
+
+  Assessments()
+  {
+    this.router.navigateByUrl("/assessment");
   }
 
   // function that runs on form submission
@@ -45,6 +80,7 @@ export class DiagnosisVitalsComponent implements OnInit {
     // logs the form
     console.log("register complete")
     console.log(vitalsGroup)
+    this.OurBoolean = false;
 
     // checks to see if form is valid
     if (vitalsGroup.valid) {

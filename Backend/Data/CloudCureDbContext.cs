@@ -5,10 +5,10 @@ using Models.Diagnosis;
 
 namespace Data
 {
-    public class CloudCureDbContext : DbContext 
+    public class CloudCureDbContext : DbContext
     {
-        public CloudCureDbContext(){}
-        public CloudCureDbContext(DbContextOptions<CloudCureDbContext> options) : base(options) {}
+        public CloudCureDbContext() { }
+        public CloudCureDbContext(DbContextOptions<CloudCureDbContext> options) : base(options) { }
 
         public virtual DbSet<Allergy> Allergies { get; set; }
         public virtual DbSet<Assessment> Assessments { get; set; }
@@ -19,8 +19,8 @@ namespace Data
         public virtual DbSet<Vitals> Vitals { get; set; }
         public virtual DbSet<CovidVerify> CovidAssessments { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<EmployeeInformation> Employee {get; set;}
-
+        public virtual DbSet<EmployeeInformation> Employee { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Diagnosis> Diagnoses { get; set; }
     }
 }
