@@ -23,12 +23,6 @@ namespace Data
             .Include(d => d.Assessment)
                 .Single(d => d.Patient.Id.Equals(query));
 
-            var patient = repository.Patients
-                .Include(p => p.UserProfile)
-                .Single(p => p.Id.Equals(query));
-
-            diagnosis.Patient = patient;
-
             return diagnosis;
 
         }
