@@ -12,7 +12,7 @@ namespace Data
         {
         }
 
-        public Assessment SearchByPatientId(int query)
+        public IEnumerable<Assessment> SearchByPatientId(int query)
         {
             try
             {
