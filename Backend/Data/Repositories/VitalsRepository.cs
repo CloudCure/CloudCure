@@ -8,10 +8,8 @@ namespace Data
 {
     public class VitalsRepository : Repository<Vitals>, IVitalsRepository
     {
-        readonly CloudCureDbContext repository;
         public VitalsRepository(CloudCureDbContext context) : base(context)
         {
-            repository = context;
         }
 
         public Vitals SearchByPatientId(int p_patientId)

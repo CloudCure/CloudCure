@@ -8,6 +8,6 @@ namespace Data
 {
     public interface ISurgeryRepository : IRepository<Surgery>
     {
-        IEnumerable<Surgery> SearchByPatientId(int p_patientId);
+        IEnumerable<Surgery> SearchByPatientId(int query);
     }
 }

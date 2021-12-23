@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                return Ok(_repo.SearchByPatientId(id));
+                return Ok(_repo.GetById(id));
             }
             catch (Exception e)
             {

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Models.Diagnosis;
@@ -46,10 +45,29 @@ namespace Tests
             }
         }
 
-        
+        [Fact]
+        public void SearchByConditionShouldThrowAnException()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IConditionRepository repo = new ConditionRepository(context);
 
+                Assert.Throws<KeyNotFoundException>(() => repo.SearchByCondition("fail"));
+            }
+        }
 
-         private void Seed()
+        [Fact]
+        public void SearchByPatientIdShouldThrowAnException()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IConditionRepository repo = new ConditionRepository(context);
+
+                Assert.Throws<KeyNotFoundException>(() => repo.SearchByPatientId(-1));
+            }
+        }
+
+        void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {

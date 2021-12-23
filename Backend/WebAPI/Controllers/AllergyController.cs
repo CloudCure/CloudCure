@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("No results found");
             }
         }
 
@@ -80,6 +80,7 @@ namespace WebAPI.Controllers
         {
             try
             {
+                // CHECK PLEASE
                 var allergy = _repo.GetById(id);
 
                 _repo.Update(p_allergy);
