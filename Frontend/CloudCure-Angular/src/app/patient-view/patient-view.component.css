@@ -62,3 +62,8 @@ button{
   button:hover{
   background-color:rgb(185,185,186);
   }
+
+  .nice-button{
+    margin-right: 6px;
+    width: 170px;
+  }
