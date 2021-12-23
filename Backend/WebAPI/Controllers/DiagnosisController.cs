@@ -112,6 +112,21 @@ namespace WebAPI.Controllers
                 return BadRequest("Invalid get diagnosis by patient Id");
             }
         }
+        [HttpPost("Add")]
+        public IActionResult Add([FromBody] Diagnosis p_diagnosis)
+        {
+            try
+            {
+                DiagnosisRepository.Create(p_diagnosis);
+                DiagnosisRepository.Save();
+                return Created("Diagnosis/Add", p_diagnosis );
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Fail to Add diagnosis ");
+            }
+        }
 
     }
 }

@@ -1,15 +1,16 @@
 using Models.Diagnosis;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace Data
 {
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b92ca5baf788915cc72a866f972115776ec89e42
     public class DiagnosisRepository : Repository<Diagnosis>, IDiagnosisRepository
     {
         readonly CloudCureDbContext repository;
