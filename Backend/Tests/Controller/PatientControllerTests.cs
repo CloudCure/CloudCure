@@ -7,11 +7,21 @@ using WebAPI.Controllers;
 using Models.Diagnosis;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tests
 {
     public class PatientControllerTests
     {
+        readonly DbContextOptions<CloudCureDbContext> _options;
+
+        public PatientControllerTests()
+        {
+            _options = new DbContextOptionsBuilder<CloudCureDbContext>()
+                        .UseSqlite("Filename = patientControllerTests.db; Foreign Keys=False").Options;
+            Seed();
+        }
+
         [Fact]
         public void CreateReturnsOk()
         {
@@ -29,49 +39,47 @@ namespace Tests
         [Fact]
         public void CreateShouldThrowAnException()
         {
-            var repository = new Mock<IPatientRepository>();
-            var repository2 = new Mock<IAllergyRepository>();
-            var controller = new PatientController(repository.Object, repository2.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IPatientRepository repo1 = new PatientRepository(context);
+                IAllergyRepository repo2 = new AllergyRepository(context);
+                var controller = new PatientController(repo1, repo2);
 
-            try
-            {
                 var result = controller.Add(null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void GetAllShouldGetAll()
         {
-            var repository = new Mock<IPatientRepository>();
-            var repository2 = new Mock<IAllergyRepository>();
-            var controller = new PatientController(repository.Object, repository2.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IPatientRepository repo1 = new PatientRepository(context);
+                IAllergyRepository repo2 = new AllergyRepository(context);
+                var controller = new PatientController(repo1, repo2);
 
-            var patient = newPatient();
-
-            var entry = controller.Add(patient);
-            var result = controller.GetAll();
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetAll();
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void GetAllShouldThrowAnException()
         {
-            var repository = new Mock<IPatientRepository>();
-            var repository2 = new Mock<IAllergyRepository>();
-            var controller = new PatientController(repository.Object, repository2.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IPatientRepository repo1 = new PatientRepository(context);
+                IAllergyRepository repo2 = new AllergyRepository(context);
+                var controller = new PatientController(repo1, repo2);
 
-            try
-            {
+                context.Database.EnsureDeleted();
+
                 var result = controller.GetAll();
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
@@ -93,81 +101,77 @@ namespace Tests
         [Fact]
         public void DeleteShouldThrowAnException()
         {
-            var repository = new Mock<IPatientRepository>();
-            var repository2 = new Mock<IAllergyRepository>();
-            var controller = new PatientController(repository.Object, repository2.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IPatientRepository repo1 = new PatientRepository(context);
+                IAllergyRepository repo2 = new AllergyRepository(context);
+                var controller = new PatientController(repo1, repo2);
 
-            try
-            {
                 var result = controller.Delete(null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void UpdateShouldUpdatePatient()
         {
-            var repository = new Mock<IPatientRepository>();
-            var repository2 = new Mock<IAllergyRepository>();
-            var controller = new PatientController(repository.Object, repository2.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IPatientRepository repo1 = new PatientRepository(context);
+                IAllergyRepository repo2 = new AllergyRepository(context);
+                var controller = new PatientController(repo1, repo2);
 
-            var patient = newPatient();
+                var p = newPatient();
 
-            var entry = controller.Add(patient);
-            var result = controller.Update(1, patient);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.Update(1, p);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void UpdateShouldThrowAnException()
         {
-            var repository = new Mock<IPatientRepository>();
-            var repository2 = new Mock<IAllergyRepository>();
-            var controller = new PatientController(repository.Object, repository2.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IPatientRepository repo1 = new PatientRepository(context);
+                IAllergyRepository repo2 = new AllergyRepository(context);
+                var controller = new PatientController(repo1, repo2);
 
-            try
-            {
-                var result = controller.Update(1, null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var result = controller.Update(-1, null);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void GetByIdShouldGetPatientById()
         {
-            var repository = new Mock<IPatientRepository>();
-            var repository2 = new Mock<IAllergyRepository>();
-            var controller = new PatientController(repository.Object, repository2.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IPatientRepository repo1 = new PatientRepository(context);
+                IAllergyRepository repo2 = new AllergyRepository(context);
+                var controller = new PatientController(repo1, repo2);
 
-            var patient = newPatient();
-
-            var entry = controller.Add(patient);
-            var result = controller.GetById(1);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetById(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void GetByIdShouldThrowAnException()
         {
-            var repository = new Mock<IPatientRepository>();
-            var repository2 = new Mock<IAllergyRepository>();
-            var controller = new PatientController(repository.Object, repository2.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IPatientRepository repo1 = new PatientRepository(context);
+                IAllergyRepository repo2 = new AllergyRepository(context);
+                var controller = new PatientController(repo1, repo2);
 
-            try
-            {
-                var result = controller.GetById(1);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var result = controller.GetById(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
@@ -246,6 +250,20 @@ namespace Tests
             };
 
             return patient;
+        }
+
+        private void Seed()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                Patient p = newPatient();
+
+                context.Patients.Add(p);
+                context.SaveChanges();
+            }
         }
     }
 }
