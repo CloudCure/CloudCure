@@ -3,6 +3,8 @@ using System;
 using Models.Diagnosis;
 using Data;
 using Serilog;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebAPI.Controllers
 {
@@ -19,6 +21,9 @@ namespace WebAPI.Controllers
         {
             try
             {
+                List<Assessment> assessment = _repo.GetAll().ToList();
+                if (assessment.Count == 0)
+                    throw new Exception("No data found");
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
@@ -34,6 +39,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (_repo.GetById(id) == null)
+                    throw new Exception("Invalid Id");
                 return Ok(_repo.GetById(id));
             }
             catch (Exception e)
@@ -48,7 +55,8 @@ namespace WebAPI.Controllers
         public IActionResult GetByPatientId(int id)
         {
             try
-            {
+            {   if (_repo.SearchByPatientId(id) == null)
+                    throw new Exception("Invaild Id");
                 return Ok(_repo.SearchByPatientId(id));
             }
             catch (Exception e)
@@ -64,6 +72,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (p_Assessment == null)
+                    throw new Exception("Invalid data!");
                 _repo.Create(p_Assessment);
                 _repo.Save();
                 return Created("Assessment/Add", p_Assessment);
@@ -81,6 +91,7 @@ namespace WebAPI.Controllers
         {
             try
             {
+               
                 var topic = _repo.GetById(id);
                 _repo.Delete(topic);
                 _repo.Save();
@@ -99,6 +110,7 @@ namespace WebAPI.Controllers
         {
             try
             {
+                 
                 p_Assessment.Id = id;
                 _repo.Update(p_Assessment);
                 _repo.Save();
@@ -110,5 +122,8 @@ namespace WebAPI.Controllers
                 return BadRequest("Invalid Assessments Update");
             }
         }
+
+
+        
     }
 }
