@@ -129,7 +129,7 @@ namespace Tests.Controller
                 };
 
                 var entry = controller.Add(surgery);
-                var result = controller.Update(1, surgery);
+                var result = controller.Update(2, surgery);
                 var okResponse = (IStatusCodeActionResult)result;
                 Assert.Equal(200, okResponse.StatusCode);
             }

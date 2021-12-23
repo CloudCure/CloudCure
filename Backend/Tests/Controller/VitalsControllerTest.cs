@@ -155,10 +155,7 @@ namespace Tests.Controller
             var repository = new Mock<IVitalsRepository>();
             var controller = new VitalsController(repository.Object);
 
-            var vital = getVitals();
-
-            var entry = controller.Add(vital);
-            var results = controller.Update(-1, vital);
+            var results = controller.Update(-1, null);
             var okResponse = (IStatusCodeActionResult)results;
             Assert.Equal(400, okResponse.StatusCode);
         }

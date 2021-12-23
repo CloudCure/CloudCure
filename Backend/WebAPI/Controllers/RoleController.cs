@@ -78,8 +78,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                if (_repo.GetById(id) == null || p_role == null)
-                    throw new Exception("Update failed!");
+                p_role.Id = id;
                 _repo.Update(p_role);
                 _repo.Save();
                 return Ok();

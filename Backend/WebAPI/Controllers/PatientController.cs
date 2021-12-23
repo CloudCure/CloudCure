@@ -80,8 +80,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                if (_repo.GetById(id) == null || p_patient == null)
-                    throw new Exception("Update failed!");
+                p_patient.Id = id;
                 _repo.Update(p_patient);
                 _repo.Save();
                 return Ok();
