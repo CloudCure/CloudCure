@@ -6,22 +6,28 @@ using Xunit;
 using WebAPI.Controllers;
 using Models.Diagnosis;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tests
 {
     public class AllergyControllerTest
     {
+
+        readonly DbContextOptions<CloudCureDbContext> _options;
+
+          public AllergyControllerTest()
+        {
+            _options = new DbContextOptionsBuilder<CloudCureDbContext>()
+                        .UseSqlite("Filename = AllergyControllerTests.db; Foreign Keys=False").Options;
+            Seed();
+        }
         [Fact]
         public void CreateReturnsOkAllergy()
         {
-            var repository = new Mock<IAllergyRepository>();
+           var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
 
-            var allergy = new Allergy
-            {
-                PatientId = 1,
-                AllergyName = "Hay fever"
-            };
+            var allergy = GetAllergy();
 
             var result = controller.Add(allergy);
             var okResponse = (IStatusCodeActionResult)result;
@@ -31,77 +37,67 @@ namespace Tests
         [Fact]
         public void GetAllReturnsOKAllergy()
         {
-            var repository = new Mock<IAllergyRepository>();
-            var controller = new AllergyController(repository.Object);
-
-            var allergy = new Allergy
+            using(var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                AllergyName = "Leather"
-            };
+
+            IAllergyRepository repo = new AllergyRepository(context);
+            var controller = new AllergyController(repo);
+
+            var allergy = GetAllergy();
 
             var entry = controller.Add(allergy);
             var result = controller.GetAll();
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(200, okResponse.StatusCode);
-
+            }
         }
 
         [Fact]
         public void DeleteShouldReturnOKAllergy()
         {
-            var repository = new Mock<IAllergyRepository>();
-            var controller = new AllergyController(repository.Object);
-
-            var allergy = new Allergy
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                AllergyName = "Metal"
-            };
+                IAllergyRepository repo = new AllergyRepository(context);
+                var controller = new AllergyController(repo);
 
-            var entry = controller.Add(allergy);
+                var allergy = repo.GetById(1);
 
-            var result = controller.Delete(allergy);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.Delete(allergy);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
 
         }
 
         [Fact]
         public void UpdateShouldReturnOKAllergy()
         {
-            var repository = new Mock<IAllergyRepository>();
-            var controller = new AllergyController(repository.Object);
-
-            var allergy = new Allergy
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                AllergyName = "Dog hair"
-            };
+                IAllergyRepository repo = new AllergyRepository(context);
+                var controller = new AllergyController(repo);
 
-            var entry = controller.Add(allergy);
-            var result = controller.Update(1, allergy);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var allergy = GetAllergy();
+
+                var result = controller.Update(1, allergy);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
 
         }
 
         [Fact]
         public void GetbyIdShouldReturnOKGetAllergyById()
         {
-            var repository = new Mock<IAllergyRepository>();
-            var controller = new AllergyController(repository.Object);
-
-            var allergy = new Allergy
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                AllergyName = "Risperidol"
-            };
+                IAllergyRepository repo = new AllergyRepository(context);
+                var controller = new AllergyController(repo);
 
-            var entry = controller.Add(allergy);
-            var results = controller.GetById(1);
-            var okResponse = (IStatusCodeActionResult)results;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetById(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
@@ -132,71 +128,44 @@ namespace Tests
             var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
 
-            var allergy = new Allergy
-            {
-                PatientId = 0,
-                AllergyName = ""
-            };
-
-            try
-            {
-                controller.Add(allergy);
-                controller.GetAll();
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
-            }
+            var result = controller.GetAll();
+            var okResponse = (IStatusCodeActionResult)result;
+            Assert.Equal(400, okResponse.StatusCode);
 
         }
 
-         [Fact]
+        [Fact]
         public void DeleteShouldReturnBadRequestAllergy()
         {
-            var repository = new Mock<IAllergyRepository>();
-            var controller = new AllergyController(repository.Object);
-
-            var allergy = new Allergy
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 0,
-                AllergyName = ""
-            };
+                IAllergyRepository repo = new AllergyRepository(context);
+                var controller = new AllergyController(repo);
 
-              try
-            {
-                controller.Add(allergy);
-                controller.Delete(allergy);
+                var allergy = GetAllergy();
+
+                var result = controller.Delete(allergy);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
-            }
-
         }
 
         [Fact]
         public void UpdateShouldReturnBadRequestAllergy()
         {
-            var repository = new Mock<IAllergyRepository>();
+           var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
 
-            var allergy = new Allergy
-            {
-                PatientId = 0,
-                AllergyName = ""
-            };
+            var allergy = GetAllergy();
 
-              try
-            {
-                controller.Add(allergy);
-                controller.Update(1, allergy);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
-            }
+            var entry = controller.Add(allergy);
+            var results = controller.Update(-1, allergy);
+            var okResponse = (IStatusCodeActionResult)results;
+            Assert.Equal(400, okResponse.StatusCode);
 
         }
+
+        
 
 
         private List<Allergy> GetAllergyList()
@@ -208,5 +177,50 @@ namespace Tests
 
             return testAllergy;
         }
+
+        private Allergy GetAllergy()
+        {
+            return new Allergy
+            {
+                PatientId = 1,
+                AllergyName = "Tylenol"
+            };
+        }
+
+
+        void Seed()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                context.Patients.AddRange(
+                    new Patient
+                    {
+                        Allergies = new List<Allergy>{
+                            new Allergy
+                            {
+                                PatientId = 1,
+                                AllergyName = "Dogs"
+
+                            },
+                            new Allergy
+                            {
+                                PatientId = 1,
+                                AllergyName = "Haldol"
+                            }
+                        }
+                    }
+                );
+
+                context.SaveChanges();
+
+            }
+
+
+
+        }
+
     }
 }

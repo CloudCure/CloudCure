@@ -5,25 +5,28 @@ using Xunit;
 using WebAPI.Controllers;
 using Models.Diagnosis;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tests
 {
     public class AssessmentsControllerTest
     {
+
+        readonly DbContextOptions<CloudCureDbContext> _options;
+
+        public AssessmentsControllerTest()
+        {
+            _options = new DbContextOptionsBuilder<CloudCureDbContext>()
+                        .UseSqlite("Filename = AssessmentControllerTests.db; Foreign Keys=False").Options;
+            Seed();
+        }
         [Fact]
         public void CreateReturnsOk()
         {
             var repository = new Mock<IAssessmentRepository>();
             var controller = new AssessmentController(repository.Object);
 
-            var assessment = new Assessment
-            {
-                PatientId = 1,
-                ChiefComplaint = "Sore throat",
-                PainAssessment = "throat",
-                PainScale = 7,
-                //EncounterDate = new DateTime(2021, 12, 17)
-            };
+            var assessment = GetAssessment();
 
             var result = controller.Add(assessment);
             var okResponse = (IStatusCodeActionResult)result;
@@ -33,113 +36,82 @@ namespace Tests
         [Fact]
         public void CreateShouldThrowAnExceptionWithInvalidData()
         {
-            var repository = new Mock<IAssessmentRepository>();
-            var controller = new AssessmentController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAssessmentRepository repo = new AssessmentRepository(context);
+                var controller = new AssessmentController(repo);
 
-            try
-            {
                 var result = controller.Add(null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void GetAllShouldGetAll()
         {
-            var repository = new Mock<IAssessmentRepository>();
-            var controller = new AssessmentController(repository.Object);
-
-            var assessment = new Assessment
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                ChiefComplaint = "Sore throat",
-                PainAssessment = "throat",
-                PainScale = 7,
-                //EncounterDate = new DateTime(2021, 12, 17)
-            };
+                IAssessmentRepository repo = new AssessmentRepository(context);
+                var controller = new AssessmentController(repo);
 
-            var entry = controller.Add(assessment);
-            var result = controller.GetAll();
-            var  okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
-        }
+                var assessment = GetAssessment();
 
-        [Fact]
-        public void GetAllShouldReturnNullWithEmptyDb()
-        {
-            var repository = new Mock<IAssessmentRepository>();
-            var controller = new AssessmentController(repository.Object);
-
-            try
-            {
+                var entry = controller.Add(assessment);
                 var result = controller.GetAll();
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
             }
         }
+
+        
 
         [Fact]
         public void DeleteShouldDeleteEntry()
         {
-            var repository = new Mock<IAssessmentRepository>();
-            var controller = new AssessmentController(repository.Object);
-
-            var assessment = new Assessment
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                ChiefComplaint = "Sore throat",
-                PainAssessment = "throat",
-                PainScale = 7,
-                //EncounterDate = new DateTime(2021, 12, 17)
-            };
+                IAssessmentRepository repo = new AssessmentRepository(context);
+                var controller = new AssessmentController(repo);
 
-            var entry = controller.Add(assessment);
-            var result = controller.Delete(1);
-            var  okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var assessment = repo.GetById(1);
+
+                var result = controller.Delete(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void DeleteShouldThrowAnException()
         {
-            var repository = new Mock<IAssessmentRepository>();
-            var controller = new AssessmentController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAssessmentRepository repo = new AssessmentRepository(context);
+                var controller = new AssessmentController(repo);
 
-            try
-            {
-                var result = controller.Delete(1);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var assessment = GetAssessment();
+
+                var result = controller.Delete(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void UpdateShouldUpdateAssessment()
         {
-            var repository = new Mock<IAssessmentRepository>();
-            var controller = new AssessmentController(repository.Object);
-
-            var assessment = new Assessment
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                ChiefComplaint = "Sore throat",
-                PainAssessment = "throat",
-                PainScale = 7,
-                //EncounterDate = new DateTime(2021, 12, 17)
-            };
+                IAssessmentRepository repo = new AssessmentRepository(context);
+                var controller = new AssessmentController(repo);
 
-            var entry = controller.Add(assessment);
-            assessment.PainScale = 5;
-            var result = controller.Update(1, assessment);
-            var  okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var assessment = GetAssessment();
+
+                var result = controller.Update(1, assessment);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
@@ -148,50 +120,92 @@ namespace Tests
             var repository = new Mock<IAssessmentRepository>();
             var controller = new AssessmentController(repository.Object);
 
-            try
-            {
-                var result = controller.Update(1, new Assessment());
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
-            }
+            var assessment = GetAssessment();
+
+            var entry = controller.Add(assessment);
+            var results = controller.Update(-1, null);
+            var okResponse = (IStatusCodeActionResult)results;
+            Assert.Equal(400, okResponse.StatusCode);
         }
 
         [Fact]
         public void GetByIdShouldGetAssessmentById()
         {
-            var repository = new Mock<IAssessmentRepository>();
-            var controller = new AssessmentController(repository.Object);
-
-            var assessment = new Assessment
+             using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                ChiefComplaint = "Sore throat",
-                PainAssessment = "throat",
-                PainScale = 7,
-                //EncounterDate = new DateTime(2021, 12, 17)
-            };
+                IAssessmentRepository repo = new AssessmentRepository(context);
+                var controller = new AssessmentController(repo);
 
-            var entry = controller.Add(assessment);
-            var result = controller.GetById(1);
-            var  okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetById(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void GetByIdShouldThrowAnException()
         {
-            var repository = new Mock<IAssessmentRepository>();
+           var repository = new Mock<IAssessmentRepository>();
             var controller = new AssessmentController(repository.Object);
 
-            try
+            var assessment = GetAssessment();
+
+            var entry = controller.Add(assessment);
+            var results = controller.GetById(-1);
+            var okResponse = (IStatusCodeActionResult)results;
+            Assert.Equal(400, okResponse.StatusCode);
+        }
+
+
+           private Assessment GetAssessment()
+        {
+            return new Assessment
             {
-                var result = controller.GetById(1);
-            }
-            catch (Exception e)
+                Id = 1,
+                PatientId = 1,
+                PainAssessment = "asdfas",
+                PainScale = 2,
+                ChiefComplaint = "dfdssdf",
+                HistoryOfPresentIllness = "dssdfs",
+                EncounterDate = DateTime.Now
+            };
+        }
+
+        void Seed()
+        {
+            using (var context = new CloudCureDbContext(_options))
             {
-                Assert.NotNull(e);
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                context.Assessments.AddRange(
+                    new Assessment
+                    {
+                        PatientId = 1,
+                        PainAssessment = "asdfas",
+                        PainScale = 2,
+                        ChiefComplaint = "dfdssdf",
+                        HistoryOfPresentIllness = "dssdfs",
+                        EncounterDate = DateTime.Now
+
+
+                    },
+                            new Assessment
+                            {
+                                PatientId = 2,
+                                PainAssessment = "asdfas",
+                                PainScale = 2,
+                                ChiefComplaint = "dfdssdf",
+                                HistoryOfPresentIllness = "dssdfs",
+                                EncounterDate = DateTime.Now
+
+
+
+                            });
+
+
+                context.SaveChanges();
+
             }
         }
     }
