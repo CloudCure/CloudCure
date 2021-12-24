@@ -53,14 +53,14 @@ namespace WebAPI.Controllers
         }
 
         //GET: Vitals/PatientId
-        [HttpGet("Get/Patient/{id}")]
-        public IActionResult GetByPatientId(int id)
+        [HttpGet("Get/Diagnosis/{id}")]
+        public IActionResult GetByDiagnosisId(int id)
         {
             try
             {
-                if (_repo.SearchByPatientId(id) == null)
+                if (_repo.SearchByDiagnosisId(id) == null)
                     throw new Exception("Invaild Id");
-                return Ok(_repo.SearchByPatientId(id));
+                return Ok(_repo.SearchByDiagnosisId(id));
             }
             catch (Exception e)
             {

@@ -11,7 +11,7 @@ namespace Models.Diagnosis
         [Key]
         public int Id { get; set; }
 
-        public int PatientId { get; set; }
+        public int DiagnosisId { get; set; }
 
 
         // small blurb that the patient has a complaint on. For example the patient would say "I've had a cough" or "my ankle hurts". 

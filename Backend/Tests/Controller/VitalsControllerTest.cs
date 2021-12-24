@@ -20,21 +20,21 @@ namespace Tests.Controller
             Seed();
         }
 
-        [Fact]
-        public void CreateReturnsOkVitals()
-        {
-            using (var context = new CloudCureDbContext(_options))
-            {
-                IVitalsRepository repo = new VitalsRepository(context);
-                var controller = new VitalsController(repo);
+        // [Fact]
+        // public void CreateReturnsOkVitals()
+        // {
+        //     using (var context = new CloudCureDbContext(_options))
+        //     {
+        //         IVitalsRepository repo = new VitalsRepository(context);
+        //         var controller = new VitalsController(repo);
 
-                var v = getVitals();
+        //         var v = getVitals();
 
-                var result = controller.Add(v);
-                var response = (IStatusCodeActionResult)result;
-                Assert.Equal(201, response.StatusCode);
-            }
-        }
+        //         var result = controller.Add(v);
+        //         var response = (IStatusCodeActionResult)result;
+        //         Assert.Equal(201, response.StatusCode);
+        //     }
+        // }
 
         [Fact]
         public void GetAllReturnsOKVitals()
@@ -100,14 +100,14 @@ namespace Tests.Controller
         }
 
         [Fact]
-        public void GetbyPatientIdShouldReturnOK()
+        public void GetbyDiagnosisIdShouldReturnOK()
         {
             using (var context = new CloudCureDbContext(_options))
             {
                 IVitalsRepository repo = new VitalsRepository(context);
                 var controller = new VitalsController(repo);
 
-                var result = controller.GetByPatientId(1);
+                var result = controller.GetByDiagnosisId(1);
                 var response = (IStatusCodeActionResult)result;
                 Assert.Equal(200, response.StatusCode);
             }
@@ -139,7 +139,7 @@ namespace Tests.Controller
         }
 
         [Fact]
-        public void GetByPatientIdShouldGiveBadRequest()
+        public void GetByDiagnosisIdShouldGiveBadRequest()
         {
             var repository = new Mock<IVitalsRepository>();
             var controller = new VitalsController(repository.Object);
@@ -147,7 +147,7 @@ namespace Tests.Controller
             var vital = getVitals();
 
             var entry = controller.Add(vital);
-            var results = controller.GetByPatientId(-1);
+            var results = controller.GetByDiagnosisId(-1);
             var okResponse = (IStatusCodeActionResult)results;
             Assert.Equal(400, okResponse.StatusCode);
         }
@@ -197,7 +197,7 @@ namespace Tests.Controller
         {
             return new Vitals
             {
-                PatientId = 1,
+                DiagnosisId = 1,
                 Systolic = 120,
                 Diastolic = 80,
                 OxygenSat = 96.5,
@@ -209,7 +209,7 @@ namespace Tests.Controller
             };
         }
 
-        private void Seed()
+        void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {
@@ -219,7 +219,7 @@ namespace Tests.Controller
                 context.Vitals.AddRange(
                     new Vitals
                     {
-                        PatientId = 1,
+                        DiagnosisId = 1,
                         Systolic = 120,
                         Diastolic = 80,
                         OxygenSat = 96.5,

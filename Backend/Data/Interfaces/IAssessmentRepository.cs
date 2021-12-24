@@ -8,6 +8,6 @@ namespace Data
 {
     public interface IAssessmentRepository : IRepository<Assessment>
     {
-          IEnumerable<Assessment> SearchByPatientId(int query);
+          IEnumerable<Assessment> SearchByDiagnosisId(int query);
     }
 }

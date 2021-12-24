@@ -162,7 +162,7 @@ namespace Tests
             return new Assessment
             {
                 Id = 1,
-                PatientId = 1,
+                DiagnosisId = 1,
                 PainAssessment = "asdfas",
                 PainScale = 2,
                 ChiefComplaint = "dfdssdf",
@@ -180,7 +180,7 @@ namespace Tests
                 context.Assessments.AddRange(
                     new Assessment
                     {
-                        PatientId = 1,
+                        DiagnosisId = 1,
                         PainAssessment = "asdfas",
                         PainScale = 2,
                         ChiefComplaint = "dfdssdf",
@@ -190,7 +190,7 @@ namespace Tests
                     },
                             new Assessment
                             {
-                                PatientId = 2,
+                                DiagnosisId = 2,
                                 PainAssessment = "asdfas",
                                 PainScale = 2,
                                 ChiefComplaint = "dfdssdf",
