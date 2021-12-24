@@ -40,6 +40,8 @@ export class ListPatientComponent implements OnInit, OnDestroy {
     }
     this.patientAPI.patientCount--;
 
+    console.log(this.patient)
+
   }
 
   createDiagnosis()
@@ -51,7 +53,10 @@ export class ListPatientComponent implements OnInit, OnDestroy {
     this.newDiagnosis.recommendedTreatment = undefined
     this.newDiagnosis.isFinalized = false
     console.log(this.newDiagnosis)
-    this.diagnosisAPI.Add(this.newDiagnosis)
+    this.diagnosisAPI.Add(this.newDiagnosis).subscribe(result => {
+      this.newDiagnosis = result
+      this.router.navigateByUrl("");
+    })
   }
 
   addProfile()
