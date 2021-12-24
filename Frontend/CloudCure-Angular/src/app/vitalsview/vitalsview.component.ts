@@ -33,27 +33,18 @@ export class VitalsviewComponent implements OnInit {
       console.log("accessed1")
       console.log(response)
     
-      this.Systolic =        response.systolic
-      this.Diastolic =       response.diastolic
-      this.OxygenSat =       response.oxygenSat
-      this.HeartRate =       response.heartRate
-      this.Temperature =     response.temperature
-      this.RespiratoryRate = response.respiratoryRate
-      this.Height =          response.height
-      this.Weight =          response.weight
-      this.EncounterDate =   response.encounterDate
+      // this.Systolic =        response.systolic
+      // this.Diastolic =       response.diastolic
+      // this.OxygenSat =       response.oxygenSat
+      // this.HeartRate =       response.heartRate
+      // this.Temperature =     response.temperature
+      // this.RespiratoryRate = response.respiratoryRate
+      // this.Height =          response.height
+      // this.Weight =          response.weight
+      // this.EncounterDate =   response.encounterDate
 
     })
 
-    // this.patientApi.GetById(2).subscribe(response => {
-    //   console.log("accessed2")
-    //   console.log(response)
-    // })
-
-    // this.vitalsApi.GetAll().subscribe(response => {
-    //   console.log("accessed3")
-    //   console.log(response)
-    // })
    }
 
   ngOnInit(): void {

@@ -4,6 +4,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PatientService } from '../services/patient.service';
 import { Router } from '@angular/router';
 import { Diagnosis } from '../AngularModels/Diagnosis';
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-patient-view',
@@ -37,6 +38,7 @@ export class PatientViewComponent implements OnInit {
 
   constructor(private patientApi: PatientService, private router: Router) {
     //1 will be changed later to a dynamic patient number
+    this.PatientId = patientApi.currentPatientId;
     this.patientApi.GetById(this.patientApi.currentPatientId).subscribe(response => {
       console.log("accessed patient")
       console.log(response)

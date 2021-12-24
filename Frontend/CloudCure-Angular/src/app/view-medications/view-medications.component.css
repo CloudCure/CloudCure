@@ -1,0 +1,25 @@
+@media screen and (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+    flex: 100%;
+  }
+}
+
+.container{
+  height: 100%;
+  width: 100%;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-container > div {
+  background: whitesmoke;
+  border-radius: 50% 20% / 10% 40%;
+  box-shadow: 10px 5px 5px rgb(242,105,38);
+  margin: 10px;
+  padding: 10px;
+  font-size: 20px;
+}

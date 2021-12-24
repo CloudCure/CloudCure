@@ -38,15 +38,17 @@
       </div>
     </div>
 
+    <!-- allergies -->
     <div class="content">
       <div class="content-title">
         <button (click)="showAllergies()">Show</button>
         <h1>Allergies</h1>
       </div>
       <div *ngIf="viewAllergies" class="row">
-        <ul *ngFor="let allergy of Allergies" style="float: left; width: 50%;">
+        <!-- <ul *ngFor="let allergy of Allergies" style="float: left; width: 50%;">
           <li>{{allergy.allergyName}}</li>
-        </ul>
+        </ul> -->
+        <app-view-allergies [PatientId]="PatientId" [listOfAllergies]="Allergies"></app-view-allergies>
       </div>
     </div>
 
@@ -56,7 +58,7 @@
         <h1>Surgeries</h1>
       </div>
       <div *ngIf="viewSurgeries" class="row">
-        <ul *ngFor="let surgery of Surgeries" style="float: left; width: 50%;">
+        <!-- <ul *ngFor="let surgery of Surgeries" style="float: left; width: 50%;">
           <li>{{surgery.surgeryName}}</li>
         </ul>
       </div>
@@ -68,7 +70,7 @@
         <h1>Medications</h1>
       </div>
       <div *ngIf="viewMedication" class="row">
-        <ul *ngFor="let medication of CurrentMedications" style="float: left; width: 50%;">
+        <!-- <ul *ngFor="let medication of CurrentMedications" style="float: left; width: 50%;">
           <li>{{medication.MedicationName}}</li>
         </ul>
       </div>
