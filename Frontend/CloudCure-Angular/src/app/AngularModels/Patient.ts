@@ -20,8 +20,6 @@ export interface Patient
     allergies?:          Allergy[];
     surgeries?:          Surgery[];
     currentMedications?: Medication[];
-    vitalHistory?:       Vitals[];
-    assessments?:        Assessment[];
     doctor?: EmployeeInformation | undefined;
     diagnoses?: Diagnosis[];
 }

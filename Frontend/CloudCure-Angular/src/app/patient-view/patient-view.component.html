@@ -5,18 +5,22 @@
         <h1>Patient Information</h1>
       </div>
       <div class="row">
-        <div class="col-md-4"><h4>Full Name</h4>
+        <div class="col-md-4">
+          <h4>Full Name</h4>
           <p>{{PatientName}}</p>
         </div>
-        <div class="col-md-4"><h4>Date Of Birth</h4>
+        <div class="col-md-4">
+          <h4>Date Of Birth</h4>
           <p>{{DateOfBirth | date: 'MM/dd/yyyy'}}</p>
         </div>
-        <div class="col-md-4"><h4>Contact Number</h4>
+        <div class="col-md-4">
+          <h4>Contact Number</h4>
           <p>{{PatientPhone}}</p>
-          <br/>
+          <br />
         </div>
 
-        <div class="col-lg-9"><h4>Patient Address</h4>
+        <div class="col-lg-9">
+          <h4>Patient Address</h4>
           <p>{{PatientPhone}}</p>
         </div>
       </div>
@@ -30,7 +34,7 @@
       <div *ngIf="viewConditions" class="row">
         <ul *ngFor="let condition of Conditions" style="float: left; width: 50%;">
           <li>{{condition.conditionName}}</li>
-          </ul>
+        </ul>
       </div>
     </div>
 
@@ -54,7 +58,7 @@
       <div *ngIf="viewSurgeries" class="row">
         <ul *ngFor="let surgery of Surgeries" style="float: left; width: 50%;">
           <li>{{surgery.surgeryName}}</li>
-          </ul>
+        </ul>
       </div>
     </div>
 
@@ -66,19 +70,19 @@
       <div *ngIf="viewMedication" class="row">
         <ul *ngFor="let medication of CurrentMedications" style="float: left; width: 50%;">
           <li>{{medication.MedicationName}}</li>
-          </ul>
+        </ul>
       </div>
     </div>
 
     <div class="content">
       <div class="content-title">
-        <button (click)="showHistory()">Show</button>
-        <button class="nice-button" (click)="vitalsPage()">Add Vitals</button>
-        <h1>Vitals History</h1>
+        <button (click)="showDiagnoses()">Show</button>
+        <!--<button class="nice-button" (click)="vitalsPage()">Add Vitals</button>-->
       </div>
-      <div class="row">
-        <table *ngIf="viewHistory" class="table table hover">
-          <thead>
+      <div *ngFor="let diagnosis of Diagnoses">
+        <div class="row">
+          <table class="table table hover">
+            <thead>
               <th>Systolic (mmHg)</th>
               <th>Diastolic (mmHg)</th>
               <th>Oxygen Saturation (%)</th>
@@ -87,49 +91,50 @@
               <th>Respiratory Rate (breaths / min)</th>
               <th>Height (inches)</th>
               <th>Weight (lbs.)</th>
-          </thead>
-          <tbody>
-              <tr *ngFor="let vital of VitalHistory">
-                  <td>{{vital.systolic}}</td>
-                  <td>{{vital.diastolic}}</td>
-                  <td>{{vital.oxygenSat}}</td>
-                  <td>{{vital.heartRate}}</td>
-                  <td>{{vital.temperature}}</td>
-                  <td>{{vital.respiratoryRate}}</td>
-                  <td>{{vital.height}}</td>
-                  <td>{{vital.weight}}</td>
+              <th>{{diagnosis.encounterDate | date}}</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{diagnosis.vital.systolic}}</td>
+                <td>{{diagnosis.vital.diastolic}}</td>
+                <td>{{diagnosis.vital.oxygenSat}}</td>
+                <td>{{diagnosis.vital.heartRate}}</td>
+                <td>{{diagnosis.vital.temperature}}</td>
+                <td>{{diagnosis.vital.respiratoryRate}}</td>
+                <td>{{diagnosis.vital.height}}</td>
+                <td>{{diagnosis.vital.weight}}</td>
               </tr>
-          </tbody>
-      </table>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="content">
+          <div class="content-title">
+            <!--<button class="nice-button" (click)="assessmentsPage()">Add Assessments</button>-->
+          </div>
+          <div class="row">
+            <table class="table table hover">
+              <thead>
+                <th>Chief Complaint</th>
+                <th>History of Present Illness</th>
+                <th>Pain Assessment</th>
+                <th>Pain Scale (0-10)</th>
+                <th>{{diagnosis.encounterDate}</th>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td>{{diagnosis.assessment.chiefComplaint}}</td>
+                  <td>{{diagnosis.assessment.historyOfPresentIllness}}</td>
+                  <td>{{diagnosis.assessment.painAssessment}}</td>
+                  <td>{{diagnosis.assessment.painScale}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="content">
-      <div class="content-title">
-        <button (click)="showAssessment()">Show</button>
-        <button class="nice-button" (click)="assessmentsPage()">Add Assessments</button>
-        <h1>Assessments</h1>
-      </div>
-      <div class="row">
-        <table *ngIf="viewAssessment" class="table table hover">
-          <thead>
-              <th>Chief Complaint</th>
-              <th>History of Present Illness</th>
-              <th>Pain Assessment</th>
-              <th>Pain Scale (0-10)</th>
-          </thead>
-
-          <tbody>
-              <tr *ngFor="let assessment of Assessments">
-                  <td>{{assessment.chiefComplaint}}</td>
-                  <td>{{assessment.historyOfPresentIllness}}</td>
-                  <td>{{assessment.painAssessment}}</td>
-                  <td>{{assessment.painScale}}</td>
-              </tr>
-          </tbody>
-      </table>
-      </div>
-    </div>
   </div>
 </body>
-

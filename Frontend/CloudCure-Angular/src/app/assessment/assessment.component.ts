@@ -24,7 +24,7 @@ export class AssessmentComponent implements OnInit {
 
   //patientAssessment
   patientAssesment: Assessment = {
-    patientId: 1,
+    diagnosisId: 1,
     chiefComplaint: '',
     historyOfPresentIllness: '',
     painAssessment: '',

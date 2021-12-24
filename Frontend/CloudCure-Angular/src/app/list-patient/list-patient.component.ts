@@ -55,7 +55,7 @@ export class ListPatientComponent implements OnInit, OnDestroy {
     console.log(this.newDiagnosis)
     this.diagnosisAPI.Add(this.newDiagnosis).subscribe(result => {
       this.newDiagnosis = result
-      this.router.navigateByUrl("");
+      this.router.navigateByUrl("/diagnosis-vitals");
     })
   }
 

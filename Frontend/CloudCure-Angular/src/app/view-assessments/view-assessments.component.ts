@@ -9,7 +9,7 @@ import { AssessmentService } from '../services/assessement.service';
 })
 export class ViewAssessmentsComponent implements OnInit {
   AssessmentId: any = 1;
-  PatientId: any = 1;
+  DiagnosisId: any = 1;
   ChiefComplaint: any = '';
   HistoryOfPresentIllness: any = '';
   PainAssessment: any = '';
@@ -23,7 +23,7 @@ export class ViewAssessmentsComponent implements OnInit {
     this.assessmentService.GetById(1).subscribe((response) => {
       console.log(response);
       this.AssessmentId = response.id;
-      this.PatientId = response.patientId;
+      this.DiagnosisId = response.diagnosisId;
       this.ChiefComplaint = response.chiefComplaint;
       this.HistoryOfPresentIllness = response.historyOfPresentIllness;
       this.PainAssessment = response.painAssessment;
