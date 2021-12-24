@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ConditionService } from '../services/condition.service';
 import { PatientService } from '../services/patient.service';
 
@@ -10,17 +10,23 @@ import { PatientService } from '../services/patient.service';
 export class ViewConditionsComponent implements OnInit {
 
   Id?:number;
-  PatientId?:number = this.patientApi.currentPatientId;
+  // PatientId?:number = this.patientApi.currentPatientId;
+  // ConditionName?:string;
+
+  @Input()
+  PatientId:number=0;
   ConditionName?:string;
+  @Input()
+  listOfConditions:any[]=[];
 
   constructor(private ConditionApi: ConditionService, private patientApi: PatientService) 
   {
-    this.ConditionApi.SearchByPatientId(1).subscribe(response => {
+    this.ConditionApi.SearchByPatientId(this.PatientId).subscribe(response => {
       console.log("accessed1")
       console.log(response)
 
-    this.PatientId = response.PatientId
-    this.ConditionName = response.ConditionName
+    // this.PatientId = response.PatientId
+    // this.ConditionName = response.ConditionName
     })
 
     

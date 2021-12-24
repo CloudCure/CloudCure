@@ -1,23 +1,25 @@
-<div>
-  <h1>Patient Assessment</h1>
-  <!--<h2>Assessment Id</h2>-->
-  <!--<p>{{ AssessmentId }}</p>-->
+<div class="container">
+  <div class="flex-container">
+    <table class="table table-hover">
+      <thead>
+        <th>Chief Complaint</th>
+        <th>History Of Present Illness</th>
+        <th>Pain Assessment</th>
+        <th>Pain Scale</th>
+        <th>Date</th>
+      </thead>
 
-  <h2>Patient Id</h2>
-  <p>{{ PatientId }}</p>
+      <tbody>
+        <tr *ngFor="let item of listOfAssesments">
+          <td>{{item.chiefComplaint}}</td>
+          <td>{{item.historyOfPresentIllness}}</td>
+          <td>{{item.painAssessment}}</td>
+          <td>{{item.painScale}}</td>
+          <td>{{item.encounterDate}}</td>
 
-  <h2>Chief Complaint</h2>
-  <p>{{ ChiefComplaint }}</p>
-
-  <h2>History of Present Illness</h2>
-  <p>{{ HistoryOfPresentIllness }}</p>
-
-  <h2>Pain Assessment</h2>
-  <p>{{ PainAssessment }}</p>
-
-  <h2>Pain Scale</h2>
-  <p>{{ PainScale }}</p>
-
-  <h2>Encounter Date</h2>
-  <p>{{ EncounterDate }}</p>
+          <!-- <a routerLink="/review">Review</a> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

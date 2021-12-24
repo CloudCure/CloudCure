@@ -35,6 +35,9 @@ import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.componen
 import { VitalsviewComponent } from './vitalsview/vitalsview.component';
 import { ViewConditionsComponent } from './view-conditions/view-conditions.component';
 import { ViewAssessmentsComponent } from './view-assessments/view-assessments.component';
+import { ViewAllergiesComponent } from './view-allergies/view-allergies.component';
+import { ViewMedicationsComponent } from './view-medications/view-medications.component';
+import { ViewSurgeriesComponent } from './view-surgeries/view-surgeries.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +67,10 @@ import { ViewAssessmentsComponent } from './view-assessments/view-assessments.co
     ViewDiagnosisComponent,
     ViewConditionsComponent,
     ViewAssessmentsComponent,
+    ViewAllergiesComponent,
+    ViewMedicationsComponent,
+    ViewSurgeriesComponent,
+
   ],
 
   imports: [

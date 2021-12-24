@@ -16,6 +16,7 @@ import { SurgeryService } from '../services/surgery.service';
 import { Surgery } from '../AngularModels/Surgery';
 import { MedicationService } from '../services/medication.service';
 import { Medication } from '../AngularModels/Medication';
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -166,6 +167,7 @@ export class PatientComponent implements OnInit {
               PatientId: response.id!,
               ConditionName: element
             }
+            console.log(conditionInfo)
             this.conditionApi.Add(conditionInfo).subscribe(
               (conditionResponse) => {
                 console.log("Condition added");
@@ -180,11 +182,13 @@ export class PatientComponent implements OnInit {
           allergies = allergies.map(function (cond: any) {
             return cond['text']
           })
+          console.log(allergies)
           allergies.forEach(element => {
             let allergyInfo: Allergy = {
               PatientId: response.id!,
               AllergyName: element
             }
+            console.log(allergyInfo)
             this.allergyApi.Add(allergyInfo).subscribe(
               (allergyResponse) => {
                 console.log("Allergy added");
