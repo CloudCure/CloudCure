@@ -21,7 +21,7 @@ namespace Data
             var diagnosis = repository.Diagnoses
             .Include(d => d.Vitals)
             .Include(d => d.Assessment)
-                .Single(d => d.Patient.Id.Equals(query));
+                .Single(d => d.PatientId.Equals(query));
 
             return diagnosis;
 
@@ -32,7 +32,7 @@ namespace Data
             var diagnoses = repository.Diagnoses
                 .Include(d => d.Vitals)
                 .Include(d => d.Assessment)
-               .Where(p => p.Patient.Id.Equals(query));
+               .Where(p => p.PatientId.Equals(query));
 
             return diagnoses;
         }
