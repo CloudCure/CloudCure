@@ -8,6 +8,9 @@ import { PatientService } from '../services/patient.service';
 import { Allergy } from '../AngularModels/Allergy';
 import { Router } from '@angular/router';
 import { Diagnosis } from '../AngularModels/Diagnosis';
+import { Assessment } from '../AngularModels/Assessment';
+import { Vitals } from '../AngularModels/Vitals';
+import { DiagnosisService } from '../services/diagnosis.service';
 
 @Component({
   selector: 'app-list-patient',
@@ -23,8 +26,9 @@ export class ListPatientComponent implements OnInit, OnDestroy {
   role: number = 0;
 
   pairedDoctor:string = '';
+  newDiagnosis : Diagnosis = {} as Diagnosis
 
-  constructor(private router: Router, private patientAPI:PatientService) {
+  constructor(private router: Router, private patientAPI:PatientService, private diagnosisAPI: DiagnosisService) {
   }
   ngOnDestroy(): void {
     this.patientAPI.patientCount = 0;
@@ -40,10 +44,14 @@ export class ListPatientComponent implements OnInit, OnDestroy {
 
   createDiagnosis()
   {
-    let newDiagnosis : Diagnosis = {} as Diagnosis
-    newDiagnosis.isFinalized = false;
-    this.patient.diagnoses?.push(newDiagnosis)
-    this.patientAPI.Update(this.patient.id, this.patient).subscribe()
+    this.newDiagnosis.assessment = undefined
+    this.newDiagnosis.vitals = undefined
+    this.newDiagnosis.patientId = this.patient.id
+    this.newDiagnosis.doctorDiagnosis = undefined
+    this.newDiagnosis.recommendedTreatment = undefined
+    this.newDiagnosis.isFinalized = false
+    console.log(this.newDiagnosis)
+    this.diagnosisAPI.Add(this.newDiagnosis)
   }
 
   addProfile()

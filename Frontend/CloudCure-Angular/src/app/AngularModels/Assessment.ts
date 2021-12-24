@@ -1,8 +1,8 @@
 export interface Assessment {
   id?: number;
-  patientId: number;
-  chiefComplaint: string;
-  historyOfPresentIllness: string;
+  patientId?: number;
+  chiefComplaint?: string;
+  historyOfPresentIllness?: string;
   painAssessment?: string;
   painScale?: number;
   encounterDate?: Date;
