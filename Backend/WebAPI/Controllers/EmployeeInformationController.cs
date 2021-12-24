@@ -57,8 +57,6 @@ namespace WebAPI
         {
             try
             {
-                if (p_email == null || _repo.VerifyEmail(p_email) == null)
-                    throw new Exception("Invalid email");
                 return Ok(_repo.VerifyEmail(p_email));
             }
             catch (Exception e)
