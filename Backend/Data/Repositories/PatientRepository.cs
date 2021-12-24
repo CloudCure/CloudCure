@@ -25,7 +25,7 @@ namespace Data
                     .Include(p => p.Allergies)
                     .Include(p => p.UserProfile.CovidAssesments)
                     .Include(p => p.Diagnoses)
-                    .Include("Diagnoses.Assessments")
+                    .Include("Diagnoses.Assessment")
                     .Include("Diagnoses.Vitals")
                     .Include(p => p.Doctor.UserProfile)
                     .Single(p => p.Id.Equals(query));
@@ -43,7 +43,7 @@ namespace Data
                     .Include(p => p.Allergies)
                     .Include(p => p.UserProfile.CovidAssesments)
                     .Include(p => p.Diagnoses)
-                    .Include("Diagnoses.Assessments")
+                    .Include("Diagnoses.Assessment")
                     .Include("Diagnoses.Vitals")
                     .Include(p => p.Doctor.UserProfile)
                     .Where(p => p.Id > 0);
