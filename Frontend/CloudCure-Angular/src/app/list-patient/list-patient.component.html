@@ -8,36 +8,41 @@
         <p class="text">Address: {{patient.userProfile.address}}</p>
         <p class="text">Doctor: <span>{{patient.doctor?.userProfile?.firstName}}
                 {{patient.doctor?.userProfile?.lastName}}</span></p>
-        
+
         <div class="row">
-            <div class="col"
-                *ngIf="!patient.diagnoses?.length; else assessButton">
+            <div class="col" *ngIf="!patient.diagnoses?.length; else vitalButton">
                 <button (click)="createDiagnosis()" class="btn btn-custom btn-primary diagnosis border view">Start
                     Assessment</button>
             </div>
         </div>
-        <ng-template #assessButton class="row">
+        <ng-template #vitalButton class="row">
             <div class="col">
-                <button *ngIf="patient.diagnoses![patient.diagnoses!.length - 1].vitals" (click)="viewVitals()"
-                    class="btn btn-custom btn-primary diagnosis border view">Vitals</button>
-            </div>
-            <div class="col">
-                <button *ngIf="patient.diagnoses![patient.diagnoses!.length - 1].assessment" (click)="viewAssessments()"
-                    class="btn btn-custom btn-primary diagnosis border view">Assessments</button>
-            </div>
-            <!-- For Doctors Eyes Only -->
-                <div *ngIf="role === 2;" class="col">
-                    <button *ngIf="patient.diagnoses![patient.diagnoses!.length - 1].isFinalized == true" (click)="finalize()" class="finalize btn btn-custom btn-primary diagnosis border">Finalize
-                        Report</button>
-                </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <button (click)="viewProfile()" class="btn btn-custom btn-primary diagnosis border view">Patient
-                        Profile</button>
-                </div>
+                <button *ngIf="patient.diagnoses![patient.diagnoses!.length - 1].vitals == null; else assessButton"
+                    (click)="viewVitals()" class="btn btn-custom btn-primary diagnosis border view">Vitals</button>
             </div>
         </ng-template>
+        <ng-template #assessButton>
+            <div class="col">
+                <button *ngIf="patient.diagnoses![patient.diagnoses!.length - 1].assessment == null; else finalizeButton"
+                    (click)="viewAssessments()"
+                    class="btn btn-custom btn-primary diagnosis border view">Assessments</button>
+            </div>
+        </ng-template>
+        <ng-template #finalizeButton>
+        <!-- For Doctors Eyes Only -->
+        <div *ngIf="role === 2;" class="col">
+            <button *ngIf="patient.diagnoses![patient.diagnoses!.length - 1].isFinalized == true" (click)="finalize()"
+                class="finalize btn btn-custom btn-primary diagnosis border">Finalize
+                Report</button>
+        </div>
+        </ng-template>
+
+        <div class="row">
+            <div class="col-md-12">
+                <button (click)="viewProfile()" class="btn btn-custom btn-primary diagnosis border view">Patient
+                    Profile</button>
+            </div>
+        </div>
 
 
         <!-- For Nurse Eyes Only -->

@@ -1,6 +1,7 @@
 export interface Assessment {
   id?: number;
-  patientId?: number;
+  patientId: number;
+  diagnosisId: number;
   chiefComplaint?: string;
   historyOfPresentIllness?: string;
   painAssessment?: string;
