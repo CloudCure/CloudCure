@@ -7,6 +7,7 @@ import { User } from '@auth0/auth0-angular';
 import { PatientService } from '../services/patient.service';
 import { Allergy } from '../AngularModels/Allergy';
 import { Router } from '@angular/router';
+import { Diagnosis } from '../AngularModels/Diagnosis';
 
 @Component({
   selector: 'app-list-patient',
@@ -24,7 +25,6 @@ export class ListPatientComponent implements OnInit, OnDestroy {
   pairedDoctor:string = '';
 
   constructor(private router: Router, private patientAPI:PatientService) {
-
   }
   ngOnDestroy(): void {
     this.patientAPI.patientCount = 0;
@@ -36,6 +36,14 @@ export class ListPatientComponent implements OnInit, OnDestroy {
     }
     this.patientAPI.patientCount--;
 
+  }
+
+  createDiagnosis()
+  {
+    let newDiagnosis : Diagnosis = {} as Diagnosis
+    newDiagnosis.isFinalized = false;
+    this.patient.diagnoses?.push(newDiagnosis)
+    this.patientAPI.Update(this.patient.id, this.patient).subscribe()
   }
 
   addProfile()

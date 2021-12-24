@@ -7,6 +7,7 @@ import { Vitals } from '../AngularModels/Vitals';
 import { PatientService } from '../services/patient.service';
 import { VitalsService } from '../services/vitals.service';
 import { Router } from '@angular/router';
+import { Diagnosis } from '../AngularModels/Diagnosis';
 
 @Component({
   selector: 'diagnosis-vitals',
@@ -15,68 +16,65 @@ import { Router } from '@angular/router';
 })
 export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
 
-  // patient ID should be a dynamic input that is recieved from somewhere else
-  // I am using 2 for now since I know there is a patient ID of 2 in the DB
-  // but it should change depending on what patient is being assessed
-  patientId:number = 2;
-
   // makes the form group for our vitals
-  vitalsGroup:FormGroup = new FormGroup({
-    Systolic:        new FormControl("", Validators.required),
-    Diastolic:       new FormControl("", Validators.required),
-    OxygenSat:       new FormControl("", Validators.required),
-    HeartRate:       new FormControl("", Validators.required),
-    Temperature:     new FormControl("", Validators.required),
+  vitalsGroup: FormGroup = new FormGroup({
+    Systolic: new FormControl("", Validators.required),
+    Diastolic: new FormControl("", Validators.required),
+    OxygenSat: new FormControl("", Validators.required),
+    HeartRate: new FormControl("", Validators.required),
+    Temperature: new FormControl("", Validators.required),
     RespiratoryRate: new FormControl("", Validators.required),
-    Height:          new FormControl("", Validators.required),
-    Weight:          new FormControl("", Validators.required),
+    Height: new FormControl("", Validators.required),
+    Weight: new FormControl("", Validators.required),
   });
 
   OurBoolean: boolean = true;
-  
-  constructor(private VitalsAPI:VitalsService, private PatientAPI:PatientService, private route: ActivatedRoute, private router: Router) { }
-  
-  
-  
+
+  constructor(private VitalsAPI: VitalsService, private PatientAPI: PatientService, private route: ActivatedRoute, private router: Router) { }
+
+  patientId: number | undefined = this.PatientAPI.currentPatientId
+  patient: Patient = {} as Patient;
+  newVitals: Vitals = {} as Vitals;
+  diagnosis: Diagnosis = {} as Diagnosis;
+
   ngOnDestroy(): void {
     this.VitalsAPI.submitButton = false;
   }
 
   ngOnInit(): void {
-    this.VitalsAPI.submitButton; 
+    this.VitalsAPI.submitButton;
     this.OurBoolean = this.VitalsAPI.submitButton
     // this way has worked in the past
     // depends on how we wish to implement Patient ID in the routing
     // this.patientId = Number(this.route.snapshot.paramMap.get("id"))
+
+    this.PatientAPI.GetById(this.patientId).subscribe(result => {
+      result = this.patient;
+    })
   }
 
-  submit()
-  {
+  submit() {
     this.OurBoolean = false;
     this.router.navigateByUrl("/profile");
   }
 
-  submitOne()
-  {
+  submitOne() {
     this.OurBoolean = false;
     this.router.navigateByUrl("/patient");
   }
 
 
 
-  PatientProfile()
-  {
+  PatientProfile() {
     this.router.navigateByUrl("patient-view");
   }
 
-  Assessments()
-  {
+  Assessments() {
     this.router.navigateByUrl("/assessment");
   }
 
   // function that runs on form submission
-  RegisterVitals(vitalsGroup: FormGroup)
-  {
+  RegisterVitals(vitalsGroup: FormGroup) {
     // logs the form
     console.log("register complete")
     console.log(vitalsGroup)
@@ -84,32 +82,21 @@ export class DiagnosisVitalsComponent implements OnInit, OnDestroy {
 
     // checks to see if form is valid
     if (vitalsGroup.valid) {
-      let VitalsInfo: Vitals = {
-        PatientId: this.patientId,
-        systolic:        vitalsGroup.get("Systolic")?.value,
-        diastolic:       vitalsGroup.get("Diastolic")?.value,
-        oxygenSat:       vitalsGroup.get("OxygenSat")?.value,
-        heartRate:       vitalsGroup.get("HeartRate")?.value,
-        temperature:     vitalsGroup.get("Temperature")?.value,
-        respiratoryRate: vitalsGroup.get("RespiratoryRate")?.value,
-        height:          vitalsGroup.get("Height")?.value,
-        weight:          vitalsGroup.get("Weight")?.value,
+      this.newVitals.systolic = vitalsGroup.get("Systolic")?.value,
+      this.newVitals.diastolic = vitalsGroup.get("Diastolic")?.value,
+      this.newVitals.oxygenSat = vitalsGroup.get("OxygenSat")?.value,
+      this.newVitals.heartRate = vitalsGroup.get("HeartRate")?.value,
+      this.newVitals.temperature = vitalsGroup.get("Temperature")?.value,
+      this.newVitals.respiratoryRate = vitalsGroup.get("RespiratoryRate")?.value,
+      this.newVitals.height = vitalsGroup.get("Height")?.value,
+      this.newVitals.weight = vitalsGroup.get("Weight")?.value
+
+      if (this.patient.diagnoses![-1]){
+        this.diagnosis = this.patient.diagnoses![-1]
+        this.diagnosis.vitals = this.newVitals
       }
-
-      // logs if valid
-      console.log("Vital info created")
-      console.log(VitalsInfo)
-
-      // logs and adds to database
-      this.VitalsAPI.Add(VitalsInfo).subscribe(
-        (respone) => {
-          console.log("Vitals added");
-          console.log(respone);
-        }
-      )
+      
+      this.PatientAPI.Update(this.patient.id, this.patient)
     }
-
-    // Can include routing to next page here too
   }
-
 }

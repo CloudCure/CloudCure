@@ -12,74 +12,40 @@ import { PatientService } from '../services/patient.service';
 })
 export class ViewDiagnosisComponent implements OnInit {
 
-  constructor(private DiagnosisApi : DiagnosisService, private PatientApi : PatientService) { }
+  constructor(private DiagnosisApi: DiagnosisService, private PatientApi: PatientService) { }
 
-  CurrentPatient: number | undefined = this.PatientApi.currentPatientId 
-  patient : Patient = {} as Patient;
-  //VitalsTest: any = this.patient.vitalHistory?[-1]
-  //AssesmentTest: any = this.patient.assessments?[-1]
+  CurrentPatient: number | undefined = this.PatientApi.currentPatientId
+  patient: Patient = {} as Patient;
+  currentDiagnosis : Diagnosis = {} as Diagnosis;
 
-  doctorDiagnosis:FormGroup = new FormGroup({
+  doctorDiagnosis: FormGroup = new FormGroup({
     diagnosis: new FormControl("", Validators.required),
     treatment: new FormControl("", Validators.required),
-    EncounterDate: new FormControl(""),
-    Patient: new FormControl(""),
-    vitals: new FormControl(""),
-    Assessment: new FormControl(""),
-    DoctorDiagnosis: new FormControl(""),
-    RecommendedTreatment: new FormControl(""),
-    IsFinalized: new FormControl(true)
+    isFinalized: new FormControl(true)
   })
-  get diagnosis() {return this.doctorDiagnosis.get("diagnosis");}
-  get treatment() {return this.doctorDiagnosis.get("treatment");}
-  get EncounterDate() {return this.doctorDiagnosis.get("EncounterDate");}
-  get Patient() {return this.doctorDiagnosis.get("Patient");}
-  get vitals() {return this.doctorDiagnosis.get("vitals");}
-  get Assessment() {return this.doctorDiagnosis.get("Assessment");}
-  get DoctorDiagnosis() {return this.doctorDiagnosis.get("DoctorDiagnosis");}
-  get RecommendedTreatment() {return this.doctorDiagnosis.get("RecommendedTreatment");}
-  get IsFinalized() {return this.doctorDiagnosis.get("IsFinalized");}
+  get diagnosis() { return this.doctorDiagnosis.get("diagnosis"); }
+  get treatment() { return this.doctorDiagnosis.get("treatment"); }
+  get isFinalized() { return this.doctorDiagnosis.get("IsFinalized"); }
 
 
-    ngOnInit(): void {
+  ngOnInit(): void {
     this.PatientApi.GetById(this.PatientApi.currentPatientId).subscribe(result => {
       this.patient = result
       console.log(this.patient);
     })
   }
 
-  
+  submit(doctorDiagnosis: FormGroup) {
 
-  submit(doctorDiagnosis: FormGroup)
-  {
-  
-    if (doctorDiagnosis.valid)
-    {
-      let diagnosis : Diagnosis = {} as Diagnosis
+    if (doctorDiagnosis.valid) {
+      this.currentDiagnosis.id = this.patient.diagnoses![-1].id
+      this.currentDiagnosis.doctorDiagnosis = doctorDiagnosis.get("diagnosis")?.value,
+      this.currentDiagnosis.recommendedTreatment = doctorDiagnosis.get("treatment")?.value,
+      this.currentDiagnosis.isFinalized = doctorDiagnosis.get("IsFinalized")?.value
       
-        diagnosis.doctorDiagnosis =  doctorDiagnosis.get("diagnosis")?.value,
-        diagnosis.recommendedTreatment = doctorDiagnosis.get("treatment")?.value,
-        diagnosis.patient = this.patient,
-        diagnosis.assessment = this.patient.assessments![this.patient.assessments!.length-1],
-        diagnosis.vitals = this.patient.vitalHistory![this.patient.vitalHistory!.length-1],
-
-
-        //diagnosis.Patient!.id = this.PatientApi.currentPatientId,
-        //diagnosis.vitals = doctorDiagnosis.get("vitals")?.value,
-        //diagnosis.Assessment = doctorDiagnosis.get("Assessment")?.value,
-        diagnosis.isFinalized = doctorDiagnosis.get("IsFinalized")?.value
-      
-      console.log(diagnosis);
-      this.DiagnosisApi.Add(diagnosis).subscribe(
-        (response) => {
-          console.log("Patient Added");
-          console.log(response);
-        }
-      )
-
+      this.PatientApi.Update(this.patient.id, this.patient);
     }
-    else
-    {
+    else {
       this.doctorDiagnosis.markAllAsTouched();
     }
   }
