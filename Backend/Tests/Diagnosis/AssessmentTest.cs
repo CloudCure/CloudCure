@@ -20,24 +20,24 @@ namespace Tests.Diagnosis
             Seed();
         }
         [Fact]
-        public void SearchByPatientIdShouldReturnResults()
+        public void SearchByDiagnosisIdShouldReturnResults()
         {
             using (var context = new CloudCureDbContext(_options))
             {
                 IAssessmentRepository repository = new AssessmentRepository(context);
-                var patient = repository.SearchByPatientId(1);
+                var patient = repository.SearchByDiagnosisId(1);
 
                 Assert.NotNull(patient);
             }
         }
         [Fact]
-        public void SearchByPatientIdShouldThrowNullExceptionOnNoResults()
+        public void SearchByDiagnosisIdShouldThrowNullExceptionOnNoResults()
         {
             using (var context = new CloudCureDbContext(_options))
             {
                 IAssessmentRepository repository = new AssessmentRepository(context);
 
-                                    Assert.Empty(repository.SearchByPatientId(-1));
+                                    Assert.Empty(repository.SearchByDiagnosisId(-1));
 
             }
         }
@@ -60,7 +60,7 @@ namespace Tests.Diagnosis
         //         {
         //             IAssessmentRepository repository = new AssessmentRepository(context);
                     
-        //                                 Assert.Empty(repository.SearchByPatientId(-1));
+        //                                 Assert.Empty(repository.SearchByDiagnosisId(-1));
 
         //         }
         // }
@@ -75,23 +75,21 @@ namespace Tests.Diagnosis
                 context.Assessments.AddRange(
                     new Assessment
                     {
-                        PatientId = 1,
+                        DiagnosisId = 1,
                         PainAssessment = "asdfas",
                         PainScale = 2,
                         ChiefComplaint = "dfdssdf",
                         HistoryOfPresentIllness = "dssdfs",
-                        EncounterDate = DateTime.Now
 
 
                     },
                             new Assessment
                             {
-                                PatientId = 2,
+                                DiagnosisId = 2,
                                 PainAssessment = "asdfas",
                                 PainScale = 2,
                                 ChiefComplaint = "dfdssdf",
                                 HistoryOfPresentIllness = "dssdfs",
-                                EncounterDate = DateTime.Now
                                 
 
 

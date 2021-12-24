@@ -1,6 +1,7 @@
 using System;
 using Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Models;
 using Moq;
 using WebAPI.Controllers;
@@ -10,21 +11,23 @@ namespace Tests.Controller
 {
     public class CovidControllerTest
     {
+
+        readonly DbContextOptions<CloudCureDbContext> _options;
+
+        public CovidControllerTest()
+        {
+            _options = new DbContextOptionsBuilder<CloudCureDbContext>()
+                        .UseSqlite("Filename = CovidControllerTests.db; Foreign Keys=False").Options;
+            Seed();
+        }
         [Fact]
         public void CreateReturnsOkCovid()
         {
             var repository = new Mock<ICovidRepository>();
             var controller = new CovidController(repository.Object);
 
-            var covid = new CovidVerify
-            {
-                UserId = 1,
-                question1 = "true",
-                question2 = "true",
-                question3 = "true",
-                question4 = "true",
-                question5 = "true"
-            };
+            var covid = GetCovid();
+
 
             var result = controller.Add(covid);
             var okResponse = (IStatusCodeActionResult)result;
@@ -34,116 +37,89 @@ namespace Tests.Controller
         [Fact]
         public void CreateShouldThrowAnException()
         {
-            var repository = new Mock<ICovidRepository>();
-            var controller = new CovidController(repository.Object);
+             using (var context = new CloudCureDbContext(_options))
+            {
+                ICovidRepository repo = new CovidRepository(context);
+                var controller = new CovidController(repo);
 
-            try
-            {
                 var result = controller.Add(null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void GetAllReturnsOKCovid()
         {
-            var repository = new Mock<ICovidRepository>();
-            var controller = new CovidController(repository.Object);
-
-            var covid = new CovidVerify
+              using (var context = new CloudCureDbContext(_options))
             {
-                UserId = 1,
-                question1 = "true",
-                question2 = "true",
-                question3 = "true",
-                question4 = "true",
-                question5 = "true"
-            };
+                ICovidRepository repo = new CovidRepository(context);
+                var controller = new CovidController(repo);
 
-            var entry = controller.Add(covid);
-            var result = controller.GetAll();
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var covid = GetCovid();
+
+                var entry = controller.Add(covid);
+                var result = controller.GetAll();
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void GetAllShouldThrowAnException()
         {
-            var repository = new Mock<ICovidRepository>();
+             var repository = new Mock<ICovidRepository>();
             var controller = new CovidController(repository.Object);
 
-            try
-            {
-                var result = controller.GetAll();
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
-            }
+            var result = controller.GetAll();
+            var okResponse = (IStatusCodeActionResult)result;
+            Assert.Equal(400, okResponse.StatusCode);
         }
 
         [Fact]
         public void DeleteShouldReturnOKCovid()
         {
-            var repository = new Mock<ICovidRepository>();
-            var controller = new CovidController(repository.Object);
-
-            var covid = new CovidVerify
+             using (var context = new CloudCureDbContext(_options))
             {
-                UserId = 1,
-                question1 = "true",
-                question2 = "true",
-                question3 = "true",
-                question4 = "true",
-                question5 = "true"
-            };
+                ICovidRepository repo = new CovidRepository(context);
+                var controller = new CovidController(repo);
 
-            var entry = controller.Add(covid);
+                var covid = repo.GetById(1);
 
-            var result = controller.Delete(1);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.Delete(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void DeleteShouldThrowAnException()
         {
-            var repository = new Mock<ICovidRepository>();
-            var controller = new CovidController(repository.Object);
+              using (var context = new CloudCureDbContext(_options))
+            {
+                ICovidRepository repo = new CovidRepository(context);
+                var controller = new CovidController(repo);
 
-            try
-            {
-                var result = controller.Delete(1);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var covid = GetCovid();
+
+                var result = controller.Delete(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void GetbyIdShouldReturnOKGetCovidById()
         {
-            var repository = new Mock<ICovidRepository>();
-            var controller = new CovidController(repository.Object);
-
-            var covid = new CovidVerify
+               using (var context = new CloudCureDbContext(_options))
             {
-                UserId = 1,
-                question1 = "true",
-                question2 = "true",
-                question3 = "true",
-                question4 = "true",
-                question5 = "true"
-            };
+                ICovidRepository repo = new CovidRepository(context);
+                var controller = new CovidController(repo);
 
-            var entry = controller.Add(covid);
-            var results = controller.GetById(1);
-            var okResponse = (IStatusCodeActionResult)results;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetById(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
@@ -152,36 +128,28 @@ namespace Tests.Controller
             var repository = new Mock<ICovidRepository>();
             var controller = new CovidController(repository.Object);
 
-            try
-            {
-                var result = controller.GetById(1);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
-            }
+            var covid = GetCovid();
+
+            var entry = controller.Add(covid);
+            var results = controller.GetById(-1);
+            var okResponse = (IStatusCodeActionResult)results;
+            Assert.Equal(400, okResponse.StatusCode);
         }
 
         [Fact]
         public void UpdateShouldReturnOKCovid()
         {
-            var repository = new Mock<ICovidRepository>();
-            var controller = new CovidController(repository.Object);
-
-            var covid = new CovidVerify
+             using (var context = new CloudCureDbContext(_options))
             {
-                UserId = 1,
-                question1 = "true",
-                question2 = "true",
-                question3 = "true",
-                question4 = "true",
-                question5 = "true"
-            };
+                ICovidRepository repo = new CovidRepository(context);
+                var controller = new CovidController(repo);
 
-            var entry = controller.Add(covid);
-            var result = controller.Update(1, covid);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var covid = GetCovid();
+
+                var result = controller.Update(1, covid);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
@@ -190,13 +158,45 @@ namespace Tests.Controller
             var repository = new Mock<ICovidRepository>();
             var controller = new CovidController(repository.Object);
 
-            try
+            var covid = GetCovid();
+
+            var entry = controller.Add(covid);
+            var results = controller.Update(-1, null);
+            var okResponse = (IStatusCodeActionResult)results;
+            Assert.Equal(400, okResponse.StatusCode);
+        }
+        private CovidVerify GetCovid()
+        {
+            return new CovidVerify
             {
-                var result = controller.Update(1, null);
-            }
-            catch (Exception e)
+                question1 = "true",
+                question2 = "true",
+                question3 = "true",
+                question4 = "true",
+                question5 = "true",
+                UserId = 1
+            };
+        }
+
+        void Seed()
+        {
+            using (var context = new CloudCureDbContext(_options))
             {
-                Assert.NotNull(e);
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                CovidVerify covid = new CovidVerify
+                {
+                    question1 = "true",
+                    question2 = "true",
+                    question3 = "true",
+                    question4 = "true",
+                    question5 = "true",
+                    UserId = 1
+                };
+
+                context.CovidAssessments.Add(covid);
+                context.SaveChanges();
             }
         }
     }

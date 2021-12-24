@@ -22,12 +22,12 @@ namespace Tests
 
 
         [Fact]
-        public void SearchByPatientIdShouldReturnResults()
+        public void SearchByDiagnosisIdShouldReturnResults()
         {
             using (var context = new CloudCureDbContext(_options))
             {
                 IVitalsRepository repository = new VitalsRepository(context);
-                var Vitals = repository.SearchByPatientId(1);
+                var Vitals = repository.SearchByDiagnosisId(1);
 
                 Assert.NotNull(Vitals);
                 Assert.Equal(98.6, Vitals.Temperature);
@@ -59,7 +59,7 @@ namespace Tests
                     IVitalsRepository repository = new VitalsRepository(context);
                     
                     context.Database.EnsureDeleted();
-                    Assert.Throws<KeyNotFoundException>(() => repository.SearchByPatientId(-1));
+                    Assert.Throws<KeyNotFoundException>(() => repository.SearchByDiagnosisId(-1));
                 }
         }
         void Seed()
@@ -72,7 +72,7 @@ namespace Tests
                 context.Vitals.AddRange(
                     new Vitals
                     {
-                        PatientId = 1,
+                        DiagnosisId = 1,
                         Systolic = 120,
                         Diastolic = 80,
                         OxygenSat = 96.5,

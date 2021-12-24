@@ -5,12 +5,21 @@ using Xunit;
 using WebAPI.Controllers;
 using Models;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tests
 {
     public class RoleControllerTests
     {
+        readonly DbContextOptions<CloudCureDbContext> _options;
+
+        public RoleControllerTests()
+        {
+            _options = new DbContextOptionsBuilder<CloudCureDbContext>()
+                        .UseSqlite("Filename = roleControllerTests.db; Foreign Keys=False").Options;
+            Seed();
+        }
+        
         [Fact]
         public void CreateReturnsOk()
         {
@@ -30,51 +39,46 @@ namespace Tests
         }
 
         [Fact]
-        public void CreateShouldThrownAnException()
+        public void CreateShouldGiveBadResponse()
         {
-            var repository = new Mock<IRoleRepository>();
-            var controller = new RoleController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IRoleRepository repo = new RoleRepository(context);
+                var controller = new RoleController(repo);
 
-            try
-            {
                 var result = controller.Add(null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void GetAllShouldGetAll()
         {
-            var repository = new Mock<IRoleRepository>();
-            var controller = new RoleController(repository.Object);
-
-            var role = new Role
+            using (var context = new CloudCureDbContext(_options))
             {
-                RoleName = "Doctor"
-            };
+                IRoleRepository repo = new RoleRepository(context);
+                var controller = new RoleController(repo);
 
-            var entry = controller.Add(role);
-            var result = controller.GetAll();
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetAll();
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
-        public void GetAllShouldThrowAnException()
+        public void GetAllShouldGiveBadResponse()
         {
-            var repository = new Mock<IRoleRepository>();
-            var controller = new RoleController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IRoleRepository repo = new RoleRepository(context);
+                var controller = new RoleController(repo);
 
-            try
-            {
+                context.Database.EnsureDeleted();
+
                 var result = controller.GetAll();
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
@@ -98,84 +102,90 @@ namespace Tests
         [Fact]
         public void DeleteShouldThrowAnException()
         {
-            var repository = new Mock<IRoleRepository>();
-            var controller = new RoleController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IRoleRepository repo = new RoleRepository(context);
+                var controller = new RoleController(repo);
 
-            try
-            {
                 var result = controller.Delete(null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void UpdateShouldUpdateRole()
         {
-            var repository = new Mock<IRoleRepository>();
-            var controller = new RoleController(repository.Object);
-
-            var role = new Role
+            using (var context = new CloudCureDbContext(_options))
             {
-                RoleName = "Doctor"
-            };
+                IRoleRepository repo = new RoleRepository(context);
+                var controller = new RoleController(repo);
 
-            var entry = controller.Add(role);
-            role.RoleName = "Nurse";
-            var result = controller.Update(1, role);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var role = new Role
+                {
+                    RoleName = "Nurse"
+                };
+
+                var result = controller.Update(1, role);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void UpdateShouldThrowAnException()
         {
-            var repository = new Mock<IRoleRepository>();
-            var controller = new RoleController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IRoleRepository repo = new RoleRepository(context);
+                var controller = new RoleController(repo);
 
-            try
-            {
-                var result = controller.Update(1, null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var result = controller.Update(-1, null);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void GetByIdShouldGetRoleById()
         {
-            var repository = new Mock<IRoleRepository>();
-            var controller = new RoleController(repository.Object);
-
-            var role = new Role
+            using (var context = new CloudCureDbContext(_options))
             {
-                RoleName = "Doctor"
-            };
+                IRoleRepository repo = new RoleRepository(context);
+                var controller = new RoleController(repo);
 
-            var entry = controller.Add(role);
-            var result = controller.GetById(1);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetById(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void GetByIdShouldThrowAnException()
         {
-            var repository = new Mock<IRoleRepository>();
-            var controller = new RoleController(repository.Object);
-
-            try
+            using (var context = new CloudCureDbContext(_options))
             {
-                var result = controller.GetById(100);
+                IRoleRepository repo = new RoleRepository(context);
+                var controller = new RoleController(repo);
+
+                var result = controller.GetById(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
-            catch (Exception e)
-            {
-                Assert.True(e.Message.Contains("Not a valid ID"));
+        }
 
+        private void Seed()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                context.Roles.Add(new Role
+                {
+                    RoleName = "Doctor"
+                });
+                context.SaveChanges();
             }
         }
     }

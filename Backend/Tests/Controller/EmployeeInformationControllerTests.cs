@@ -6,11 +6,21 @@ using Xunit;
 using WebAPI;
 using Models;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tests
 {
     public class EmployeeInformationControllerTests
     {
+        readonly DbContextOptions<CloudCureDbContext> _options;
+
+        public EmployeeInformationControllerTests()
+        {
+            _options = new DbContextOptionsBuilder<CloudCureDbContext>()
+                        .UseSqlite("Filename = employeeInfoControllerTests.db; Foreign Keys=False").Options;
+            Seed();
+        }
+
         [Fact]
         public void CreateReturnsOk()
         {
@@ -27,29 +37,29 @@ namespace Tests
         [Fact]
         public void GetAllShouldGetAll()
         {
-            var repository = new Mock<IEmployeeInformationRepository>();
-            var controller = new EmployeeInformationController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                var controller = new EmployeeInformationController(repo);
 
-            var info = newEmployee();
-
-            var entry = controller.Add(info);
-            var result = controller.GetAll();
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetAll();
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void DeleteShouldDeleteEntry()
         {
-            var repository = new Mock<IEmployeeInformationRepository>();
-            var controller = new EmployeeInformationController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                var controller = new EmployeeInformationController(repo);
 
-            var info = newEmployee();
-
-            var entry = controller.Add(info);
-            var result = controller.Delete(1);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.Delete(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
@@ -70,124 +80,104 @@ namespace Tests
         [Fact]
         public void GetByIdShouldGetEmployeeInfoById()
         {
-            var repository = new Mock<IEmployeeInformationRepository>();
-            var controller = new EmployeeInformationController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                var controller = new EmployeeInformationController(repo);
 
-            var info = newEmployee();
-
-            var entry = controller.Add(info);
-            var result = controller.GetById(1);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetById(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void VerifyEmailShouldReturnOk()
         {
-            var repository = new Mock<IEmployeeInformationRepository>();
-            var controller = new EmployeeInformationController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                var controller = new EmployeeInformationController(repo);
 
-            var info = newEmployee();
+                var info = newEmployee();
 
-            var entry = controller.Add(info);
-            var result = controller.VerifyUser(info.WorkEmail);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                controller.Add(info);
+                var result = controller.VerifyUser(info.WorkEmail);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
         public void CreateReturnsBadRequestEmployee()
         {
-            var repository = new Mock<IEmployeeInformationRepository>();
-            var controller = new EmployeeInformationController(repository.Object);
-
-            var info = newEmployee();
-
-            try
+            using (var context = new CloudCureDbContext(_options))
             {
-                controller.Add(info);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                var controller = new EmployeeInformationController(repo);
+
+                var result = controller.Add(null);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
          [Fact]
         public void GetAllShouldReturnBadRequestEmployee()
         {
-            var repository = new Mock<IEmployeeInformationRepository>();
-            var controller = new EmployeeInformationController(repository.Object);
-
-            var info = newEmployee();
-
-            try
+            using (var context = new CloudCureDbContext(_options))
             {
-                controller.Add(info);
-                controller.GetAll();
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                var controller = new EmployeeInformationController(repo);
+
+                context.Database.EnsureDeleted();
+
+                var result = controller.GetAll();
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void DeleteShouldReturnBadRequestEmployee()
         {
-            var repository = new Mock<IEmployeeInformationRepository>();
-            var controller = new EmployeeInformationController(repository.Object);
-
-            var info = newEmployee();
-
-            try
+            using (var context = new CloudCureDbContext(_options))
             {
-                controller.Add(info);
-                controller.Delete(0);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                var controller = new EmployeeInformationController(repo);
+
+                var result = controller.Delete(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
         [Fact]
         public void UpdateShouldReturnBadRequestEmployeeInfo()
         {
-            var repository = new Mock<IEmployeeInformationRepository>();
-            var controller = new EmployeeInformationController(repository.Object);
-
-            var info = newEmployee();
-
-            try
+            using (var context = new CloudCureDbContext(_options))
             {
-                controller.Add(info);
-                controller.Update(0, info);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                var controller = new EmployeeInformationController(repo);
+
+                var result = controller.Update(-1, null);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
            [Fact]
         public void GetByIdShouldGetEmployeeInfoByIdWithBadRequest()
         {
-            var repository = new Mock<IEmployeeInformationRepository>();
-            var controller = new EmployeeInformationController(repository.Object);
-
-            var info = newEmployee();
-
-            try
+            using (var context = new CloudCureDbContext(_options))
             {
-                controller.Add(info);
-                controller.GetById(0);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                var controller = new EmployeeInformationController(repo);
+
+                var result = controller.GetById(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
-
 
         private EmployeeInformation newEmployee()
         {
@@ -227,6 +217,18 @@ namespace Tests
                     }
                 }
             };
+        }
+
+        private void Seed()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                context.Employee.Add(newEmployee());
+                context.SaveChanges();
+            }
         }
     }
 }

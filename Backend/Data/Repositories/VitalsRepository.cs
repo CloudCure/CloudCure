@@ -12,12 +12,12 @@ namespace Data
         {
         }
 
-        public Vitals SearchByPatientId(int p_patientId)
+        public Vitals SearchByDiagnosisId(int p_patientId)
         {
             try
             {
             var result = base.GetAll()
-                        .FirstOrDefault(vital => vital.PatientId == p_patientId);
+                        .FirstOrDefault(vital => vital.DiagnosisId == p_patientId);
             return result;
             }
             catch (System.Exception)

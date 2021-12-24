@@ -63,7 +63,6 @@
 //                     OxygenSat = 98.2,
 //                     Temperature = 97.2,
 //                     RespiratoryRate = 14,
-//                     EncounterDate = DateTime.Now
 //                 }
 //             };
 //             List<Assessment> assesments = new List<Assessment>
@@ -93,7 +92,6 @@
 //                         OxygenSat = 98.2,
 //                         Temperature = 97.2,
 //                         RespiratoryRate = 14,
-//                         EncounterDate = DateTime.Now
 //                     },
 //                     Assessment = new Assessment
 //                     {
@@ -123,8 +121,6 @@
 //             test.Allergies = a;
 //             test.Surgeries = s;
 //             test.CurrentMedications = m;
-//             test.VitalHistory = v;
-//             test.Assessments = assesments;
 //             test.Diagnoses = d;
 //             test.Doctor = doc;
 
@@ -134,8 +130,6 @@
 //             Assert.Equal(a, test.Allergies);
 //             Assert.Equal(s, test.Surgeries);
 //             Assert.Equal(m, test.CurrentMedications);
-//             Assert.Equal(v, test.VitalHistory);
-//             Assert.Equal(assesments, test.Assessments);
 //             Assert.Equal(d, test.Diagnoses);
 //             Assert.Equal(doc.UserProfile.FirstName, test.Doctor.UserProfile.FirstName);
 //         }

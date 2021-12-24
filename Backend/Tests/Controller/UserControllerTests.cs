@@ -3,15 +3,24 @@ using System.Collections.Generic;
 using Data;
 using Moq;
 using Xunit;
-using WebAPI;
 using Models;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using WebAPI.Controllers;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tests
 {
     public class UserControllerTests
     {
+        readonly DbContextOptions<CloudCureDbContext> _options;
+
+        public UserControllerTests()
+        {
+            _options = new DbContextOptionsBuilder<CloudCureDbContext>()
+                        .UseSqlite("Filename = userControllerTests.db; Foreign Keys=False").Options;
+            Seed();
+        }
+        
         [Fact]
         public void CreateReturnsOk()
         {
@@ -26,139 +35,133 @@ namespace Tests
         }
 
         [Fact]
-        public void CreateShouldThrowAnException()
+        public void CreateShouldGiveBadRequest()
         {
-            var repository = new Mock<IUserRepository>();
-            var controller = new UserController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IUserRepository repo = new UserRepository(context);
+                var controller = new UserController(repo);
 
-            try
-            {
                 var result = controller.Add(null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void GetAllShouldGetAll()
         {
-            var repository = new Mock<IUserRepository>();
-            var controller = new UserController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IUserRepository repo = new UserRepository(context);
+                var controller = new UserController(repo);
 
-            var user = newUser();
-
-            var entry = controller.Add(user);
-            var result = controller.GetAll();
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetAll();
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
-        public void GetAllShouldThrowAnException()
+        public void GetAllShouldGiveBadRequest()
         {
-            var repository = new Mock<IUserRepository>();
-            var controller = new UserController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IUserRepository repo = new UserRepository(context);
+                var controller = new UserController(repo);
 
-            try
-            {
+                context.Database.EnsureDeleted();
+
                 var result = controller.GetAll();
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void DeleteShouldDeleteEntry()
         {
-            var repository = new Mock<IUserRepository>();
-            var controller = new UserController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IUserRepository repo = new UserRepository(context);
+                var controller = new UserController(repo);
 
-            var user = newUser();
-
-            var entry = controller.Add(user);
-            var result = controller.Delete(1);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.Delete(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
-        public void DeleteShouldThrowAnException()
+        public void DeleteShouldGiveBadRequest()
         {
-            var repository = new Mock<IUserRepository>();
-            var controller = new UserController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IUserRepository repo = new UserRepository(context);
+                var controller = new UserController(repo);
 
-            try
-            {
-                var result = controller.Delete(1);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var result = controller.Delete(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void UpdateShouldUpdateUser()
         {
-            var repository = new Mock<IUserRepository>();
-            var controller = new UserController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IUserRepository repo = new UserRepository(context);
+                var controller = new UserController(repo);
 
-            var user = newUser();
+                var user = newUser();
+                user.FirstName = "Fred";
 
-            var entry = controller.Add(user);
-            user.FirstName = "Fred";
-            var result = controller.Update(1, user);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.Update(1, user);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
-        public void UpdateShouldThrowAnException()
+        public void UpdateShouldGiveBadRequest()
         {
-            var repository = new Mock<IUserRepository>();
-            var controller = new UserController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IUserRepository repo = new UserRepository(context);
+                var controller = new UserController(repo);
 
-            try
-            {
-                var result = controller.Update(1, null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var result = controller.Update(-1, null);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void GetByIdShouldGetUserById()
         {
-            var repository = new Mock<IUserRepository>();
-            var controller = new UserController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IUserRepository repo = new UserRepository(context);
+                var controller = new UserController(repo);
 
-            var user = newUser();
-
-            var entry = controller.Add(user);
-            var result = controller.GetById(1);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetById(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
-        public void GetByIdShouldThrowAnException()
+        public void GetByIdShouldGiveBadRequest()
         {
-            var repository = new Mock<IUserRepository>();
-            var controller = new UserController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IUserRepository repo = new UserRepository(context);
+                var controller = new UserController(repo);
 
-            try
-            {
-                var result = controller.GetById(1);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var result = controller.GetById(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
@@ -192,6 +195,18 @@ namespace Tests
                     RoleName = "Doctor"
                 }
             };
+        }
+
+        private void Seed()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                context.Users.Add(newUser());
+                context.SaveChanges();
+            }
         }
     }
 }

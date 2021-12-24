@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using System;
 using Serilog;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebAPI.Controllers
 {
@@ -20,6 +22,9 @@ namespace WebAPI.Controllers
         {
             try
             {
+                List<Allergy> allergy = _repo.GetAll().ToList();
+                if (allergy.Count == 0)
+                    throw new Exception ("No data found");
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
@@ -34,6 +39,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (_repo.GetById(id) == null)
+                    throw new Exception("Invalid Id");
                 return Ok(_repo.GetById(id));
             }
             catch (Exception e)
@@ -48,6 +55,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+               if (_repo.SearchByPatientId(id) == null)
+                    throw new Exception("Invaild Id");
                 return Ok(_repo.SearchByPatientId(id));
             }
             catch (Exception e)
@@ -80,6 +89,9 @@ namespace WebAPI.Controllers
         {
             try
             {
+
+                if (_repo.GetById(id) == null)
+                    throw new Exception ("Update failed!");
                 // CHECK PLEASE
                 var allergy = _repo.GetById(id);
 
@@ -100,6 +112,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (p_allergy == null)
+                    throw new Exception ("Invalid data!");
                 _repo.Create(p_allergy);
                 _repo.Save();
                 return Created("Allergy/Add", p_allergy);
