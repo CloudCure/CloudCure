@@ -31,11 +31,5 @@ namespace Models.Diagnosis
         // 0 being no paint 10 being the most pain to ever be felt.
         [Range(0, 10, ErrorMessage = "Number must be 0 to 10")]
         public int PainScale { get; set; }
-
-        //Date and time of the encounter.  
-        [Column(TypeName = "date")]
-        [DataType(DataType.DateTime)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime? EncounterDate {get; set;}
     }
 }

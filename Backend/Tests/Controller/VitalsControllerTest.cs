@@ -228,7 +228,6 @@ namespace Tests.Controller
                         Temperature = 98.6,
                         Height = 75,
                         Weight = 145,
-                        EncounterDate = DateTime.Now
                     }
                 );
                 context.SaveChanges();

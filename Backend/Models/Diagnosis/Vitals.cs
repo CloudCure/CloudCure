@@ -43,12 +43,5 @@ namespace Models.Diagnosis
 
         [Required]
         public double Weight {get; set;}
-
-
-        //Date and time of the encounter.  
-        [Column(TypeName = "date")]
-        [DataType(DataType.DateTime)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime? EncounterDate {get; set;}
     }
 }

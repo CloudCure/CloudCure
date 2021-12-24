@@ -19,9 +19,6 @@ namespace Data
         {
             var patient = repository.Patients
                     .Include(p => p.UserProfile)
-                    .Include(p => p.Assessments)
-                    .Include(p => p.VitalHistory)
-                    .Include(p => p.Diagnoses)
                     .Include(p => p.Conditions)
                     .Include(p => p.CurrentMedications)
                     .Include(p => p.Surgeries)
@@ -37,9 +34,6 @@ namespace Data
         {
             var patients = this.repository.Patients
                 .Include(p => p.UserProfile)
-                    .Include(p => p.Assessments)
-                    .Include(p => p.VitalHistory)
-                    .Include(p => p.Diagnoses)
                     .Include(p => p.Conditions)
                     .Include(p => p.CurrentMedications)
                     .Include(p => p.Surgeries)

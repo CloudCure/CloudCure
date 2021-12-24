@@ -35,7 +35,6 @@ namespace Data
                .Where(p => p.Patient.Id.Equals(query));
 
             return diagnoses;
-
         }
     }
 }

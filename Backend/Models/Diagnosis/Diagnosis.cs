@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace Models.Diagnosis
 {
@@ -15,8 +14,6 @@ namespace Models.Diagnosis
         [DataType(DataType.DateTime)]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? EncounterDate { get; set; }
-
-        [JsonIgnore]
         public Patient Patient { get; set; }
         public Vitals Vitals { get; set; }
         public Assessment Assessment { get; set; }
