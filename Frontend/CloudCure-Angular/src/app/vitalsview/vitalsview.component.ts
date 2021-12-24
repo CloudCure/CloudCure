@@ -29,7 +29,7 @@ export class VitalsviewComponent implements OnInit {
       this.patient = result;
       this.DiagnosisId = this.patient.diagnoses![this.patient.diagnoses!.length - 1].id
     })
-    this.vitalsApi.GetByPatientId(2).subscribe(response => {
+    this.vitalsApi.GetByPatientId(this.patient.id).subscribe(response => {
       console.log("accessed1")
       console.log(response)
     

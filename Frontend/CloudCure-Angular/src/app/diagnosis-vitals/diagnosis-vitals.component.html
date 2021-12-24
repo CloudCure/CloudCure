@@ -15,6 +15,7 @@
         <div id="form">
 
           <form [formGroup] = "vitalsGroup">
+            <!--
             <label>Diagnosis</label>
             <select formControlName="Date" class="form-select" aria-label="Default select example">
               <option value="null" disabled>Select New or Previous Assessment Diagnosis</option>
@@ -22,6 +23,7 @@
               <option *ngFor="let a of patient.assessments; let i = index;" [value]="a.id">Date: {{a.encounterDate | date: 'MM/dd/yyyy'}}, ID: {{a.id}}</option>
             </select>
             <br />
+            -->
 
           <div class="row">
 

@@ -17,6 +17,7 @@ export class AssessmentComponent implements OnInit {
   isUpdated: boolean = false;
 
   chiefComplaint: string = '';
+  diagnosisId: number = 0;
 
   //variables
   public textAreaForm = FormGroup;
@@ -76,7 +77,7 @@ export class AssessmentComponent implements OnInit {
   onSubmit(assessmentGroup:FormGroup) {
     if (assessmentGroup.valid)
     {
-      this.patientAssesment.patientId = this.patient.id;
+      this.patientAssesment.diagnosisId = this.diagnosisId;
       this.patientAssesment.chiefComplaint = this.clickedPartsConverter();
       this.patientAssesment.historyOfPresentIllness = assessmentGroup.get("history")?.value;
       this.patientAssesment.painScale = assessmentGroup.get("painScale")?.value;

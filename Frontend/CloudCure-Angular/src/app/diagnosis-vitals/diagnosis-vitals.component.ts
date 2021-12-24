@@ -30,13 +30,12 @@ export class DiagnosisVitalsComponent implements OnInit {
   });
 
 
-  patientId: number | undefined = this.PatientAPI.currentPatientId
   patient: Patient = {} as Patient;
   newVitals: Vitals = {} as Vitals;
   diagnosisId: any;
 
   constructor(private VitalsAPI: VitalsService, private PatientAPI: PatientService, private route: ActivatedRoute, private router: Router) {
-    this.PatientAPI.GetById(this.patientId).subscribe(result => {
+    this.PatientAPI.GetById(this.PatientAPI.currentPatientId).subscribe(result => {
       this.patient = result
       this.diagnosisId = this.patient.diagnoses![this.patient.diagnoses!.length - 1].id
 
