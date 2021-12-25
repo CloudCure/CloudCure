@@ -1,6 +1,7 @@
 using System;
 using Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Models.Diagnosis;
 using Moq;
 using WebAPI.Controllers;
@@ -10,6 +11,15 @@ namespace Tests.Controller
 {
     public class SurgeryControllerTest
     {
+        readonly DbContextOptions<CloudCureDbContext> _options;
+
+        public SurgeryControllerTest()
+        {
+            _options = new DbContextOptionsBuilder<CloudCureDbContext>()
+                        .UseSqlite("Filename = surgeryControllerTests.db; Foreign Keys=False").Options;
+            Seed();
+        }
+
         [Fact]
         public void CreateReturnsOkSurgery()
         {
@@ -28,52 +38,46 @@ namespace Tests.Controller
         }
 
         [Fact]
-        public void CreateShouldThrowAnException()
+        public void CreateShouldGiveBadRequest()
         {
-            var repository = new Mock<ISurgeryRepository>();
-            var controller = new SurgeryController(repository.Object);
-
-            try
+            using (var context = new CloudCureDbContext(_options))
             {
+                ISurgeryRepository repo = new SurgeryRepository(context);
+                var controller = new SurgeryController(repo);
+
                 var result = controller.Add(null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var okResponse = (IStatusCodeActionResult)result;
+                Assert.Equal(400, okResponse.StatusCode);
             }
         }
 
         [Fact]
-        public void GetAllReturnsOKSurgery()
+        public void GetAllReturnsOK()
         {
-            var repository = new Mock<ISurgeryRepository>();
-            var controller = new SurgeryController(repository.Object);
-
-            var surgery = new Surgery
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                SurgeryName = "Right Knee"
-            };
+                ISurgeryRepository repo = new SurgeryRepository(context);
+                var controller = new SurgeryController(repo);
 
-            var entry = controller.Add(surgery);
-            var result = controller.GetAll();
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
-        }
-
-        [Fact]
-        public void GetAllShoudThrowAnException()
-        {
-            var repository = new Mock<ISurgeryRepository>();
-            var controller = new SurgeryController(repository.Object);
-
-            try
-            {
                 var result = controller.GetAll();
+                var okResponse = (IStatusCodeActionResult)result;
+                Assert.Equal(200, okResponse.StatusCode);
             }
-            catch (Exception e)
+        }
+
+        [Fact]
+        public void GetAllShoudGiveBadRequest()
+        {
+            using (var context = new CloudCureDbContext(_options))
             {
-                Assert.NotNull(e);
+                ISurgeryRepository repo = new SurgeryRepository(context);
+                var controller = new SurgeryController(repo);
+
+                context.Database.EnsureDeleted();
+
+                var result = controller.GetAll();
+                var okResponse = (IStatusCodeActionResult)result;
+                Assert.Equal(400, okResponse.StatusCode);
             }
         }
 
@@ -97,86 +101,98 @@ namespace Tests.Controller
         }
 
         [Fact]
-        public void DeleteShouldThrowAnException()
+        public void DeleteShouldGiveBadRequest()
         {
-            var repository = new Mock<ISurgeryRepository>();
-            var controller = new SurgeryController(repository.Object);
-
-            try
+            using (var context = new CloudCureDbContext(_options))
             {
+                ISurgeryRepository repo = new SurgeryRepository(context);
+                var controller = new SurgeryController(repo);
+
                 var result = controller.Delete(null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var okResponse = (IStatusCodeActionResult)result;
+                Assert.Equal(400, okResponse.StatusCode);
             }
         }
 
         [Fact]
-        public void UpdateShouldReturnOKAllergy()
+        public void UpdateShouldReturnOK()
         {
-            var repository = new Mock<ISurgeryRepository>();
-            var controller = new SurgeryController(repository.Object);
-
-            var surgery = new Surgery
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                SurgeryName = "Right Knee"
-            };
+                ISurgeryRepository repo = new SurgeryRepository(context);
+                var controller = new SurgeryController(repo);
 
-            var entry = controller.Add(surgery);
-            var result = controller.Update(1, surgery);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
-        }
+                var surgery = new Surgery
+                {
+                    PatientId = 1,
+                    SurgeryName = "Right Knee"
+                };
 
-        [Fact]
-        public void UpdateShouldThrowAnException()
-        {
-            var repository = new Mock<ISurgeryRepository>();
-            var controller = new SurgeryController(repository.Object);
-
-            try
-            {
-                var result = controller.Update(1, null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var entry = controller.Add(surgery);
+                var result = controller.Update(2, surgery);
+                var okResponse = (IStatusCodeActionResult)result;
+                Assert.Equal(200, okResponse.StatusCode);
             }
         }
 
         [Fact]
-        public void GetbyIdShouldReturnOKGetAllergyById()
+        public void UpdateShouldGiveBadRequest()
         {
-            var repository = new Mock<ISurgeryRepository>();
-            var controller = new SurgeryController(repository.Object);
-
-            var surgery = new Surgery
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                SurgeryName = "Right Knee"
-            };
+                ISurgeryRepository repo = new SurgeryRepository(context);
+                var controller = new SurgeryController(repo);
 
-            var entry = controller.Add(surgery);
-            var results = controller.GetById(1);
-            var okResponse = (IStatusCodeActionResult)results;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.Update(-1, null);
+                var okResponse = (IStatusCodeActionResult)result;
+                Assert.Equal(400, okResponse.StatusCode);
+            }
         }
 
         [Fact]
-        public void GetByIdShouldThrowAnException()
+        public void GetbyIdShouldReturnOK()
         {
-            var repository = new Mock<ISurgeryRepository>();
-            var controller = new SurgeryController(repository.Object);
-
-            try
+            using (var context = new CloudCureDbContext(_options))
             {
+                ISurgeryRepository repo = new SurgeryRepository(context);
+                var controller = new SurgeryController(repo);
+
                 var result = controller.GetById(1);
+                var okResponse = (IStatusCodeActionResult)result;
+                Assert.Equal(200, okResponse.StatusCode);
             }
-            catch (Exception e)
+        }
+
+        [Fact]
+        public void GetByIdShouldGiveBadRequest()
+        {
+            using (var context = new CloudCureDbContext(_options))
             {
-                Assert.NotNull(e);
+                ISurgeryRepository repo = new SurgeryRepository(context);
+                var controller = new SurgeryController(repo);
+
+                var result = controller.GetById(-1);
+                var okResponse = (IStatusCodeActionResult)result;
+                Assert.Equal(400, okResponse.StatusCode);
+            }
+        }
+
+        private void Seed()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                context.Surgeries.AddRange(
+                    new Surgery
+                    {
+                        PatientId = 1,
+                        SurgeryName = "Right Knee"
+                    }
+                );
+
+                context.SaveChanges();
             }
         }
     }

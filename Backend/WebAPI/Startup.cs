@@ -40,6 +40,7 @@ namespace WebAPI
             services.AddScoped<IVitalsRepository, VitalsRepository>();
             services.AddScoped<IAssessmentRepository, AssessmentRepository>();
             services.AddScoped<IDiagnosisRepository, DiagnosisRepository>();
+            services.AddScoped<IConditionRepository, ConditionRepository>();
             services.AddScoped(typeof(IRepository<Surgery>), typeof(Repository<Surgery>));
             services.AddScoped(typeof(IRepository<Condition>), typeof(Repository<Condition>));
             services.AddScoped(typeof(IRepository<Medication>), typeof(Repository<Medication>));

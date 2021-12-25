@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Patient } from '../AngularModels/Patient';
 import { PatientService } from '../services/patient.service';
 import { VitalsService } from '../services/vitals.service';
 
@@ -9,33 +10,38 @@ import { VitalsService } from '../services/vitals.service';
 })
 export class VitalsviewComponent implements OnInit {
 
-  //vitalsExists: Boolean = true;
   VitalsId:        any = '';
-  // @Input() PatientId:       any = '';
-  Systolic:        any = '';
-  Diastolic:       any = '';
-  OxygenSat:       any = '';
-  HeartRate:       any = '';
-  Temperature:     any = '';
-  RespiratoryRate: any = '';
-  Height:          any = '';
-  Weight:          any = '';
+  DiagnosisId:       any = '';
+  Systolic:        any = 120;
+  Diastolic:       any = 80;
+  OxygenSat:       any = 98;
+  HeartRate:       any = 75;
+  Temperature:     any = 98;
+  RespiratoryRate: any = 15;
+  Height:          any = 72;
+  Weight:          any = 185;
   EncounterDate:   any = '';
 
-  @Input()
-  PatientId:number=0;
-  ConditionName?:string;
-  listOfVitals:any[]=[];
+  patient: Patient = {} as Patient
 
   constructor(private vitalsApi: VitalsService, private patientApi: PatientService) {
-    this.vitalsApi.GetByPatientId(this.patientApi.currentPatientId).subscribe(response => {
+    this.patientApi.GetById(this.patientApi.currentPatientId).subscribe(result => {
+      this.patient = result;
+      this.DiagnosisId = this.patient.diagnoses![this.patient.diagnoses!.length - 1].id
+    })
+    this.vitalsApi.GetByPatientId(this.patient.id).subscribe(response => {
       console.log("accessed1")
       console.log(response)
-      response.forEach(element =>
-        {
-          this.listOfVitals.push(element);
-        });
     
+      // this.Systolic =        response.systolic
+      // this.Diastolic =       response.diastolic
+      // this.OxygenSat =       response.oxygenSat
+      // this.HeartRate =       response.heartRate
+      // this.Temperature =     response.temperature
+      // this.RespiratoryRate = response.respiratoryRate
+      // this.Height =          response.height
+      // this.Weight =          response.weight
+      // this.EncounterDate =   response.encounterDate
 
     })
 

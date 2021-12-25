@@ -8,29 +8,29 @@ import { Condition } from '../AngularModels/Condition';
 export class ConditionService {
 
   private endpoint: string = "https://cloudcure-api.azurewebsites.net/Condition";
-  constructor(private http:HttpClient) {} 
+  constructor(private http: HttpClient) { }
 
-  GetAll(){ 
+  GetAll() {
     return this.http.get<Condition[]>(`${this.endpoint}/Get/All`);
   }
 
-  GetById(Id:Number | undefined){ 
+  GetById(Id: Number | undefined) {
     return this.http.get<Condition>(`${this.endpoint}/Get/${Id}`);
   }
 
-  SearchByPatientId(Id:Number | undefined){ 
+  SearchByPatientId(Id: Number | undefined) {
     return this.http.get<Condition>(`${this.endpoint}/Get/Patient${Id}`);
   }
 
-  Add(Info:Condition | undefined){ 
-    return this.http.post<Condition>(`${this.endpoint}/Add`,Info);
-  }  
-
-   Update(Id:number| undefined, Info:Condition| undefined){
-    return this.http.put<Condition>(`${this.endpoint}/Update/${Id}`,Info);
+  Add(Info: Condition | undefined) {
+    return this.http.post<Condition>(`${this.endpoint}/Add`, Info);
   }
 
-  Delete(Id:number| undefined){ 
+  Update(Id: number | undefined, Info: Condition | undefined) {
+    return this.http.put<Condition>(`${this.endpoint}/Update/${Id}`, Info);
+  }
+
+  Delete(Id: number | undefined) {
     return this.http.delete<Condition>(`${this.endpoint}/Delete/${Id}`);
-  } 
+  }
 }

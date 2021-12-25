@@ -1,6 +1,7 @@
 using System;
 using Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Models.Diagnosis;
 using Moq;
 using WebAPI.Controllers;
@@ -10,6 +11,15 @@ namespace Tests.Controller
 {
     public class MedicationControllerTests
     {
+        readonly DbContextOptions<CloudCureDbContext> _options;
+
+        public MedicationControllerTests()
+        {
+            _options = new DbContextOptionsBuilder<CloudCureDbContext>()
+                        .UseSqlite("Filename = medicationTest.db; Foreign Keys=False").Options;
+            Seed();
+        }
+
         [Fact]
         public void CreateReturnsOkMedication()
         {
@@ -28,57 +38,45 @@ namespace Tests.Controller
         }
 
         [Fact]
-        public void CreateShouldThrowAnException()
+        public void CreateShouldGiveBadResponse()
         {
-            var repository = new Mock<IRepository<Medication>>();
-            var controller = new MedicationController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IRepository<Medication> repo = new Repository<Medication>(context);
+                var controller = new MedicationController(repo);
 
-            try
-            {
                 var result = controller.Add(null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void GetAllReturnsOKMedication()
         {
-            var repository = new Mock<IRepository<Medication>>();
-            var controller = new MedicationController(repository.Object);
-            
-            
-            var medication = new Medication
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                MedicationName = "Tylenol"
-            };
+                IRepository<Medication> repo = new Repository<Medication>(context);
+                var controller = new MedicationController(repo);
 
-            var entry = controller.Add(medication);
-            var result = controller.GetAll();
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var result = controller.GetAll();
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
         }
 
         [Fact]
-        public void GetAllShouldThrowAnException()
+        public void GetAllShouldGiveBadResponse()
         {
             var repository = new Mock<IRepository<Medication>>();
             var controller = new MedicationController(repository.Object);
 
-            try
-            {
-                var result = controller.GetAll();
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
-            }
+            var result = controller.GetAll();
+            var okResponse = (IStatusCodeActionResult)result;
+            Assert.Equal(400, okResponse.StatusCode);
         }
 
-         [Fact]
+        [Fact]
         public void DeleteShouldReturnOKMedication()
         {
             var repository = new Mock<IRepository<Medication>>();
@@ -100,52 +98,64 @@ namespace Tests.Controller
         [Fact]
         public void DeleteShouldThrowAnException()
         {
-            var repository = new Mock<IRepository<Medication>>();
-            var controller = new MedicationController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IRepository<Medication> repo = new Repository<Medication>(context);
+                var controller = new MedicationController(repo);
 
-            try
-            {
                 var result = controller.Delete(null);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
         [Fact]
         public void UpdateShouldReturnOKMedication()
         {
-            var repository = new Mock<IRepository<Medication>>();
-            var controller = new MedicationController(repository.Object);
-
-           
-            var medication = new Medication
+            using (var context = new CloudCureDbContext(_options))
             {
-                PatientId = 1,
-                MedicationName = "Tylenol"
-            };
+                IRepository<Medication> repo = new Repository<Medication>(context);
+                var controller = new MedicationController(repo);
 
-            var entry = controller.Add(medication);
-            var result = controller.Update(1 , medication);
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
-         }
+                var m = new Medication
+                {
+                    PatientId = 1,
+                    MedicationName = "Tylenol"
+                };
 
-         [Fact]
-         public void UpdateShouldThrowAnException()
-         {
-             var repository = new Mock<IRepository<Medication>>();
-            var controller = new MedicationController(repository.Object);
-
-            try
-            {
-                var result = controller.Update(1, null);
+                var result = controller.Update(1, m);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
             }
-            catch (Exception e)
+        }
+
+        [Fact]
+        public void UpdateShouldThrowAnException()
+        {
+            using (var context = new CloudCureDbContext(_options))
             {
-                Assert.NotNull(e);
+                IRepository<Medication> repo = new Repository<Medication>(context);
+                var controller = new MedicationController(repo);
+
+                var result = controller.Update(-1, null);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
-         }
+        }
+
+        private void Seed()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+
+                context.Medications.Add(new Medication{
+                    PatientId = 1,
+                    MedicationName = "Advil"
+                });
+                context.SaveChanges();
+            }
+        }
     }
 }

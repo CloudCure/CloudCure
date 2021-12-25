@@ -6,6 +6,7 @@ import { Surgery } from "./Surgery";
 import { Vitals } from "./Vitals";
 import { UserProfile } from "./UserProfile";
 import { EmployeeInformation } from "./EmployeeInformation";
+import { Diagnosis } from "./Diagnosis";
 
 export interface Patient 
 {
@@ -19,7 +20,6 @@ export interface Patient
     allergies?:          Allergy[];
     surgeries?:          Surgery[];
     currentMedications?: Medication[];
-    vitalHistory?:       Vitals[];
-    assessments?:        Assessment[];
     doctor?: EmployeeInformation | undefined;
+    diagnoses?: Diagnosis[];
 }

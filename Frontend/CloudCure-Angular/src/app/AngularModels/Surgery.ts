@@ -1,6 +1,6 @@
 export interface Surgery
 {
-    Id?:         number;
-    PatientId:   number;
-    SurgeryName: string;
+    id?:         number;
+    patientId:   number;
+    surgeryName: string;
 }

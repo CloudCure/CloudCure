@@ -11,7 +11,7 @@ import { PatientService } from '../services/patient.service';
 export class ViewAssessmentsComponent implements OnInit {
 
   AssessmentId: any = 1;
-  // @Input() PatientId: any = 1;
+  DiagnosisId: any = 1;
   ChiefComplaint: any = '';
   HistoryOfPresentIllness: any = '';
   PainAssessment: any = '';
@@ -28,15 +28,23 @@ export class ViewAssessmentsComponent implements OnInit {
     private route: ActivatedRoute,
     private patientApi: PatientService
   ) {
-    this.assessmentApi.getAssessments(this.patientApi.currentPatientId).subscribe((response) => {
-      console.log(response);
-      response.forEach(element =>
-        {
-          this.listOfAssesments.push(element);
-        });
+    // this.assessmentApi.getAssessments(this.patientApi.currentPatientId).subscribe((response) => {
+    //   console.log(response);
+    //   this.AssessmentId = response.id;
+    //   this.DiagnosisId = response.diagnosisId;
+    //   this.ChiefComplaint = response.chiefComplaint;
+    //   this.HistoryOfPresentIllness = response.historyOfPresentIllness;
+    //   this.PainAssessment = response.painAssessment;
+    //   this.PainScale = response.painScale;
+    //   this.EncounterDate = response.encounterDate;
+    // });
+    //   response.forEach(element =>
+    //     {
+    //       this.listOfAssesments.push(element);
+    //     });
     
 
-    })
+    // })
       // this.AssessmentId = response.id;
       // this.ChiefComplaint = response.chiefComplaint;
       // this.HistoryOfPresentIllness = response.historyOfPresentIllness;

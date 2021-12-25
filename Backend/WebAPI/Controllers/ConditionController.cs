@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using Serilog;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebAPI.Controllers
 {
@@ -24,6 +26,9 @@ namespace WebAPI.Controllers
         {
             try
             {
+                List<Condition> condition = conditionRepository.GetAll().ToList();
+                if (condition.Count == 0)
+                    throw new Exception("No data found");
                 return Ok(conditionRepository.GetAll());
             }
             catch (Exception e)
@@ -39,6 +44,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (conditionRepository.GetById(id) == null)
+                    throw new Exception("Invalid Id");
                 return Ok(conditionRepository.GetById(id));
             }
             catch (Exception e)
@@ -53,6 +60,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (conditionRepository.SearchByPatientId(id) == null)
+                    throw new Exception("Invaild Id");
                 return Ok(conditionRepository.SearchByPatientId(id));
             }
             catch (Exception e)
@@ -86,6 +95,7 @@ namespace WebAPI.Controllers
         {
             try
             {
+
                 p_condition.Id = id;
                 conditionRepository.Update(p_condition);
                 conditionRepository.Save();
@@ -104,6 +114,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (p_condition == null)
+                    throw new Exception("Invalid data!");
                 conditionRepository.Create(p_condition);
                 conditionRepository.Save();
                 return Created("Condition/Add", p_condition);

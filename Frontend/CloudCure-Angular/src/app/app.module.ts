@@ -35,6 +35,7 @@ import { ViewDiagnosisComponent } from './view-diagnosis/view-diagnosis.componen
 import { VitalsviewComponent } from './vitalsview/vitalsview.component';
 import { ViewConditionsComponent } from './view-conditions/view-conditions.component';
 import { ViewAssessmentsComponent } from './view-assessments/view-assessments.component';
+//import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/finalized-diagnosis-view.component';
 import { ViewAllergiesComponent } from './view-allergies/view-allergies.component';
 import { ViewMedicationsComponent } from './view-medications/view-medications.component';
 import { ViewSurgeriesComponent } from './view-surgeries/view-surgeries.component';
@@ -49,6 +50,7 @@ import { ViewSurgeriesComponent } from './view-surgeries/view-surgeries.componen
     DiagnosisVitalsComponent,
     AssessmentComponent,
     TextBoxComponent,
+    //FinalizedDiagnosisViewComponent,
     // patientdiagnosis,
     DiagnosisVitalsComponent,
     VerificationComponent,
@@ -135,6 +137,7 @@ import { ViewSurgeriesComponent } from './view-surgeries/view-surgeries.componen
         path: 'patient-view',
         component: PatientViewComponent /*canActivate:[AuthGuardService]*/,
       },
+      //{ path: 'finalized-diagnosis-view', component: FinalizedDiagnosisViewComponent },
       { path: 'view-conditions', component: ViewConditionsComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'search', component: DocsearchComponent },

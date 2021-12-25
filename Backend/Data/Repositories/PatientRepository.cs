@@ -19,13 +19,15 @@ namespace Data
         {
             var patient = repository.Patients
                     .Include(p => p.UserProfile)
-                    .Include(p => p.Assessments)
                     .Include(p => p.Conditions)
                     .Include(p => p.CurrentMedications)
                     .Include(p => p.Surgeries)
                     .Include(p => p.Allergies)
-                    .Include(p => p.VitalHistory)
                     .Include(p => p.UserProfile.CovidAssesments)
+                    .Include(p => p.Diagnoses)
+                    .ThenInclude(d => d.Assessment)
+                    .Include(p => p.Diagnoses)
+                    .ThenInclude(d => d.Vitals)
                     .Include(p => p.Doctor.UserProfile)
                     .Single(p => p.Id.Equals(query));
 
@@ -36,13 +38,15 @@ namespace Data
         {
             var patients = this.repository.Patients
                 .Include(p => p.UserProfile)
-                    .Include(p => p.Assessments)
                     .Include(p => p.Conditions)
                     .Include(p => p.CurrentMedications)
                     .Include(p => p.Surgeries)
                     .Include(p => p.Allergies)
-                    .Include(p => p.VitalHistory)
                     .Include(p => p.UserProfile.CovidAssesments)
+                    .Include(p => p.Diagnoses)
+                    .ThenInclude(d => d.Assessment)
+                    .Include(p => p.Diagnoses)
+                    .ThenInclude(d => d.Vitals)
                     .Include(p => p.Doctor.UserProfile)
                     .Where(p => p.Id > 0);
 

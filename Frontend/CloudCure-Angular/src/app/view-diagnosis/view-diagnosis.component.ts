@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Diagnosis } from '../AngularModels/Diagnosis';
+import { Patient } from '../AngularModels/Patient';
+import { DiagnosisService } from '../services/diagnosis.service';
+import { PatientService } from '../services/patient.service';
 
 @Component({
   selector: 'app-view-diagnosis',
@@ -8,33 +13,46 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ViewDiagnosisComponent implements OnInit {
 
-  constructor() { }
-
-  doctorDiagnosis:FormGroup = new FormGroup({
+  doctorDiagnosis: FormGroup = new FormGroup({
     diagnosis: new FormControl("", Validators.required),
-    treatment: new FormControl("", Validators.required)
+    treatment: new FormControl("", Validators.required),
+    isFinalized: new FormControl(true)
   })
-  get diagnosis() {return this.doctorDiagnosis.get("diagnosis");}
-  get treatment() {return this.doctorDiagnosis.get("treatment");}
+  get diagnosis() { return this.doctorDiagnosis.get("diagnosis"); }
+  get treatment() { return this.doctorDiagnosis.get("treatment"); }
+  get isFinalized() { return this.doctorDiagnosis.get("IsFinalized"); }
 
+  patient: Patient = {} as Patient;
+  diagnosisId: number = 0;
+  currentDiagnosis: Diagnosis = {} as Diagnosis;
+
+  constructor(private DiagnosisApi: DiagnosisService, private PatientApi: PatientService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.PatientApi.GetById(this.PatientApi.currentPatientId).subscribe(result => {
+      this.patient = result
+      this.diagnosisId = this.patient.diagnoses![this.patient.diagnoses!.length - 1].id
+      
+      this.DiagnosisApi.GetbyId(this.diagnosisId).subscribe(element => {
+        this.currentDiagnosis = element
+      })
+      console.log(this.patient);
+    })
   }
 
-  submit(doctorDiagnosis: FormGroup)
-  {
-  
-    if (doctorDiagnosis.valid)
-    {
-      let diagnosis =
-      {
-        diagnosis: doctorDiagnosis.get("diagnosis")?.value,
-        treatment: doctorDiagnosis.get("treatment")?.value
-      }
-      console.log(diagnosis);
+  submit(doctorDiagnosis: FormGroup) {
+
+    if (doctorDiagnosis.valid) {
+      this.currentDiagnosis.doctorDiagnosis = doctorDiagnosis.get("diagnosis")?.value,
+      this.currentDiagnosis.recommendedTreatment = doctorDiagnosis.get("treatment")?.value,
+      this.currentDiagnosis.isFinalized = true
+      
+      this.DiagnosisApi.Update(this.diagnosisId, this.currentDiagnosis).subscribe(result => {
+        this.currentDiagnosis = result
+        this.router.navigateByUrl("patient-view");
+      })
     }
-    else
-    {
+    else {
       this.doctorDiagnosis.markAllAsTouched();
     }
   }

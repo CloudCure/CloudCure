@@ -1,6 +1,6 @@
 export interface Condition
 {
-    Id?:           number;
-    PatientId:     number;
-    ConditionName: string;
+    id?:           number;
+    patientId:     number;
+    conditionName: string;
 }

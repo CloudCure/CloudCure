@@ -7,6 +7,7 @@ import { Clickable } from '../AngularModels/Clickable';
 import { Patient } from '../AngularModels/Patient';
 import { AssessmentService } from '../services/assessement.service';
 import { PatientService } from '../services/patient.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assessment',
@@ -24,11 +25,11 @@ export class AssessmentComponent implements OnInit {
   showBodyClicker: boolean = true;
   messageService: any;
   HideStuff: string="top-margin";
-  patient!: Patient;
+  
   date: string = new Date().toISOString().split('T')[0];
   //patientAssessment
   patientAssesment: Assessment = {
-    patientId: 1,
+    diagnosisId: 1,
     chiefComplaint: '',
     historyOfPresentIllness: '',
     painAssessment: '',
@@ -42,23 +43,37 @@ export class AssessmentComponent implements OnInit {
     Date: new FormControl(new Date().toISOString().split('T')[0], Validators.required)
   })
 
+  bodyClickButtonText: string = 'Hide Selector'
+
+  patient: Patient = {} as Patient;
+  diagnosisId: number = 0;
+
   constructor(
     private assessmentApi: AssessmentService,
     private patientApi: PatientService,
-    private route: ActivatedRoute //private formBuilder: FormBuilder
-  ) {}
-
-  ngOnInit(): void {
+    private route: ActivatedRoute, private router: Router
+  ) {
     this.patientApi.GetById(this.patientApi.currentPatientId).subscribe(
       (response) => {
         this.patient = response;
+        this.diagnosisId = this.patient.diagnoses![this.patient.diagnoses!.length - 1].id
       }
     )
+    
+  }
+
+  ngOnInit(): void {
   }
 
   show()
   {
     this.showBodyClicker = !this.showBodyClicker;
+    if (this.showBodyClicker) {
+      this.bodyClickButtonText = "Hide Selector"
+    }
+    if (!this.showBodyClicker) {
+      this.bodyClickButtonText = "Show Selector"
+    }
     if (this.HideStuff === "top-margin")
     {
       this.HideStuff = "";
@@ -76,7 +91,7 @@ export class AssessmentComponent implements OnInit {
   onSubmit(assessmentGroup:FormGroup) {
     if (assessmentGroup.valid)
     {
-      this.patientAssesment.patientId = this.patient.id;
+      this.patientAssesment.diagnosisId = this.diagnosisId;
       this.patientAssesment.chiefComplaint = this.clickedPartsConverter();
       this.patientAssesment.historyOfPresentIllness = assessmentGroup.get("history")?.value;
       this.patientAssesment.painScale = assessmentGroup.get("painScale")?.value;
@@ -86,9 +101,11 @@ export class AssessmentComponent implements OnInit {
         console.log(response);
       });
     }
+    this.router.navigateByUrl("home");
   }
-  //Body Clicker
 
+
+  //Body Clicker
   clickedParts: string[] = [];
 
   getClick(bodypart: Clickable) {

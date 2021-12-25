@@ -1,8 +1,10 @@
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Models;
 using Data;
 using Serilog;
+using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
@@ -22,6 +24,9 @@ namespace WebAPI.Controllers
         {
             try
             {
+                List<Role> r = _repo.GetAll().ToList();
+                if (r.Count == 0)
+                    throw new Exception("No data found");
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
@@ -37,6 +42,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (_repo.GetById(id) == null)
+                    throw new Exception("Invalid Id");
                 return Ok(_repo.GetById(id));
             }
             catch (Exception e)
@@ -52,6 +59,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (p_role == null)
+                    throw new Exception("Invalid data!");
                 _repo.Create(p_role);
                 _repo.Save();
                 return Created("Role/Add", p_role);
@@ -69,6 +78,7 @@ namespace WebAPI.Controllers
         {
             try
             {
+                p_role.Id = id;
                 _repo.Update(p_role);
                 _repo.Save();
                 return Ok();
@@ -86,6 +96,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (p_role == null)
+                    throw new Exception("Delete failed!");
                 _repo.Delete(p_role);
                 _repo.Save();
                 return Ok();

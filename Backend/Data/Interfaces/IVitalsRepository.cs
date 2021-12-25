@@ -8,6 +8,6 @@ namespace Data
 {
     public interface IVitalsRepository : IRepository<Vitals>
     {
-        Vitals SearchByPatientId(int p_patientId);
+        Vitals SearchByDiagnosisId(int p_patientId);
     }
 }

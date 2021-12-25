@@ -12,10 +12,10 @@ namespace Data
         {
         }
 
-        public IEnumerable<Assessment> SearchByPatientId(int query)
+        public IEnumerable<Assessment> SearchByDiagnosisId(int query)
         {
             var result = base.GetAll()
-                .Where(i => i.PatientId.Equals(query));
+                .Where(i => i.DiagnosisId.Equals(query));
             return result;
         }
     }
