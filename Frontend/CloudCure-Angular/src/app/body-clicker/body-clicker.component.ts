@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Clickable } from '../AngularModels/Clickable';
+declare var $: any;
+
 
 @Component({
   selector: 'body-clicker',
@@ -12,6 +14,8 @@ export class BodyClickerComponent implements OnInit {
 
   @Output('onClick')
   onClick: EventEmitter<Clickable> = new EventEmitter();
+  test:string = '';
+  id:number = 0;
 
   constructor() {
     this.canEdit = false;
@@ -30,6 +34,7 @@ export class BodyClickerComponent implements OnInit {
   }
 
   onAreaClick(bodypart: Clickable) {
+
     this.onClick.emit(bodypart);
   }
 
@@ -41,6 +46,25 @@ export class BodyClickerComponent implements OnInit {
     }
     e.stopPropagation();
     return false;
+  }
+
+  createBorder(index:any)
+  {
+    this.bodyparts[index].active = !this.bodyparts[index].active;
+    let result = document.getElementById(index);
+    if (this.bodyparts[index].active)
+    {
+      result?.classList.add('area-clicked');
+      result?.classList.remove('area');
+    }
+    else 
+    {
+      result?.classList.add('area');
+      result?.classList.remove('area-clicked');
+    }
+    
+
+    console.log(this.bodyparts[index].active);
   }
 
   onAreaCreate(x: number, y: number): Clickable {

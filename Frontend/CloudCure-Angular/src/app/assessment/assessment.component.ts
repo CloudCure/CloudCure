@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Assessment } from '../AngularModels/Assessment';
 import { Clickable } from '../AngularModels/Clickable';
+import { Patient } from '../AngularModels/Patient';
 import { AssessmentService } from '../services/assessement.service';
+import { PatientService } from '../services/patient.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assessment',
@@ -21,91 +24,88 @@ export class AssessmentComponent implements OnInit {
   pAssessment: Assessment[] = [];
   showBodyClicker: boolean = true;
   messageService: any;
-
+  HideStuff: string="top-margin";
+  
+  date: string = new Date().toISOString().split('T')[0];
   //patientAssessment
   patientAssesment: Assessment = {
-    PatientId: 1,
-    ChiefComplaint: '',
-
-    HistoryOfPresentIllness: '',
-
-    PainAssessment: '',
-    PainScale: 0,
+    diagnosisId: 1,
+    chiefComplaint: '',
+    historyOfPresentIllness: '',
+    painAssessment: '',
+    painScale: 0,
   };
 
+  assessmentGroup:FormGroup = new FormGroup({
+    history: new FormControl("", Validators.required),
+    painAssessment: new FormControl("", Validators.required),
+    painScale: new FormControl("", Validators.required),
+    Date: new FormControl(new Date().toISOString().split('T')[0], Validators.required)
+  })
+
+  bodyClickButtonText: string = 'Hide Selector'
+
+  patient: Patient = {} as Patient;
+  diagnosisId: number = 0;
+
   constructor(
-    private patientService: AssessmentService,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder
-  ) {}
+    private assessmentApi: AssessmentService,
+    private patientApi: PatientService,
+    private route: ActivatedRoute, private router: Router
+  ) {
+    this.patientApi.GetById(this.patientApi.currentPatientId).subscribe(
+      (response) => {
+        this.patient = response;
+        this.diagnosisId = this.patient.diagnoses![this.patient.diagnoses!.length - 1].id
+      }
+    )
+    
+  }
 
   ngOnInit(): void {
-    /*
-    this.textAreaForm = this.formBuilder.group({
-      HistOfPresentIllness: ['', Validators.required],
-      ChiefComplaint: ['', Validators.required],
-      PainAssessment: ['', Validators.required],
-      PainScale: [''],
-    });
-    */
+  }
+
+  show()
+  {
+    this.showBodyClicker = !this.showBodyClicker;
+    if (this.showBodyClicker) {
+      this.bodyClickButtonText = "Hide Selector"
+    }
+    if (!this.showBodyClicker) {
+      this.bodyClickButtonText = "Show Selector"
+    }
+    if (this.HideStuff === "top-margin")
+    {
+      this.HideStuff = "";
+    }
+    else{
+      this.HideStuff = "top-margin";
+    }
   }
 
   //Add assessment
   AddAsssessment() {
-    this.patientService.Add(this.patientAssesment).subscribe(
-      (response) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Assessment is created',
-        });
-        console.log(response);
-      },
-      (error) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Assessment is not created',
-        });
-        console.log(error);
-      }
-    );
+    
   }
 
-  /*
-  //Delete Assessment
-  deleteAsssessment(Id: number) {
-    this.patientService.Delete(Id).subscribe(
-      (response) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Assessment has been deleted',
-        });
+  onSubmit(assessmentGroup:FormGroup) {
+    if (assessmentGroup.valid)
+    {
+      this.patientAssesment.diagnosisId = this.diagnosisId;
+      this.patientAssesment.chiefComplaint = this.clickedPartsConverter();
+      this.patientAssesment.historyOfPresentIllness = assessmentGroup.get("history")?.value;
+      this.patientAssesment.painScale = assessmentGroup.get("painScale")?.value;
+      this.patientAssesment.painAssessment = assessmentGroup.get("painAssessment")?.value;
+      this.patientAssesment.encounterDate = assessmentGroup.get("Date")?.value;
+      this.assessmentApi.Add(this.patientAssesment).subscribe((response) => {
         console.log(response);
-      },
-      (error) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Assessment was not deleted',
-        });
-        console.log(error);
-      }
-    );
+      });
+    }
+    this.router.navigateByUrl("home");
   }
-  */
-  //Update Assessment
-  //updateAssessment() {}
 
-  onSubmit(form: NgForm) {
-    this.patientService.Add(this.patientAssesment).subscribe(
-      (result) => console.log('success ', result),
-      (error) => console.log('error ', error)
-    );
-  }
+
   //Body Clicker
-
   clickedParts: string[] = [];
 
   getClick(bodypart: Clickable) {
@@ -120,11 +120,5 @@ export class AssessmentComponent implements OnInit {
   }
   clickedPartsConverter() {
     return this.clickedParts.join(', ');
-  }
-
-  submitClicked() {
-    this.patientAssesment.ChiefComplaint = this.clickedPartsConverter();
-    console.log(this.patientAssesment);
-    this.AddAsssessment();
   }
 }

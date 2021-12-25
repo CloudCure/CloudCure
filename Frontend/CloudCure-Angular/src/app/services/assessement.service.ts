@@ -16,8 +16,8 @@ export class AssessmentService {
     return this.http.get<Assessment[]>(`${this.endpoint}/Get/All`);
   }
 
-  getAssessments(): Observable<Assessment[]> {
-    return this.http.get<Assessment[]>(`${this.endpoint}/Get/All`);
+  getAssessments(Id: Number | undefined): Observable<Assessment[]> {
+    return this.http.get<Assessment[]>(`${this.endpoint}/Get/Patient/${Id}`);
   }
 
   GetById(Id: Number | undefined) {

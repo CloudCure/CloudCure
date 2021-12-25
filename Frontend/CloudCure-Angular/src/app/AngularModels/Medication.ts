@@ -1,6 +1,6 @@
 export interface Medication
 {
-    Id?:            number;
-    PatientId:      number;
-    MedicationName: string;
+    id?:            number;
+    patientId:      number;
+    medicationName: string;
 }

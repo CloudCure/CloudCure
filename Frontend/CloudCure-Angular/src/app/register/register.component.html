@@ -110,9 +110,9 @@
             <br/>
             <label>Role</label>
             <select formControlName="UserRole" class="form-control" aria-labelledby="dropdownMenuLink">
+              <option value="null" disabled>Select a Role</option>
               <option value="1">Nurse..</option>
               <option value="2">Doctor..</option>
-              <option value="3">Other..</option>
             </select>
             <div *ngIf="UserRole?.invalid && (UserRole?.dirty || UserRole?.touched)">
               <div class="text-danger" *ngIf="UserRole?.errors?.['required']">*Required</div>

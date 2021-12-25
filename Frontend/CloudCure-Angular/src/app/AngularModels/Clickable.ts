@@ -6,6 +6,7 @@ export class Clickable {
   width: number = 100
   height: number = 100
   name?: string
+  active? : boolean
 
   constructor(init?: Partial<Clickable>) {
     Object.assign(this, init);

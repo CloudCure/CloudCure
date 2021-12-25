@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Patient } from '../AngularModels/Patient';
 import { PatientService } from '../services/patient.service';
 import { VitalsService } from '../services/vitals.service';
 
@@ -9,9 +10,8 @@ import { VitalsService } from '../services/vitals.service';
 })
 export class VitalsviewComponent implements OnInit {
 
-  //vitalsExists: Boolean = true;
   VitalsId:        any = '';
-  PatientId:       any = '';
+  DiagnosisId:       any = '';
   Systolic:        any = 120;
   Diastolic:       any = 80;
   OxygenSat:       any = 98;
@@ -22,33 +22,29 @@ export class VitalsviewComponent implements OnInit {
   Weight:          any = 185;
   EncounterDate:   any = '';
 
+  patient: Patient = {} as Patient
+
   constructor(private vitalsApi: VitalsService, private patientApi: PatientService) {
-    this.vitalsApi.GetByPatientId(2).subscribe(response => {
+    this.patientApi.GetById(this.patientApi.currentPatientId).subscribe(result => {
+      this.patient = result;
+      this.DiagnosisId = this.patient.diagnoses![this.patient.diagnoses!.length - 1].id
+    })
+    this.vitalsApi.GetByPatientId(this.patient.id).subscribe(response => {
       console.log("accessed1")
       console.log(response)
-    //this.vitalsExists = true;
-    //Instantiating Vitals Variables
-    this.Systolic =        response.systolic
-    this.Diastolic =       response.diastolic
-    this.OxygenSat =       response.oxygenSat
-    this.HeartRate =       response.heartRate
-    this.Temperature =     response.temperature
-    this.RespiratoryRate = response.respiratoryRate
-    this.Height =          response.height
-    this.Weight =          response.weight
-    this.EncounterDate =   response.encounterDate
+    
+      // this.Systolic =        response.systolic
+      // this.Diastolic =       response.diastolic
+      // this.OxygenSat =       response.oxygenSat
+      // this.HeartRate =       response.heartRate
+      // this.Temperature =     response.temperature
+      // this.RespiratoryRate = response.respiratoryRate
+      // this.Height =          response.height
+      // this.Weight =          response.weight
+      // this.EncounterDate =   response.encounterDate
 
     })
 
-    // this.patientApi.GetById(2).subscribe(response => {
-    //   console.log("accessed2")
-    //   console.log(response)
-    // })
-
-    // this.vitalsApi.GetAll().subscribe(response => {
-    //   console.log("accessed3")
-    //   console.log(response)
-    // })
    }
 
   ngOnInit(): void {

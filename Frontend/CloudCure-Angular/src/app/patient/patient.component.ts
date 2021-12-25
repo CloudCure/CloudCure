@@ -16,6 +16,7 @@ import { SurgeryService } from '../services/surgery.service';
 import { Surgery } from '../AngularModels/Surgery';
 import { MedicationService } from '../services/medication.service';
 import { Medication } from '../AngularModels/Medication';
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -157,15 +158,16 @@ export class PatientComponent implements OnInit {
           console.log(response);
 
           //Conditions
-          let condition:string[]= registerGroup.get('conditions')?.value;
-          condition = condition.map(function (cond: any) {
+          let conditions:string[]= registerGroup.get('conditions')?.value;
+          conditions = conditions.map(function (cond: any) {
             return cond['text']
           })
-          condition.forEach(element => {
+          conditions.forEach(element => {
             let conditionInfo: Condition = {
-              PatientId: response.id!,
-              ConditionName: element
+              patientId: response.id!,
+              conditionName: element
             }
+            console.log(conditionInfo)
             this.conditionApi.Add(conditionInfo).subscribe(
               (conditionResponse) => {
                 console.log("Condition added");
@@ -180,11 +182,13 @@ export class PatientComponent implements OnInit {
           allergies = allergies.map(function (cond: any) {
             return cond['text']
           })
+          console.log(allergies)
           allergies.forEach(element => {
             let allergyInfo: Allergy = {
-              PatientId: response.id!,
-              AllergyName: element
+              patientId: response.id!,
+              allergyName: element
             }
+            console.log(allergyInfo)
             this.allergyApi.Add(allergyInfo).subscribe(
               (allergyResponse) => {
                 console.log("Allergy added");
@@ -200,8 +204,8 @@ export class PatientComponent implements OnInit {
           })
           surgeries.forEach(element => {
             let surgeryInfo: Surgery = {
-              PatientId: response.id!,
-              SurgeryName: element
+              patientId: response.id!,
+              surgeryName: element
             }
             this.surgeryApi.Add(surgeryInfo).subscribe(
               (surgeryResponse) => {
@@ -218,8 +222,8 @@ export class PatientComponent implements OnInit {
           })
           medications.forEach(element => {
             let medicationInfo: Medication = {
-              PatientId: response.id!,
-              MedicationName: element
+              patientId: response.id!,
+              medicationName: element
             }
             this.medicationApi.Add(medicationInfo).subscribe(
               (medicationResponse) => {
@@ -239,4 +243,3 @@ export class PatientComponent implements OnInit {
     }
   }
 }
-

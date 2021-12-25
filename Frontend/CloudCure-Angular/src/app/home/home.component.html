@@ -65,10 +65,7 @@
                 </div>
             </div>
             <div *ngFor="let patient of patientList">
-                <div class="card card-custom" style="width: 18rem; height: 18rem;">
-                    <app-list-patient [role]="role" [patient]="patient"></app-list-patient>
-                </div>
-
+                <app-list-patient [role]="role" [patient]="patient" ></app-list-patient>
             </div>
         </div>
     </div>

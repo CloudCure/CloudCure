@@ -178,6 +178,31 @@
 //                         PatientId = 1,
 //                         MedicationName = "Advil"
 //                     }
+//                 },
+//                 VitalHistory = new List<Vitals>()
+//                 {
+//                     new Vitals{
+//                         PatientId = 1,
+//                         Diastolic = 70,
+//                         Systolic = 120,
+//                         HeartRate = 70,
+//                         Height = 75,
+//                         Weight = 200,
+//                         OxygenSat = 98.2,
+//                         Temperature = 97.2,
+//                         RespiratoryRate = 14,
+//                         EncounterDate = DateTime.Now
+//                     }
+//                 },
+//                 Assessments = new List<Assessment>()
+//                 {
+//                     new Assessment{
+//                         PatientId = 1,
+//                         PainAssessment = "asdfas",
+//                         PainScale = 2,
+//                         ChiefComplaint = "Headache",
+//                         HistoryOfPresentIllness = "Yup"
+//                     }
 //                 }
 //             };
 //         }

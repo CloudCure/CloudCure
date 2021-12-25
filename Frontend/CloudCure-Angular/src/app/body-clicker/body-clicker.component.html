@@ -1,13 +1,16 @@
 <div id="image-container" (contextmenu)="onAreaCreate(0, 0)">
-  <img src="assets/Images/bodysystems.jpg" />
+  <img src="../../assets/images/bodysystems.jpg" />
   <div class="coordinates-container">
     <div
       class="area"
       [ngStyle]="getAreaStyle(bodypart)"
       [title]="bodypart.name"
-      *ngFor="let bodypart of bodyparts"
+      *ngFor="let bodypart of bodyparts; let i = index"
       (click)="onAreaClick(bodypart)"
+      (click)="createBorder(i)"
+      [class]="test"
       (contextmenu)="onAreaEdit(bodypart)"
+      [id]="i"
     ></div>
   </div>
 </div>

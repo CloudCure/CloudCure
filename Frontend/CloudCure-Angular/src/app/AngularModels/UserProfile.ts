@@ -1,5 +1,5 @@
 export interface UserProfile {
-
+    id? : number
     firstName : string
     lastName : string
     dateOfBirth: string | Date
@@ -8,5 +8,4 @@ export interface UserProfile {
     emergencyName: string
     emergencyContactPhone: string 
     roleId : number
-    id? : number
 }
