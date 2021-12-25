@@ -5,6 +5,7 @@ import { PatientService } from '../services/patient.service';
 import { Router } from '@angular/router';
 import { Diagnosis } from '../AngularModels/Diagnosis';
 import { ClassGetter } from '@angular/compiler/src/output/output_ast';
+import { Patient } from '../AngularModels/Patient';
 
 @Component({
   selector: 'app-patient-view',
@@ -15,20 +16,20 @@ export class PatientViewComponent implements OnInit {
 
   @Input() test: any
 
-  //Patient Variables
-  PatientId: any;
-  UserProfile: any = {};
-  PatientName: string | undefined = 'Timmy';
-  FirstName: string = '';
-  LastName: string = '';
-  PatientPhone: any = '';
-  PatientAddress: any = '';
-  DateOfBirth: any = '';
-  Conditions: any = [];
-  Allergies: any = [];
-  Surgeries: any = [];
-  CurrentMedications: any = [];
-  Diagnoses: any = []
+  // //Patient Variables
+  // PatientId: any;
+  // UserProfile: any = {};
+  // PatientName: string | undefined = 'Timmy';
+  // FirstName: string = '';
+  // LastName: string = '';
+  // PatientPhone: any = '';
+  // PatientAddress: any = '';
+  // DateOfBirth: any = '';
+  // Conditions: any = [];
+  // Allergies: any = [];
+  // Surgeries: any = [];
+  // CurrentMedications: any = [];
+  // Diagnoses: any = []
 
   viewConditions: boolean = false;
   viewAllergies: boolean = false;
@@ -36,25 +37,15 @@ export class PatientViewComponent implements OnInit {
   viewMedication: boolean = false;
   viewDiagnoses: boolean = false;
 
+  patient: Patient = {} as Patient
+
   constructor(private patientApi: PatientService, private router: Router) {
     //1 will be changed later to a dynamic patient number
-    this.PatientId = patientApi.currentPatientId;
     this.patientApi.GetById(this.patientApi.currentPatientId).subscribe(response => {
       console.log("accessed patient")
       console.log(response)
-      //Instantiating Patient Variables
-      this.UserProfile = response.userProfile
-      this.FirstName = this.UserProfile.firstName
-      this.LastName = this.UserProfile.lastName
-      this.PatientName = this.FirstName.concat(' ', this.LastName)
-      this.PatientPhone = this.UserProfile.phoneNumber
-      this.PatientAddress = this.UserProfile.address
-      this.DateOfBirth = this.UserProfile.dateOfBirth
-      this.Conditions = response.conditions
-      this.Allergies = response.allergies
-      this.Surgeries = response.surgeries
-      this.CurrentMedications = response.currentMedications
-      this.Diagnoses = response.diagnoses
+
+      this.patient = response
 
     })
   }
@@ -62,15 +53,15 @@ export class PatientViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  vitalsPage() {
-    this.patientApi.currentPatientId = this.PatientId;
-    this.router.navigateByUrl("/diagnosis-vitals");
-  }
+  // vitalsPage() {
+  //   this.patientApi.currentPatientId = this.PatientId;
+  //   this.router.navigateByUrl("/diagnosis-vitals");
+  // }
 
-  assessmentsPage() {
-    this.patientApi.currentPatientId = this.PatientId;
-    this.router.navigateByUrl("/assessment");
-  }
+  // assessmentsPage() {
+  //   this.patientApi.currentPatientId = this.PatientId;
+  //   this.router.navigateByUrl("/assessment");
+  // }
 
   showConditions() {
     this.viewConditions = !this.viewConditions;
@@ -91,6 +82,4 @@ export class PatientViewComponent implements OnInit {
   showDiagnoses() {
     this.viewDiagnoses = !this.viewDiagnoses;
   }
-
-
 }

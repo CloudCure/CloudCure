@@ -101,7 +101,7 @@ export class AssessmentComponent implements OnInit {
         console.log(response);
       });
     }
-    this.router.navigateByUrl("patient-view");
+    this.router.navigateByUrl("home");
   }
 
 

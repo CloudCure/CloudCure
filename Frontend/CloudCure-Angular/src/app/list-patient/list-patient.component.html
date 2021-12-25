@@ -10,7 +10,7 @@
                 {{patient.doctor?.userProfile?.lastName}}</span></p>
 
         <div class="row">
-            <div class="col" *ngIf="!patient.diagnoses?.length; else vitalButton">
+            <div class="col" *ngIf="!patient.diagnoses?.length || patient.diagnoses![patient.diagnoses!.length - 1].isFinalized; else vitalButton">
                 <button (click)="createDiagnosis()" class="btn btn-custom btn-primary diagnosis border view">Start
                     Assessment</button>
             </div>

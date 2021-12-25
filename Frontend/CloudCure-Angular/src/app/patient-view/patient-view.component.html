@@ -7,21 +7,21 @@
       <div class="row">
         <div class="col-md-4">
           <h4>Full Name</h4>
-          <p>{{PatientName}}</p>
+          <p>{{patient.userProfile.firstName}} {{patient.userProfile.lastName}}</p>
         </div>
         <div class="col-md-4">
           <h4>Date Of Birth</h4>
-          <p>{{DateOfBirth | date: 'MM/dd/yyyy'}}</p>
+          <p>{{patient.userProfile.dateOfBirth | date: 'MM/dd/yyyy'}}</p>
         </div>
         <div class="col-md-4">
           <h4>Contact Number</h4>
-          <p>{{PatientPhone}}</p>
+          <p>{{patient.userProfile.phoneNumber}}</p>
           <br />
         </div>
 
         <div class="col-lg-9">
           <h4>Patient Address</h4>
-          <p>{{PatientPhone}}</p>
+          <p>{{patient.userProfile.address}}</p>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
         <h1>Conditions</h1>
       </div>
       <div *ngIf="viewConditions" class="row">
-        <ul *ngFor="let condition of Conditions" style="float: left; width: 50%;">
+        <ul *ngFor="let condition of patient.conditions" style="float: left; width: 50%;">
           <li>{{condition.conditionName}}</li>
         </ul>
       </div>
@@ -45,10 +45,10 @@
         <h1>Allergies</h1>
       </div>
       <div *ngIf="viewAllergies" class="row">
-        <ul *ngFor="let allergy of Allergies" style="float: left; width: 50%;">
+        <ul *ngFor="let allergy of patient.allergies" style="float: left; width: 50%;">
           <li>{{allergy.allergyName}}</li>
         </ul>
-        <app-view-allergies [PatientId]="PatientId" [listOfAllergies]="Allergies"></app-view-allergies>
+        <!--<app-view-allergies [PatientId]="PatientId" [listOfAllergies]="Allergies"></app-view-allergies>-->
       </div>
     </div>
 
@@ -58,7 +58,7 @@
         <h1>Surgeries</h1>
       </div>
       <div *ngIf="viewSurgeries" class="row">
-        <ul *ngFor="let surgery of Surgeries" style="float: left; width: 50%;">
+        <ul *ngFor="let surgery of patient.surgeries" style="float: left; width: 50%;">
           <li>{{surgery.surgeryName}}</li>
         </ul>
       </div>
@@ -70,7 +70,7 @@
         <h1>Medications</h1>
       </div>
       <div *ngIf="viewMedication" class="row">
-         <ul *ngFor="let medication of CurrentMedications" style="float: left; width: 50%;">
+        <ul *ngFor="let medication of patient.currentMedications" style="float: left; width: 50%;">
           <li>{{medication.medicationName}}</li>
         </ul>
       </div>
@@ -79,41 +79,40 @@
     <div class="content">
       <div class="content-title">
         <button (click)="showDiagnoses()">Show</button>
-        <button class="nice-button" (click)="vitalsPage()">Add Vitals</button>
+        <h1>Diagnoses</h1>
+        <!--<button class="nice-button" (click)="vitalsPage()">Add Vitals</button>-->
       </div>
-      <div *ngFor="let diagnosis of Diagnoses">
-        <div class="row">
-          <table class="table table hover">
-            <thead>
-              <th>Systolic (mmHg)</th>
-              <th>Diastolic (mmHg)</th>
-              <th>Oxygen Saturation (%)</th>
-              <th>Heart Rate (bpm)</th>
-              <th>Temperature(℉)</th>
-              <th>Respiratory Rate (breaths / min)</th>
-              <th>Height (inches)</th>
-              <th>Weight (lbs.)</th>
-              <th>{{diagnosis.encounterDate | date}}</th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{diagnosis.vital.systolic}}</td>
-                <td>{{diagnosis.vital.diastolic}}</td>
-                <td>{{diagnosis.vital.oxygenSat}}</td>
-                <td>{{diagnosis.vital.heartRate}}</td>
-                <td>{{diagnosis.vital.temperature}}</td>
-                <td>{{diagnosis.vital.respiratoryRate}}</td>
-                <td>{{diagnosis.vital.height}}</td>
-                <td>{{diagnosis.vital.weight}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="content">
-          <div class="content-title">
-            <button class="nice-button" (click)="assessmentsPage()">Add Assessments</button>
+      <div *ngIf="viewDiagnoses">
+        <div *ngFor="let diagnosis of patient.diagnoses">
+          <div class="row">
+            <p>{{diagnosis.encounterDate | date}}</p>
+            <table class="table table hover">
+              <thead>
+                <th>Systolic (mmHg)</th>
+                <th>Diastolic (mmHg)</th>
+                <th>Oxygen Saturation (%)</th>
+                <th>Heart Rate (bpm)</th>
+                <th>Temperature(℉)</th>
+                <th>Respiratory Rate (breaths / min)</th>
+                <th>Height (inches)</th>
+                <th>Weight (lbs.)</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{diagnosis.vitals?.systolic}}</td>
+                  <td>{{diagnosis.vitals?.diastolic}}</td>
+                  <td>{{diagnosis.vitals?.oxygenSat}}</td>
+                  <td>{{diagnosis.vitals?.heartRate}}</td>
+                  <td>{{diagnosis.vitals?.temperature}}</td>
+                  <td>{{diagnosis.vitals?.respiratoryRate}}</td>
+                  <td>{{diagnosis.vitals?.height}}</td>
+                  <td>{{diagnosis.vitals?.weight}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+
+
           <div class="row">
             <table class="table table hover">
               <thead>
@@ -121,22 +120,30 @@
                 <th>History of Present Illness</th>
                 <th>Pain Assessment</th>
                 <th>Pain Scale (0-10)</th>
-                <th>{{diagnosis.encounterDate}</th>
               </thead>
 
               <tbody>
                 <tr>
-                  <td>{{diagnosis.assessment.chiefComplaint}}</td>
-                  <td>{{diagnosis.assessment.historyOfPresentIllness}}</td>
-                  <td>{{diagnosis.assessment.painAssessment}}</td>
-                  <td>{{diagnosis.assessment.painScale}}</td>
+                  <td>{{diagnosis.assessment?.chiefComplaint}}</td>
+                  <td>{{diagnosis.assessment?.historyOfPresentIllness}}</td>
+                  <td>{{diagnosis.assessment?.painAssessment}}</td>
+                  <td>{{diagnosis.assessment?.painScale}}</td>
                 </tr>
               </tbody>
             </table>
           </div>
+
+          <div>
+            <h2>Diagnosis</h2>
+            <p>{{diagnosis.doctorDiagnosis}}</p>
+            <h2>Recommended Treatment</h2>
+            <p>{{diagnosis.recommendedTreatment}}</p>
+          </div>
+
         </div>
       </div>
     </div>
-
   </div>
+  <br>
+  <br>
 </body>

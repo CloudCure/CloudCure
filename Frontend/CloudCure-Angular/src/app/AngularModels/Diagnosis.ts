@@ -11,4 +11,5 @@ export interface Diagnosis
     doctorDiagnosis?: string
     recommendedTreatment?: string
     isFinalized: boolean
+    encounterDate: Date
 }

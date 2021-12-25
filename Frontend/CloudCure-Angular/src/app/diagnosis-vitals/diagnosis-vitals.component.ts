@@ -49,7 +49,7 @@ export class DiagnosisVitalsComponent implements OnInit {
 
   PatientProfile() {
     this.RegisterVitals(this.vitalsGroup)
-    this.router.navigateByUrl("patient-view");
+    this.router.navigateByUrl("home");
   }
 
   Assessments() {
