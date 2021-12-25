@@ -45,9 +45,9 @@
         <h1>Allergies</h1>
       </div>
       <div *ngIf="viewAllergies" class="row">
-        <!-- <ul *ngFor="let allergy of Allergies" style="float: left; width: 50%;">
+        <ul *ngFor="let allergy of Allergies" style="float: left; width: 50%;">
           <li>{{allergy.allergyName}}</li>
-        </ul> -->
+        </ul>
         <app-view-allergies [PatientId]="PatientId" [listOfAllergies]="Allergies"></app-view-allergies>
       </div>
     </div>
@@ -58,7 +58,7 @@
         <h1>Surgeries</h1>
       </div>
       <div *ngIf="viewSurgeries" class="row">
-        <!-- <ul *ngFor="let surgery of Surgeries" style="float: left; width: 50%;">
+        <ul *ngFor="let surgery of Surgeries" style="float: left; width: 50%;">
           <li>{{surgery.surgeryName}}</li>
         </ul>
       </div>
@@ -70,8 +70,8 @@
         <h1>Medications</h1>
       </div>
       <div *ngIf="viewMedication" class="row">
-        <!-- <ul *ngFor="let medication of CurrentMedications" style="float: left; width: 50%;">
-          <li>{{medication.MedicationName}}</li>
+         <ul *ngFor="let medication of CurrentMedications" style="float: left; width: 50%;">
+          <li>{{medication.medicationName}}</li>
         </ul>
       </div>
     </div>
@@ -79,7 +79,7 @@
     <div class="content">
       <div class="content-title">
         <button (click)="showDiagnoses()">Show</button>
-        <!--<button class="nice-button" (click)="vitalsPage()">Add Vitals</button>-->
+        <button class="nice-button" (click)="vitalsPage()">Add Vitals</button>
       </div>
       <div *ngFor="let diagnosis of Diagnoses">
         <div class="row">
@@ -112,7 +112,7 @@
 
         <div class="content">
           <div class="content-title">
-            <!--<button class="nice-button" (click)="assessmentsPage()">Add Assessments</button>-->
+            <button class="nice-button" (click)="assessmentsPage()">Add Assessments</button>
           </div>
           <div class="row">
             <table class="table table hover">

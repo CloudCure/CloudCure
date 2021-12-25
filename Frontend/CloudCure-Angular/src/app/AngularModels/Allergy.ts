@@ -1,6 +1,6 @@
 export interface Allergy
 {
-    Id?:         number;
-    PatientId:   number;
-    AllergyName: string;
+    id?:         number;
+    patientId:   number;
+    allergyName: string;
 }

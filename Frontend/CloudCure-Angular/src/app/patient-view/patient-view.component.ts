@@ -24,7 +24,7 @@ export class PatientViewComponent implements OnInit {
   PatientPhone: any = '';
   PatientAddress: any = '';
   DateOfBirth: any = '';
-  Conditions: any = {};
+  Conditions: any = [];
   Allergies: any = [];
   Surgeries: any = [];
   CurrentMedications: any = [];

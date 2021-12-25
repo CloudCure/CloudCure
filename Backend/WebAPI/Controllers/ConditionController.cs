@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                 List<Condition> condition = conditionRepository.GetAll().ToList();
+                List<Condition> condition = conditionRepository.GetAll().ToList();
                 if (condition.Count == 0)
                     throw new Exception("No data found");
                 return Ok(conditionRepository.GetAll());
@@ -95,7 +95,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-               
+
                 p_condition.Id = id;
                 conditionRepository.Update(p_condition);
                 conditionRepository.Save();
@@ -114,7 +114,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                 if (p_condition == null)
+                if (p_condition == null)
                     throw new Exception("Invalid data!");
                 conditionRepository.Create(p_condition);
                 conditionRepository.Save();

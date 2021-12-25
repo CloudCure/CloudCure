@@ -31,7 +31,7 @@
         <ng-template #finalizeButton>
         <!-- For Doctors Eyes Only -->
         <div *ngIf="role === 2;" class="col">
-            <button *ngIf="patient.diagnoses![patient.diagnoses!.length - 1].isFinalized == true" (click)="finalize()"
+            <button *ngIf="!patient.diagnoses![patient.diagnoses!.length - 1].isFinalized" (click)="finalize()"
                 class="finalize btn btn-custom btn-primary diagnosis border">Finalize
                 Report</button>
         </div>
