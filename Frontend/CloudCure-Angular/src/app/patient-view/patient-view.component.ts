@@ -1,6 +1,6 @@
 import { Assessment } from './../AngularModels/Assessment';
 import { UserProfile } from './../AngularModels/UserProfile';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { PatientService } from '../services/patient.service';
 import { Router } from '@angular/router';
 import { Diagnosis } from '../AngularModels/Diagnosis';
@@ -16,21 +16,6 @@ export class PatientViewComponent implements OnInit {
 
   @Input() test: any
 
-  // //Patient Variables
-  // PatientId: any;
-  // UserProfile: any = {};
-  // PatientName: string | undefined = 'Timmy';
-  // FirstName: string = '';
-  // LastName: string = '';
-  // PatientPhone: any = '';
-  // PatientAddress: any = '';
-  // DateOfBirth: any = '';
-  // Conditions: any = [];
-  // Allergies: any = [];
-  // Surgeries: any = [];
-  // CurrentMedications: any = [];
-  // Diagnoses: any = []
-
   viewConditions: boolean = false;
   viewAllergies: boolean = false;
   viewSurgeries: boolean = false;
@@ -38,6 +23,7 @@ export class PatientViewComponent implements OnInit {
   viewDiagnoses: boolean = false;
 
   patient: Patient = {} as Patient
+  
 
   constructor(private patientApi: PatientService, private router: Router) {
     //1 will be changed later to a dynamic patient number
@@ -81,5 +67,10 @@ export class PatientViewComponent implements OnInit {
 
   showDiagnoses() {
     this.viewDiagnoses = !this.viewDiagnoses;
+  }
+
+  setDiagId(diagId: number) {
+    this.patientApi.diagnosisId = diagId;
+    this.router.navigateByUrl("/finalized-diagnosis-view");
   }
 }
