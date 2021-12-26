@@ -14,22 +14,28 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./docsearch.component.css']
 })
 export class DocsearchComponent implements OnInit, OnDestroy {
-  patientSearchGroup:FormGroup = new FormGroup({
+  patientSearchGroup: FormGroup = new FormGroup({
     FirstName: new FormControl("", Validators.required),
     LastName: new FormControl("", Validators.required),
     Specialization: new FormControl("", Validators.required)
   })
 
-  fullDoctorList:EmployeeInformation[] = [];
-  doctorList:EmployeeInformation[] = [];
-  role:number = 0;
-  nurse:string = '';
+  fullDoctorList: EmployeeInformation[] = [];
+  doctorList: EmployeeInformation[] = [];
+  role: number = 0;
+  nurse: string = '';
 
   constructor(public auth0: AuthService, public router: Router, public employeeAPI: EmployeeService, @Inject(DOCUMENT) public document: Document, private patientAPI: PatientService) {
     this.employeeAPI.GetAll().subscribe(
       (response) => {
-        this.doctorList = response;
+        // this.doctorList = response;
         this.fullDoctorList = response;
+        for (var i in this.fullDoctorList) {
+          if (this.fullDoctorList[i].userProfile.roleId == 2) {
+            this.doctorList.push(this.fullDoctorList[i])
+
+          }
+        }
         console.log(this.doctorList);
       }
     )
@@ -37,21 +43,18 @@ export class DocsearchComponent implements OnInit, OnDestroy {
     this.auth0.user$.subscribe(
       (user) => {
         console.log(user);
-        if (user)
-        {
+        if (user) {
           // search database for user.email
           this.employeeAPI.verifyEmployee(user.email).subscribe(
-            (response) => 
-            {
+            (response) => {
               this.role = response.userProfile.roleId;
               console.log(response);
-              if (!response)
-              {
+              if (!response) {
                 // send them to register page if they arent currently a user in our db.
                 this.router.navigateByUrl("/register");
               }
             }
-          )          
+          )
         }
       }
     )
@@ -60,34 +63,30 @@ export class DocsearchComponent implements OnInit, OnDestroy {
     this.patientAPI.assigningDoctor = false;
   }
 
-  ngOnInit(): void 
-  {
-    if (this.patientAPI.assigningDoctor)
-    {
+  ngOnInit(): void {
+    if (this.patientAPI.assigningDoctor) {
       this.nurse = 'nurseSelect'
     }
   }
 
-  newPatient(){
+  newPatient() {
     this.router.navigateByUrl("/patient");
   }
 
-  searchPatient(patientSearchGroup: FormGroup)
-  {
-    let search = 
+  searchPatient(patientSearchGroup: FormGroup) {
+    let search =
     {
       firstName: patientSearchGroup.get("FirstName")?.value.toLowerCase(),
       lastName: patientSearchGroup.get("LastName")?.value.toLowerCase(),
       specialization: patientSearchGroup.get("Specialization")?.value.toLowerCase()
     }
-    let firstNameSearch = (search:any) => this.doctorList.filter(({ userProfile }) => userProfile.firstName.toLowerCase().includes(search.firstName))
+    let firstNameSearch = (search: any) => this.doctorList.filter(({ userProfile }) => userProfile.firstName.toLowerCase().includes(search.firstName))
     let lastNameSearch = (search: any) => this.doctorList.filter(({ userProfile }) => userProfile.lastName.toLowerCase().includes(search.lastName))
     let specializationSearch = (search: any) => this.doctorList.filter(({ specialization }) => specialization.toLowerCase().includes(search.specialization))
-    if (search.firstName === '' && search.lastName === '' && search.specialization === ''){
+    if (search.firstName === '' && search.lastName === '' && search.specialization === '') {
       this.doctorList = this.fullDoctorList;
     }
-    else
-    {
+    else {
       this.doctorList = firstNameSearch(search);
       this.doctorList = lastNameSearch(search);
       this.doctorList = specializationSearch(search);
