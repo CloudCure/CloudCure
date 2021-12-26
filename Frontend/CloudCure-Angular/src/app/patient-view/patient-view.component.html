@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div class="content">
+    <div class="content" *ngIf="patient.conditions?.length">
       <div class="content-title">
         <button (click)="showConditions()">Show</button>
         <h1>Conditions</h1>
@@ -39,7 +39,7 @@
     </div>
 
     <!-- allergies -->
-    <div class="content">
+    <div class="content" *ngIf="patient.allergies?.length">
       <div class="content-title">
         <button (click)="showAllergies()">Show</button>
         <h1>Allergies</h1>
@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <div class="content">
+    <div class="content" *ngIf="patient.surgeries?.length">
       <div class="content-title">
         <button (click)="showSurgeries()">Show</button>
         <h1>Surgeries</h1>
@@ -64,7 +64,7 @@
       </div>
     </div>
 
-    <div class="content">
+    <div class="content" *ngIf="patient.currentMedications?.length">
       <div class="content-title">
         <button (click)="showMedication()">Show</button>
         <h1>Medications</h1>
@@ -76,7 +76,7 @@
       </div>
     </div>
 
-    <div class="content">
+    <div class="content" *ngIf="patient.diagnoses?.length">
       <div class="content-title">
         <button (click)="showDiagnoses()">Show</button>
         <h1>Diagnoses</h1>
