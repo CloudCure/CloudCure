@@ -12,10 +12,12 @@ import { Surgery } from '../AngularModels/Surgery';
 export class PatientService {
 
   private endpoint: string = "https://cloudcure-api.azurewebsites.net/Patient";
-  constructor(private http:HttpClient) {} 
   public currentPatientId: number | undefined = 0;
   public assigningDoctor: boolean = false;
   public patientCount: number = 0;
+  public diagnosisId: number = 0;
+
+  constructor(private http:HttpClient) {} 
 
   ////////////// Patient //////////////
   GetAll(){ 
