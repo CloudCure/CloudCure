@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Patient } from '../AngularModels/Patient';
 
 @Component({
   selector: 'app-view-allergies',
@@ -11,11 +12,14 @@ export class ViewAllergiesComponent implements OnInit {
   PatientId:number=0;
   ConditionName?:string;
   @Input()
-  listOfAllergies:any[]=[];
+  listOfAllergies?:any[]=[];
+  @Input()
+  item: Patient = {} as Patient
 
   constructor() { }
 
   ngOnInit(): void {
+    this.listOfAllergies=this.item.allergies;
   }
 
 }
