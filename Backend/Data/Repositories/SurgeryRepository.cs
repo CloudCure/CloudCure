@@ -17,6 +17,7 @@ namespace Data
             repository = context;
         }
 
+        // Retrieves information on surgery based on the Patient id
         public IEnumerable<Surgery> SearchByPatientId(int query)
         {
             var result = base.GetAll()

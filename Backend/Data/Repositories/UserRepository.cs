@@ -18,6 +18,7 @@ namespace Data
             repository = context;
         }
 
+        //Retrives information on user based on the user id
         public User GetUserById(int p_id)
         {
             try
@@ -27,6 +28,8 @@ namespace Data
                 .Include(c => c.CovidAssesments)
                 .Single(e => e.Id.Equals(p_id));
             }
+            
+            //Exeption will be thrown if user id is out of range
             catch (System.Exception)
             {
                 throw new KeyNotFoundException("Employee Id Not Found!");
