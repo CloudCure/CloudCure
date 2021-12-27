@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Patient } from '../AngularModels/Patient';
 
 @Component({
   selector: 'app-view-surgeries',
@@ -7,15 +8,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ViewSurgeriesComponent implements OnInit {
 
+  // @Input()
+  // PatientId:number=0;
+  // ConditionName?:string;
   @Input()
-  PatientId:number=0;
-  ConditionName?:string;
+  listOfSurgeries?:any[]=[];
   @Input()
-  listOfSurgeries:any[]=[];
-
+  item: Patient = {} as Patient
   constructor() { }
 
   ngOnInit(): void {
+    this.listOfSurgeries=this.item.surgeries;
   }
 
 }

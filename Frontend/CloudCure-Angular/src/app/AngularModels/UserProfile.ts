@@ -1,3 +1,4 @@
+import { Roles } from "./Roles";
 export interface UserProfile {
     id? : number
     firstName : string
@@ -8,4 +9,5 @@ export interface UserProfile {
     emergencyName: string
     emergencyContactPhone: string 
     roleId : number
+    role?:Roles
 }
