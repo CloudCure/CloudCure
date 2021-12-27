@@ -5,27 +5,8 @@
   <form [formGroup]="assessmentGroup">
     <div class="container">
 
-      <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-          <!--<label>Diagnosis</label>
-          <select formControlName="Date" class="form-select" aria-label="Default select example">
-            <option value="null" disabled>Select New or Previous Vitals Diagnosis</option>
-            <option [value]="date" selected>New Assessment Diagnosis - <span>{{date | date: 'MM/dd/yyyy'}}</span>
-            </option>
-            <option *ngFor="let v of patient.vitalHistory; let i = index;" [value]="v.id">Date: {{v.encounterDate |
-              date:
-              'MM/dd/yyyy'}}, ID: {{v.id}}</option>
-          </select>
-        -->
-          <br />
-        </div>
-        <div class="col-md-3"></div>
-      </div>
-
         <button class="showBodyClicker center btn btn-dark" (click)="show()">{{bodyClickButtonText}}</button>
         <br />
-
         <ng-container *ngIf="showBodyClicker">
           <body-clicker class="translate-right" (onClick)="getClick($event)" [canEdit]="true"></body-clicker>
         </ng-container>
