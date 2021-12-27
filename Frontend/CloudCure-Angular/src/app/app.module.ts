@@ -41,6 +41,8 @@ import { ViewMedicationsComponent } from './view-medications/view-medications.co
 import { ViewSurgeriesComponent } from './view-surgeries/view-surgeries.component';
 import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/finalized-diagnosis-view.component';
 import { UpdateUserInfoComponent } from './update-user-info/update-user-info.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { PhonePipe } from './pipes/phone.pipe';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,7 @@ import { UpdateUserInfoComponent } from './update-user-info/update-user-info.com
     ViewMedicationsComponent,
     ViewSurgeriesComponent,
     UpdateUserInfoComponent,
+    PhonePipe,
 
   ],
 
@@ -84,6 +87,7 @@ import { UpdateUserInfoComponent } from './update-user-info/update-user-info.com
     ReactiveFormsModule,
     FormsModule,
     NgxPrintModule,
+    NgxMaskModule.forRoot(),
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
       clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq',
