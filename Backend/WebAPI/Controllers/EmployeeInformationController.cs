@@ -51,20 +51,20 @@ namespace WebAPI
             }
         }
 
-        // GET: Employee/Verify/{p_email}
-        [HttpGet("Verify/{p_email}")]
-        public IActionResult VerifyUser(string p_email)
-        {
-            try
-            {
-                return Ok(_repo.VerifyEmail(p_email));
-            }
-            catch (Exception e)
-            {
-                Log.Error(e.Message);
-                return BadRequest("Not a current user");
-            }
-        }
+        // // GET: Employee/Verify/{p_email}
+        // [HttpGet("Verify/{p_email}")]
+        // public IActionResult VerifyUser(string p_email)
+        // {
+        //     try
+        //     {
+        //         return Ok(_repo.VerifyEmail(p_email));
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Log.Error(e.Message);
+        //         return BadRequest("Not a current user");
+        //     }
+        // }
 
         // POST Employee/Add
         [HttpPost("Add")]
