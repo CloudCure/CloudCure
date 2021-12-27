@@ -122,7 +122,7 @@ namespace Tests
             }
         }
 
-         [Fact]
+        [Fact]
         public void GetAllShouldReturnBadRequestEmployee()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -151,6 +151,7 @@ namespace Tests
                 Assert.Equal(400, response.StatusCode);
             }
         }
+
         [Fact]
         public void UpdateShouldReturnBadRequestEmployeeInfo()
         {
@@ -165,7 +166,7 @@ namespace Tests
             }
         }
 
-           [Fact]
+        [Fact]
         public void GetByIdShouldGetEmployeeInfoByIdWithBadRequest()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -174,6 +175,20 @@ namespace Tests
                 var controller = new EmployeeInformationController(repo);
 
                 var result = controller.GetById(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
+            }
+        }
+
+        [Fact]
+        public void VerifyEmailShouldReturnBadRequest()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                var controller = new EmployeeInformationController(repo);
+
+                var result = controller.VerifyUser(null);
                 var response = (IStatusCodeActionResult)result;
                 Assert.Equal(400, response.StatusCode);
             }
