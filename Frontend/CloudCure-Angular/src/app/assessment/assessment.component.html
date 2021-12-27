@@ -6,7 +6,7 @@
     <div class="container">
 
 
-        <button class="showBodyClicker center btn btn-dark" (click)="show()">{{bodyClickButtonText}}</button>
+        <button class="center btn dark-grey-btn" (click)="show()">{{bodyClickButtonText}}</button>
 
         <br />
         <ng-container *ngIf="showBodyClicker">
@@ -38,7 +38,7 @@
             <input formControlName="painScale" name="painScale" id="painScale" type="number" min="0" max="10" />
             </div>
             <div class="col paincenter">
-            <button class="btn btn-dark" (click)="onSubmit(assessmentGroup)">Submit</button>
+            <button class="btn dark-grey-btn" (click)="onSubmit(assessmentGroup)">Submit</button>
             </div>
             <div class="col"></div>
         </div>
