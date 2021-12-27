@@ -5,7 +5,9 @@
   <form [formGroup]="assessmentGroup">
     <div class="container">
 
+
         <button class="showBodyClicker center btn btn-dark" (click)="show()">{{bodyClickButtonText}}</button>
+
         <br />
         <ng-container *ngIf="showBodyClicker">
           <body-clicker class="translate-right" (onClick)="getClick($event)" [canEdit]="true"></body-clicker>
@@ -27,8 +29,6 @@
               </textarea>
       </div>
       <br />
-      
-
       <div class="row">
           <div class="col"></div>
           <div class="col paincenter">

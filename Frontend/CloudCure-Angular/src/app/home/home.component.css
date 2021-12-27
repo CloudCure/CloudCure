@@ -27,21 +27,18 @@
 }
 
 .patient {
-  background-color: rgb(115,165,194);
-  border-color: rgb(115,165,194);
   border-radius: .3rem;
   margin-top: 5rem;
   margin-right: 5rem;
   margin-left: 5rem;
-  padding: 0.4rem;
+  padding: 0.8rem;
+
 }
 
 .patient:hover {
-  background-color: rgb(115,165,194);
-  filter: brightness(95%);
-  border: 1px solid rgb(115,165,194);
   box-shadow: 0 0px 20px rgb(115,165,194);
 }
+
 
 .btn-center {
   display: flex;

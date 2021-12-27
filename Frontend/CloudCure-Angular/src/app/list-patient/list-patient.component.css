@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+p{
+  font-size: 16px;
+}
+
 body{
   padding: 0;
   margin: 0;
@@ -41,29 +45,6 @@ body{
   width: 100%;
 }
 
-.view {
-  background-color: #72A4C2;
-  border-color: #72A4C2;
-}
-
-.view:hover {
-  background-color: #72A4C2;
-  border-color: #72A4C2;
-  filter: brightness(90%);
-}
-
-.add {
-  background-color: #F26925;
-  border-color: #F26925;
-  margin-top: 12px;
-}
-
-.add:hover {
-  background-color: #F26925;
-  border-color: #F26925;
-  filter: brightness(90%);
-}
-
 .finalize {
   margin-top: 12px;
   background-color: #474C55;
@@ -84,9 +65,4 @@ margin-right: auto;
 
 .card-custom {
 margin: 5px;
-}
-
-.test {
-  border: 1px solid #FCB414;
-  box-shadow: 0 0px 8px #FCB414;
 }
