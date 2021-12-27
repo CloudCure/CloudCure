@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PhonePipe implements PipeTransform {
 
   transform(value: string, ...args: unknown[]): unknown {
-    // let value = tel.toString().trim().replace(/^\+/, "");
-    
+    // Custom Pipe that will convert a string that either looks like
+    // 'XXX-XXX-XXXX' or 'XXXXXXXXXX' to be '(XXX) XXX-XXXX'
     if (value.includes('-'))
     {
       value = value.split('-').join('');
@@ -16,10 +16,6 @@ export class PhonePipe implements PipeTransform {
       return value;
     }
     
-    // else if (value.length > 10)
-    // {
-    //   return value.slice(7);
-    // }
     let areaCode, middleThree, lastFour;
     areaCode = value.slice(0, 3);
     middleThree = value.slice(3, 6);
