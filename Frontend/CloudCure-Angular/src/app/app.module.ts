@@ -40,6 +40,7 @@ import { ViewAllergiesComponent } from './view-allergies/view-allergies.componen
 import { ViewMedicationsComponent } from './view-medications/view-medications.component';
 import { ViewSurgeriesComponent } from './view-surgeries/view-surgeries.component';
 import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/finalized-diagnosis-view.component';
+import { UpdateUserInfoComponent } from './update-user-info/update-user-info.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,8 @@ import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/fina
     ViewAllergiesComponent,
     ViewMedicationsComponent,
     ViewSurgeriesComponent,
+    UpdateUserInfoComponent,
+
   ],
 
   imports: [
@@ -143,6 +146,7 @@ import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/fina
         component: FinalizedDiagnosisViewComponent,
       },
       { path: 'view-conditions', component: ViewConditionsComponent },
+      { path: 'UpdateUserInfo', component: UpdateUserInfoComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'search', component: DocsearchComponent },
       { path: 'home', component: HomeComponent },

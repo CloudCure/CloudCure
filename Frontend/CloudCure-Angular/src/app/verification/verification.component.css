@@ -41,10 +41,10 @@ body{
 }
 
 .column.side dt{
-display: block;
-text-align: center;
-margin-top: 10px;
-font-size: 20px;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
 }
 
 .card {
@@ -86,4 +86,8 @@ button{
 {
   padding: 0px 0px 70px 50px;
   float: left;
+}
+
+.pointer:hover{
+  cursor: pointer;
 }

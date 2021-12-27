@@ -40,6 +40,16 @@
               </ul>
             </div>
           </div>
+          <div class="content" *ngIf="patient.conditions?.length">
+            <div class="content-title">
+              <h1>Conditions</h1>
+            </div>
+            <div class="row">
+              <ul *ngFor="let condition of patient.conditions" style="float: left; width: 50%">
+                <li>{{ condition.conditionName }}</li>
+              </ul>
+            </div>
+          </div>
 
           <!-- allergies -->
           <div class="content" *ngIf="patient.allergies?.length">
@@ -47,10 +57,8 @@
               <h1>Allergies</h1>
             </div>
             <div class="row">
-              <ul
-                *ngFor="let allergy of patient.allergies"
-                style="float: left; width: 50%"
-              >
+
+              <ul *ngFor="let allergy of patient.allergies" style="float: left; width: 50%">
                 <li>{{ allergy.allergyName }}</li>
               </ul>
               <!--<app-view-allergies [PatientId]="PatientId" [listOfAllergies]="Allergies"></app-view-allergies>-->
@@ -62,10 +70,7 @@
               <h1>Surgeries</h1>
             </div>
             <div class="row">
-              <ul
-                *ngFor="let surgery of patient.surgeries"
-                style="float: left; width: 50%"
-              >
+              <ul *ngFor="let surgery of patient.surgeries" style="float: left; width: 50%">
                 <li>{{ surgery.surgeryName }}</li>
               </ul>
             </div>
@@ -76,10 +81,8 @@
               <h1>Medications</h1>
             </div>
             <div class="row">
-              <ul
-                *ngFor="let medication of patient.currentMedications"
-                style="float: left; width: 50%"
-              >
+
+              <ul *ngFor="let medication of patient.currentMedications" style="float: left; width: 50%">
                 <li>{{ medication.medicationName }}</li>
               </ul>
             </div>
@@ -153,6 +156,11 @@
               </div>
             </div>
           </div>
+          <!--<div class="printing">
+        <button [useExistingCss]="true" printSectionId="print-me" ngxPrint>
+          Print Diagnosis
+        </button>
+      </div>-->
         </div>
       </div>
     </div>
@@ -172,3 +180,4 @@
   <br />
   <br />
 </body>
+
