@@ -55,7 +55,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-               if (_repo.SearchByPatientId(id) == null)
+                if (_repo.SearchByPatientId(id) == null)
                     throw new Exception("Invaild Id");
                 return Ok(_repo.SearchByPatientId(id));
             }

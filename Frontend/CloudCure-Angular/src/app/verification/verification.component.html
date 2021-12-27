@@ -14,9 +14,9 @@
             the list below in the past 48 hours?
             <dd>
               <br />
-              <input type="radio" formControlName="question1" id="yes" name="question1" value="true" checked="">
+              <input class="pointer" type="radio" formControlName="question1" id="yes" name="question1" value="true" checked="">
               <label for="yes">Yes</label>
-              <input type="radio" formControlName="question1" id="no" name="question1" value="false" checked="">
+              <input class="pointer" type="radio" formControlName="question1" id="no" name="question1" value="false" checked="">
               <label for="no">No</label>
             </dd>
           </dl>
@@ -27,9 +27,9 @@
             that you may be sick with COVID-19?
             <dd>
               <br />
-              <input type="radio" formControlName="question2" id="yes" name="question2" value="true" checked="">
+              <input class="pointer" type="radio" formControlName="question2" id="yes" name="question2" value="true" checked="">
               <label for="yes">Yes</label>
-              <input type="radio" formControlName="question2" id="no" name="question2" value="false" checked="">
+              <input class="pointer" type="radio" formControlName="question2" id="no" name="question2" value="false" checked="">
               <label for="no">No</label>
             </dd>
           </dl>
@@ -39,9 +39,9 @@
             any symptoms in the past 14 days?
             <dd>
               <br />
-              <input type="radio" formControlName="question3" id="yes" name="question3" value="true" checked="">
+              <input class="pointer" type="radio" formControlName="question3" id="yes" name="question3" value="true" checked="">
               <label for="yes">Yes</label>
-              <input type="radio" formControlName="question3" id="no" name="question3" value="false" checked="">
+              <input class="pointer" type="radio" formControlName="question3" id="no" name="question3" value="false" checked="">
               <label for="no">No</label>
             </dd>
           </dl>
@@ -50,9 +50,9 @@
           <dl>Have you traveled in the past 10 days?
             <dd>
               <br />
-              <input type="radio" formControlName="question4" id="yes" name="question4" value="true" checked="">
+              <input class="pointer" type="radio" formControlName="question4" id="yes" name="question4" value="true" checked="">
               <label for="yes">Yes</label>
-              <input type="radio" formControlName="question4" id="no" name="question4" value="false" checked="">
+              <input class="pointer" type="radio" formControlName="question4" id="no" name="question4" value="false" checked="">
               <label for="no">No</label>
             </dd>
           </dl>
@@ -64,9 +64,9 @@
             suspected or confirmed COVID-19?
             <dd>
               <br />
-              <input type="radio" formControlName="question5" id="yes" name="question5" value="true" checked="">
+              <input class="pointer" type="radio" formControlName="question5" id="yes" name="question5" value="true" checked="">
               <label for="yes">Yes</label>
-              <input type="radio" formControlName="question5" id="no" name="question5" value="false" checked="">
+              <input class="pointer" type="radio" formControlName="question5" id="no" name="question5" value="false" checked="">
               <label for="no">No</label>
             </dd>
           </dl>
@@ -89,7 +89,7 @@
         <dt>Congestion or runny nose</dt>
       </div>
       <div class="button-btm">
-        <button type="submit" class=" btn btn-dark btn-md" (click)="submitForm(verifyGroup)">Submit</button>
+        <button type="submit" class=" btn dark-grey-btn btn-md" (click)="submitForm(verifyGroup)">Submit</button>
       </div>
     </div>
   </form>
