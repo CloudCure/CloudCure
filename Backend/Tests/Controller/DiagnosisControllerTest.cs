@@ -201,7 +201,7 @@ namespace Tests.Controller
             }
         }
 
-        private Models.Diagnosis.Diagnosis GetDiagnosis()
+        private static Models.Diagnosis.Diagnosis GetDiagnosis()
         {
             Models.Diagnosis.Diagnosis d = new Models.Diagnosis.Diagnosis
             {

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Data;
 using Moq;
@@ -12,7 +11,6 @@ namespace Tests
 {
     public class AllergyControllerTest
     {
-
         readonly DbContextOptions<CloudCureDbContext> _options;
 
         public AllergyControllerTest()
@@ -190,7 +188,7 @@ namespace Tests
             Assert.Equal(400, okResponse.StatusCode);
         }
 
-        private List<Allergy> GetAllergyList()
+        private static List<Allergy> GetAllergyList()
         {
             var testAllergy = new List<Allergy>();
             testAllergy.Add(new Allergy { Id = 1, AllergyName = "Meds", PatientId = 1 });
@@ -200,7 +198,7 @@ namespace Tests
             return testAllergy;
         }
 
-        private Allergy GetAllergy()
+        private static Allergy GetAllergy()
         {
             return new Allergy
             {

@@ -194,7 +194,7 @@ namespace Tests
             }
         }
 
-        private Condition GetCondition()
+        private static Condition GetCondition()
         {
             return new Condition
             {

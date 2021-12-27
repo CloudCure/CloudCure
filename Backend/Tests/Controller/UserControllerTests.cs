@@ -165,7 +165,7 @@ namespace Tests
             }
         }
 
-        private User newUser()
+        private static User newUser()
         {
             List<CovidVerify> covidList = new List<CovidVerify>();
             covidList.Add(
