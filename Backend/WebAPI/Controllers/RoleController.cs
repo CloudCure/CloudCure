@@ -1,3 +1,4 @@
+using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,7 +9,6 @@ using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
-
     [Route("[Controller]")]
     [ApiController]
     public class RoleController : ControllerBase
@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
             {
                 List<Role> r = _repo.GetAll().ToList();
                 if (r.Count == 0)
-                    throw new Exception("No data found");
+                    throw new FileNotFoundException("No data found");
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (_repo.GetById(id) == null)
-                    throw new Exception("Invalid Id");
+                    throw new ArgumentNullException("Invalid Id");
                 return Ok(_repo.GetById(id));
             }
             catch (Exception e)
@@ -60,7 +60,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_role == null)
-                    throw new Exception("Invalid data!");
+                    throw new ArgumentNullException("Invalid data!");
                 _repo.Create(p_role);
                 _repo.Save();
                 return Created("Role/Add", p_role);
@@ -97,7 +97,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_role == null)
-                    throw new Exception("Delete failed!");
+                    throw new ArgumentNullException("Delete failed!");
                 _repo.Delete(p_role);
                 _repo.Save();
                 return Ok();
