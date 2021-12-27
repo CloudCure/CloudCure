@@ -194,7 +194,7 @@ namespace Tests
             }
         }
 
-        private EmployeeInformation newEmployee()
+        private static EmployeeInformation newEmployee()
         {
             List<CovidVerify> covidList = new List<CovidVerify>();
             covidList.Add(

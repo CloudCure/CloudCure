@@ -194,7 +194,7 @@ namespace Tests
             }
         }
 
-        private Assessment GetAssessment()
+        private static Assessment GetAssessment()
         {
             return new Assessment
             {

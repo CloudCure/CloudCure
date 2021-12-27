@@ -82,7 +82,7 @@ namespace WebAPI.Controllers
                 var ToBeDeleted = DiagnosisRepository.GetById(id);
                 if (ToBeDeleted == null)
                     throw new InvalidDataException("Delete failed!");
-                    DiagnosisRepository.Delete(ToBeDeleted);
+                DiagnosisRepository.Delete(ToBeDeleted);
                 DiagnosisRepository.Save();
                 return Ok();
             }
