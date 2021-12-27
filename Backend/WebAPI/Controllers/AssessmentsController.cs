@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         public IActionResult GetByDiagnosisId(int id)
         {
             try
-            {   if (_repo.SearchByDiagnosisId(id) == null)
+            {   if (_repo.SearchByDiagnosisId(id) == null || id < 1)
                     throw new InvalidDataException("Invaild Id");
                 return Ok(_repo.SearchByDiagnosisId(id));
             }

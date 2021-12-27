@@ -181,6 +181,7 @@ namespace Tests
             }
         }
 
+        [Fact]
         public void GetByPatientIdShouldReturnBadRequest()
         {
             using (var context = new CloudCureDbContext(_options))
