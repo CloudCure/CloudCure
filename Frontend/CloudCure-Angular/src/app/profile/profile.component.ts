@@ -14,10 +14,9 @@ export class ProfileComponent implements OnInit {
 
   employee: EmployeeInformation = {} as EmployeeInformation
 
-  email:string | undefined = '';
-
-  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService)
-  {
+  email: string | undefined = '';
+  role: any
+  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService) {
     this.auth0.user$.subscribe(
       (user) => {
         this.email = user?.email;
@@ -25,8 +24,8 @@ export class ProfileComponent implements OnInit {
         this.employeeApi.verifyEmployee(this.email).subscribe(
           (response) => {
             console.log(response);
-            this.employee=response
-
+            this.employee = response
+            this.role = this.employee.userProfile.role?.roleName
             console.log(response);
           }
         )
@@ -38,8 +37,8 @@ export class ProfileComponent implements OnInit {
   }
 
   // changes tabs in main card
-  id:any= "dashboard";
-  tabChange(ids:any){
+  id: any = "dashboard";
+  tabChange(ids: any) {
     this.id = ids;
   }
 }
