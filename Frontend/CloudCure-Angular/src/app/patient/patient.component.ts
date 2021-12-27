@@ -163,19 +163,20 @@ export class PatientComponent implements OnInit {
             return cond['text']
           })
           conditions.forEach(element => {
-            let conditionInfo: Condition = {
-              patientId: response.id!,
-              conditionName: element
-            }
-            console.log(conditionInfo)
-            this.conditionApi.Add(conditionInfo).subscribe(
-              (conditionResponse) => {
-                console.log("Condition added");
-                console.log(conditionResponse);
+            if (element !== ''){
+              let conditionInfo: Condition = {
+                patientId: response.id!,
+                conditionName: element
               }
-            )
+              console.log(conditionInfo)
+              this.conditionApi.Add(conditionInfo).subscribe(
+                (conditionResponse) => {
+                  console.log("Condition added");
+                  console.log(conditionResponse);
+                }
+              )
+            }
           });
-
 
           //Allergies
           let allergies: string[] = registerGroup.get('allergies')?.value;
@@ -184,17 +185,19 @@ export class PatientComponent implements OnInit {
           })
           console.log(allergies)
           allergies.forEach(element => {
-            let allergyInfo: Allergy = {
-              patientId: response.id!,
-              allergyName: element
-            }
-            console.log(allergyInfo)
-            this.allergyApi.Add(allergyInfo).subscribe(
-              (allergyResponse) => {
-                console.log("Allergy added");
-                console.log(allergyResponse);
+            if (element !== ''){
+              let allergyInfo: Allergy = {
+                patientId: response.id!,
+                allergyName: element
               }
-            )
+              console.log(allergyInfo)
+              this.allergyApi.Add(allergyInfo).subscribe(
+                (allergyResponse) => {
+                  console.log("Allergy added");
+                  console.log(allergyResponse);
+                }
+              )
+            }
           })
 
           //Surgeries
@@ -203,16 +206,20 @@ export class PatientComponent implements OnInit {
             return cond['text']
           })
           surgeries.forEach(element => {
-            let surgeryInfo: Surgery = {
-              patientId: response.id!,
-              surgeryName: element
-            }
-            this.surgeryApi.Add(surgeryInfo).subscribe(
-              (surgeryResponse) => {
-                console.log("Surgery added");
-                console.log(surgeryResponse);
+            console.log(element);
+            if (element !== '')
+            {
+              let surgeryInfo: Surgery = {
+                patientId: response.id!,
+                surgeryName: element
               }
-            )
+              this.surgeryApi.Add(surgeryInfo).subscribe(
+                (surgeryResponse) => {
+                  console.log("Surgery added");
+                  console.log(surgeryResponse);
+                }
+              )
+            }
           })
 
           //Medication
@@ -221,16 +228,19 @@ export class PatientComponent implements OnInit {
             return cond['text']
           })
           medications.forEach(element => {
-            let medicationInfo: Medication = {
-              patientId: response.id!,
-              medicationName: element
-            }
-            this.medicationApi.Add(medicationInfo).subscribe(
-              (medicationResponse) => {
-                console.log("medication added");
-                console.log(medicationResponse);
+            if (element !== '')
+            {
+              let medicationInfo: Medication = {
+                patientId: response.id!,
+                medicationName: element
               }
-            )
+              this.medicationApi.Add(medicationInfo).subscribe(
+                (medicationResponse) => {
+                  console.log("medication added");
+                  console.log(medicationResponse);
+                }
+              )
+            }
           });
 
           this.PatientApi.currentPatientId = response.id;

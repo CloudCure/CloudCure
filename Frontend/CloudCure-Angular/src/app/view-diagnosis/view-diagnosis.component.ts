@@ -1,3 +1,4 @@
+import { ConditionalExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,18 +27,26 @@ export class ViewDiagnosisComponent implements OnInit {
   diagnosisId: number = 0;
   currentDiagnosis: Diagnosis = {} as Diagnosis;
 
-  constructor(private DiagnosisApi: DiagnosisService, private PatientApi: PatientService, private route: ActivatedRoute, private router: Router) { }
+  viewConditions: boolean = false;
+  viewAllergies: boolean = false;
+  viewSurgeries: boolean = false;
+  viewMedication: boolean = false;
+  viewDiagnoses: boolean = false;
 
-  ngOnInit(): void {
+  constructor(private DiagnosisApi: DiagnosisService, private PatientApi: PatientService, private route: ActivatedRoute, private router: Router) { 
     this.PatientApi.GetById(this.PatientApi.currentPatientId).subscribe(result => {
       this.patient = result
+      console.log(this.patient);
       this.diagnosisId = this.patient.diagnoses![this.patient.diagnoses!.length - 1].id
       
       this.DiagnosisApi.GetbyId(this.diagnosisId).subscribe(element => {
         this.currentDiagnosis = element
+        console.log("currDiag", this.currentDiagnosis)
       })
-      console.log(this.patient);
     })
+  }
+
+  ngOnInit(): void {
   }
 
   submit(doctorDiagnosis: FormGroup) {
@@ -55,5 +64,24 @@ export class ViewDiagnosisComponent implements OnInit {
     else {
       this.doctorDiagnosis.markAllAsTouched();
     }
+  }
+  showConditions() {
+    this.viewConditions = !this.viewConditions;
+  }
+
+  showAllergies() {
+    this.viewAllergies = !this.viewAllergies;
+  }
+
+  showSurgeries() {
+    this.viewSurgeries = !this.viewSurgeries;
+  }
+
+  showMedication() {
+    this.viewMedication = !this.viewMedication;
+  }
+
+  showDiagnoses() {
+    this.viewDiagnoses = !this.viewDiagnoses;
   }
 }

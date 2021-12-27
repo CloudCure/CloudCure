@@ -26,14 +26,14 @@ export class VerificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    console.log(this.covidService.patient.userProfile.id)
   }
   
     submitForm(verifyGroup: FormGroup) {
       console.log(this.patientAPI.currentPatientId);
       if (verifyGroup.valid) {
         let Info: CovidVerify = {
-          userId: this.patientAPI.currentPatientId,
+          userId: this.covidService.patient.userProfile.id,
           question1: verifyGroup.get("question1")?.value,
           question2: verifyGroup.get("question2")?.value,
           question3: verifyGroup.get("question3")?.value,
@@ -45,7 +45,7 @@ export class VerificationComponent implements OnInit {
         this.covidService.Add(Info).subscribe(
           (response) => {
             console.log(response);
-            this.router.navigateByUrl("/**");
+            this.router.navigateByUrl("");
           }
         )
         console.log(this.verifyGroup.value);

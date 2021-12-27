@@ -1,36 +1,193 @@
-<app-patient-view></app-patient-view>
-<div class="container">
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <form [formGroup]="doctorDiagnosis">
-                <div class="mb-3">
-                    <label class="form-label">Doctor's Diagnosis</label>
-                    <textarea class="form-control textarea" formControlName="diagnosis"></textarea>
-                    <div *ngIf="diagnosis?.invalid && (diagnosis?.dirty || diagnosis?.touched)">
-                        <div class="text-danger" *ngIf="diagnosis?.errors?.['required']">*Required</div>
-                    </div>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="content-title">
+                <h1>Patient Information</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Full Name</h4>
+                    <p>{{patient.userProfile.firstName}} {{patient.userProfile.lastName}}</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Date Of Birth</h4>
+                    <p>{{patient.userProfile.dateOfBirth | date: 'MM/dd/yyyy'}}</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Contact Number</h4>
+                    <p>{{patient.userProfile.phoneNumber}}</p>
+                    <br />
                 </div>
 
-                <br />
-                <div class="mb-3">
-                    <label class="form-label">Recommended Treatment</label>
-                    <textarea class="form-control textarea" type="text" formControlName="treatment"></textarea>
-                    <div *ngIf="treatment?.invalid && (treatment?.dirty || treatment?.touched)">
-                        <div class="text-danger" *ngIf="treatment?.errors?.['required']">*Required</div>
-                    </div>
+                <div class="col-lg-9">
+                    <h4>Patient Address</h4>
+                    <p>{{patient.userProfile.address}}</p>
                 </div>
-                <br />
-                <div class="center">
-                    <button class="btn btn-primary"
-                        (click)="submit(doctorDiagnosis)">Finalize Diagnosis</button>
-                </div>
-            </form>
+            </div>
         </div>
-        <div class="col-md-3"></div>
-    </div>
-</div>
 
-<br />
-<br />
-<br />
+        <div class="content" *ngIf="patient.conditions?.length">
+            <div class="content-title">
+                <button (click)="showConditions()">Show</button>
+                <h1>Conditions</h1>
+            </div>
+            <div *ngIf="viewConditions" class="row">
+                <!-- <ul *ngFor="let condition of patient.conditions" style="float: left; width: 50%;">
+            <li>{{condition.conditionName}}</li>
+          </ul> -->
+                <app-view-conditions [item]="patient"></app-view-conditions>
+            </div>
+        </div>
+
+        <!-- allergies -->
+        <div class="content" *ngIf="patient.allergies?.length">
+            <div class="content-title">
+                <button (click)="showAllergies()">Show</button>
+                <h1>Allergies</h1>
+            </div>
+            <div *ngIf="viewAllergies" class="row">
+                <!-- <ul *ngFor="let allergy of patient.allergies" style="float: left; width: 50%;">
+            <li>{{allergy.allergyName}}</li>
+          </ul> -->
+                <app-view-allergies [item]="patient"></app-view-allergies>
+            </div>
+        </div>
+
+        <div class="content" *ngIf="patient.surgeries?.length">
+            <div class="content-title">
+                <button (click)="showSurgeries()">Show</button>
+                <h1>Surgeries</h1>
+            </div>
+            <div *ngIf="viewSurgeries" class="row">
+                <!-- <ul *ngFor="let surgery of patient.surgeries" style="float: left; width: 50%;">
+            <li>{{surgery.surgeryName}}</li>
+          </ul> -->
+                <app-view-surgeries [item]="patient"></app-view-surgeries>
+            </div>
+        </div>
+
+        <div class="content" *ngIf="patient.currentMedications?.length">
+            <div class="content-title">
+                <button (click)="showMedication()">Show</button>
+                <h1>Medications</h1>
+            </div>
+            <div *ngIf="viewMedication" class="row">
+                <!-- <ul *ngFor="let medication of patient.currentMedications" style="float: left; width: 50%;">
+            <li>{{medication.medicationName}}</li>
+          </ul> -->
+                <app-view-medications [item]="patient"></app-view-medications>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="content-title">
+                <h1>Diagnoses</h1>
+                <!--<button class="nice-button" (click)="vitalsPage()">Add Vitals</button>-->
+            </div>
+            <div>
+                <div *ngFor="let diagnosis of patient.diagnoses">
+                    <div class="card m-4" *ngIf="diagnosis.id == diagnosisId">
+                        <div class="row">
+                            <p>{{diagnosis.encounterDate | date}}</p>
+                            <table class="table table hover">
+                                <thead>
+                                    <th>Systolic (mmHg)</th>
+                                    <th>Diastolic (mmHg)</th>
+                                    <th>O2 Sat. (%)</th>
+                                    <th>Heart Rate (bpm)</th>
+                                    <th>Temp (℉)</th>
+                                    <th>Resp Rate</th>
+                                    <th>Height (in.)</th>
+                                    <th>Weight (lbs.)</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{diagnosis.vitals?.systolic}}</td>
+                                        <td>{{diagnosis.vitals?.diastolic}}</td>
+                                        <td>{{diagnosis.vitals?.oxygenSat}}</td>
+                                        <td>{{diagnosis.vitals?.heartRate}}</td>
+                                        <td>{{diagnosis.vitals?.temperature}}</td>
+                                        <td>{{diagnosis.vitals?.respiratoryRate}}</td>
+                                        <td>{{diagnosis.vitals?.height}}</td>
+                                        <td>{{diagnosis.vitals?.weight}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="row">
+                            <table class="table table hover">
+                                <thead>
+                                    <th>Chief Complaint</th>
+                                    <th>Condition History</th>
+                                    <th>Pain Assessment</th>
+                                    <th>Scale (0-10)</th>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>{{diagnosis.assessment?.chiefComplaint}}</td>
+                                        <td>{{diagnosis.assessment?.historyOfPresentIllness}}</td>
+                                        <td>{{diagnosis.assessment?.painAssessment}}</td>
+                                        <td>{{diagnosis.assessment?.painScale}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <form [formGroup]="doctorDiagnosis">
+                    <div class="mb-3">
+                        <label class="form-label">Doctor's Diagnosis</label>
+                        <textarea class="form-control textarea" formControlName="diagnosis"></textarea>
+                        <div *ngIf="
+                diagnosis?.invalid &&
+                (diagnosis?.dirty || diagnosis?.touched)
+              ">
+                            <div class="text-danger" *ngIf="diagnosis?.errors?.['required']">
+                                *Required
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="mb-3">
+                        <label class="form-label">Recommended Treatment</label>
+                        <textarea class="form-control textarea" type="text" formControlName="treatment"></textarea>
+                        <div *ngIf="
+                treatment?.invalid &&
+                (treatment?.dirty || treatment?.touched)
+              ">
+                            <div class="text-danger" *ngIf="treatment?.errors?.['required']">
+                                *Required
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="center">
+                        <button class="btn dark-grey-btn" (click)="submit(doctorDiagnosis)">
+                            Finalize Diagnosis
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</body>
