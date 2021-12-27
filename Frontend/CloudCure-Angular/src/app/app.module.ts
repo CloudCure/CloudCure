@@ -17,7 +17,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { NgxPrintModule } from 'ngx-print';
 import {
   FormControl,
   FormControlName,
@@ -41,7 +40,6 @@ import { ViewMedicationsComponent } from './view-medications/view-medications.co
 import { ViewSurgeriesComponent } from './view-surgeries/view-surgeries.component';
 import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/finalized-diagnosis-view.component';
 import { UpdateUserInfoComponent } from './update-user-info/update-user-info.component';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { PhonePipe } from './pipes/phone.pipe';
 
 @NgModule({
@@ -86,8 +84,6 @@ import { PhonePipe } from './pipes/phone.pipe';
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPrintModule,
-    NgxMaskModule.forRoot(),
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
       clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq',
