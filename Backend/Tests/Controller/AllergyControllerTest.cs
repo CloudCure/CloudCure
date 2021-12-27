@@ -15,7 +15,7 @@ namespace Tests
 
         readonly DbContextOptions<CloudCureDbContext> _options;
 
-          public AllergyControllerTest()
+        public AllergyControllerTest()
         {
             _options = new DbContextOptionsBuilder<CloudCureDbContext>()
                         .UseSqlite("Filename = AllergyControllerTests.db; Foreign Keys=False").Options;
@@ -24,7 +24,7 @@ namespace Tests
         [Fact]
         public void CreateReturnsOkAllergy()
         {
-           var repository = new Mock<IAllergyRepository>();
+            var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
 
             var allergy = GetAllergy();
@@ -37,18 +37,18 @@ namespace Tests
         [Fact]
         public void GetAllReturnsOKAllergy()
         {
-            using(var context = new CloudCureDbContext(_options))
+            using (var context = new CloudCureDbContext(_options))
             {
 
-            IAllergyRepository repo = new AllergyRepository(context);
-            var controller = new AllergyController(repo);
+                IAllergyRepository repo = new AllergyRepository(context);
+                var controller = new AllergyController(repo);
 
-            var allergy = GetAllergy();
+                var allergy = GetAllergy();
 
-            var entry = controller.Add(allergy);
-            var result = controller.GetAll();
-            var okResponse = (IStatusCodeActionResult)result;
-            Assert.Equal(200, okResponse.StatusCode);
+                var entry = controller.Add(allergy);
+                var result = controller.GetAll();
+                var okResponse = (IStatusCodeActionResult)result;
+                Assert.Equal(200, okResponse.StatusCode);
             }
         }
 
@@ -153,20 +153,14 @@ namespace Tests
         [Fact]
         public void UpdateShouldReturnBadRequestAllergy()
         {
-           var repository = new Mock<IAllergyRepository>();
+            var repository = new Mock<IAllergyRepository>();
             var controller = new AllergyController(repository.Object);
 
-            var allergy = GetAllergy();
-
-            var entry = controller.Add(allergy);
-            var results = controller.Update(-1, allergy);
+            var results = controller.Update(-1, null);
             var okResponse = (IStatusCodeActionResult)results;
             Assert.Equal(400, okResponse.StatusCode);
 
         }
-
-        
-
 
         private List<Allergy> GetAllergyList()
         {
@@ -186,7 +180,6 @@ namespace Tests
                 AllergyName = "Tylenol"
             };
         }
-
 
         void Seed()
         {
@@ -213,14 +206,8 @@ namespace Tests
                         }
                     }
                 );
-
                 context.SaveChanges();
-
             }
-
-
-
         }
-
     }
 }

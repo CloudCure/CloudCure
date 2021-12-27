@@ -98,7 +98,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-                if (DiagnosisRepository.GetByPatientIdWithNav(id) == null)
+                if (DiagnosisRepository.GetByPatientIdWithNav(id) == null || id < 1)
                     throw new ArgumentNullException("Invalid id");
                 return Ok(DiagnosisRepository.GetByPatientIdWithNav(id));
             }
