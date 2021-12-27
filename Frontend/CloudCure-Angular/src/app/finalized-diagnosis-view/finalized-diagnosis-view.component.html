@@ -25,13 +25,11 @@
             <p>{{ patient.userProfile.phoneNumber }}</p>
             <br />
           </div>
-
           <div class="col-lg-9">
             <h4>Patient Address</h4>
             <p>{{ patient.userProfile.address }}</p>
           </div>
-        </div>
-      </div>
+
 
       <div class="content" *ngIf="patient.conditions?.length">
         <div class="content-title">

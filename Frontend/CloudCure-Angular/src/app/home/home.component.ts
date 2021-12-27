@@ -86,11 +86,13 @@ export class HomeComponent implements OnInit {
     }
     let firstNameSearch = (search:any) => this.patientList.filter(({ userProfile }) => userProfile.firstName.toLowerCase().includes(search.firstName))
     let lastNameSearch = (search: any) => this.patientList.filter(({ userProfile }) => userProfile.lastName.toLowerCase().includes(search.lastName))
+    console.log(search);
     if (search.firstName === '' && search.lastName === ''){
       this.patientList = this.fullPatientList;
     }
     else
     {
+      this.patientList = this.fullPatientList;
       this.patientList = firstNameSearch(search);
       this.patientList = lastNameSearch(search);
     }
