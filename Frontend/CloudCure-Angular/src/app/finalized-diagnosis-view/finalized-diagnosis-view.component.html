@@ -1,145 +1,153 @@
 <body>
-    <div class="container">
-        <div class="content">
+    <br>
+    <div class="container">            
+    <div class="card p-4">
+        <div class="text-center">
             <div class="content-title">
-                <h1>Patient Information</h1>
+                <h3>Patient Information</h3>
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <h4>Full Name</h4>
                     <p>{{patient.userProfile.firstName}} {{patient.userProfile.lastName}}</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <h4>Date Of Birth</h4>
                     <p>{{patient.userProfile.dateOfBirth | date: 'MM/dd/yyyy'}}</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <h4>Contact Number</h4>
                     <p>{{patient.userProfile.phoneNumber}}</p>
-                    <br />
                 </div>
-
-                <div class="col-lg-9">
+                <div class="col-md-3">
                     <h4>Patient Address</h4>
                     <p>{{patient.userProfile.address}}</p>
                 </div>
             </div>
-        </div>
+        
 
-        <div class="content" *ngIf="patient.conditions?.length">
-            <div class="content-title">
-                <h1>Conditions</h1>
-            </div>
-            <div class="row">
-                <ul *ngFor="let condition of patient.conditions" style="float: left; width: 50%;">
-                    <li>{{condition.conditionName}}</li>
-                </ul>
-            </div>
-        </div>
+        
+        <div class="row">
 
-        <!-- allergies -->
-        <div class="content" *ngIf="patient.allergies?.length">
-            <div class="content-title">
-                <h1>Allergies</h1>
+            <div class="col-md-3">
+                <h3>Conditions</h3>
+            <div *ngIf="patient.conditions?.length; else noConditions">
+                <div *ngFor="let condition of patient.conditions">
+                    <p>{{condition.conditionName}}</p>
+                </div>
             </div>
-            <div class="row">
-                <ul *ngFor="let allergy of patient.allergies" style="float: left; width: 50%;">
-                    <li>{{allergy.allergyName}}</li>
-                </ul>
-                <!--<app-view-allergies [PatientId]="PatientId" [listOfAllergies]="Allergies"></app-view-allergies>-->
+            <ng-template #noConditions>
+                <p>No Conditions</p>
+            </ng-template>
             </div>
-        </div>
 
-        <div class="content" *ngIf="patient.surgeries?.length">
-            <div class="content-title">
-                <h1>Surgeries</h1>
+            <div class="col-md-3">
+                <h3>Allergies</h3>
+            <div *ngIf="patient.allergies?.length; else noAllergies">
+                <div *ngFor="let allergy of patient.allergies">
+                    <p>{{allergy.allergyName}}</p>
+                </div>
             </div>
-            <div class="row">
-                <ul *ngFor="let surgery of patient.surgeries" style="float: left; width: 50%;">
-                    <li>{{surgery.surgeryName}}</li>
-                </ul>
+            <ng-template #noAllergies>
+                <p>No Allergies</p>
+            </ng-template>
             </div>
-        </div>
 
-        <div class="content" *ngIf="patient.currentMedications?.length">
-            <div class="content-title">
-                <h1>Medications</h1>
+            <div class="col-md-3"> 
+                <h3>Surgeries</h3>
+            <div *ngIf="patient.surgeries?.length; else noSurgeries">
+                <div *ngFor="let surgery of patient.surgeries">
+                    <p>{{surgery.surgeryName}}</p>
+                </div>
             </div>
-            <div class="row">
-                <ul *ngFor="let medication of patient.currentMedications" style="float: left; width: 50%;">
-                    <li>{{medication.medicationName}}</li>
-                </ul>
+            <ng-template #noSurgeries>
+                <p>No Surgeries</p>
+            </ng-template>
             </div>
+
+            <div class="col-md-3">
+                <h3>Medications</h3>
+            <div *ngIf="patient.currentMedications?.length; else noMedications">
+                <div *ngFor="let medication of patient.currentMedications" >
+                    <p>{{medication.medicationName}}</p>
+                </div>
+            </div>
+            <ng-template #noMedications>
+                <p>No Medications</p>
+            </ng-template>
+            </div>
+
+        </div>
         </div>
 
         <div class="content">
-            <div class="content-title">
-                <h1>Diagnosis</h1>
-                <!--<button class="nice-button" (click)="vitalsPage()">Add Vitals</button>-->
-            </div>
-            <div>
-                <div>
-                    <div class="card m-4">
-                        <div class="row">
-                            <p>{{diagnosis.encounterDate | date}}</p>
-                            <table class="table table hover">
-                                <thead>
-                                    <th>Systolic (mmHg)</th>
-                                    <th>Diastolic (mmHg)</th>
-                                    <th>O2 Sat. (%)</th>
-                                    <th>Heart Rate (bpm)</th>
-                                    <th>Temp (℉)</th>
-                                    <th>Resp Rate</th>
-                                    <th>Height (in.)</th>
-                                    <th>Weight (lbs.)</th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>{{diagnosis.vitals?.systolic}}</td>
-                                        <td>{{diagnosis.vitals?.diastolic}}</td>
-                                        <td>{{diagnosis.vitals?.oxygenSat}}</td>
-                                        <td>{{diagnosis.vitals?.heartRate}}</td>
-                                        <td>{{diagnosis.vitals?.temperature}}</td>
-                                        <td>{{diagnosis.vitals?.respiratoryRate}}</td>
-                                        <td>{{diagnosis.vitals?.height}}</td>
-                                        <td>{{diagnosis.vitals?.weight}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
+            <div class="text-center">
+                <div class="row">
+                    <p>Last updated:{{diagnosis.encounterDate | date}}</p>
+                    <table class="table table hover">
+                        <thead>
+                            <th>Systolic (mmHg)</th>
+                            <th>Diastolic (mmHg)</th>
+                            <th>O2 Sat. (%)</th>
+                            <th>Heart Rate (bpm)</th>
+                            <th>Temp (℉)</th>
+                            <th>Resp Rate</th>
+                            <th>Height (in.)</th>
+                            <th>Weight (lbs.)</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{diagnosis.vitals?.systolic}}</td>
+                                <td>{{diagnosis.vitals?.diastolic}}</td>
+                                <td>{{diagnosis.vitals?.oxygenSat}}</td>
+                                <td>{{diagnosis.vitals?.heartRate}}</td>
+                                <td>{{diagnosis.vitals?.temperature}}</td>
+                                <td>{{diagnosis.vitals?.respiratoryRate}}</td>
+                                <td>{{diagnosis.vitals?.height}}</td>
+                                <td>{{diagnosis.vitals?.weight}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
 
-                        <div class="row">
-                            <table class="table table hover">
-                                <thead>
-                                    <th>Chief Complaint</th>
-                                    <th>Condition History</th>
-                                    <th>Pain Assessment</th>
-                                    <th>Scale (0-10)</th>
-                                </thead>
+                <div class="row">
+                    <table class="table table hover">
+                        <thead>
+                            <th>Chief Complaint</th>
+                            <th>Condition History</th>
+                            <th>Pain Assessment</th>
+                            <th>Scale (0-10)</th>
+                        </thead>
 
-                                <tbody>
-                                    <tr>
-                                        <td>{{diagnosis.assessment?.chiefComplaint}}</td>
-                                        <td>{{diagnosis.assessment?.historyOfPresentIllness}}</td>
-                                        <td>{{diagnosis.assessment?.painAssessment}}</td>
-                                        <td>{{diagnosis.assessment?.painScale}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <tbody>
+                            <tr>
+                                <td>{{diagnosis.assessment?.chiefComplaint}}</td>
+                                <td>{{diagnosis.assessment?.historyOfPresentIllness}}</td>
+                                <td>{{diagnosis.assessment?.painAssessment}}</td>
+                                <td>{{diagnosis.assessment?.painScale}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                        <div class="card p-4">
-                            <h2>Diagnosis</h2>
-                            <p>{{diagnosis.doctorDiagnosis}}</p>
-                            <h2>Recommended Treatment</h2>
-                            <p>{{diagnosis.recommendedTreatment}}</p>
-                        </div>
-
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Diagnosis</h2>
+                        <p>{{diagnosis.doctorDiagnosis}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Recommended Treatment</h2>
+                        <p>{{diagnosis.recommendedTreatment}}</p>
                     </div>
                 </div>
+
             </div>
         </div>
+        </div>
+
     </div>
     <br>
     <br>
