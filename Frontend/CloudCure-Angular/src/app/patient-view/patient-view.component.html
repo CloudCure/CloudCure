@@ -5,22 +5,22 @@
         <h1>Patient Information</h1>
       </div>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm">
           <h4>Full Name</h4>
           <p>{{patient.userProfile.firstName}} {{patient.userProfile.lastName}}</p>
         </div>
-        <div class="col-md-4">
+        <div class="col-sm">
           <h4>Date Of Birth</h4>
           <p>{{patient.userProfile.dateOfBirth | date: 'MM/dd/yyyy'}}</p>
         </div>
-        <div class="col-md-4">
-          <h4>Contact Number</h4>
+        <div class="col-sm">
+          <h4>Phone</h4>
           <p>{{patient.userProfile.phoneNumber}}</p>
           <br />
         </div>
 
-        <div class="col-lg-9">
-          <h4>Patient Address</h4>
+        <div class="col-lg">
+          <h4>Address</h4>
           <p>{{patient.userProfile.address}}</p>
         </div>
       </div>
@@ -35,7 +35,7 @@
         <!-- <ul *ngFor="let condition of patient.conditions" style="float: left; width: 50%;">
           <li>{{condition.conditionName}}</li>
         </ul> -->
-        <app-view-conditions [item]="patient"></app-view-conditions> 
+        <app-view-conditions [item]="patient"></app-view-conditions>
       </div>
     </div>
 
@@ -62,7 +62,7 @@
         <!-- <ul *ngFor="let surgery of patient.surgeries" style="float: left; width: 50%;">
           <li>{{surgery.surgeryName}}</li>
         </ul> -->
-        <app-view-surgeries [item]="patient"></app-view-surgeries> 
+        <app-view-surgeries [item]="patient"></app-view-surgeries>
       </div>
     </div>
 
@@ -75,7 +75,7 @@
         <!-- <ul *ngFor="let medication of patient.currentMedications" style="float: left; width: 50%;">
           <li>{{medication.medicationName}}</li>
         </ul> -->
-        <app-view-medications [item]="patient"></app-view-medications> 
+        <app-view-medications [item]="patient"></app-view-medications>
       </div>
     </div>
 

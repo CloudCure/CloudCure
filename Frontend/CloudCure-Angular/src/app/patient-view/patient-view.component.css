@@ -27,13 +27,14 @@ body{
   color: whitesmoke;
 }
 
-/* .content-title h1{
-  text-align: center;
-} */
-
 .row{
-  margin: 5px;
-  padding: 20px;
+  padding: 10px;
+  margin: 20px;
+}
+
+.flex-container{
+  display: flex;
+  margin-left: 15px;
 }
 
 .content ul li {
