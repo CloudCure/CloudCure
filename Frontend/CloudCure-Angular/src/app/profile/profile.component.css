@@ -50,25 +50,20 @@ body{
 }
 
 .profile-header .profile-header-tab {
-  background: #fff;
   list-style-type: none;
-  margin: -1.25rem 0 0;
+  margin: -6.25rem 0 0;
   padding: 0 10px 0 0;
-  border-bottom: 50px solid #c8c7cc;
   white-space: nowrap;
-  text-align: center;
 }
 
 .profile-header .profile-header-tab > li > i {
-  display: block;
-  color: #000;
+  color: whitesmoke;
+  background-color: transparent;
   line-height: 1.25rem;
   padding: 0.625rem 1.25rem;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 18px;
   border: none;
   cursor: pointer;
+  padding: 50px;
 }
 
 .profile-header .profile-header-tab > li > i:hover{
