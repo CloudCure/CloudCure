@@ -37,4 +37,9 @@ export class FinalizedDiagnosisViewComponent implements OnInit {
 
     ngOnInit(): void {
     }
+
+    backToPatientView()
+    {
+        this.router.navigateByUrl('/patient-view');
+    }
 }
