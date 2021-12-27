@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (_repo.GetById(id) == null)
-                    throw new ArgumentNullException("Invalid Id");
+                    throw new InvalidDataException("Invalid Id");
                 return Ok(_repo.GetById(id));
             }
             catch (Exception e)
@@ -63,7 +63,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_surgery == null)
-                    throw new ArgumentNullException("Delete failed!");
+                    throw new InvalidDataException("Delete failed!");
                 _repo.Delete(p_surgery);
                 _repo.Save();
                 return Ok();
@@ -102,7 +102,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_surgery == null)
-                    throw new ArgumentNullException("Invalid data!");
+                    throw new InvalidDataException("Invalid data!");
                 _repo.Create(p_surgery);
                 _repo.Save();
                 return Created("Surgery/Add", p_surgery);

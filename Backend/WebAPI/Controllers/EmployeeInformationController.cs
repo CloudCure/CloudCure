@@ -42,7 +42,7 @@ namespace WebAPI
             try
             {
                 if (_repo.GetById(id) == null)
-                    throw new ArgumentNullException("Invalid Id");
+                    throw new InvalidDataException("Invalid Id");
                 return Ok(_repo.GetEmployeeInformationById(id));
             }
             catch (Exception e)
@@ -59,7 +59,7 @@ namespace WebAPI
             try
             {
                 if (_repo.VerifyEmail(p_email) == null || p_email == null)
-                    throw new ArgumentNullException("Invalid data");
+                    throw new InvalidDataException("Invalid data");
                 return Ok(_repo.VerifyEmail(p_email));
             }
             catch (Exception e)
@@ -76,7 +76,7 @@ namespace WebAPI
             try
             {
                 if (p_employee == null)
-                    throw new ArgumentNullException("Invalid data!");
+                    throw new InvalidDataException("Invalid data!");
                 _repo.Create(p_employee);
                 _repo.Save();
                 return Created("Employee/Add", p_employee);
@@ -96,7 +96,7 @@ namespace WebAPI
             {
                 var topic = _repo.GetById(id);
                 if (topic == null)
-                    throw new ArgumentNullException("Delete failed!");
+                    throw new InvalidDataException("Delete failed!");
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();
