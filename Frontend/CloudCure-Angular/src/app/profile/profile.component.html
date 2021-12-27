@@ -88,7 +88,7 @@
                     </strong>
                   </td>
                   <td class="text-primary">
-                    {{employee.userProfile.phoneNumber}}
+                    {{employee.userProfile.phoneNumber | phone}}
                   </td>
                 </tr>
               </tbody>
@@ -142,7 +142,7 @@
                     </strong>
                   </td>
                   <td class="text-primary">
-                    {{employee.userProfile.emergencyContactPhone}}
+                    {{employee.userProfile.emergencyContactPhone | phone}}
                   </td>
                 </tr>
               </tbody>

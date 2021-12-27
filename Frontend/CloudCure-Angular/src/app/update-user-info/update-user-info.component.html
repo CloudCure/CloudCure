@@ -3,7 +3,7 @@
 <body>
 
   <div class="header">
-    <h1>Update FORM</h1>
+    <h1>UPDATE FORM</h1>
   </div>
   <br />
 
@@ -49,9 +49,12 @@
             <br/>
 
             <label>Phone Number</label>
-            <input type="text" formControlName = "PhoneNumber" class="form-control" placeholder="{{currentEmployee?.userProfile?.phoneNumber}}">
+            <input type="text" mask="(000) 000-0000" formControlName="PhoneNumber" class="form-control" placeholder="{{currentEmployee?.userProfile?.phoneNumber}}">
             <div *ngIf="(PhoneNumber?.dirty || PhoneNumber?.touched)">
               <div class="text-danger" *ngIf="PhoneNumber?.errors?.['required']">*Required</div>
+            </div>
+            <div *ngIf="PhoneNumber?.touched">
+              <div class="text-danger" *ngIf="PhoneNumber?.errors?.['minlength']">*Enter Full Phone Number</div>
             </div>
             <br/>
 
@@ -66,9 +69,12 @@
 
               <div class="col-lg-6">
                 <label>Emergency Contact Number</label>
-                <input type="text" formControlName = "EmergencyContactPhone" class="form-control" placeholder="{{currentEmployee?.userProfile?.emergencyContactPhone}}">
+                <input type="text" mask="(000) 000-0000" formControlName = "EmergencyContactPhone" class="form-control" placeholder="{{currentEmployee?.userProfile?.emergencyContactPhone}}">
                 <div *ngIf="(EmergencyContactPhone?.dirty || EmergencyContactPhone?.touched)">
                   <div class="text-danger" *ngIf="EmergencyContactPhone?.errors?.['required']">*Required</div>
+                </div>
+                <div *ngIf="EmergencyContactPhone?.touched">
+                  <div class="text-danger" *ngIf="EmergencyContactPhone?.errors?.['minlength']">*Enter Full Phone Number</div>
                 </div>
               </div>
             </div>
