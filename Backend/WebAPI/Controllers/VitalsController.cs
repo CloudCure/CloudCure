@@ -43,7 +43,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (_repo.GetById(id) == null)
-                    throw new ArgumentNullException("Invalid Id");
+                    throw new InvalidDataException("Invalid Id");
                 return Ok(_repo.GetById(id));
             }
             catch (Exception e)
@@ -60,7 +60,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (_repo.SearchByDiagnosisId(id) == null)
-                    throw new ArgumentNullException("Invaild Id");
+                    throw new InvalidDataException("Invaild Id");
                 return Ok(_repo.SearchByDiagnosisId(id));
             }
             catch (Exception e)
@@ -77,7 +77,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_vitals == null)
-                    throw new ArgumentNullException("Invalid data!");
+                    throw new InvalidDataException("Invalid data!");
                 _repo.Create(p_vitals);
                 _repo.Save();
                 return Created("Vitals/Add", p_vitals);
@@ -114,7 +114,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_vitals == null)
-                    throw new ArgumentNullException("Delete failed!");
+                    throw new InvalidDataException("Delete failed!");
                 _repo.Delete(p_vitals);
                 _repo.Save();
                 return Ok();

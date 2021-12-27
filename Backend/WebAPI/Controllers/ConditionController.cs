@@ -44,7 +44,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (conditionRepository.GetById(id) == null)
-                    throw new ArgumentNullException("Invalid Id");
+                    throw new InvalidDataException("Invalid Id");
                 return Ok(conditionRepository.GetById(id));
             }
             catch (Exception e)
@@ -60,7 +60,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (conditionRepository.SearchByPatientId(id) == null)
-                    throw new ArgumentNullException("Invaild Id");
+                    throw new InvalidDataException("Invaild Id");
                 return Ok(conditionRepository.SearchByPatientId(id));
             }
             catch (Exception e)
@@ -77,7 +77,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_condition == null)
-                    throw new ArgumentNullException("Delete failed!");
+                    throw new InvalidDataException("Delete failed!");
                 conditionRepository.Delete(p_condition);
                 conditionRepository.Save();
                 return Ok();
@@ -114,7 +114,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_condition == null)
-                    throw new ArgumentNullException("Invalid data!");
+                    throw new InvalidDataException("Invalid data!");
                 conditionRepository.Create(p_condition);
                 conditionRepository.Save();
                 return Created("Condition/Add", p_condition);

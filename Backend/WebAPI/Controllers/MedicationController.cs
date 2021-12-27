@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
             try
             {
                 if(p_medication == null)
-                    throw new ArgumentNullException("Delete failed!");
+                    throw new InvalidDataException("Delete failed!");
                 medicationRepository.Delete(p_medication);
                 medicationRepository.Save();
                 return Ok();
@@ -83,7 +83,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_medication == null)
-                    throw new ArgumentNullException("Invalid data");
+                    throw new InvalidDataException("Invalid data");
                 medicationRepository.Create(p_medication);
                 medicationRepository.Save();
                 return Created("allergy/add", p_medication);

@@ -66,7 +66,6 @@ namespace Tests
                 var response = (IStatusCodeActionResult)result;
                 Assert.Equal(200, response.StatusCode);
             }
-
         }
 
         [Fact]
@@ -83,7 +82,6 @@ namespace Tests
                 var response = (IStatusCodeActionResult)result;
                 Assert.Equal(200, response.StatusCode);
             }
-
         }
 
         [Fact]
@@ -101,24 +99,44 @@ namespace Tests
         }
 
         [Fact]
+        public void GetByPatientIdShouldReturnOk()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAllergyRepository repo = new AllergyRepository(context);
+                var controller = new AllergyController(repo);
+
+                var result = controller.GetByPatientId(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
+        }
+
+        [Fact]
+        public void GetByPatientIdShouldGiveBadRequest()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAllergyRepository repo = new AllergyRepository(context);
+                var controller = new AllergyController(repo);
+
+                var result = controller.GetByPatientId(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
+            }
+        }
+
+        [Fact]
         public void CreateReturnsBadRequestAllergy()
         {
-            var repository = new Mock<IAllergyRepository>();
-            var controller = new AllergyController(repository.Object);
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAllergyRepository repo = new AllergyRepository(context);
+                var controller = new AllergyController(repo);
 
-            var allergy = new Allergy
-            {
-                PatientId = 0,
-                AllergyName = ""
-            };
-
-            try
-            {
-                controller.Add(allergy);
-            }
-            catch (Exception e)
-            {
-                Assert.NotNull(e);
+                var result = controller.Add(null);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
@@ -131,7 +149,6 @@ namespace Tests
             var result = controller.GetAll();
             var okResponse = (IStatusCodeActionResult)result;
             Assert.Equal(400, okResponse.StatusCode);
-
         }
 
         [Fact]
@@ -142,9 +159,7 @@ namespace Tests
                 IAllergyRepository repo = new AllergyRepository(context);
                 var controller = new AllergyController(repo);
 
-                var allergy = GetAllergy();
-
-                var result = controller.Delete(allergy);
+                var result = controller.Delete(null);
                 var response = (IStatusCodeActionResult)result;
                 Assert.Equal(400, response.StatusCode);
             }
@@ -159,7 +174,6 @@ namespace Tests
             var results = controller.Update(-1, null);
             var okResponse = (IStatusCodeActionResult)results;
             Assert.Equal(400, okResponse.StatusCode);
-
         }
 
         private List<Allergy> GetAllergyList()

@@ -45,7 +45,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (DiagnosisRepository.GetById(id) == null)
-                    throw new ArgumentNullException("Invalid id");
+                    throw new InvalidDataException("Invalid id");
                 return Ok(DiagnosisRepository.GetById(id));
             }
             catch (Exception e)
@@ -81,7 +81,7 @@ namespace WebAPI.Controllers
             {
                 var ToBeDeleted = DiagnosisRepository.GetById(id);
                 if (ToBeDeleted == null)
-                    throw new ArgumentNullException("Delete failed!");
+                    throw new InvalidDataException("Delete failed!");
                     DiagnosisRepository.Delete(ToBeDeleted);
                 DiagnosisRepository.Save();
                 return Ok();
@@ -99,7 +99,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (DiagnosisRepository.GetByPatientIdWithNav(id) == null || id < 1)
-                    throw new ArgumentNullException("Invalid id");
+                    throw new InvalidDataException("Invalid id");
                 return Ok(DiagnosisRepository.GetByPatientIdWithNav(id));
             }
             catch (Exception e)
@@ -115,7 +115,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (id < 1)
-                    throw new ArgumentNullException("Invalid id");
+                    throw new InvalidDataException("Invalid id");
                 return Ok(DiagnosisRepository.GetAllDiagnosisByPatientIdWithNav(id));
             }
             catch (Exception e)
@@ -131,7 +131,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_diagnosis == null)
-                    throw new ArgumentNullException("Invalid data!");
+                    throw new InvalidDataException("Invalid data!");
                 DiagnosisRepository.Create(p_diagnosis);
                 DiagnosisRepository.Save();
                 return Created("Diagnosis/Add", p_diagnosis);
