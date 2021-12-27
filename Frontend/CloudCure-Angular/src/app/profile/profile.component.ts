@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { UserProfile } from '../AngularModels/UserProfile';
 import { EmployeeService } from '../services/employee.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +17,7 @@ export class ProfileComponent implements OnInit {
 
   email: string | undefined = '';
   role: any
-  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService) {
+  constructor(private employeeApi: EmployeeService, private userApi: UserService, private auth0: AuthService, private router: Router) {
     this.auth0.user$.subscribe(
       (user) => {
         this.email = user?.email;
@@ -40,5 +41,11 @@ export class ProfileComponent implements OnInit {
   id: any = "dashboard";
   tabChange(ids: any) {
     this.id = ids;
+  }
+
+  Update()
+  {
+    this.employeeApi.currentEmployee = this.employee;
+    this.router.navigateByUrl("/UpdateUserInfo")
   }
 }

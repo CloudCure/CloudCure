@@ -1,0 +1,132 @@
+<!-- <p>{{currentEmployee?.id}}</p>
+<p>{{currentEmployee?.userProfile?.id}}</p> -->
+<body>
+
+  <div class="header">
+    <h1>Update FORM</h1>
+  </div>
+
+  <div class="container">  <!--*ngIf="showModifyUser" -->
+    <div class="row">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6">
+        <div id="form">
+
+          <form [formGroup] = "UpdateGroup">
+            <div class="row">
+
+              <div class="col-lg-6">
+                <label>First Name</label>
+                <input type="text" id= "Fname" formControlName="FirstName" class="form-control" placeholder="{{currentEmployee?.userProfile?.firstName}}">
+                <div *ngIf=" (FirstName?.dirty || FirstName?.touched)">
+                  <div class="text-danger" *ngIf="FirstName?.errors?.['required']">*Required</div>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <label>Last Name</label>
+                <input type="text"formControlName = "LastName" class="form-control" placeholder="{{currentEmployee?.userProfile?.lastName}}">
+                <div *ngIf="(LastName?.dirty || LastName?.touched)">
+                  <div class="text-danger" *ngIf="LastName?.errors?.['required']">*Required</div>
+                </div>
+              </div>
+            </div>
+
+            <br/>
+            <label>Date of Birth</label>
+            <input type="date" min="1900-01-01" [max]="today" formControlName = "DateOfBirth" class="form-control" placeholder="{{currentEmployee?.userProfile.DateOfBirth}">
+            <div *ngIf="(DateOfBirth?.dirty || DateOfBirth?.touched)">
+              <div class="text-danger" *ngIf="DateOfBirth?.errors?.['required']">*Required</div>
+            </div>
+            <br/>
+
+            <label>Address</label>
+            <input type="text" formControlName = "Address" class="form-control" placeholder="{{currentEmployee?.userProfile?.address}}">
+            <div *ngIf="(Address?.dirty || Address?.touched)">
+              <div class="text-danger" *ngIf="Address?.errors?.['required']">*Required</div>
+            </div>
+            <br/>
+
+            <label>Phone Number</label>
+            <input type="text" formControlName = "PhoneNumber" class="form-control" placeholder="{{currentEmployee?.userProfile?.phoneNumber}}">
+            <div *ngIf="(PhoneNumber?.dirty || PhoneNumber?.touched)">
+              <div class="text-danger" *ngIf="PhoneNumber?.errors?.['required']">*Required</div>
+            </div>
+            <br/>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label>Emergency Contact Name</label>
+                <input type="text" formControlName = "EmergencyName" class="form-control" placeholder="{{currentEmployee?.userProfile?.emergencyName}}">
+                <div *ngIf="(EmergencyName?.dirty || EmergencyName?.touched)">
+                  <div class="text-danger" *ngIf="EmergencyName?.errors?.['required']">*Required</div>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <label>Emergency Contact Number</label>
+                <input type="text" formControlName = "EmergencyContactPhone" class="form-control" placeholder="{{currentEmployee?.userProfile?.emergencyContactPhone}}">
+                <div *ngIf="(EmergencyContactPhone?.dirty || EmergencyContactPhone?.touched)">
+                  <div class="text-danger" *ngIf="EmergencyContactPhone?.errors?.['required']">*Required</div>
+                </div>
+              </div>
+            </div>
+
+            <br/>
+            <label>Education</label>
+            <input type="text" formControlName = "EducationDegree" class="form-control" placeholder="{{currentEmployee?.educationDegree}}">
+            <div *ngIf="(EducationDegree?.dirty || EducationDegree?.touched)">
+              <div class="text-danger" *ngIf="EducationDegree?.errors?.['required']">*Required</div>
+            </div>
+            <br/>
+
+            <label>Specialization</label>
+            <input type="text" formControlName = "Specialization" class="form-control" placeholder="{{currentEmployee?.specialization}}">
+            <div *ngIf="(Specialization?.dirty || Specialization?.touched)">
+              <div class="text-danger" *ngIf="Specialization?.errors?.['required']">*Required</div>
+            </div>
+            <br/>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <label>Start Date</label>
+                <input type="date" min="1900-01-01" [max]="today" formControlName = "StartDate" class="form-control" placeholder="{{currentEmployee?.StartDate}">
+                <div *ngIf="(StartDate?.dirty || StartDate?.touched)">
+                  <div class="text-danger" *ngIf="StartDate?.errors?.['required']">*Required</div>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <label>Room No.</label>
+                <input type="text" formControlName = "RoomNumber" class="form-control" placeholder="{{currentEmployee?.roomNumber}}">
+                <div *ngIf="(RoomNumber?.dirty || RoomNumber?.touched)">
+                  <div class="text-danger" *ngIf="RoomNumber?.errors?.['required']">*Required</div>
+                </div>
+              </div>
+            </div>
+
+            <br/>
+            <label>Role</label>
+            <select formControlName="UserRole" class="form-control" aria-labelledby="dropdownMenuLink">
+              <option value="" selected>Select a Role</option>
+              <option value="1">Nurse..</option>
+              <option value="2">Doctor..</option>
+            </select>
+            <div *ngIf="(UserRole?.dirty || UserRole?.touched)">
+              <div class="text-danger" *ngIf="UserRole?.errors?.['required']">*Required</div>
+            </div>
+
+            <br/>
+            <div class="center">
+              <button type="submit" class="btn btn-dark" (click)="Update(UpdateGroup)">Update</button>
+            </div>
+            <br />
+            <br />
+            <br />
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
