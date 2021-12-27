@@ -3,11 +3,16 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Models;
 
+//Grouping of classes for data access functionality
 namespace Data
 {
+    //Inherits methods from Repository repo and User Repository interface
     public class UserRepository : Repository<User>, IUserRepository
     {
+        //User repository can only be defined in its Constructor
         readonly CloudCureDbContext repository;
+
+        //Costructors sets UserRepository class with DbContext class for database access
         public UserRepository(CloudCureDbContext context) : base(context)
         {
             repository = context;

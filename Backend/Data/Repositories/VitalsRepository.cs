@@ -4,14 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Models.Diagnosis;
 
+//Grouping of classes for data access functionality
 namespace Data
 {
+    //Inherits methods from Repository repo and Vitals Repository interface
     public class VitalsRepository : Repository<Vitals>, IVitalsRepository
     {
+        //Constructor sets VitalsRepository class with DbContext class for database access
         public VitalsRepository(CloudCureDbContext context) : base(context)
         {
         }
 
+        //Retrieves Vitals report of a specific patient containg that patient's DiagnosisId
         public Vitals SearchByDiagnosisId(int p_patientId)
         {
             try
@@ -20,6 +24,8 @@ namespace Data
                         .FirstOrDefault(vital => vital.DiagnosisId == p_patientId);
             return result;
             }
+            
+            //Returns an exception if there were no vitals report found for the patient
             catch (System.Exception)
             {
                 
