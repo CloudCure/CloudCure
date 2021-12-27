@@ -1,3 +1,4 @@
+using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,7 +25,7 @@ namespace WebAPI
             {
                 List<EmployeeInformation> e = _repo.GetAll().ToList();
                 if (e.Count == 0)
-                    throw new Exception("No data found");
+                    throw new FileNotFoundException("No data found");
                 return Ok(_repo.GetAllEmployee());
             }
             catch (Exception e)
@@ -41,7 +42,7 @@ namespace WebAPI
             try
             {
                 if (_repo.GetById(id) == null)
-                    throw new Exception("Invalid Id");
+                    throw new ArgumentNullException("Invalid Id");
                 return Ok(_repo.GetEmployeeInformationById(id));
             }
             catch (Exception e)
@@ -57,6 +58,8 @@ namespace WebAPI
         {
             try
             {
+                if (_repo.VerifyEmail(p_email) == null || p_email == null)
+                    throw new ArgumentNullException("Invalid data");
                 return Ok(_repo.VerifyEmail(p_email));
             }
             catch (Exception e)
@@ -73,7 +76,7 @@ namespace WebAPI
             try
             {
                 if (p_employee == null)
-                    throw new Exception("Invalid data!");
+                    throw new ArgumentNullException("Invalid data!");
                 _repo.Create(p_employee);
                 _repo.Save();
                 return Created("Employee/Add", p_employee);
@@ -93,7 +96,7 @@ namespace WebAPI
             {
                 var topic = _repo.GetById(id);
                 if (topic == null)
-                    throw new Exception("Delete failed!");
+                    throw new ArgumentNullException("Delete failed!");
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();

@@ -1,10 +1,10 @@
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Models;
 using Data;
 using Serilog;
 using System.Collections.Generic;
-using Models.Diagnosis;
 using System.Linq;
 
 namespace WebAPI.Controllers
@@ -22,10 +22,10 @@ namespace WebAPI.Controllers
         public IActionResult GetAll()
         {
             try
-            {   
+            {
                 List<CovidVerify> assessment = _repo.GetAll().ToList();
                 if (assessment.Count == 0)
-                    throw new Exception("No Data Found");
+                    throw new FileNotFoundException("No Data Found");
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (_repo.GetById(id) == null)
-                    throw new Exception("Invalid Id");
+                    throw new ArgumentNullException("Invalid Id");
                 return Ok(_repo.GetById(id));
             }
             catch (Exception e)
@@ -58,8 +58,8 @@ namespace WebAPI.Controllers
         {
             try
             {
-                 if (p_covid == null)
-                    throw new Exception("Invalid data!");
+                if (p_covid == null)
+                    throw new ArgumentNullException("Invalid data!");
                 _repo.Create(p_covid);
                 _repo.Save();
                 return Created("Covid/Add", p_covid);
@@ -78,6 +78,8 @@ namespace WebAPI.Controllers
             try
             {
                 var topic = _repo.GetById(id);
+                if (topic == null || id < 1)
+                    throw new ArgumentNullException("Delete failed!");
                 _repo.Delete(topic);
                 _repo.Save();
                 return Ok();
