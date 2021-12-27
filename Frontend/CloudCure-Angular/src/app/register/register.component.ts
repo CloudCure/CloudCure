@@ -18,18 +18,18 @@ export class RegisterComponent implements OnInit {
 
   //Creates a form group for the User model
   registerGroup:FormGroup = new FormGroup({
-      WorkEmail: new FormControl(""),//from EmployeeInformation model
-      FirstName: new FormControl("", Validators.required),//from UserProfile model
-      LastName: new FormControl("", Validators.required),//from UserProfile model
-      DateOfBirth: new FormControl("", Validators.required),//from UserProfile model
-      PhoneNumber: new FormControl("", Validators.required),//from UserProfile model
-      Address: new FormControl("", Validators.required),//from UserProfile model
-      EmergencyName: new FormControl("", Validators.required),//from UserProfile model
-      EmergencyContactPhone: new FormControl("", Validators.required),//from UserProfile model
-      Specialization: new FormControl("", Validators.required),//from EmployeeInformation model
-      StartDate: new FormControl("", Validators.required),//from EmployeeInformation model
-      EducationDegree: new FormControl("", Validators.required),//from EmployeeInformation model
-      RoomNumber: new FormControl("", Validators.required),//from EmployeeInformation model
+    WorkEmail: new FormControl(""),//from EmployeeInformation model
+    FirstName: new FormControl("", Validators.required),//from UserProfile model
+    LastName: new FormControl("", Validators.required),//from UserProfile model
+    DateOfBirth: new FormControl("", Validators.required),//from UserProfile model
+    PhoneNumber: new FormControl("", [Validators.required, Validators.minLength(10)]),//from UserProfile model
+    Address: new FormControl("", Validators.required),//from UserProfile model
+    EmergencyName: new FormControl("", Validators.required),//from UserProfile model
+    EmergencyContactPhone: new FormControl("", [Validators.required, Validators.minLength(10)]),//from UserProfile model
+    Specialization: new FormControl("", Validators.required),//from EmployeeInformation model
+    StartDate: new FormControl("", Validators.required),//from EmployeeInformation model
+    EducationDegree: new FormControl("", Validators.required),//from EmployeeInformation model
+    RoomNumber: new FormControl("", Validators.required),//from EmployeeInformation model
     UserRole: new FormControl(1, Validators.required),// RoleId from UserProfile model
 
   });

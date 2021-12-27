@@ -17,18 +17,18 @@ export class UpdateUserInfoComponent implements OnInit {
   currentEmployee?: EmployeeInformation = this.employeeApi.currentEmployee;
   //Creates a form group for the User model
   UpdateGroup:FormGroup = new FormGroup({
-      WorkEmail: new FormControl(""),//from EmployeeInformation model
-      FirstName: new FormControl(this. currentEmployee?.userProfile.firstName, Validators.required),//from UserProfile model
-      LastName: new FormControl(this.currentEmployee?.userProfile.lastName, Validators.required),//from UserProfile model
-      DateOfBirth: new FormControl(this.currentEmployee?.userProfile.dateOfBirth, Validators.required),//from UserProfile model
-      PhoneNumber: new FormControl(this.currentEmployee?.userProfile.phoneNumber, Validators.required),//from UserProfile model
-      Address: new FormControl(this.currentEmployee?.userProfile.address, Validators.required),//from UserProfile model
-      EmergencyName: new FormControl(this.currentEmployee?.userProfile.emergencyName, Validators.required),//from UserProfile model
-      EmergencyContactPhone: new FormControl(this.currentEmployee?.userProfile.emergencyContactPhone, Validators.required),//from UserProfile model
-      Specialization: new FormControl(this.currentEmployee?.specialization, Validators.required),//from EmployeeInformation model
-      StartDate: new FormControl(this.currentEmployee?.startDate, Validators.required),//from EmployeeInformation model
-      EducationDegree: new FormControl(this.currentEmployee?.educationDegree, Validators.required),//from EmployeeInformation model
-      RoomNumber: new FormControl(this.currentEmployee?.roomNumber, Validators.required),//from EmployeeInformation model
+    WorkEmail: new FormControl(""),//from EmployeeInformation model
+    FirstName: new FormControl(this. currentEmployee?.userProfile.firstName, Validators.required),//from UserProfile model
+    LastName: new FormControl(this.currentEmployee?.userProfile.lastName, Validators.required),//from UserProfile model
+    DateOfBirth: new FormControl(this.currentEmployee?.userProfile.dateOfBirth, Validators.required),//from UserProfile model
+    PhoneNumber: new FormControl(this.currentEmployee?.userProfile.phoneNumber, [Validators.required, Validators.minLength(10)]),//from UserProfile model
+    Address: new FormControl(this.currentEmployee?.userProfile.address, Validators.required),//from UserProfile model
+    EmergencyName: new FormControl(this.currentEmployee?.userProfile.emergencyName, Validators.required),//from UserProfile model
+    EmergencyContactPhone: new FormControl(this.currentEmployee?.userProfile.emergencyContactPhone, [Validators.required, Validators.minLength(10)]),//from UserProfile model
+    Specialization: new FormControl(this.currentEmployee?.specialization, Validators.required),//from EmployeeInformation model
+    StartDate: new FormControl(this.currentEmployee?.startDate, Validators.required),//from EmployeeInformation model
+    EducationDegree: new FormControl(this.currentEmployee?.educationDegree, Validators.required),//from EmployeeInformation model
+    RoomNumber: new FormControl(this.currentEmployee?.roomNumber, Validators.required),//from EmployeeInformation model
     UserRole: new FormControl(this.currentEmployee?.userProfile.role?.id, Validators.required),// RoleId from UserProfile model
   });
   get FirstName() {return this.UpdateGroup.get("FirstName");}
