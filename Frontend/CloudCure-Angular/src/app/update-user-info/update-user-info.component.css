@@ -5,3 +5,9 @@
   color: white;
   font-size: 100px;
 }
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
