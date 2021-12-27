@@ -59,3 +59,49 @@ textarea {
   margin-bottom: 0.5rem;
 }
 
+.dark-grey-btn {
+  background-color: #474C55;
+  border: 1px solid #474C55;
+  color: white;
+}
+
+.dark-grey-btn:hover {
+  background-color: #474C55;
+  color: white;
+  filter: brightness(90%);
+  border: 1px solid #474C55;
+  box-shadow: 0 0px 10px #474C55;
+}
+
+.blue-btn {
+  background-color: rgb(115,165,194);
+  border: 1px solid rgb(115,165,194);
+  color: white;
+}
+
+.blue-btn:hover {
+  background-color: rgb(115,165,194);
+  color: white;
+  filter: brightness(90%);
+  border: 1px solid rgb(115,165,194);
+  box-shadow: 0 0px 10px rgb(115,165,194);
+}
+
+.orange-btn {
+  background-color: #F26925;
+  color: white; 
+  border: 1px solid #F26925; 
+}
+
+.orange-btn:hover {
+  background-color: #F26925;
+  color: white;
+  filter: brightness(90%);
+  box-shadow: 0 0px 10px #F26925;
+  border: 1px solid #F26925;
+}
+
+.btn-border {
+  padding: 5px;
+  background: linear-gradient(to bottom, rgb(185,185,186),rgba(115, 165, 194) 50%);
+}
