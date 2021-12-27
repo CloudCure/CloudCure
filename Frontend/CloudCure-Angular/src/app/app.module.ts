@@ -17,6 +17,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { NgxPrintModule } from 'ngx-print';
 import {
   FormControl,
   FormControlName,
@@ -72,7 +73,6 @@ import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/fina
     ViewAllergiesComponent,
     ViewMedicationsComponent,
     ViewSurgeriesComponent,
-
   ],
 
   imports: [
@@ -80,6 +80,7 @@ import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/fina
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPrintModule,
     AuthModule.forRoot({
       domain: 'dev-3g3556dl.us.auth0.com',
       clientId: '94k7PrpFZ7oxQEUcZk6KzDSnPOYcw1Vq',
@@ -137,7 +138,10 @@ import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/fina
         path: 'patient-view',
         component: PatientViewComponent /*canActivate:[AuthGuardService]*/,
       },
-      { path: 'finalized-diagnosis-view', component: FinalizedDiagnosisViewComponent },
+      {
+        path: 'finalized-diagnosis-view',
+        component: FinalizedDiagnosisViewComponent,
+      },
       { path: 'view-conditions', component: ViewConditionsComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'search', component: DocsearchComponent },
