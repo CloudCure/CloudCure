@@ -85,7 +85,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GetbyIdShouldReturnOKGetAllergyById()
+        public void GetbyIdShouldReturnOK()
         {
             using (var context = new CloudCureDbContext(_options))
             {
@@ -95,6 +95,20 @@ namespace Tests
                 var result = controller.GetById(1);
                 var response = (IStatusCodeActionResult)result;
                 Assert.Equal(200, response.StatusCode);
+            }
+        }
+
+        [Fact]
+        public void GetByIdShouldReturnBadRequest()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAllergyRepository repo = new AllergyRepository(context);
+                var controller = new AllergyController(repo);
+
+                var result = controller.GetById(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
             }
         }
 
