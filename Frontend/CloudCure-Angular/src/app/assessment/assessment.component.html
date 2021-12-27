@@ -23,7 +23,7 @@
         <div class="col-md-3"></div>
       </div>
 
-        <button class="showBodyClicker center" (click)="show()">{{bodyClickButtonText}}</button>
+        <button class="showBodyClicker center btn btn-dark" (click)="show()">{{bodyClickButtonText}}</button>
         <br />
 
         <ng-container *ngIf="showBodyClicker">
@@ -48,18 +48,22 @@
       <br />
       
 
-      
-        <label>Pain scale</label>
-        <input formControlName="painScale" name="painScale" id="painScale" type="number" min="0" max="10"/>
-      
-      <div>
-        <button class="btn btn-primary center" (click)="onSubmit(assessmentGroup)">Submit</button>
-      </div>
-    </div>
+      <div class="row">
+          <div class="col"></div>
+          <div class="col paincenter">
+            <div class="div">
+              <label class="painspace">Pain scale:</label>
+            </div>
+            <input formControlName="painScale" name="painScale" id="painScale" type="number" min="0" max="10" />
+            </div>
+            <div class="col paincenter">
+            <button class="btn btn-dark" (click)="onSubmit(assessmentGroup)">Submit</button>
+            </div>
+            <div class="col"></div>
+        </div>
+        </div>
+    
   </form>
 
-  <br />
-  <br />
-  <br />
 
 </body>

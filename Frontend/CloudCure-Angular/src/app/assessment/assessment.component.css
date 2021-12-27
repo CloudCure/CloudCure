@@ -65,14 +65,6 @@ border-color: #F26925;
 filter: brightness(90%);
 }
 
-.title-btn {
-display: flex;
-}
-
-.moreSpace {
-  margin-bottom: 0.5rem;
-}
-
 .overThere {
   text-align: center;
   margin: auto;
@@ -96,9 +88,7 @@ display: flex;
   height: auto;
   width: 50%;
   height: 100%;
-  /* padding-top: 75px; */
 }
-
 
 .bodyclickerstuff {
   margin: auto;
@@ -114,3 +104,14 @@ display: flex;
   margin-top: 600px;
 }
 
+.paincenter{
+  display: flex;
+  justify-content: center;
+  align-items: left;
+}
+
+.painspace{
+  vertical-align: middle;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
