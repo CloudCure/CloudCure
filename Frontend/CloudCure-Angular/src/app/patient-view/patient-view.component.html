@@ -78,6 +78,45 @@
         <app-view-medications [item]="patient"></app-view-medications>
       </div>
     </div>
+    <div class="content">
+      <div class="content-title">
+        <button (click)="showCovid()">Show</button>
+        <h1>Covid Verification</h1>
+      </div>
+        <div *ngIf="viewCovid" class="row">
+          <div *ngFor="let covid of patient.userProfile.covidAssesments" class="card-grid">
+            <div class="card card-custom" style="width: 15rem; max-height: 15rem;">
+
+              <h5>Regardless of your vaccination status, have
+                you experienced any of the symptoms in
+                the listed prior in the past 48 hours?</h5>
+              <p class="center revature-font-heavy">{{covid.question1}}</p>
+            </div>
+            <div class="card card-custom" style="width: 15rem ;max-height: 17rem;">
+              <h5>Are you isolating or quarantining because you
+                tested positive for COVID-19 or are worried
+                that you may be sick with COVID-19?</h5>
+              <p class="center revature-font-heavy">{{covid.question2}}</p>
+            </div>
+            <div class="card card-custom" style="width: 15rem; max-height: 17rem;">
+              <h5>Are you isolating or quarantining because you
+                tested positive for COVID-19 or are worried
+                that you may be sick with COVID-19?</h5>
+              <p class="center revature-font-heavy">{{covid.question3}}</p>
+            </div>
+            <div class="card card-custom" style="width: 15rem; max-height: 17rem;">
+              <h5>Have you traveled in the past 10 days?</h5>
+              <p class="center revature-font-heavy">{{covid.question4}}</p>
+            </div>
+            <div class="card card-custom" style="width: 15rem; max-height: 17rem;">
+              <h5>In the past 14 days, have you been identified
+                as a close contact of someone with
+                suspected or confirmed COVID-19?</h5>
+              <p class="center revature-font-heavy">{{covid.question5}}</p>
+            </div>
+          </div>
+      </div>
+    </div>
 
     <div class="content" *ngIf="patient.diagnoses?.length">
       <div class="content-title">
