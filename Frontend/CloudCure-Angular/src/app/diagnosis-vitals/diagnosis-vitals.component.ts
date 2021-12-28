@@ -28,7 +28,14 @@ export class DiagnosisVitalsComponent implements OnInit {
     Height: new FormControl("", Validators.required),
     Weight: new FormControl("", Validators.required),
   });
-
+  get Systolic() { return this.vitalsGroup.get("Systolic"); }
+  get Diastolic() { return this.vitalsGroup.get("Diastolic"); }
+  get OxygenSat() { return this.vitalsGroup.get("OxygenSat"); }
+  get HeartRate() { return this.vitalsGroup.get("HeartRate"); }
+  get Temperature() { return this.vitalsGroup.get("Temperature"); }
+  get RespiratoryRate() { return this.vitalsGroup.get("RespiratoryRate"); }
+  get Height() { return this.vitalsGroup.get("Height"); }
+  get Weight() { return this.vitalsGroup.get("Weight"); }
 
   patient: Patient = {} as Patient;
   newVitals: Vitals = {} as Vitals;
@@ -49,17 +56,15 @@ export class DiagnosisVitalsComponent implements OnInit {
   }
 
   PatientProfile() {
-    this.RegisterVitals(this.vitalsGroup)
-    this.router.navigateByUrl("home");
+    this.RegisterVitals(this.vitalsGroup, "/home");    
   }
 
   Assessments() {
-    this.RegisterVitals(this.vitalsGroup)
-    this.router.navigateByUrl("/assessment");
+    this.RegisterVitals(this.vitalsGroup, "/assessment");
   }
 
   // function that runs on form submission
-  RegisterVitals(vitalsGroup: FormGroup) {
+  RegisterVitals(vitalsGroup: FormGroup, path: string) {
     // logs the form
     console.log("register complete")
     console.log(vitalsGroup)
@@ -78,7 +83,11 @@ export class DiagnosisVitalsComponent implements OnInit {
       
       this.VitalsAPI.Add(this.newVitals).subscribe(result => {
         this.newVitals = result;
+        this.router.navigateByUrl(path);
       })
+    }
+    else {
+      this.vitalsGroup.markAllAsTouched();
     }
   }
 }
