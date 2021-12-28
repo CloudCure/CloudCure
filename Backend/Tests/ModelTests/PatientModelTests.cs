@@ -134,7 +134,7 @@ namespace Tests
             Assert.Equal(doc.UserProfile.FirstName, test.Doctor.UserProfile.FirstName);
         }
 
-        private Patient GetPatient()
+        private static Patient GetPatient()
         {
             return new Patient
             {
