@@ -14,7 +14,11 @@ namespace Data
         {
         }
 
-        //Returns list of all conditions containing user requested Condition Name
+        
+        /// <summary>
+        /// Returns list of all conditions containing user requested Condition Name
+        /// </summary>
+        /// <param name="query">query which will be ConditionName</param>
         public IEnumerable<Condition> SearchByCondition(string query)
         {
             var Condition = GetAll().Where(b => b.ConditionName.Equals(query));
@@ -32,7 +36,11 @@ namespace Data
             }
         }
 
-        //Returns list of Conditions associated with user requested Patient Id
+        
+        /// <summary>
+        /// Returns list of Conditions associated with user requested Patient Id
+        /// </summary>
+        /// <param name="query">query which will be PatientId</param>
         public IEnumerable<Condition> SearchByPatientId(int query)
         {
             var result = base.GetAll()

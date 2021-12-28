@@ -14,7 +14,11 @@ namespace Data
         {
         }
 
-        //Retrieves list of allergies with same name that the user requested
+        
+        /// <summary>
+        /// Retrieves list of allergies with same name that the user requested
+        /// </summary>
+        /// <param name="query">query which will be AllergyName</param>
         public IEnumerable<Allergy> SearchByAllergy(string query)
         {
             var allergy = GetAll().Where(b => b.AllergyName.Equals(query));
@@ -32,7 +36,11 @@ namespace Data
             }
         }
 
-        //Retrieves list of allergies associated with user provided PatientId
+        
+        /// <summary>
+        /// Retrieves list of allergies associated with user provided PatientId
+        /// </summary>
+        /// <param name="query">query which will be PatientId</param>
         public IEnumerable<Allergy> SearchByPatientId(int query)
         {
             var result = base.GetAll()

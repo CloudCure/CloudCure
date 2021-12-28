@@ -12,7 +12,11 @@ namespace Data
         {
         }
 
-        // Retrieves information on surgery based on the Patient id
+        
+        /// <summary>
+        /// Retrieves information on surgery based on the Patient id
+        /// </summary>
+        /// <param name="query">query which will be PatientId</param>
         public IEnumerable<Surgery> SearchByPatientId(int query)
         {
             var result = base.GetAll()
