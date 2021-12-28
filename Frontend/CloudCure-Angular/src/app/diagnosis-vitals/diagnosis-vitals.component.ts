@@ -45,6 +45,7 @@ export class DiagnosisVitalsComponent implements OnInit {
 
   ngOnInit(): void {
     this.VitalsAPI.submitButton;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
   PatientProfile() {
