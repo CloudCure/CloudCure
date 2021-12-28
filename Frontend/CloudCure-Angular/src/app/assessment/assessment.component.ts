@@ -42,6 +42,9 @@ export class AssessmentComponent implements OnInit {
     painScale: new FormControl("", Validators.required),
     Date: new FormControl(new Date().toISOString().split('T')[0], Validators.required)
   })
+  get history() { return this.assessmentGroup.get("history"); }
+  get painAssessment() { return this.assessmentGroup.get("painAssessment"); }
+  get painScale() { return this.assessmentGroup.get("painScale"); }
 
   bodyClickButtonText: string = 'Hide Selector'
 
@@ -99,9 +102,14 @@ export class AssessmentComponent implements OnInit {
       this.patientAssesment.encounterDate = assessmentGroup.get("Date")?.value;
       this.assessmentApi.Add(this.patientAssesment).subscribe((response) => {
         console.log(response);
+        this.router.navigateByUrl("home");
       });
     }
-    this.router.navigateByUrl("home");
+    else
+    {
+      this.assessmentGroup.markAllAsTouched();
+    }
+    
   }
 
 
