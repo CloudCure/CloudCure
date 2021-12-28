@@ -20,8 +20,8 @@ namespace WebAPI.Controllers
             conditionRepository = context;
         }
 
-        // GET: Condition/All
-        [HttpGet("Get/All")]
+        // GET: Condition/Get/All
+        [HttpGet("Get/All")]//Gets list of all conditions
         public IActionResult GetAll()
         {
             try
@@ -34,11 +34,11 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("Failed to update");//Logs all bad requests into separate file
             }
         }
         // GET: Condition/Get/{id}
-        [HttpGet("Get/{id}")]
+        [HttpGet("Get/{id}")]//Gets condition by Id
         public IActionResult GetById(int id)
         {
             try
@@ -54,7 +54,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet("Get/Patient{id}")]
+        //GET: Condition/Get/Patient{Id}
+        [HttpGet("Get/Patient{id}")]//Gets condition by patient Id
         public IActionResult GetByPatientId(int id)
         {
             try
@@ -66,12 +67,12 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Failed to get congition by id");
+                return BadRequest("Failed to get condition by id");
             }
         }
 
         // DELETE Condition/delete/Id
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]//Deletes condition by Id
         public IActionResult Delete([FromBody] Condition p_condition)
         {
             try
@@ -90,7 +91,7 @@ namespace WebAPI.Controllers
         }
 
         // PUT Condition/Edit
-        [HttpPut("Update/{id}")]
+        [HttpPut("Update/{id}")]//Updates Condition by Id
         public IActionResult Update(int id, [FromBody] Condition p_condition)
         {
             try
@@ -108,7 +109,7 @@ namespace WebAPI.Controllers
         }
 
         // POST Condition/Add
-        [HttpPost("Add")]
+        [HttpPost("Add")]//Adds new condition
         public IActionResult Add([FromBody] Condition p_condition)
         {
             try

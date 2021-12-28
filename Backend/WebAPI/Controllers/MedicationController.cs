@@ -13,6 +13,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class MedicationController : ControllerBase
     {
+        //Dependency injection
         private readonly IRepository<Medication> medicationRepository;
 
         public MedicationController(IRepository<Medication> context)
@@ -21,7 +22,7 @@ namespace WebAPI.Controllers
         }
 
         // GET: medication/All
-        [HttpGet("All")] //("All") Will give and endpoint that ends with All
+        [HttpGet("All")] //("All") Gets list of all medications
         public IActionResult GetAll()
         {
             try
@@ -33,14 +34,13 @@ namespace WebAPI.Controllers
             }
             catch (Exception e)
             {
-
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("Failed to update"); //bad request messages logged into separate file
             }
         }
 
         // DELETE Medication/delete/Id
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]//Deletes medication by Id
         public IActionResult Delete([FromBody] Medication p_medication)
         {
             try
@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
         }
 
         // PUT Medication/Edit
-        [HttpPut("Update/{id}")]
+        [HttpPut("Update/{id}")]//Updates medication by Id
         public IActionResult Update(int id, [FromBody] Medication p_medication)
         {
             try
@@ -77,7 +77,7 @@ namespace WebAPI.Controllers
         }
 
         // POST Medication/Add
-        [HttpPost("Add")]
+        [HttpPost("Add")]//Adds new medication
         public IActionResult Add([FromBody] Medication p_medication)
         {
             try

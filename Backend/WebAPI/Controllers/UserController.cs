@@ -14,12 +14,13 @@ namespace WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        //Dependency Injection
         private readonly IUserRepository _repo;
 
         public UserController(IUserRepository p_repo) { _repo = p_repo; }
 
-        // GET: User/all
-        [HttpGet("Get/All")]
+        // GET: User/Get/all
+        [HttpGet("Get/All")]//Get all users
         public IActionResult GetAll()
         {
             try
@@ -32,12 +33,12 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid get all users request.");
+                return BadRequest("Invalid get all users request.");//Logs all bad requests into separate file
             }
         }
 
         // GET: User/Get/{id}
-        [HttpGet("Get/{id}")]
+        [HttpGet("Get/{id}")]//Gets user by Id
         public IActionResult GetById(int id)
         {
             try
@@ -54,7 +55,7 @@ namespace WebAPI.Controllers
         }
 
         // Post: User/Add
-        [HttpPost("Add")]
+        [HttpPost("Add")]//Adds new user info
         public IActionResult Add([FromBody] User p_user)
         {
             try
@@ -73,7 +74,7 @@ namespace WebAPI.Controllers
         }
 
         // DELETE: User/Delete/{id}
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]//Deletes user by Id
         public IActionResult Delete(int id)
         {
             try
@@ -93,7 +94,7 @@ namespace WebAPI.Controllers
         }
 
         // PUT: User/Update/{id}
-        [HttpPut("Update/{id}")]
+        [HttpPut("Update/{id}")]//Udates user by Id
         public IActionResult Update(int id, [FromBody] User p_user)
         {
             try
