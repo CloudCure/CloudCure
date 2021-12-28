@@ -1,4 +1,5 @@
 import { Roles } from "./Roles";
+import { CovidVerify } from "./CovidVerify";
 export interface UserProfile {
     id? : number
     firstName : string
@@ -10,4 +11,5 @@ export interface UserProfile {
     emergencyContactPhone: string 
     roleId : number
     role?:Roles
+    covidAssesments?:CovidVerify[]
 }

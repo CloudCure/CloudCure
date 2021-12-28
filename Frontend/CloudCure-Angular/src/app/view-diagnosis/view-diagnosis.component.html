@@ -80,6 +80,38 @@
                 <app-view-medications [item]="patient"></app-view-medications>
             </div>
         </div>
+        <div class="content">
+            <div class="content-title">
+              <button (click)="showCovid()">Show</button>
+              <h1>Covid Verification</h1>
+            </div>
+            <div *ngIf="viewCovid" class="row">
+              <table *ngFor="let covid of patient.userProfile.covidAssesments">
+                <thead>
+                  <th>Regardless of your vaccination status, have
+                    you experienced any of the symptoms in
+                    the listed prior in the past 48 hours?</th>
+                  <th>Are you isolating or quarantining because you
+                    tested positive for COVID-19 or are worried
+                    that you may be sick with COVID-19?</th>
+                  <th>Has anyone in your household experienced
+                    any symptoms in the past 14 days?</th>
+                  <th>Have you traveled in the past 10 days?</th>
+                  <th>In the past 14 days, have you been identified
+                    as a close contact of someone with
+                    suspected or confirmed COVID-19?</th>
+                </thead>
+                <tr>
+                  <td>{{covid.question1}}</td>
+                  <td>{{covid.question2}}</td>
+                  <td>{{covid.question3}}</td>
+                  <td>{{covid.question4}}</td>
+                  <td>{{covid.question5}}</td>
+                </tr>
+      
+              </table>
+              </div>
+              </div>
 
         <div class="content">
             <div class="content-title">
