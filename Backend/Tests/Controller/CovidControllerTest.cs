@@ -1,4 +1,3 @@
-using System;
 using Data;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -165,7 +164,7 @@ namespace Tests.Controller
             var okResponse = (IStatusCodeActionResult)results;
             Assert.Equal(400, okResponse.StatusCode);
         }
-        private CovidVerify GetCovid()
+        private static CovidVerify GetCovid()
         {
             return new CovidVerify
             {
@@ -185,17 +184,7 @@ namespace Tests.Controller
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
-                CovidVerify covid = new CovidVerify
-                {
-                    question1 = "true",
-                    question2 = "true",
-                    question3 = "true",
-                    question4 = "true",
-                    question5 = "true",
-                    UserId = 1
-                };
-
-                context.CovidAssessments.Add(covid);
+                context.CovidAssessments.Add(GetCovid());
                 context.SaveChanges();
             }
         }

@@ -1,10 +1,71 @@
-.textarea {
-    margin: auto;
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
-.center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body{
+  padding: 0;
+  margin: 0;
 }
 
+.container {
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+.content{
+  margin-top: 20px;
+}
+
+.content-title{
+  background: linear-gradient(to bottom, rgb(185,185,186),rgba(115, 165, 194) 50%);
+  padding: 5px;
+  border-radius: 5px;
+  margin: 4px;
+  color: whitesmoke;
+}
+
+.row{
+  padding: 10px;
+  margin: 20px;
+}
+
+.flex-container{
+  display: flex;
+  margin-left: 15px;
+}
+
+.content ul li {
+  columns: 2;
+  line-height:1.5em;
+  display:inline-block;
+  font-size: 20px;
+}
+
+button{
+  display:inline-block;
+  padding:0.1em 1.2em;
+  margin:0 0.1em 0.3em 0;
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:100;
+  color:#FFFFFF;
+  background-color: rgb(242,105,38);
+  text-align:center;
+  transition: all 0.3s;
+  float: right;
+}
+
+  button:hover{
+  box-sizing: border-box;
+  border-radius:2em;
+  filter: brightness(90%);
+  box-shadow: 0 0px 10px #F26925;
+}
+
+  .nice-button{
+    margin-right: 6px;
+    width: 170px;
+}

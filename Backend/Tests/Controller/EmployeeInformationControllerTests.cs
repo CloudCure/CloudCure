@@ -91,22 +91,22 @@ namespace Tests
             }
         }
 
-        [Fact]
-        public void VerifyEmailShouldReturnOk()
-        {
-            using (var context = new CloudCureDbContext(_options))
-            {
-                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
-                var controller = new EmployeeInformationController(repo);
+        // [Fact]
+        // public void VerifyEmailShouldReturnOk()
+        // {
+        //     using (var context = new CloudCureDbContext(_options))
+        //     {
+        //         IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+        //         var controller = new EmployeeInformationController(repo);
 
-                var info = newEmployee();
+        //         var info = newEmployee();
 
-                controller.Add(info);
-                var result = controller.VerifyUser(info.WorkEmail);
-                var response = (IStatusCodeActionResult)result;
-                Assert.Equal(200, response.StatusCode);
-            }
-        }
+        //         controller.Add(info);
+        //         var result = controller.VerifyUser(info.WorkEmail);
+        //         var response = (IStatusCodeActionResult)result;
+        //         Assert.Equal(200, response.StatusCode);
+        //     }
+        // }
 
         [Fact]
         public void CreateReturnsBadRequestEmployee()
@@ -122,7 +122,7 @@ namespace Tests
             }
         }
 
-         [Fact]
+        [Fact]
         public void GetAllShouldReturnBadRequestEmployee()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -151,6 +151,7 @@ namespace Tests
                 Assert.Equal(400, response.StatusCode);
             }
         }
+
         [Fact]
         public void UpdateShouldReturnBadRequestEmployeeInfo()
         {
@@ -165,7 +166,7 @@ namespace Tests
             }
         }
 
-           [Fact]
+        [Fact]
         public void GetByIdShouldGetEmployeeInfoByIdWithBadRequest()
         {
             using (var context = new CloudCureDbContext(_options))
@@ -179,7 +180,21 @@ namespace Tests
             }
         }
 
-        private EmployeeInformation newEmployee()
+        [Fact]
+        public void VerifyEmailShouldReturnBadRequest()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IEmployeeInformationRepository repo = new EmployeeInformationRepository(context);
+                var controller = new EmployeeInformationController(repo);
+
+                var result = controller.VerifyUser(null);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
+            }
+        }
+
+        private static EmployeeInformation newEmployee()
         {
             List<CovidVerify> covidList = new List<CovidVerify>();
             covidList.Add(

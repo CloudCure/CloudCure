@@ -1,3 +1,4 @@
+using System.IO;
 using System.Linq;
 using System;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,7 @@ namespace WebAPI.Controllers
             {
                 List<Vitals> v = _repo.GetAll().ToList();
                 if (v.Count == 0)
-                    throw new Exception("No data found");//If returns null, "no data found" is printed
+                    throw new FileNotFoundException("No data found");
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
@@ -42,7 +43,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (_repo.GetById(id) == null)
-                    throw new Exception("Invalid Id");
+                    throw new InvalidDataException("Invalid Id");
                 return Ok(_repo.GetById(id));
             }
             catch (Exception e)
@@ -59,7 +60,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (_repo.SearchByDiagnosisId(id) == null)
-                    throw new Exception("Invaild Id");
+                    throw new InvalidDataException("Invaild Id");
                 return Ok(_repo.SearchByDiagnosisId(id));
             }
             catch (Exception e)
@@ -76,7 +77,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_vitals == null)
-                    throw new Exception("Invalid data!");
+                    throw new InvalidDataException("Invalid data!");
                 _repo.Create(p_vitals);
                 _repo.Save();
                 return Created("Vitals/Add", p_vitals);
@@ -113,7 +114,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_vitals == null)
-                    throw new Exception("Delete failed!");
+                    throw new InvalidDataException("Delete failed!");
                 _repo.Delete(p_vitals);
                 _repo.Save();
                 return Ok();

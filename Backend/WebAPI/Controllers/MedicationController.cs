@@ -1,3 +1,4 @@
+using System.IO;
 using System.Linq;
 using Data;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,7 @@ namespace WebAPI.Controllers
             {
                 List<Medication> m = medicationRepository.GetAll().ToList();
                 if(m.Count == 0)
-                    throw new Exception("No data found");//If returns null, will print "no data found"
+                    throw new FileNotFoundException("No data found");
                 return Ok(medicationRepository.GetAll());
             }
             catch (Exception e)
@@ -45,7 +46,7 @@ namespace WebAPI.Controllers
             try
             {
                 if(p_medication == null)
-                    throw new Exception("Delete failed!");
+                    throw new InvalidDataException("Delete failed!");
                 medicationRepository.Delete(p_medication);
                 medicationRepository.Save();
                 return Ok();
@@ -82,14 +83,13 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_medication == null)
-                    throw new Exception("Invalid data");
+                    throw new InvalidDataException("Invalid data");
                 medicationRepository.Create(p_medication);
                 medicationRepository.Save();
                 return Created("allergy/add", p_medication);
             }
             catch (Exception e)
             {
-
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }

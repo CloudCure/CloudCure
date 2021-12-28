@@ -2,16 +2,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Models.Diagnosis;
 
+//Grouping of classes for data access functionality
 namespace Data
 {
+    //Inherits methods from Repository repo and Surgery Repository interface
     public class SurgeryRepository : Repository<Surgery>, ISurgeryRepository
     {
-        readonly CloudCureDbContext repository;
         public SurgeryRepository(CloudCureDbContext context) : base(context)
         {
-            repository = context;
         }
 
+        // Retrieves information on surgery based on the Patient id
         public IEnumerable<Surgery> SearchByPatientId(int query)
         {
             var result = base.GetAll()

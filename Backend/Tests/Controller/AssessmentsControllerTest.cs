@@ -64,7 +64,20 @@ namespace Tests
             }
         }
 
-        
+        [Fact]
+        public void GetAllShouldReturnBadRequest()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAssessmentRepository repo = new AssessmentRepository(context);
+                var controller = new AssessmentController(repo);
+                context.Database.EnsureDeleted();
+
+                var result = controller.GetAll();
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
+            }
+        }
 
         [Fact]
         public void DeleteShouldDeleteEntry()
@@ -89,8 +102,6 @@ namespace Tests
             {
                 IAssessmentRepository repo = new AssessmentRepository(context);
                 var controller = new AssessmentController(repo);
-
-                var assessment = GetAssessment();
 
                 var result = controller.Delete(-1);
                 var response = (IStatusCodeActionResult)result;
@@ -131,7 +142,7 @@ namespace Tests
         [Fact]
         public void GetByIdShouldGetAssessmentById()
         {
-             using (var context = new CloudCureDbContext(_options))
+            using (var context = new CloudCureDbContext(_options))
             {
                 IAssessmentRepository repo = new AssessmentRepository(context);
                 var controller = new AssessmentController(repo);
@@ -145,7 +156,7 @@ namespace Tests
         [Fact]
         public void GetByIdShouldThrowAnException()
         {
-           var repository = new Mock<IAssessmentRepository>();
+            var repository = new Mock<IAssessmentRepository>();
             var controller = new AssessmentController(repository.Object);
 
             var assessment = GetAssessment();
@@ -156,8 +167,35 @@ namespace Tests
             Assert.Equal(400, okResponse.StatusCode);
         }
 
+        [Fact]
+        public void GetByPatientIdShouldReturnOk()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAssessmentRepository repo = new AssessmentRepository(context);
+                var controller = new AssessmentController(repo);
 
-           private Assessment GetAssessment()
+                var result = controller.GetByDiagnosisId(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
+        }
+
+        [Fact]
+        public void GetByPatientIdShouldReturnBadRequest()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IAssessmentRepository repo = new AssessmentRepository(context);
+                var controller = new AssessmentController(repo);
+
+                var result = controller.GetByDiagnosisId(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
+            }
+        }
+
+        private static Assessment GetAssessment()
         {
             return new Assessment
             {
@@ -170,7 +208,7 @@ namespace Tests
             };
         }
 
-        void Seed()
+        private void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {
@@ -185,24 +223,17 @@ namespace Tests
                         PainScale = 2,
                         ChiefComplaint = "dfdssdf",
                         HistoryOfPresentIllness = "dssdfs",
-
-
                     },
-                            new Assessment
-                            {
-                                DiagnosisId = 2,
-                                PainAssessment = "asdfas",
-                                PainScale = 2,
-                                ChiefComplaint = "dfdssdf",
-                                HistoryOfPresentIllness = "dssdfs",
-
-
-
-                            });
-
+                    new Assessment
+                    {
+                        DiagnosisId = 2,
+                        PainAssessment = "asdfas",
+                        PainScale = 2,
+                        ChiefComplaint = "dfdssdf",
+                        HistoryOfPresentIllness = "dssdfs",
+                    });
 
                 context.SaveChanges();
-
             }
         }
     }

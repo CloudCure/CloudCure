@@ -1,12 +1,12 @@
 <ng-container *ngIf="auth0.isAuthenticated$ | async; else loggedOut">
   <a class="navbar-brand navbar-text revature-font-bold" (click)="search()">Doctor Search</a>
-  <a></a>
+  <span class="navbar-brand divider">|</span>
     <a class="navbar-brand navbar-text revature-font-bold" (click)="profile()">Profile</a>
-    <button class="btn btn-primary btn-logout" (click)="auth0.logout({ returnTo: document.location.origin })">
+    <button class="btn btn-primary blue-btn" (click)="auth0.logout({ returnTo: document.location.origin })">
       Log out
   </button>     
 </ng-container>
   
   <ng-template #loggedOut>
-      <button class="btn btn-primary btn-login" (click)="login()">Log in</button>
+      <button class="btn btn-primary orange-btn" (click)="login()">Log in</button>
   </ng-template>

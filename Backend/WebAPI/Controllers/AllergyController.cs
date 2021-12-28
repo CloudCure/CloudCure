@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using System.IO;
+using Data;
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using System;
@@ -25,7 +26,7 @@ namespace WebAPI.Controllers
             {
                 List<Allergy> allergy = _repo.GetAll().ToList();//Compiles a list of allergies 
                 if (allergy.Count == 0)
-                    throw new Exception ("No data found");//If none, returns "no data found"
+                    throw new FileNotFoundException("No data found");
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
@@ -42,7 +43,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (_repo.GetById(id) == null)
-                    throw new Exception("Invalid Id");
+                    throw new InvalidDataException("Invalid Id");
                 return Ok(_repo.GetById(id));
             }
             catch (Exception e)
@@ -59,7 +60,7 @@ namespace WebAPI.Controllers
             try
             {
                if (_repo.SearchByPatientId(id) == null)
-                    throw new Exception("Invaild Id");
+                    throw new InvalidDataException("Invaild Id");
                 return Ok(_repo.SearchByPatientId(id));
             }
             catch (Exception e)
@@ -75,6 +76,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (p_allergy == null)
+                    throw new InvalidDataException("Delete failed!");
                 _repo.Delete(p_allergy);
                 _repo.Save();
                 return Ok();
@@ -92,12 +95,7 @@ namespace WebAPI.Controllers
         {
             try
             {
-
-                if (_repo.GetById(id) == null)
-                    throw new Exception ("Update failed!");
-                // CHECK PLEASE
-                var allergy = _repo.GetById(id);
-
+                p_allergy.Id = id;
                 _repo.Update(p_allergy);
                 _repo.Save();
                 return Ok();
@@ -116,7 +114,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_allergy == null)
-                    throw new Exception ("Invalid data!");
+                    throw new InvalidDataException("Invalid data!");
                 _repo.Create(p_allergy);
                 _repo.Save();
                 return Created("Allergy/Add", p_allergy);

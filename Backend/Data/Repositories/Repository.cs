@@ -4,11 +4,16 @@ using System.Linq;
 using Data;
 using Microsoft.EntityFrameworkCore;
 
+//Grouping of classes for data access functionality
 namespace Data
 {
+    //Inherits methods from Repository Interface where TEntity can be any model 
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
+        //Repository can only be defined in its Constructor
         readonly CloudCureDbContext _context;
+
+        //Constructor sets Repository class with DbContext class for database access
         public Repository(CloudCureDbContext context)
         {
             _context = context;

@@ -5,24 +5,26 @@
                 <h1>Patient Information</h1>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <h4>Full Name</h4>
-                    <p>{{patient.userProfile.firstName}} {{patient.userProfile.lastName}}</p>
-                </div>
-                <div class="col-md-4">
-                    <h4>Date Of Birth</h4>
-                    <p>{{patient.userProfile.dateOfBirth | date: 'MM/dd/yyyy'}}</p>
-                </div>
-                <div class="col-md-4">
-                    <h4>Contact Number</h4>
-                    <p>{{patient.userProfile.phoneNumber}}</p>
-                    <br />
-                </div>
+              <div class="flex-container">
+                <div class="col-sm">
+                  <h4>Full Name</h4>
+                  <p>{{patient.userProfile.firstName}} {{patient.userProfile.lastName}}</p>
+              </div>
+              <div class="col-sm">
+                  <h4>Date Of Birth</h4>
+                  <p>{{patient.userProfile.dateOfBirth | date: 'MM/dd/yyyy'}}</p>
+              </div>
+              <div class="col-sm">
+                  <h4>Contact Number</h4>
+                  <p>{{patient.userProfile.phoneNumber}}</p>
+                  <br />
+              </div>
 
-                <div class="col-lg-9">
-                    <h4>Patient Address</h4>
-                    <p>{{patient.userProfile.address}}</p>
-                </div>
+              <div class="col-lg">
+                  <h4>Patient Address</h4>
+                  <p>{{patient.userProfile.address}}</p>
+              </div>
+              </div>
             </div>
         </div>
 
@@ -178,7 +180,7 @@
                     </div>
                     <br />
                     <div class="center">
-                        <button class="btn btn-primary" (click)="submit(doctorDiagnosis)">
+                        <button class="btn dark-grey-btn" (click)="submit(doctorDiagnosis)">
                             Finalize Diagnosis
                         </button>
                     </div>

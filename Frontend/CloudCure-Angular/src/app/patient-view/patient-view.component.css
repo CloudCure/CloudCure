@@ -9,7 +9,6 @@ body{
 }
 
 .container {
-
   padding: 20px;
   height: 100%;
   width: 100%;
@@ -27,13 +26,14 @@ body{
   color: whitesmoke;
 }
 
-/* .content-title h1{
-  text-align: center;
-} */
-
 .row{
-  margin: 5px;
-  padding: 20px;
+  padding: 10px;
+  margin: 20px;
+}
+
+.flex-container{
+  display: flex;
+  margin-left: 15px;
 }
 
 .content ul li {
@@ -50,20 +50,22 @@ button{
   border-radius:2em;
   box-sizing: border-box;
   text-decoration:none;
-  font-family:'Roboto',sans-serif;
   font-weight:100;
   color:#FFFFFF;
   background-color: rgb(242,105,38);
   text-align:center;
-  transition: all 0.5s;
+  transition: all 0.3s;
   float: right;
-  }
+}
 
   button:hover{
-  background-color:rgb(185,185,186);
-  }
+  box-sizing: border-box;
+  border-radius:2em;
+  filter: brightness(90%);
+  box-shadow: 0 0px 10px #F26925;
+}
 
   .nice-button{
     margin-right: 6px;
     width: 170px;
-  }
+}

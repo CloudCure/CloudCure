@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using Data;
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
@@ -20,7 +21,6 @@ namespace WebAPI.Controllers
             _repo = context;
         }
 
-
         // GET: surgery/Get/All
         [HttpGet("Get/All")]//Gets list of all surgeries
         public IActionResult GetAll()
@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
             {
                 List<Surgery> s = _repo.GetAll().ToList();
                 if (s.Count == 0)
-                    throw new Exception("No data found");//If returns null, "no data found" is printed
+                    throw new FileNotFoundException("No data found");
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (_repo.GetById(id) == null)
-                    throw new Exception("Invalid Id");
+                    throw new InvalidDataException("Invalid Id");
                 return Ok(_repo.GetById(id));
             }
             catch (Exception e)
@@ -63,6 +63,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (p_surgery == null)
+                    throw new InvalidDataException("Delete failed!");
                 _repo.Delete(p_surgery);
                 _repo.Save();
                 return Ok();
@@ -101,7 +103,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_surgery == null)
-                    throw new Exception("Invalid data!");
+                    throw new InvalidDataException("Invalid data!");
                 _repo.Create(p_surgery);
                 _repo.Save();
                 return Created("Surgery/Add", p_surgery);

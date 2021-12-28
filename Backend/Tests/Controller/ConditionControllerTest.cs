@@ -12,9 +12,9 @@ namespace Tests
     public class ConditionControllerTest
     {
 
-         readonly DbContextOptions<CloudCureDbContext> _options;
+        readonly DbContextOptions<CloudCureDbContext> _options;
 
-          public ConditionControllerTest()
+        public ConditionControllerTest()
         {
             _options = new DbContextOptionsBuilder<CloudCureDbContext>()
                         .UseSqlite("Filename = ConditionControllerTests.db; Foreign Keys=False").Options;
@@ -26,7 +26,7 @@ namespace Tests
             var repository = new Mock<IConditionRepository>();
             var controller = new ConditionController(repository.Object);
 
-           var condition = GetCondition();
+            var condition = GetCondition();
 
             var result = controller.Add(condition);
             var okResponse = (IStatusCodeActionResult)result;
@@ -36,7 +36,7 @@ namespace Tests
         [Fact]
         public void CreateShouldThrowAnExceptionCondition()
         {
-               using (var context = new CloudCureDbContext(_options))
+            using (var context = new CloudCureDbContext(_options))
             {
                 IConditionRepository repo = new ConditionRepository(context);
                 var controller = new ConditionController(repo);
@@ -50,7 +50,7 @@ namespace Tests
         [Fact]
         public void GetAllReturnsOKCondition()
         {
-           using (var context = new CloudCureDbContext(_options))
+            using (var context = new CloudCureDbContext(_options))
             {
                 IConditionRepository repo = new ConditionRepository(context);
                 var controller = new ConditionController(repo);
@@ -64,18 +64,18 @@ namespace Tests
             }
 
         }
-        
+
         [Fact]
         public void GetAllShouldThrowAnException()
         {
-           var repository = new Mock<IConditionRepository>();
+            var repository = new Mock<IConditionRepository>();
             var controller = new ConditionController(repository.Object);
 
             var results = controller.GetAll();
             var okResponse = (IStatusCodeActionResult)results;
             Assert.Equal(400, okResponse.StatusCode);
         }
-        
+
         [Fact]
         public void DeleteShouldReturnOKCondition()
         {
@@ -95,7 +95,7 @@ namespace Tests
         [Fact]
         public void DeleteShouldThrowAnException()
         {
-           using (var context = new CloudCureDbContext(_options))
+            using (var context = new CloudCureDbContext(_options))
             {
                 IConditionRepository repo = new ConditionRepository(context);
                 var controller = new ConditionController(repo);
@@ -111,7 +111,7 @@ namespace Tests
         [Fact]
         public void UpdateShouldReturnOKCondition()
         {
-              using (var context = new CloudCureDbContext(_options))
+            using (var context = new CloudCureDbContext(_options))
             {
                 IConditionRepository repo = new ConditionRepository(context);
                 var controller = new ConditionController(repo);
@@ -127,7 +127,7 @@ namespace Tests
         [Fact]
         public void UpdateShouldThrowAnException()
         {
-           var repository = new Mock<IConditionRepository>();
+            var repository = new Mock<IConditionRepository>();
             var controller = new ConditionController(repository.Object);
 
             var condition = GetCondition();
@@ -138,7 +138,63 @@ namespace Tests
             Assert.Equal(400, okResponse.StatusCode);
         }
 
-          private Condition GetCondition()
+        [Fact]
+        public void GetByPatientIdShouldReturnOk()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IConditionRepository repo = new ConditionRepository(context);
+                var controller = new ConditionController(repo);
+
+                var result = controller.GetByPatientId(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
+        }
+
+        [Fact]
+        public void GetPatientIdShouldReturnBadRequest()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IConditionRepository repo = new ConditionRepository(context);
+                var controller = new ConditionController(repo);
+
+                var result = controller.GetByPatientId(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
+            }
+        }
+
+        [Fact]
+        public void GetByIdShouldReturnOk()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IConditionRepository repo = new ConditionRepository(context);
+                var controller = new ConditionController(repo);
+
+                var result = controller.GetById(1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(200, response.StatusCode);
+            }
+        }
+
+        [Fact]
+        public void GetByIdShouldReturnBadRequest()
+        {
+            using (var context = new CloudCureDbContext(_options))
+            {
+                IConditionRepository repo = new ConditionRepository(context);
+                var controller = new ConditionController(repo);
+
+                var result = controller.GetById(-1);
+                var response = (IStatusCodeActionResult)result;
+                Assert.Equal(400, response.StatusCode);
+            }
+        }
+
+        private static Condition GetCondition()
         {
             return new Condition
             {
@@ -147,7 +203,7 @@ namespace Tests
             };
         }
 
-         void Seed()
+        void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {
