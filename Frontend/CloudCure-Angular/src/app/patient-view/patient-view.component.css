@@ -58,14 +58,36 @@ button{
   float: right;
 }
 
-  button:hover{
+button:hover{
   box-sizing: border-box;
   border-radius:2em;
   filter: brightness(90%);
   box-shadow: 0 0px 10px #F26925;
 }
 
-  .nice-button{
-    margin-right: 6px;
-    width: 170px;
+.nice-button{
+  margin-right: 6px;
+  width: 170px;
+}
+
+.card-custom {
+  margin: 5px;
+  background: whitesmoke;
+  border-radius: 50% 20% / 10% 40%;
+  box-shadow: 10px 5px 5px rgb(242,105,38);
+  margin: 10px;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.card-grid {
+  display: grid;
+  /* margin-left: 30%;
+  margin-right: 30%; */
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+}
+
+.center {
+  text-align: center;
 }

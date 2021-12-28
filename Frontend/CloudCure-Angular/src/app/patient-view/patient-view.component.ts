@@ -21,6 +21,7 @@ export class PatientViewComponent implements OnInit {
   viewSurgeries: boolean = false;
   viewMedication: boolean = false;
   viewDiagnoses: boolean = false;
+  viewCovid:boolean = false;
 
   patient: Patient = {} as Patient
   
@@ -32,6 +33,7 @@ export class PatientViewComponent implements OnInit {
       console.log(response)
 
       this.patient = response
+      
 
     })
   }
@@ -67,6 +69,9 @@ export class PatientViewComponent implements OnInit {
 
   showDiagnoses() {
     this.viewDiagnoses = !this.viewDiagnoses;
+  }
+  showCovid() {
+    this.viewCovid = !this.viewCovid;
   }
 
   setDiagId(diagId: number) {
