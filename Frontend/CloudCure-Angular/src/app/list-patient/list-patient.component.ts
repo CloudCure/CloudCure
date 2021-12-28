@@ -55,7 +55,7 @@ export class ListPatientComponent implements OnInit, OnDestroy {
     console.log(this.newDiagnosis)
     this.diagnosisAPI.Add(this.newDiagnosis).subscribe(result => {
       this.newDiagnosis = result
-      this.router.navigateByUrl("/diagnosis-vitals");
+      this.router.navigateByUrl("/vitals");
     })
   }
 
@@ -68,7 +68,7 @@ export class ListPatientComponent implements OnInit, OnDestroy {
   viewVitals()
   {
     this.patientAPI.currentPatientId = this.patient.id;
-    this.router.navigateByUrl("/diagnosis-vitals");
+    this.router.navigateByUrl("/vitals");
   }
 
   viewAssessments()

@@ -4,7 +4,7 @@ export interface EmployeeInformation {
     userProfile : UserProfile
     workEmail: string | undefined
     specialization: string
-    startDate: string | Date
+    startDate: string | Date |undefined
     roomNumber: string
     educationDegree: string
 }

@@ -20,7 +20,7 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   padding: 0;
   margin: 0;
 }
@@ -49,35 +49,26 @@ body{
 }
 
 .add:hover {
-background-color: rgb(115, 165, 194);
-border-color: rgb(115, 165, 194);
-filter: brightness(90%);
+  background-color: rgb(115, 165, 194);
+  border-color: rgb(115, 165, 194);
+  filter: brightness(90%);
 }
 
 .subtract {
-background-color: #F26925;
-border-color: #F26925;
+  background-color: #f26925;
+  border-color: #f26925;
 }
 
 .subtract:hover {
-background-color: #F26925;
-border-color: #F26925;
-filter: brightness(90%);
-}
-
-.title-btn {
-display: flex;
-}
-
-.moreSpace {
-  margin-bottom: 0.5rem;
+  background-color: #f26925;
+  border-color: #f26925;
+  filter: brightness(90%);
 }
 
 .overThere {
   text-align: center;
   margin: auto;
   margin-left: 15rem;
-
 }
 
 .center {
@@ -85,7 +76,7 @@ display: flex;
   display: block;
 }
 
-.width-150px{
+.width-150px {
   width: 150px;
 }
 
@@ -96,9 +87,7 @@ display: flex;
   height: auto;
   width: 50%;
   height: 100%;
-  /* padding-top: 75px; */
 }
-
 
 .bodyclickerstuff {
   margin: auto;
@@ -114,3 +103,23 @@ display: flex;
   margin-top: 600px;
 }
 
+
+.paincenter{
+  display: flex;
+  justify-content: center;
+  align-items: left;
+}
+
+.painspace{
+  vertical-align: middle;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+.printing {
+  margin-left: 70rem;
+}
+
+.printSectionId {
+  margin-left: 15rem;
+}

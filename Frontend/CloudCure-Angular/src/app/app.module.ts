@@ -6,7 +6,6 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { RouterModule } from '@angular/router';
 import { BodyClickerComponent } from './body-clicker/body-clicker.component';
 import { LoginComponent } from './login/login.component';
-import { PrintComponent } from './print/print.component';
 import { DarkmodeDirective } from './directives/darkmode.directive';
 import { DiagnosisVitalsComponent } from './diagnosis-vitals/diagnosis-vitals.component';
 import { AssessmentComponent } from './assessment/assessment.component';
@@ -39,13 +38,14 @@ import { ViewAllergiesComponent } from './view-allergies/view-allergies.componen
 import { ViewMedicationsComponent } from './view-medications/view-medications.component';
 import { ViewSurgeriesComponent } from './view-surgeries/view-surgeries.component';
 import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/finalized-diagnosis-view.component';
+import { UpdateUserInfoComponent } from './update-user-info/update-user-info.component';
+import { PhonePipe } from './pipes/phone.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     BodyClickerComponent,
     LoginComponent,
-    PrintComponent,
     DarkmodeDirective,
     DiagnosisVitalsComponent,
     AssessmentComponent,
@@ -72,7 +72,8 @@ import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/fina
     ViewAllergiesComponent,
     ViewMedicationsComponent,
     ViewSurgeriesComponent,
-
+    UpdateUserInfoComponent,
+    PhonePipe,
   ],
 
   imports: [
@@ -91,58 +92,65 @@ import { FinalizedDiagnosisViewComponent } from './finalized-diagnosis-view/fina
       {
         path: 'verification',
         component: VerificationComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService]
       },
       {
         path: 'profile',
         component: ProfileComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService]
       },
       {
-        path: 'print',
-        component: PrintComponent,
-        canActivate: [AuthGuardService],
-      },
-      {
-        path: 'body-clicker',
-        component: BodyClickerComponent /*canActivate:[AuthGuardService]*/,
-      },
-      {
-        path: 'diagnosis-vitals',
-        component: DiagnosisVitalsComponent /*canActivate:[AuthGuardService]*/,
+        path: 'vitals',
+        component: DiagnosisVitalsComponent, 
+        canActivate:[AuthGuardService]
       },
       {
         path: 'assessment',
-        component: AssessmentComponent /*canActivate:[AuthGuardService]*/,
-      },
-      {
-        path: 'view-assessments',
-        component: ViewAssessmentsComponent /*canActivate:[AuthGuardService]*/,
-      },
-      {
-        path: 'text-box',
-        component: TextBoxComponent,
-        canActivate: [AuthGuardService],
+        component: AssessmentComponent, 
+        canActivate:[AuthGuardService]
       },
       {
         path: 'patient',
-        component: PatientComponent /*canActivate:[AuthGuardService]*/,
+        component: PatientComponent, 
+        canActivate:[AuthGuardService]
       },
       {
         path: 'view-diagnosis',
         component: ViewDiagnosisComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService]
       },
       {
         path: 'patient-view',
-        component: PatientViewComponent /*canActivate:[AuthGuardService]*/,
+        component: PatientViewComponent,
+        canActivate:[AuthGuardService]
       },
-      { path: 'finalized-diagnosis-view', component: FinalizedDiagnosisViewComponent },
-      { path: 'view-conditions', component: ViewConditionsComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'search', component: DocsearchComponent },
-      { path: 'home', component: HomeComponent },
-      { path: '**', component: HomeComponent },
+      {
+        path: 'finalized-diagnosis-view',
+        component: FinalizedDiagnosisViewComponent,
+        canActivate: [AuthGuardService]
+      },
+      { 
+        path: 'UpdateUserInfo', 
+        component: UpdateUserInfoComponent,
+        canActivate: [AuthGuardService]
+      },
+      { 
+        path: 'search', 
+        component: DocsearchComponent,
+        canActivate: [AuthGuardService]
+      },
+      { 
+        path: 'register', 
+        component: RegisterComponent
+      },
+      { 
+        path: 'home', 
+        component: HomeComponent
+      },
+      { 
+        path: '**', 
+        component: HomeComponent 
+      },
     ]),
   ],
   providers: [],
