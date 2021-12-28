@@ -14,6 +14,10 @@ body{
   width: 100%;
 }
 
+.content{
+  margin-top: 20px;
+}
+
 .content-title{
   background: linear-gradient(to bottom, rgb(185,185,186),rgba(115, 165, 194) 50%);
   padding: 5px;
@@ -32,21 +36,13 @@ body{
   margin-left: 15px;
 }
 
-
-.mb-3 .form-control:focus {
-  border: 1px solid rgb(242,105,38);
-  box-shadow: 0 0 0 0.2rem rgba(115, 165, 194);
+.content ul li {
+  columns: 2;
+  line-height:1.5em;
+  display:inline-block;
+  font-size: 20px;
 }
 
-.textarea {
-    margin: auto;
-}
-
-.center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 button{
   display:inline-block;
   padding:0.1em 1.2em;
@@ -60,4 +56,16 @@ button{
   text-align:center;
   transition: all 0.3s;
   float: right;
+}
+
+  button:hover{
+  box-sizing: border-box;
+  border-radius:2em;
+  filter: brightness(90%);
+  box-shadow: 0 0px 10px #F26925;
+}
+
+.nice-button{
+  margin-right: 6px;
+  width: 170px;
 }

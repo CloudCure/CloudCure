@@ -21,7 +21,11 @@ namespace Data
             repository = context;
         }
 
-        //Retrieves diagnosis form containing user requested PatientId
+        
+        /// <summary>
+        /// Retrieves diagnosis form containing user requested PatientId
+        /// </summary>
+        /// <param name="query">query which will be PatientId</param>
         public Diagnosis GetByPatientIdWithNav(int query)
         {
             //Diagnosis form contains Vitals and Assessments forms
@@ -34,7 +38,11 @@ namespace Data
 
         }
 
-        //Retrieves list of Diagnosis forms containing user requested PatientId
+        
+        /// <summary>
+        /// Retrieves list of Diagnosis forms containing user requested PatientId
+        /// </summary>
+        /// <param name="query">query which will be PatientId</param>
         public IEnumerable<Diagnosis> GetAllDiagnosisByPatientIdWithNav(int query)
         {
             var diagnoses = repository.Diagnoses

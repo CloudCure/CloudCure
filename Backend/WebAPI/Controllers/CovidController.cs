@@ -13,12 +13,13 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CovidController : ControllerBase
     {
+        //Dependency injection
         private readonly ICovidRepository _repo;
 
         public CovidController(ICovidRepository p_repo) { _repo = p_repo; }
 
-        // GET: api/covid/Get/All
-        [HttpGet("Get/All")]
+        // GET: Covid/Get/All
+        [HttpGet("Get/All")]//Gets all Covid info list
         public IActionResult GetAll()
         {
             try
@@ -31,12 +32,12 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid get all request.");
+                return BadRequest("Invalid get all request.");//Logs all bad requests into separate file
             }
         }
 
-        // GET api/covid/Get/{id}
-        [HttpGet("Get/{id}")]
+        // GET Covid/Get/{id}
+        [HttpGet("Get/{id}")]//Gets Covid info by Id
         public IActionResult GetById(int id)
         {
             try
@@ -53,7 +54,7 @@ namespace WebAPI.Controllers
         }
 
         //POST covid/add 
-        [HttpPost("Add")]
+        [HttpPost("Add")]//Adds new Covid info
         public IActionResult Add([FromBody] CovidVerify p_covid)
         {
             try
@@ -72,7 +73,7 @@ namespace WebAPI.Controllers
         }
 
         // DELETE covid/delete/{id}
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]//Deletes Covid info by Id
         public IActionResult Delete(int id)
         {
             try
@@ -92,7 +93,7 @@ namespace WebAPI.Controllers
         }
 
         // PUT api/covid/update/{id}
-        [HttpPut("Update/{id}")]
+        [HttpPut("Update/{id}")]//Updates Covid info by Id
         public IActionResult Update(int id, [FromBody] CovidVerify p_covid)
         {
             try

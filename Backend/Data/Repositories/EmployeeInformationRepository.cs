@@ -18,7 +18,11 @@ namespace Data
             repository = context;
         }
 
-        //Retrieves Employee details containing user requested Id
+        
+        /// <summary>
+        /// Retrieves Employee details containing user requested Id
+        /// </summary>
+        /// <param name="p_id">int which will be Id</param>
         public EmployeeInformation GetEmployeeInformationById(int p_id)
         {
             try
@@ -39,7 +43,11 @@ namespace Data
             }
         }
 
-        //Retrieves list of all employee details pertaining to each employee in the database
+        
+        /// <summary>
+        // Retrieves list of all employee details pertaining to each employee in the database
+        /// </summary>
+        /// <returns>List<EmployeeInformation></returns>
         public List<EmployeeInformation> GetAllEmployee()
         {
             try
@@ -60,6 +68,10 @@ namespace Data
             }
         }
 
+        /// <summary>
+        /// Retrieves an employee containing a user requested WorkEmail
+        /// </summary>
+        /// <param name="p_email">p_email which will be WorkEmail</param>
         public EmployeeInformation VerifyEmail(string p_email)
         {
             try
@@ -69,6 +81,8 @@ namespace Data
                     .ThenInclude(u => u.Role)
                     .FirstOrDefault(emp => emp.WorkEmail == p_email);
             }
+            
+            //Returns an exception if user requested WorkEmail is not attached to any employee in the database
             catch (System.Exception)
             {
                 throw new KeyNotFoundException("No Employee found with the email ");
