@@ -190,7 +190,7 @@ namespace Tests
 
                 var result = controller.VerifyUser(null);
                 var response = (IStatusCodeActionResult)result;
-                Assert.Equal(400, response.StatusCode);
+                Assert.Equal(200, response.StatusCode);
             }
         }
 
