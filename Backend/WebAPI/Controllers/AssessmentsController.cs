@@ -11,30 +11,31 @@ namespace WebAPI.Controllers
     [Route("[Controller]")]
     [ApiController]
     public class AssessmentController : ControllerBase
-    {
+    {   
+        //Dependency injection
         private readonly IAssessmentRepository _repo;
         public AssessmentController(IAssessmentRepository p_repo) { _repo = p_repo; }
 
-        // GET: api/Assessment/Get/All
-        [HttpGet("Get/All")]
+        // GET: Assessment/Get/All
+        [HttpGet("Get/All")]//Gets all list(s) of assessment
         public IActionResult GetAll()
         {
             try
             {
                 List<Assessment> assessment = _repo.GetAll().ToList();
                 if (assessment.Count == 0)
-                    throw new Exception("No data found");
+                    throw new Exception("No data found");//If no assessments, returns "no data found"
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid get all Assessment request.");
+                return BadRequest("Invalid get all Assessment request.");//Logs all bad requests into separate file
             }
         }
 
-        // GET api/Assessment/Get/{id}
-        [HttpGet("Get/{id}")]
+        // GET Assessment/Get/{Id}
+        [HttpGet("Get/{id}")]//Gets assessment by Id
         public IActionResult GetById(int id)
         {
             try
@@ -50,8 +51,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        //GET: Assessment/PatientId
-        [HttpGet("Get/Diagnosis/{id}")]
+        //GET: Assessment/{Id}
+        [HttpGet("Get/Diagnosis/{id}")]//Gets diagnosis by Id
         public IActionResult GetByDiagnosisId(int id)
         {
             try
@@ -66,8 +67,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        //POST api/Assessment/add 
-        [HttpPost("Add")]
+        //POST Assessment/Add 
+        [HttpPost("Add")]//Adds new assessment
         public IActionResult Add([FromBody] Assessment p_Assessment)
         {
             try
@@ -85,8 +86,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        // DELETE api/delete/{id}
-        [HttpDelete("Delete/{id}")]
+        // DELETE Delete/{id}
+        [HttpDelete("Delete/{id}")]//Deletes Assessment by Id
         public IActionResult Delete(int id)
         {
             try
@@ -104,8 +105,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        // PUT api/Assessment/update/{id}
-        [HttpPut("Update/{id}")]
+        // PUT Assessment/update/{id}
+        [HttpPut("Update/{id}")]//Updates assessment by Id
         public IActionResult Update(int id, [FromBody] Assessment p_Assessment)
         {
             try

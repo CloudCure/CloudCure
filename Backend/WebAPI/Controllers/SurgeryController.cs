@@ -12,6 +12,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class SurgeryController : ControllerBase
     {
+        //Dependency Injection
         private readonly IRepository<Surgery> _repo;
 
         public SurgeryController(IRepository<Surgery> context)
@@ -20,27 +21,27 @@ namespace WebAPI.Controllers
         }
 
 
-        // GET: surgery/All
-        [HttpGet("Get/All")]
+        // GET: surgery/Get/All
+        [HttpGet("Get/All")]//Gets list of all surgeries
         public IActionResult GetAll()
         {
             try
             {
                 List<Surgery> s = _repo.GetAll().ToList();
                 if (s.Count == 0)
-                    throw new Exception("No data found");
+                    throw new Exception("No data found");//If returns null, "no data found" is printed
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
             {
 
                 Log.Error(e.Message);
-                return BadRequest("Failed to update");
+                return BadRequest("Failed to update");//Logs all bad requests into separate file
             }
         }
 
         // GET: surgery/Get/{id}
-        [HttpGet("Get/{id}")]
+        [HttpGet("Get/{id}")]//Gets surgery by Id
         public IActionResult GetById(int id)
         {
             try
@@ -56,8 +57,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        // DELETE surgery/delete/Id
-        [HttpDelete("Delete/{id}")]
+        // DELETE surgery/delete/{Id}
+        [HttpDelete("Delete/{id}")]//Deletes surgery by Id
         public IActionResult Delete([FromBody] Surgery p_surgery)
         {
             try
@@ -75,8 +76,8 @@ namespace WebAPI.Controllers
 
         }
 
-        // PUT surgery/Update
-        [HttpPut("Update/{id}")]
+        // PUT surgery/Update/{Id}
+        [HttpPut("Update/{id}")]//Updates surgery by Id
         public IActionResult Update(int id, [FromBody] Surgery p_surgery)
         {
             try
@@ -94,7 +95,7 @@ namespace WebAPI.Controllers
         }
 
         // POST surgery/Add
-        [HttpPost("Add")]
+        [HttpPost("Add")]//Adds new surgery info
         public IActionResult Add([FromBody] Surgery p_surgery)
         {
             try

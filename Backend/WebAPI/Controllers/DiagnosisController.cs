@@ -10,6 +10,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class DiagnosisController : ControllerBase
     {
+        //Dependency injection
         private readonly IDiagnosisRepository DiagnosisRepository;
 
         public DiagnosisController(IDiagnosisRepository context)
@@ -17,8 +18,8 @@ namespace WebAPI.Controllers
             DiagnosisRepository = context;
         }
 
-        // GET: Diagnosis/All
-        [HttpGet("Get/All")]
+        // GET: Diagnosis/Get/All
+        [HttpGet("Get/All")]//Gets all diagnoses
         public IActionResult GetAll()
         {
             try
@@ -28,11 +29,12 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid get all Diagnosis request");
+                return BadRequest("Invalid get all Diagnosis request");//Logs all bad requests into separate file
             }
         }
 
-        [HttpGet("Get/{id}")]
+        // GET: Diagnosis/Get/{Id}
+        [HttpGet("Get/{id}")]//Gets diagnosis by Id
 
         public IActionResult GetById(int id)
         {
@@ -47,7 +49,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpPut("Update/{id}")]
+        // PUT: Diagnosis/Update/{Id}
+        [HttpPut("Update/{id}")]//Updates Diagnosis by Id
 
         public IActionResult Update(int id, [FromBody] Diagnosis p_diagnosis)
         {
@@ -58,34 +61,34 @@ namespace WebAPI.Controllers
                 DiagnosisRepository.Save();
                 return Ok();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Log.Error(e.Message);
                 return BadRequest("Invalid Diagnosis Update");
             }
-      }
+        }
 
-      [HttpDelete("Delete/{id}")]
+        // DELETE: Diagnosis/Delete/Id
+        [HttpDelete("Delete/{id}")]//Deletes Diagnosis by Id
 
-      public IActionResult Delete(int id)
-      {
-          try
-          {
-              var ToBeDeleted = DiagnosisRepository.GetById(id);
-              DiagnosisRepository.Delete(ToBeDeleted);
-              DiagnosisRepository.Save();
-              return Ok();
-          }
-          catch(Exception e)
-          {
-              Log.Error(e.Message);
-              return BadRequest("Invalid Diagnosis Delete request");
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var ToBeDeleted = DiagnosisRepository.GetById(id);
+                DiagnosisRepository.Delete(ToBeDeleted);
+                DiagnosisRepository.Save();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Invalid Diagnosis Delete request");
+            }
+        }
 
-
-          }
-      }
-
-      [HttpGet("Get/GetPatientId/{id}")]
+        // GET: Diagnosis/GetPatientId/{Id}
+        [HttpGet("Get/GetPatientId/{id}")]//Gets diagnosis by patient Id
         public IActionResult GetByPatientIdWithNav(int id)
         {
             try
@@ -99,7 +102,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet("Get/GetAllPatient/{id}")]
+        // GET: Diagnosis/GetAllPatientId/{Id}
+        [HttpGet("Get/GetAllPatient/{id}")]//Gets all Diagnosis by patient Id
         public IActionResult GetAllDiagnosisByPatientIdWithNav(int id)
         {
             try
@@ -112,14 +116,16 @@ namespace WebAPI.Controllers
                 return BadRequest("Invalid get diagnosis by patient Id");
             }
         }
-        [HttpPost("Add")]
+
+        // POST: Diagnosis/Add
+        [HttpPost("Add")]//Adds new diagnosis
         public IActionResult Add([FromBody] Diagnosis p_diagnosis)
         {
             try
             {
                 DiagnosisRepository.Create(p_diagnosis);
                 DiagnosisRepository.Save();
-                return Created("Diagnosis/Add", p_diagnosis );
+                return Created("Diagnosis/Add", p_diagnosis);
             }
             catch (Exception e)
             {
@@ -127,7 +133,5 @@ namespace WebAPI.Controllers
                 return BadRequest("Fail to Add diagnosis ");
             }
         }
-
-
     }
 }

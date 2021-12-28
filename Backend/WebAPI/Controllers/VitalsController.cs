@@ -18,25 +18,25 @@ namespace WebAPI.Controllers
         public VitalsController(IVitalsRepository p_repo) { _repo = p_repo; }
 
         //GET: Vitals/All
-        [HttpGet("Get/All")]
+        [HttpGet("Get/All")]//Get list of all vitals
         public IActionResult GetAll()
         {
             try
             {
                 List<Vitals> v = _repo.GetAll().ToList();
                 if (v.Count == 0)
-                    throw new Exception("No data found");
+                    throw new Exception("No data found");//If returns null, "no data found" is printed
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid get all request.");
+                return BadRequest("Invalid get all request.");//Logs all bad requests into separate file
             }
         }
 
-        //GET: Vitals/Id
-        [HttpGet("Get/{id}")]
+        //GET: Vitals/{Id}
+        [HttpGet("Get/{id}")]//Gets vitals by Id
         public IActionResult GetById(int id)
         {
             try
@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
         }
 
         //GET: Vitals/PatientId
-        [HttpGet("Get/Diagnosis/{id}")]
+        [HttpGet("Get/Diagnosis/{id}")]//Gets vitals by patient Id
         public IActionResult GetByDiagnosisId(int id)
         {
             try
@@ -70,7 +70,7 @@ namespace WebAPI.Controllers
         }
 
         //POST: Vitals/Add
-        [HttpPost("Add")]
+        [HttpPost("Add")]//Adds new vitals info 
         public IActionResult Add([FromBody] Vitals p_vitals)
         {
             try
@@ -88,8 +88,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        //PUT: Vitals/Id
-        [HttpPut("Update/{id}")]
+        //PUT: Vitals/{Id}
+        [HttpPut("Update/{id}")]//Updates vital info by Id
         public IActionResult Update(int id, [FromBody] Vitals p_vitals)
         {
             try
@@ -106,8 +106,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        //Delete: Vitals/Id
-        [HttpDelete("Delete/{id}")]
+        //Delete: Vitals/{Id}
+        [HttpDelete("Delete/{id}")]//Delete vitals by Id
         public IActionResult Delete([FromBody] Vitals p_vitals)
         {
             try

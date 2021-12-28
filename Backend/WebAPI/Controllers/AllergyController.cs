@@ -12,30 +12,32 @@ namespace WebAPI.Controllers
     [ApiController]
     public class AllergyController : ControllerBase
     {
+        //Dependency injection
         private readonly IAllergyRepository _repo;
 
         public AllergyController(IAllergyRepository p_repo) { _repo = p_repo; }
 
         // GET: Allergy/Get/All
-        [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
+        [HttpGet("Get/All")] //("All") Will give an endpoint that ends with All
         public IActionResult GetAll()
         {
             try
             {
-                List<Allergy> allergy = _repo.GetAll().ToList();
+                List<Allergy> allergy = _repo.GetAll().ToList();//Compiles a list of allergies 
                 if (allergy.Count == 0)
-                    throw new Exception ("No data found");
+                    throw new Exception ("No data found");//If none, returns "no data found"
                 return Ok(_repo.GetAll());
             }
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("No results found");
+                return BadRequest("No results found");//Logs all bad requests into separate file
             }
         }
 
+        // GET: Allergy/Get/{Id}
         [HttpGet("Get/{id}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById(int id)//Gets allergies by Id
         {
             try
             {
@@ -50,7 +52,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        [HttpGet("Get/Patient{id}")]
+        // GET: Allergy/Get/Patient{Id}
+        [HttpGet("Get/Patient{id}")]//Gets allergies by Patient Id
         public IActionResult GetByPatientId(int id)
         {
             try
@@ -66,8 +69,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        // DELETE: Allergy/Delete/Id
-        [HttpDelete("Delete/{id}")]
+        // DELETE: Allergy/Delete/{Id}
+        [HttpDelete("Delete/{id}")]//Deletes allergy by Id
         public IActionResult Delete([FromBody] Allergy p_allergy)
         {
             try
@@ -83,8 +86,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        // PUT Allergy/Edit
-        [HttpPut("Update/{id}")]
+        // PUT Allergy/Edit/{Id}
+        [HttpPut("Update/{id}")]//Updates allergy by Id
         public IActionResult Update(int id, [FromBody] Allergy p_allergy)
         {
             try
@@ -107,7 +110,7 @@ namespace WebAPI.Controllers
         }
 
         // POST: Allergy/Add
-        [HttpPost("Add")]
+        [HttpPost("Add")] //Adds new allergy 
         public IActionResult Add([FromBody] Allergy p_allergy)
         {
             try

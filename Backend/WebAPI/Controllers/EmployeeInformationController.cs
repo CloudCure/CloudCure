@@ -17,25 +17,25 @@ namespace WebAPI
         public EmployeeInformationController(IEmployeeInformationRepository p_repo) { _repo = p_repo; }
 
         // GET: Employee/Get/All
-        [HttpGet("Get/All")]
+        [HttpGet("Get/All")]//Gets list of all employees
         public IActionResult GetAll()
         {
             try
             {
                 List<EmployeeInformation> e = _repo.GetAll().ToList();
                 if (e.Count == 0)
-                    throw new Exception("No data found");
+                    throw new Exception("No data found");//If null, returns "no data found"
                 return Ok(_repo.GetAllEmployee());
             }
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid get all request.");
+                return BadRequest("Invalid get all request.");//bad request messages logged into separate file
             }
         }
 
-        // GET: Employee/Get/5
-        [HttpGet("Get/{id}")]
+        // GET: Employee/Get/{Id}
+        [HttpGet("Get/{id}")]//Gets employee by Id
         public IActionResult GetById(int id)
         {
             try
@@ -52,7 +52,7 @@ namespace WebAPI
         }
 
         // GET: Employee/Verify/{p_email}
-        [HttpGet("Verify/{p_email}")]
+        [HttpGet("Verify/{p_email}")]//Gets employee verified by email
         public IActionResult VerifyUser(string p_email)
         {
             try
@@ -67,7 +67,7 @@ namespace WebAPI
         }
 
         // POST Employee/Add
-        [HttpPost("Add")]
+        [HttpPost("Add")]//Adds employee info
         public IActionResult Add([FromBody] EmployeeInformation p_employee)
         {
             try
@@ -86,7 +86,7 @@ namespace WebAPI
         }
 
         // DELETE employee/delete/{id}
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]//Deletes employee by Id
         public IActionResult Delete(int id)
         {
             try
@@ -106,7 +106,7 @@ namespace WebAPI
         }
 
         // PUT Employee/Update/{id}
-        [HttpPut("Update/{id}")]
+        [HttpPut("Update/{id}")]//Updates employee info by Id
         public IActionResult Update(int id, [FromBody] EmployeeInformation p_employee)
         {
             try
