@@ -26,6 +26,7 @@ I want an app that allows me to easily create and print patient diagnosis.
 * ADO.NET Entity Framework (code first approach)
 * LINQ
 * CI/CD Pipeline
+* Auth0
 * Serilog (logging)
 * SonarCloud Code Analysis
 * Xunit (unit testing)
