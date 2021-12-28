@@ -15,7 +15,11 @@ namespace Data
         {
         }
 
-        //Retrieves Vitals report of a specific patient containg that patient's DiagnosisId
+        
+        /// <summary>
+        /// Retrieves Vitals report of a specific patient containg that patient's DiagnosisId
+        /// </summary>
+        /// <param name="p_patientId">query which will be DiagnosisId</param>
         public Vitals SearchByDiagnosisId(int p_patientId)
         {
             try

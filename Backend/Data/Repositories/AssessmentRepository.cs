@@ -15,7 +15,11 @@ namespace Data
         {
         }
 
-        //Returns list of all diagnoses containing user requested Diagnosis Id
+        
+        /// <summary>
+        /// Returns list of all diagnoses containing user requested Diagnosis Id
+        /// </summary>
+        /// <param name="query">query which will be DiagnosisId</param>
         public IEnumerable<Assessment> SearchByDiagnosisId(int query)
         {
             var result = base.GetAll()

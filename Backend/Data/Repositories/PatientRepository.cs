@@ -20,7 +20,11 @@ namespace Data
             repository = context;
         }
 
-        //Retrieves patient information containing user requested PatientId
+        
+        /// <summary>
+        /// Retrieves patient information containing user requested PatientId
+        /// </summary>
+        /// <param name="query">query which will be PatientId</param>
         public Patient GetbyPatientWithNav(int query)
         {
             //Patient contains information from multiple models such as allergies and conditions
@@ -41,7 +45,11 @@ namespace Data
             return patient;
         }
 
-        //Retrieves list of all patients in the database
+        
+        /// <summary>
+        /// Retrieves list of all patients in the database
+        /// </summary>
+        /// <returns>IEnumerable<Patient></returns>
         public IEnumerable<Patient> GetAllWithNav()
         {
             var patients = this.repository.Patients
