@@ -20,21 +20,18 @@ namespace Tests.Controller
             Seed();
         }
 
-        // [Fact]
-        // public void CreateReturnsOkVitals()
-        // {
-        //     using (var context = new CloudCureDbContext(_options))
-        //     {
-        //         IVitalsRepository repo = new VitalsRepository(context);
-        //         var controller = new VitalsController(repo);
+        [Fact]
+        public void CreateReturnsOkVitals()
+        {
+            var repository = new Mock<IVitalsRepository>();
+            var controller = new VitalsController(repository.Object);
 
-        //         var v = getVitals();
+            var v = getVitals();
 
-        //         var result = controller.Add(v);
-        //         var response = (IStatusCodeActionResult)result;
-        //         Assert.Equal(201, response.StatusCode);
-        //     }
-        // }
+            var results = controller.Add(v);
+            var okResponse = (IStatusCodeActionResult)results;
+            Assert.Equal(201, okResponse.StatusCode);
+        }
 
         [Fact]
         public void GetAllReturnsOKVitals()
@@ -193,7 +190,7 @@ namespace Tests.Controller
             }
         }
 
-        private Vitals getVitals()
+        private static Vitals getVitals()
         {
             return new Vitals
             {

@@ -1,8 +1,11 @@
+using System.IO;
+using System.Linq;
 using Data;
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using Serilog;
 using System;
+using System.Collections.Generic;
 
 namespace WebAPI.Controllers
 {
@@ -23,6 +26,9 @@ namespace WebAPI.Controllers
         {
             try
             {
+                List<Diagnosis> d = DiagnosisRepository.GetAll().ToList();
+                if (d.Count == 0)
+                    throw new FileNotFoundException("No data found");
                 return Ok(DiagnosisRepository.GetAll());
             }
             catch (Exception e)
@@ -38,6 +44,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (DiagnosisRepository.GetById(id) == null)
+                    throw new InvalidDataException("Invalid id");
                 return Ok(DiagnosisRepository.GetById(id));
             }
             catch (Exception e)
@@ -58,38 +66,40 @@ namespace WebAPI.Controllers
                 DiagnosisRepository.Save();
                 return Ok();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Log.Error(e.Message);
                 return BadRequest("Invalid Diagnosis Update");
             }
-      }
+        }
 
-      [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]
 
-      public IActionResult Delete(int id)
-      {
-          try
-          {
-              var ToBeDeleted = DiagnosisRepository.GetById(id);
-              DiagnosisRepository.Delete(ToBeDeleted);
-              DiagnosisRepository.Save();
-              return Ok();
-          }
-          catch(Exception e)
-          {
-              Log.Error(e.Message);
-              return BadRequest("Invalid Diagnosis Delete request");
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                var ToBeDeleted = DiagnosisRepository.GetById(id);
+                if (ToBeDeleted == null)
+                    throw new InvalidDataException("Delete failed!");
+                DiagnosisRepository.Delete(ToBeDeleted);
+                DiagnosisRepository.Save();
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.Message);
+                return BadRequest("Invalid Diagnosis Delete request");
+            }
+        }
 
-
-          }
-      }
-
-      [HttpGet("Get/GetPatientId/{id}")]
+        [HttpGet("Get/GetPatientId/{id}")]
         public IActionResult GetByPatientIdWithNav(int id)
         {
             try
             {
+                if (DiagnosisRepository.GetByPatientIdWithNav(id) == null || id < 1)
+                    throw new InvalidDataException("Invalid id");
                 return Ok(DiagnosisRepository.GetByPatientIdWithNav(id));
             }
             catch (Exception e)
@@ -104,6 +114,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (id < 1)
+                    throw new InvalidDataException("Invalid id");
                 return Ok(DiagnosisRepository.GetAllDiagnosisByPatientIdWithNav(id));
             }
             catch (Exception e)
@@ -112,14 +124,17 @@ namespace WebAPI.Controllers
                 return BadRequest("Invalid get diagnosis by patient Id");
             }
         }
+
         [HttpPost("Add")]
         public IActionResult Add([FromBody] Diagnosis p_diagnosis)
         {
             try
             {
+                if (p_diagnosis == null)
+                    throw new InvalidDataException("Invalid data!");
                 DiagnosisRepository.Create(p_diagnosis);
                 DiagnosisRepository.Save();
-                return Created("Diagnosis/Add", p_diagnosis );
+                return Created("Diagnosis/Add", p_diagnosis);
             }
             catch (Exception e)
             {
@@ -127,7 +142,5 @@ namespace WebAPI.Controllers
                 return BadRequest("Fail to Add diagnosis ");
             }
         }
-
-
     }
 }

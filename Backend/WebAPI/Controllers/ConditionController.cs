@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using System.IO;
+using Data;
 using Microsoft.AspNetCore.Mvc;
 using Models.Diagnosis;
 using Serilog;
@@ -12,7 +13,6 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ConditionController : ControllerBase
     {
-
         private readonly IConditionRepository conditionRepository;
 
         public ConditionController(IConditionRepository context)
@@ -28,12 +28,11 @@ namespace WebAPI.Controllers
             {
                 List<Condition> condition = conditionRepository.GetAll().ToList();
                 if (condition.Count == 0)
-                    throw new Exception("No data found");
+                    throw new FileNotFoundException("No data found");
                 return Ok(conditionRepository.GetAll());
             }
             catch (Exception e)
             {
-
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
             }
@@ -45,7 +44,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (conditionRepository.GetById(id) == null)
-                    throw new Exception("Invalid Id");
+                    throw new InvalidDataException("Invalid Id");
                 return Ok(conditionRepository.GetById(id));
             }
             catch (Exception e)
@@ -61,7 +60,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (conditionRepository.SearchByPatientId(id) == null)
-                    throw new Exception("Invaild Id");
+                    throw new InvalidDataException("Invaild Id");
                 return Ok(conditionRepository.SearchByPatientId(id));
             }
             catch (Exception e)
@@ -77,6 +76,8 @@ namespace WebAPI.Controllers
         {
             try
             {
+                if (p_condition == null)
+                    throw new InvalidDataException("Delete failed!");
                 conditionRepository.Delete(p_condition);
                 conditionRepository.Save();
                 return Ok();
@@ -85,7 +86,6 @@ namespace WebAPI.Controllers
             {
                 Log.Error(e.Message);
                 return BadRequest("Failed to update");
-
             }
         }
 
@@ -95,7 +95,6 @@ namespace WebAPI.Controllers
         {
             try
             {
-
                 p_condition.Id = id;
                 conditionRepository.Update(p_condition);
                 conditionRepository.Save();
@@ -115,7 +114,7 @@ namespace WebAPI.Controllers
             try
             {
                 if (p_condition == null)
-                    throw new Exception("Invalid data!");
+                    throw new InvalidDataException("Invalid data!");
                 conditionRepository.Create(p_condition);
                 conditionRepository.Save();
                 return Created("Condition/Add", p_condition);

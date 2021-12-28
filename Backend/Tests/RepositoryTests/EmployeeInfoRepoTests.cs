@@ -135,7 +135,7 @@ namespace Tests
                 repo.Delete(employee);
                 List<EmployeeInformation> test = repo.GetAll().ToList();
 
-                Assert.Equal(0, test.Count);
+                Assert.Empty(test);
             }
         }
 
@@ -208,7 +208,7 @@ namespace Tests
         }
 
 
-        public void Seed()
+        private void Seed()
         {
             using (var context = new CloudCureDbContext(_options))
             {

@@ -8,13 +8,8 @@ namespace Data
     //Inherits methods from Repository repo and Surgery Repository interface
     public class SurgeryRepository : Repository<Surgery>, ISurgeryRepository
     {
-        //Surgery repository can only be defined in its Constructor
-        readonly CloudCureDbContext repository;
-
-        //Constructor sets SurgeryRepository class with DbContext class for database access
         public SurgeryRepository(CloudCureDbContext context) : base(context)
         {
-            repository = context;
         }
 
         // Retrieves information on surgery based on the Patient id
