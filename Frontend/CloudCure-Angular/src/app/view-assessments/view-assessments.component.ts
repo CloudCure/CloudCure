@@ -26,32 +26,9 @@ export class ViewAssessmentsComponent implements OnInit {
   constructor(
     private assessmentApi: AssessmentService,
     private route: ActivatedRoute,
-    private patientApi: PatientService
-  ) {
-    // this.assessmentApi.getAssessments(this.patientApi.currentPatientId).subscribe((response) => {
-    //   console.log(response);
-    //   this.AssessmentId = response.id;
-    //   this.DiagnosisId = response.diagnosisId;
-    //   this.ChiefComplaint = response.chiefComplaint;
-    //   this.HistoryOfPresentIllness = response.historyOfPresentIllness;
-    //   this.PainAssessment = response.painAssessment;
-    //   this.PainScale = response.painScale;
-    //   this.EncounterDate = response.encounterDate;
-    // });
-    //   response.forEach(element =>
-    //     {
-    //       this.listOfAssesments.push(element);
-    //     });
-    
+    private patientApi: PatientService) 
+  {
 
-    // })
-      // this.AssessmentId = response.id;
-      // this.ChiefComplaint = response.chiefComplaint;
-      // this.HistoryOfPresentIllness = response.historyOfPresentIllness;
-      // this.PainAssessment = response.painAssessment;
-      // this.PainScale = response.painScale;
-      // this.EncounterDate = response.encounterDate;
-      // this.PatientId = response.patientI
   }
 
   ngOnInit(): void {}
