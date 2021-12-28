@@ -175,7 +175,7 @@ namespace Tests
             }
         }
 
-        private Patient newPatient()
+        private static Patient newPatient()
         {
             var patient = new Patient
             {
