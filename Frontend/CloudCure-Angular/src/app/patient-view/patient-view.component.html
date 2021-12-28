@@ -15,7 +15,7 @@
         </div>
         <div class="col-sm">
           <h4>Phone</h4>
-          <p>{{patient.userProfile.phoneNumber}}</p>
+          <p>{{patient.userProfile.phoneNumber | phone}}</p>
           <br />
         </div>
 
@@ -32,9 +32,6 @@
         <h1>Family Medical History</h1>
       </div>
       <div *ngIf="viewConditions" class="row">
-        <!-- <ul *ngFor="let condition of patient.conditions" style="float: left; width: 50%;">
-          <li>{{condition.conditionName}}</li>
-        </ul> -->
         <app-view-conditions [item]="patient"></app-view-conditions>
       </div>
     </div>
@@ -46,9 +43,6 @@
         <h1>Allergies</h1>
       </div>
       <div *ngIf="viewAllergies" class="row">
-        <!-- <ul *ngFor="let allergy of patient.allergies" style="float: left; width: 50%;">
-          <li>{{allergy.allergyName}}</li>
-        </ul> -->
         <app-view-allergies [item]="patient"></app-view-allergies>
       </div>
     </div>
@@ -59,9 +53,6 @@
         <h1>Surgeries</h1>
       </div>
       <div *ngIf="viewSurgeries" class="row">
-        <!-- <ul *ngFor="let surgery of patient.surgeries" style="float: left; width: 50%;">
-          <li>{{surgery.surgeryName}}</li>
-        </ul> -->
         <app-view-surgeries [item]="patient"></app-view-surgeries>
       </div>
     </div>
@@ -72,9 +63,6 @@
         <h1>Medications</h1>
       </div>
       <div *ngIf="viewMedication" class="row">
-        <!-- <ul *ngFor="let medication of patient.currentMedications" style="float: left; width: 50%;">
-          <li>{{medication.medicationName}}</li>
-        </ul> -->
         <app-view-medications [item]="patient"></app-view-medications>
       </div>
     </div>
@@ -122,7 +110,6 @@
       <div class="content-title">
         <button (click)="showDiagnoses()">Show</button>
         <h1>Diagnoses</h1>
-        <!--<button class="nice-button" (click)="vitalsPage()">Add Vitals</button>-->
       </div>
       <div *ngIf="viewDiagnoses">
         <div *ngFor="let diagnosis of patient.diagnoses">
