@@ -1,5 +1,5 @@
 @media print {
-    #buttonDiv {
-        display: none;
+    button {
+        display:none;
     }
   }
