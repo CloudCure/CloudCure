@@ -35,39 +35,38 @@ I want an app that allows me to easily create and print patient diagnosis.
 
 ## Contributors
 
-[Colin Mudie](https://github.com/ColinMudie)
+[Adam Czyryca](https://github.com/aczy623)
+
+[Anddy Lopez](https://github.com/AnddyLopez)
+
+[Angel Santos](https://github.com/AngelSantos1)
+
+[Ayogh Agborbesong](https://github.com/Asaku1)
+
+[Brian Stiner](https://github.com/BrianStinerGithub)
+
+[Carvell Wilkins](https://github.com/ccwilki1)
 
 [Chase Henry](https://github.com/chasehenry862)
 
-[Ayogh Agborbesong](https://github.com/Asaku1)
+[Colin Mudie](https://github.com/ColinMudie)
+
+[Danny Lara](https://github.com/dlara2021)
 
 [Jacob Williams](https://github.com/JakeWill5)
 
 [John Canace](https://github.com/jerid92)
 
-[Danny Lara](https://github.com/dlara2021)
-
-[Adam Czyryca](https://github.com/aczy623)
-
-[Sarah Davis](https://github.com/sarahbethd)
-
-[Angel Santos](https://github.com/AngelSantos1)
-
-[Brian Stiner](https://github.com/BrianStinerGithub)
+[Joshua Lopez](https://github.com/JoshuaJL2021)
 
 [Michael Mason](https://github.com/endochroma)
 
-[Oscar Cerna](https://github.com/OzzyOzy)
-
 [Oisin Crowley](https://github.com/Ocrowley1233)
 
-[Anddy Lopez](https://github.com/AnddyLopez)
+[Oscar Cerna](https://github.com/OzzyOzy)
 
-[Carvell Wilkins](https://github.com/ccwilki1)
+[Sarah Davis](https://github.com/sarahbethd)
 
-[Jacob Williams](https://github.com/JakeWill5)
-
-[Joshua Lopez](https://github.com/JoshuaJL2021)
 
 ## Links
 [GitHub Repository](https://github.com/CloudCure/CloudCure)
