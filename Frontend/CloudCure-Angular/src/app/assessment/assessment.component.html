@@ -6,46 +6,56 @@
     <div class="container">
 
 
-        <button class="center btn dark-grey-btn" (click)="show()">{{bodyClickButtonText}}</button>
+      <button class="center btn dark-grey-btn" (click)="show()">{{bodyClickButtonText}}</button>
 
-        <br />
-        <ng-container *ngIf="showBodyClicker">
-          <body-clicker class="translate-right" (onClick)="getClick($event)" [canEdit]="true"></body-clicker>
-        </ng-container>
-
+      <br />
+      <ng-container *ngIf="showBodyClicker">
+        <body-clicker  class="translate-right" (onClick)="getClick($event)" [canEdit]="true"></body-clicker>
+      </ng-container>
       
+
+
       <div class="row">
         <label [class]="HideStuff">History of present illness</label>
         <textarea formControlName="history" id="historyOfPresentIllness" name="historyOfPresentIllness"
           class="form-control bodyclickerstuff" rows="3">
               </textarea>
+        <div *ngIf="history?.invalid && (history?.dirty || history?.touched)">
+          <div class="text-danger" *ngIf="history?.errors?.['required']">*Required</div>
+        </div>
       </div>
       <br />
-      
+
       <div class="row">
         <label>Pain assessment</label>
         <textarea formControlName="painAssessment" id="painAssessment" name="painAssessment"
           class="form-control bodyclickerstuff" rows="3">
               </textarea>
+              <div *ngIf="painAssessment?.invalid && (painAssessment?.dirty || painAssessment?.touched)">
+                <div class="text-danger" *ngIf="painAssessment?.errors?.['required']">*Required</div>
+              </div>
       </div>
       <br />
       <div class="row">
-          <div class="col"></div>
-          <div class="col paincenter">
-            <div class="div">
-              <label class="painspace">Pain scale:</label>
-            </div>
-            <input formControlName="painScale" name="painScale" id="painScale" type="number" min="0" max="10" />
-            </div>
-            <div class="col paincenter">
-            <button class="btn dark-grey-btn" (click)="onSubmit(assessmentGroup)">Submit</button>
-            </div>
-            <div class="col"></div>
+        <div class="col"></div>
+        <div class="col paincenter">
+          <div class="div">
+            <label class="painspace">Pain scale:</label>
+          </div>
+          <input formControlName="painScale" name="painScale" id="painScale" type="number" min="0" max="10" />
+          <div *ngIf="painScale?.invalid && (painScale?.dirty || painScale?.touched)">
+            <div class="text-danger" *ngIf="painScale?.errors?.['required']">*Required</div>
+          </div>
         </div>
+        <div class="col paincenter">
+          <button class="btn dark-grey-btn" (click)="onSubmit(assessmentGroup)">Submit</button>
         </div>
-    
+        <div class="col"></div>
+      </div>
+    </div>
+
   </form>
-<br />
+  <br />
 
 
 </body>
