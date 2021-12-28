@@ -19,7 +19,7 @@ namespace WebAPI.Controllers
         public RoleController(IRoleRepository p_repo) { _repo = p_repo; }
 
         // GET: Role/Get/All
-        [HttpGet("Get/All")]
+        [HttpGet("Get/All")]//Get all list of roles
         public IActionResult GetAll()
         {
             try
@@ -32,12 +32,12 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid get all request.");
+                return BadRequest("Invalid get all request.");//Logs all bad requests into separate file
             }
         }
 
-        // GET: Role/Get/Id
-        [HttpGet("Get/{id}")]
+        // GET: Role/Get/{Id}
+        [HttpGet("Get/{id}")]//Get role by Id
         public IActionResult GetById(int id)
         {
             try
@@ -54,7 +54,7 @@ namespace WebAPI.Controllers
         }
 
         // POST: Role/Add
-        [HttpPost("Add")]
+        [HttpPost("Add")]//Adds new role info
         public IActionResult Add([FromBody] Role p_role)
         {
             try
@@ -72,8 +72,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        // PUT: Role/Update/Id
-        [HttpPut("Update/{id}")]
+        // PUT: Role/Update/{Id}
+        [HttpPut("Update/{id}")]//Updates role info by Id
         public IActionResult Update(int id, [FromBody] Role p_role)
         {
             try
@@ -90,8 +90,8 @@ namespace WebAPI.Controllers
             }
         }
 
-        // DELETE: Role/Delete/Id
-        [HttpDelete("Delete/{id}")]
+        // DELETE: Role/Delete/{Id}
+        [HttpDelete("Delete/{id}")]//Deletes role info by Id
         public IActionResult Delete([FromBody] Role p_role)
         {
             try

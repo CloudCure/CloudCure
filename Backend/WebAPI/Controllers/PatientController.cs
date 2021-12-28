@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
             _repo = p_repo;
         }
         // GET: Patient/All
-        [HttpGet("Get/All")] //("All") Will give and endpoint that ends with All
+        [HttpGet("Get/All")] //Gets list of all patients
         public IActionResult GetAll()
         {
             try
@@ -34,12 +34,12 @@ namespace WebAPI.Controllers
             catch (Exception e)
             {
                 Log.Error(e.Message);
-                return BadRequest("Invalid get all patients request.");
+                return BadRequest("Invalid get all patients request.");//bad request messages logged into separate file
             }
         }
 
         // GET Patient/Id
-        [HttpGet("Get/{id}")]
+        [HttpGet("Get/{id}")]//Gets patient by Id
         public IActionResult GetById(int id)
         {
             try
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         }
 
         // POST Patient/Add
-        [HttpPost("Add")]
+        [HttpPost("Add")]//Adds new patient info
         public IActionResult Add([FromBody] Patient p_patient)
         {
             try
@@ -76,7 +76,7 @@ namespace WebAPI.Controllers
         }
 
         // PUT Patient/Edit
-        [HttpPut("Update/{id}")]
+        [HttpPut("Update/{id}")]//Updates patient info
         public IActionResult Update(int id, [FromBody] Patient p_patient)
         {
             try
@@ -94,7 +94,7 @@ namespace WebAPI.Controllers
         }
 
         // DELETE Patient/Id
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("Delete/{id}")]//Deletes patient by Id
         public IActionResult Delete([FromBody] Patient p_patient)
         {
             try

@@ -56,16 +56,15 @@
 }
 
 .overThere {
-    text-align: center;
-    margin: auto;
-    margin-left: 15rem;
-
+  text-align: center;
+  margin: auto;
+  margin-left: 15rem;
 }
 
 .center {
-    margin: 0 auto;
-    display: block;
-  }
+  margin: 0 auto;
+  display: block;
+}
   
   .width-150px{
     width: 150px;

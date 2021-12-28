@@ -32,6 +32,7 @@ export class ViewDiagnosisComponent implements OnInit {
   viewSurgeries: boolean = false;
   viewMedication: boolean = false;
   viewDiagnoses: boolean = false;
+  viewCovid:boolean =false;
 
   constructor(private DiagnosisApi: DiagnosisService, private PatientApi: PatientService, private route: ActivatedRoute, private router: Router) { 
     this.PatientApi.GetById(this.PatientApi.currentPatientId).subscribe(result => {
@@ -83,5 +84,8 @@ export class ViewDiagnosisComponent implements OnInit {
 
   showDiagnoses() {
     this.viewDiagnoses = !this.viewDiagnoses;
+  }
+  showCovid(){
+    this.viewCovid=!this.viewCovid;
   }
 }

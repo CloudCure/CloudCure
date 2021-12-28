@@ -54,7 +54,6 @@ namespace Tests
             List<Vitals> v = new List<Vitals>
             {
                 new Vitals{
-                    
                     Diastolic = 70,
                     Systolic = 120,
                     HeartRate = 70,
@@ -68,7 +67,6 @@ namespace Tests
             List<Assessment> assesments = new List<Assessment>
             {
                 new Assessment{
-                    
                     PainAssessment = "asdfas",
                     PainScale = 2,
                     ChiefComplaint = "Headache",
@@ -81,9 +79,7 @@ namespace Tests
                 {
                     Id = 1,
                     EncounterDate = new DateTime(2021, 12, 22),
-                    
                     Vitals = new Vitals{
-                        
                         Diastolic = 70,
                         Systolic = 120,
                         HeartRate = 70,
@@ -95,7 +91,6 @@ namespace Tests
                     },
                     Assessment = new Assessment
                     {
-                        
                         PainAssessment = "asdfas",
                         PainScale = 2,
                         ChiefComplaint = "Headache",
@@ -134,7 +129,7 @@ namespace Tests
             Assert.Equal(doc.UserProfile.FirstName, test.Doctor.UserProfile.FirstName);
         }
 
-        private Patient GetPatient()
+        private static Patient GetPatient()
         {
             return new Patient
             {
@@ -179,8 +174,8 @@ namespace Tests
                         MedicationName = "Advil"
                     }
                 },
-                
-               
+
+
             };
         }
     }
