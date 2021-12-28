@@ -18,7 +18,11 @@ namespace Data
             repository = context;
         }
 
-        //Retrives information on user based on the user id
+        
+        /// <summary>
+        /// Retrives information on user based on the user id
+        /// </summary>
+        /// <param name="p_id">query which will be Id</param>
         public User GetUserById(int p_id)
         {
             try

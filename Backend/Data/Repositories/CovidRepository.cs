@@ -21,7 +21,11 @@ namespace Data
             repository = context;
         }
 
-        //Retrieves Covid Information from a user containing requested UserId
+        
+        /// <summary>
+        /// Retrieves Covid Information from a user containing requested UserId
+        /// </summary>
+        /// <param name="p_Id">int which will be UserId</param>
         public CovidVerify GetCovidInfoForUser(int p_Id)
         {
             try
