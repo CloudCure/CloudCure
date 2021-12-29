@@ -106,7 +106,7 @@
       </div>
     </div>
 
-    <div class="content" *ngIf="patient.diagnoses!.length && patient.diagnoses![patient.diagnoses!.length - 1].isFinalized">
+    <div class="content" *ngIf="patient.diagnoses!.length && patient.diagnoses![0].isFinalized">
       <div class="content-title">
         <button (click)="showDiagnoses()">Show</button>
         <h1>Diagnoses</h1>
