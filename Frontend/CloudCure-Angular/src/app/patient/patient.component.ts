@@ -31,10 +31,10 @@ export class PatientComponent implements OnInit {
     FirstName: new FormControl("", Validators.required),              //from UserProfile model
     LastName: new FormControl("", Validators.required),               //from UserProfile model
     DateOfBirth: new FormControl("", Validators.required),            //from UserProfile model
-    PhoneNumber: new FormControl("", Validators.required),            //from UserProfile model
+    PhoneNumber: new FormControl("", [Validators.required, Validators.minLength(10)]),            //from UserProfile model
     Address: new FormControl("", Validators.required),                //from UserProfile model
     EmergencyName: new FormControl("", Validators.required),          //from UserProfile model
-    EmergencyContactPhone: new FormControl("", Validators.required),  //from UserProfile model
+    EmergencyContactPhone: new FormControl("", [Validators.required, Validators.minLength(10)]),  //from UserProfile model
     UserRole: new FormControl(3, Validators.required),                //from UserProfile model
     conditions: this.formBuilder.array([]),
     allergies: this.formBuilder.array([]),
