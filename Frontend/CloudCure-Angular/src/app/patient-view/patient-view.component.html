@@ -106,14 +106,14 @@
       </div>
     </div>
 
-    <div class="content" *ngIf="patient.diagnoses?.length">
+    <div class="content" *ngIf="patient.diagnoses!.length && patient.diagnoses![patient.diagnoses!.length - 1].isFinalized">
       <div class="content-title">
         <button (click)="showDiagnoses()">Show</button>
         <h1>Diagnoses</h1>
       </div>
       <div *ngIf="viewDiagnoses">
         <div *ngFor="let diagnosis of patient.diagnoses">
-          <div class="card m-4">
+          <div class="card m-4" *ngIf="diagnosis.isFinalized">
             <div class="row">
               <p>{{diagnosis.encounterDate | date}}</p>
               <button class="btn  btn-sm orange-btn mb-4" (click)="setDiagId(diagnosis.id)">Print Diagnosis</button>
