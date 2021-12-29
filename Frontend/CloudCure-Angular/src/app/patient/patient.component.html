@@ -41,10 +41,13 @@
             <div class="row">
               <div class="col-lg-6">
                 <label>Phone Number</label>
-                <input type="text" formControlName="PhoneNumber" class="form-control"
+                <input type="text" mask="(000) 000-0000" formControlName="PhoneNumber" class="form-control"
                   placeholder="Enter Your Phone Number...">
                 <div *ngIf="PhoneNumber?.invalid && (PhoneNumber?.dirty || PhoneNumber?.touched)">
                   <div class="text-danger" *ngIf="PhoneNumber?.errors?.['required']">Required</div>
+                </div>
+                <div *ngIf="PhoneNumber?.touched">
+                  <div class="text-danger" *ngIf="PhoneNumber?.errors?.['minlength']">*Enter Full Phone Number</div>
                 </div>
               </div>
               <div class="col-lg-6">
@@ -83,11 +86,14 @@
               <div class="col-lg-6">
                 <div>
                   <label>Emergency Contact Number</label>
-                  <input type="text" formControlName="EmergencyContactPhone" class="form-control"
+                  <input type="text" mask="(000) 000-0000" formControlName="EmergencyContactPhone" class="form-control"
                     placeholder="Enter Your Emergency Contact Phone Number...">
                   <div
                     *ngIf="EmergencyContactPhone?.invalid && (EmergencyContactPhone?.dirty || EmergencyContactPhone?.touched)">
                     <div class="text-danger" *ngIf="EmergencyContactPhone?.errors?.['required']">Required</div>
+                  </div>
+                  <div *ngIf="PhoneNumber?.touched">
+                    <div class="text-danger" *ngIf="PhoneNumber?.errors?.['minlength']">*Enter Full Phone Number</div>
                   </div>
                 </div>
               </div>
